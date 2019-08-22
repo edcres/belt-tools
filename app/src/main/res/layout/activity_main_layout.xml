@@ -27,16 +27,14 @@
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="num 1"
                     android:ems="10"
-                    android:id="@+id/sqrtBoxOne" android:layout_weight="1"/>
+                    android:id="@+id/sqrtBox1" android:layout_weight="1" android:hint="num 1"/>
             <EditText
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="num 2"
                     android:ems="10"
-                    android:id="@+id/sqrtBox2" android:layout_weight="1"/>
+                    android:id="@+id/sqrtBox2" android:layout_weight="1" android:hint="num 2"/>
             <Button
                     android:text="="
                     android:layout_width="25dp"
@@ -60,9 +58,8 @@
                     android:layout_width="6dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="sqr ft"
                     android:ems="10"
-                    android:id="@+id/sqrFootBox" android:layout_weight="1"/>
+                    android:id="@+id/sqrFootBox" android:layout_weight="1" android:hint="sqr ft"/>
             <Button
                     android:text="&lt;-&gt;"
                     android:layout_width="7dp"
@@ -71,9 +68,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="sqr in"
                     android:ems="10"
-                    android:id="@+id/sqrInBox" android:layout_weight="1"/>
+                    android:id="@+id/sqrInBox" android:layout_weight="1" android:hint="sqr in"/>
         </LinearLayout>
         <TextView
                 android:text="Get + 7% tax"
@@ -88,21 +84,18 @@
                     android:layout_width="6dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="amount"
                     android:ems="10"
-                    android:id="@+id/amountBox" android:layout_weight="1"/>
+                    android:id="@+id/amountBox" android:layout_weight="1" android:hint="amount"/>
             <Button
                     android:text="plus tax"
                     android:layout_width="27dp"
                     android:layout_height="38dp" android:id="@+id/plusTaxButton" android:layout_weight="1"
                     android:textAllCaps="true"/>
-            <EditText
-                    android:layout_width="1dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+            <TextView
                     android:text="0"
-                    android:ems="10"
-                    android:id="@+id/afterTaxBox" android:layout_weight="1"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/afterTaxBox" android:layout_weight="1"
+                    android:textSize="18sp"/>
         </LinearLayout>
         <TextView
                 android:text="Window Width"
@@ -117,21 +110,18 @@
                     android:layout_width="143dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="Window Width"
                     android:ems="10"
-                    android:id="@+id/windowWidthBox" android:layout_weight="1"/>
+                    android:id="@+id/windowWidthBox" android:layout_weight="1" android:hint="Window Width"/>
             <Button
                     android:text="="
                     android:layout_width="63dp"
                     android:layout_height="match_parent" android:id="@+id/windowWidthEqualsButton"
                     android:layout_weight="1" android:textSize="14sp"/>
-            <EditText
-                    android:layout_width="14dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+            <TextView
                     android:text="0"
-                    android:ems="10"
-                    android:id="@+id/windowWidthResult" android:layout_weight="1"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/windowWidthResult" android:layout_weight="1"
+                    android:textSize="18sp"/>
         </LinearLayout>
         <TextView
                 android:text="To Be Continued..."
