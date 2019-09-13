@@ -17,6 +17,7 @@ import android.text.Editable as Editable
  * sqr a to sqr b (more options than sqr foot to square in)
  * change toast background color to dark
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
+ * maybe make a function for resetting individual features. Leaving the boxes at ""
  *
  * learn to call code from other kotlin files in the project
  * learn to go to another window in the app
@@ -38,8 +39,10 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get the square feet
-        // fix bug: both boxes have to be filled before button is clicked or else the app crashes
         sqrtEqualsButton.setOnClickListener {
+            if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && sqrtBoxResult.text.isNotEmpty()) {
+                sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+            }
             try {
                 var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
                 var num2 = sqrtBox2.text.toString().toDouble()
@@ -73,14 +76,19 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // get tax
         plusTaxButton.setOnClickListener {
+            if (amountBox.text.isNotEmpty() && afterTaxBox.text.isNotEmpty()){
+                amountBox.setText(""); afterTaxBox.text = "0"
+            }
             var taxAmount = amountBox.text.toString().toDouble() * 0.07
             afterTaxBox.text = (amountBox.text.toString().toDouble() + taxAmount).toString()
         }
 
         // get blind width
-        // fix bug: both boxes have to be filled before button is clicked or else the app crashes
         blindWidthEqualsButton.setOnClickListener {
             // if clicked again, reset to 0
+            if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text.isNotEmpty()){
+                windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            }
             try {
                 var window = windowWidthBox.text.toString().toDouble()
                 var blindPre = blindWidthBox.text.toString().toDouble()
