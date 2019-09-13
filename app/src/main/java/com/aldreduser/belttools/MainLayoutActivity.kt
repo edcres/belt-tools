@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
+import java.lang.NumberFormatException
 import android.text.Editable as Editable
 
 // this app will have several calculating tools for work. Plus info guides
@@ -30,25 +31,22 @@ class MainLayoutActivity : AppCompatActivity() {
 
         //reset all
         button.setOnClickListener {
-            sqrtBox1.setText("")
-            sqrtBox2.setText("")
-            sqrtBoxResult.text = "0"
-            sqrFootBox.setText("")
-            sqrInBox.setText("")
-            amountBox.setText("")
-            afterTaxBox.text = "0"
-            windowWidthBox.setText("")
-            blindWidthBox.setText("")
-            blindWidthResult.text = "0"
+            sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+            sqrFootBox.setText(""); sqrInBox.setText("")
+            amountBox.setText(""); afterTaxBox.text = "0"
+            windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
         }
 
         // get the square feet
         // fix bug: both boxes have to be filled before button is clicked or else the app crashes
         sqrtEqualsButton.setOnClickListener {
-            var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
-            var num2 = sqrtBox2.text.toString().toDouble()
-
-            sqrtBoxResult.text = (num1 * num2).toString()
+            try {
+                var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
+                var num2 = sqrtBox2.text.toString().toDouble()
+                sqrtBoxResult.text = (num1 * num2).toString()
+            } catch (e: NumberFormatException) {    // might not be the right exception
+                toast("Maybe fill both boxes with numbers.")
+            }
         }
 
         // sqr foot to sqr in sqrInBox
@@ -76,18 +74,22 @@ class MainLayoutActivity : AppCompatActivity() {
         // get tax
         plusTaxButton.setOnClickListener {
             var taxAmount = amountBox.text.toString().toDouble() * 0.07
-
             afterTaxBox.text = (amountBox.text.toString().toDouble() + taxAmount).toString()
         }
 
         // get blind width
         // fix bug: both boxes have to be filled before button is clicked or else the app crashes
         blindWidthEqualsButton.setOnClickListener {
-            var window = windowWidthBox.text.toString().toDouble()
-            var blindPre = blindWidthBox.text.toString().toDouble()
-            var blindPro :Double = (window - blindPre) / 2
+            // if clicked again, reset to 0
+            try {
+                var window = windowWidthBox.text.toString().toDouble()
+                var blindPre = blindWidthBox.text.toString().toDouble()
+                var blindPro :Double = (window - blindPre) / 2
 
-            blindWidthResult.text = blindPro.toString()
+                blindWidthResult.text = blindPro.toString()
+            } catch (e: NumberFormatException) { // might not be the right exception
+                toast("Maybe fill both boxes with numbers.")
+            }
         }
     }
 }
