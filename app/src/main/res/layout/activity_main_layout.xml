@@ -22,7 +22,8 @@
             <Button
                     android:text="Reset All"
                     android:layout_width="187dp"
-                    android:layout_height="wrap_content" android:id="@+id/button"/>
+                    android:layout_height="wrap_content" android:id="@+id/button"
+            />
             <Button
                     android:text="More..."
                     android:layout_width="wrap_content"
@@ -37,15 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <EditText
-                    android:layout_width="45dp"
+                    android:layout_width="65dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/sqrtBox1" android:layout_weight="1" android:hint="num 1"/>
             <EditText
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/sqrtBox2" android:layout_weight="1" android:hint="num 2"/>
             <Button
@@ -59,7 +60,7 @@
                     android:textSize="18sp"/>
         </LinearLayout>
         <TextView
-                android:text="Sqr Foot to Sqr in"
+                android:text="Sqr Foot to Sqr Inch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/titleSqrFootToSqrIn" android:textStyle="bold"
                 android:lineSpacingExtra="14sp" android:textSize="24sp"/>
@@ -70,9 +71,10 @@
             <EditText
                     android:layout_width="8dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/sqrFootBox" android:layout_weight="1" android:hint="sqr ft"/>
+                    android:id="@+id/sqrFootBox" android:layout_weight="1" android:hint="sqr ft"
+                    android:baselineAligned="false"/>
             <Button
                     android:text="&lt;-&gt;"
                     android:layout_width="7dp"
@@ -80,13 +82,13 @@
             <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/sqrInBox" android:layout_weight="1" android:hint="sqr in"
             />
         </LinearLayout>
         <TextView
-                android:text="Get + 7% tax"
+                android:text="Get + 7% Tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/titleGetTax" android:textStyle="bold"
                 android:lineSpacingExtra="14sp" android:textSize="24sp"/>
@@ -97,7 +99,7 @@
             <EditText
                     android:layout_width="6dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/amountBox" android:layout_weight="1" android:hint="amount"/>
             <Button
@@ -123,13 +125,13 @@
             <EditText
                     android:layout_width="106dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/windowWidthBox" android:layout_weight="1" android:hint="Window Width"/>
             <EditText
                     android:layout_width="99dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/blindWidthBox" android:layout_weight="1" android:hint="Blind Width"/>
             <Button

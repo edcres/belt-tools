@@ -2,11 +2,25 @@ package com.aldreduser.belttools
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 import android.text.Editable as Editable
 
 // this app will have several calculating tools for work. Plus info guides
+/**
+ * TODO:
+ *
+ * make it so numbers delete when calculation is done and the button is clicked
+ * how many backsplash pieces for linear feet or inches
+ * sqr a to sqr b (more options than sqr foot to square in)
+ * change toast background color to dark
+ * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
+ *
+ * learn to call code from other kotlin files in the project
+ * learn to go to another window in the app
+ * learn to change the color of a button without changing the borders (the gray part)
+ */
 
 class MainLayoutActivity : AppCompatActivity() {
 
@@ -14,30 +28,50 @@ class MainLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
 
+        //reset all
+        button.setOnClickListener {
+            sqrtBox1.setText("")
+            sqrtBox2.setText("")
+            sqrtBoxResult.text = "0"
+            sqrFootBox.setText("")
+            sqrInBox.setText("")
+            amountBox.setText("")
+            afterTaxBox.text = "0"
+            windowWidthBox.setText("")
+            blindWidthBox.setText("")
+            blindWidthResult.text = "0"
+        }
+
         // get the square feet
+        // fix bug: both boxes have to be filled before button is clicked or else the app crashes
         sqrtEqualsButton.setOnClickListener {
-            // check if user input is a number
             var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
             var num2 = sqrtBox2.text.toString().toDouble()
 
             sqrtBoxResult.text = (num1 * num2).toString()
         }
 
-        // sqr foot to sqr in
+        // sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
-            // make sure user only types numbers
-            if (sqrFootBox.text.isEmpty() && sqrInBox.text.isEmpty() ) {
+            if (sqrFootBox.text.isNotEmpty() && sqrInBox.text.isNotEmpty() ) {
                 sqrFootBox.setText("")
                 sqrInBox.setText("")
             } else if (sqrFootBox.text.isNotEmpty()) {
                 // convert it to sqr in
+                var squareFt = sqrFootBox.text.toString().toDouble()
+                var inches = Math.sqrt(squareFt) * 12
+                var sqrIn = ( inches*inches ).toString()
+                sqrInBox.setText(sqrIn)
             } else if (sqrInBox.text.isNotEmpty()) {
                 // convert it to sqr ft
+                var squareIn = sqrInBox.text.toString().toDouble()
+                var feet = Math.sqrt(squareIn) / 12
+                var sqrFt = ( feet*feet ).toString()
+                sqrFootBox.setText(sqrFt)
             } else {
-                sqrFootToSqrInButton.setOnClickListener { toast("Something went wrong.") }
+                sqrFootToSqrInButton.setOnClickListener { toast("Something isn't right.") }
             }
         }
-
 
         // get tax
         plusTaxButton.setOnClickListener {
@@ -47,6 +81,7 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get blind width
+        // fix bug: both boxes have to be filled before button is clicked or else the app crashes
         blindWidthEqualsButton.setOnClickListener {
             var window = windowWidthBox.text.toString().toDouble()
             var blindPre = blindWidthBox.text.toString().toDouble()
