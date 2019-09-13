@@ -15,6 +15,19 @@
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                    android:text="Reset All"
+                    android:layout_width="187dp"
+                    android:layout_height="wrap_content" android:id="@+id/button"/>
+            <Button
+                    android:text="More..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button2" android:layout_weight="1"/>
+        </LinearLayout>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/titleSqrFootIn" android:textStyle="bold"
@@ -55,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <EditText
-                    android:layout_width="6dp"
+                    android:layout_width="8dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
@@ -69,7 +82,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
-                    android:id="@+id/sqrInBox" android:layout_weight="1" android:hint="sqr in"/>
+                    android:id="@+id/sqrInBox" android:layout_weight="1" android:hint="sqr in"
+            />
         </LinearLayout>
         <TextView
                 android:text="Get + 7% tax"
@@ -98,29 +112,35 @@
                     android:textSize="18sp"/>
         </LinearLayout>
         <TextView
-                android:text="Window Width"
+                android:text="Blind Width"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/titleWindowToBlind" android:textSize="24sp"
+                android:layout_height="wrap_content" android:id="@+id/titleCutBlindWidth" android:textSize="24sp"
                 android:textStyle="bold"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <EditText
-                    android:layout_width="143dp"
+                    android:layout_width="106dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/windowWidthBox" android:layout_weight="1" android:hint="Window Width"/>
+            <EditText
+                    android:layout_width="99dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/blindWidthBox" android:layout_weight="1" android:hint="Blind Width"/>
             <Button
                     android:text="="
                     android:layout_width="63dp"
-                    android:layout_height="match_parent" android:id="@+id/windowWidthEqualsButton"
+                    android:layout_height="match_parent" android:id="@+id/blindWidthEqualsButton"
                     android:layout_weight="1" android:textSize="14sp"/>
             <TextView
                     android:text="0"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/windowWidthResult" android:layout_weight="1"
+                    android:layout_height="wrap_content" android:id="@+id/blindWidthResult" android:layout_weight="1"
                     android:textSize="18sp"/>
         </LinearLayout>
         <TextView
