@@ -8,147 +8,261 @@
         tools:context=".MainLayoutActivity" android:background="@color/colorAccent">
 
     <LinearLayout
+            android:layout_width="389dp"
+            android:layout_height="682dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
-            android:layout_width="376dp"
-            android:layout_height="495dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
         <TextView
+                android:id="@+id/titleSqrFootIn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/titleSqrFootIn" android:textStyle="bold"
-                android:textSize="24sp" android:text="Get Sqr Foot or Inch"/>
+                android:layout_height="wrap_content"
+                android:text="Get Sqr Foot or Inch"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
             <EditText
+                    android:id="@+id/sqrtBox1"
                     android:layout_width="65dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:id="@+id/sqrtBox1" android:layout_weight="1" android:hint="num 1"/>
+                    android:hint="num 1"
+                    android:inputType="number" />
+
             <EditText
+                    android:id="@+id/sqrtBox2"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:id="@+id/sqrtBox2" android:layout_weight="1" android:hint="num 2"/>
+                    android:hint="num 2"
+                    android:inputType="number" />
+
             <Button
-                    android:text="="
+                    android:id="@+id/sqrtEqualsButton"
                     android:layout_width="25dp"
-                    android:layout_height="36dp" android:id="@+id/sqrtEqualsButton" android:layout_weight="1"/>
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="=" />
+
             <TextView
-                    android:text="0"
+                    android:id="@+id/sqrtBoxResult"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/sqrtBoxResult" android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textSize="18sp" />
         </LinearLayout>
+
         <TextView
+                android:id="@+id/titleSqrFootToSqrIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="14sp"
                 android:text="Sqr Foot to Sqr Inch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/titleSqrFootToSqrIn" android:textStyle="bold"
-                android:lineSpacingExtra="14sp" android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
             <EditText
+                    android:id="@+id/sqrFootBox"
                     android:layout_width="8dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
+                    android:baselineAligned="false"
                     android:ems="10"
-                    android:id="@+id/sqrFootBox" android:layout_weight="1" android:hint="sqr ft"
-                    android:baselineAligned="false"/>
+                    android:hint="sqr ft"
+                    android:inputType="number" />
+
             <Button
-                    android:text="&lt;-&gt;"
+                    android:id="@+id/sqrFootToSqrInButton"
                     android:layout_width="7dp"
-                    android:layout_height="36dp" android:id="@+id/sqrFootToSqrInButton" android:layout_weight="1"/>
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="&lt;-&gt;" />
+
             <EditText
+                    android:id="@+id/sqrInBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:id="@+id/sqrInBox" android:layout_weight="1" android:hint="sqr in"
-            />
+                    android:hint="sqr in"
+                    android:inputType="number" />
         </LinearLayout>
+
         <TextView
+                android:id="@+id/titleGetTax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="14sp"
                 android:text="Get + 7% Tax"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/titleGetTax" android:textStyle="bold"
-                android:lineSpacingExtra="14sp" android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
             <EditText
+                    android:id="@+id/amountBox"
                     android:layout_width="6dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:id="@+id/amountBox" android:layout_weight="1" android:hint="amount"/>
+                    android:hint="amount"
+                    android:inputType="number" />
+
             <Button
-                    android:text="plus tax"
+                    android:id="@+id/plusTaxButton"
                     android:layout_width="27dp"
-                    android:layout_height="38dp" android:id="@+id/plusTaxButton" android:layout_weight="1"
-                    android:textAllCaps="true"/>
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="plus tax"
+                    android:textAllCaps="true" />
+
             <TextView
-                    android:text="0"
+                    android:id="@+id/afterTaxBox"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/afterTaxBox" android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textSize="18sp" />
         </LinearLayout>
+
         <TextView
+                android:id="@+id/titleCutBlindWidth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Blind Width"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/titleCutBlindWidth" android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
             <EditText
+                    android:id="@+id/windowWidthBox"
                     android:layout_width="106dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:id="@+id/windowWidthBox" android:layout_weight="1" android:hint="Window Width"/>
+                    android:hint="window width"
+                    android:inputType="number" />
+
             <EditText
+                    android:id="@+id/blindWidthBox"
                     android:layout_width="99dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:id="@+id/blindWidthBox" android:layout_weight="1" android:hint="Blind Width"/>
+                    android:hint="blind width"
+                    android:inputType="number" />
+
             <Button
-                    android:text="="
+                    android:id="@+id/blindWidthEqualsButton"
                     android:layout_width="63dp"
-                    android:layout_height="match_parent" android:id="@+id/blindWidthEqualsButton"
-                    android:layout_weight="1" android:textSize="14sp"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="="
+                    android:textSize="14sp" />
+
             <TextView
+                    android:id="@+id/blindWidthResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/blindWidthResult" android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
         </LinearLayout>
+
         <TextView
-                android:text="To Be Continued..."
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView22" android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:layout_height="wrap_content"
+                android:text="Tile Boxes"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="43dp"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/homeSqrFt"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="sqr ft"
+                    android:inputType="numberSigned" />
+
+            <EditText
+                    android:id="@+id/boxSqrFt"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="box sqr ft"
+                    android:inputType="numberSigned" />
+
             <Button
-                    android:text="More..."
+                    android:id="@+id/resultsButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/button2" android:layout_weight="1"/>
-            <Button
-                    android:text="Reset All"
-                    android:layout_width="187dp"
-                    android:layout_height="wrap_content" android:id="@+id/button"
-            />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="boxes" />
         </LinearLayout>
+
+        <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To Be Continued... (one more)"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="More..." />
+
+            <Button
+                    android:id="@+id/button"
+                    android:layout_width="187dp"
+                    android:layout_height="wrap_content"
+                    android:text="Reset All" />
+        </LinearLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

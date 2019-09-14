@@ -12,14 +12,20 @@ import android.text.Editable as Editable
 /**
  * TODO:
  *
- * make it so numbers delete when calculation is done and the button is clicked
+ * features:
+ * how many tile boxes given the square feet of the house areas, has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
  * how many backsplash pieces for linear feet or inches
  * sqr a to sqr b (more options than sqr foot to square in)
- * change toast background color to dark
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
+ *
+ * ui:
+ * change toast background color to dark
+ *
+ * optimization:
  * maybe make a function for resetting individual features. Leaving the boxes at ""
  * maybe make a function for try catch 'maybe fill both boxes with numbers'
  *
+ * skills:
  * learn to call code from other kotlin files in the project
  * learn to go to another window in the app
  * learn to change the color of a button without changing the borders (the gray part)
@@ -91,6 +97,9 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get blind width
+        blindWidthResult.setOnClickListener{
+            toast("Cut on each side")
+        }
         blindWidthEqualsButton.setOnClickListener {
             if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
                 windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
@@ -106,5 +115,8 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // get number of boxes to buy
+        // use an array for the number of results displayed in the button
     }
 }
