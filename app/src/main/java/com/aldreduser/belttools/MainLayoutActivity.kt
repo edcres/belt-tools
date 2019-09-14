@@ -18,6 +18,7 @@ import android.text.Editable as Editable
  * change toast background color to dark
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
  * maybe make a function for resetting individual features. Leaving the boxes at ""
+ * maybe make a function for try catch 'maybe fill both boxes with numbers'
  *
  * learn to call code from other kotlin files in the project
  * learn to go to another window in the app
@@ -40,15 +41,16 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // get the square feet
         sqrtEqualsButton.setOnClickListener {
-            if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && sqrtBoxResult.text.isNotEmpty()) {
+            if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && (sqrtBoxResult.text != "0")) {
                 sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
-            }
-            try {
-                var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
-                var num2 = sqrtBox2.text.toString().toDouble()
-                sqrtBoxResult.text = (num1 * num2).toString()
-            } catch (e: NumberFormatException) {    // might not be the right exception
-                toast("Maybe fill both boxes with numbers.")
+            } else {
+                try {
+                    var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
+                    var num2 = sqrtBox2.text.toString().toDouble()
+                    sqrtBoxResult.text = (num1 * num2).toString()
+                } catch (e: NumberFormatException) {    // might not be the right exception
+                    toast("Maybe fill both boxes with numbers.")
+                }
             }
         }
 
@@ -70,33 +72,38 @@ class MainLayoutActivity : AppCompatActivity() {
                 var sqrFt = ( feet*feet ).toString()
                 sqrFootBox.setText(sqrFt)
             } else {
-                sqrFootToSqrInButton.setOnClickListener { toast("Something isn't right.") }
+                toast("Maybe fill a box with numbers.")
             }
         }
 
         // get tax
         plusTaxButton.setOnClickListener {
-            if (amountBox.text.isNotEmpty() && afterTaxBox.text.isNotEmpty()){
+            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
                 amountBox.setText(""); afterTaxBox.text = "0"
+            } else {
+                try {
+                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
+                    afterTaxBox.text = (amountBox.text.toString().toDouble() + taxAmount).toString()
+                } catch (e: NumberFormatException) {
+                    toast("Maybe fill the box with numbers.")
+                }
             }
-            var taxAmount = amountBox.text.toString().toDouble() * 0.07
-            afterTaxBox.text = (amountBox.text.toString().toDouble() + taxAmount).toString()
         }
 
         // get blind width
         blindWidthEqualsButton.setOnClickListener {
-            // if clicked again, reset to 0
-            if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text.isNotEmpty()){
+            if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
                 windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            }
-            try {
-                var window = windowWidthBox.text.toString().toDouble()
-                var blindPre = blindWidthBox.text.toString().toDouble()
-                var blindPro :Double = (window - blindPre) / 2
+            } else {
+                try {
+                    var window = windowWidthBox.text.toString().toDouble()
+                    var blindPre = blindWidthBox.text.toString().toDouble()
+                    var blindPro :Double = (window - blindPre) / 2
 
-                blindWidthResult.text = blindPro.toString()
-            } catch (e: NumberFormatException) { // might not be the right exception
-                toast("Maybe fill both boxes with numbers.")
+                    blindWidthResult.text = blindPro.toString()
+                } catch (e: NumberFormatException) {
+                    toast("Maybe fill both boxes with numbers.")
+                }
             }
         }
     }
