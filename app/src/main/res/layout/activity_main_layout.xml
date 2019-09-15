@@ -12,7 +12,7 @@
             android:layout_height="682dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="95dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="num 1"
+                    android:hint="width"
                     android:inputType="number" />
 
             <EditText
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="num 2"
+                    android:hint="length"
                     android:inputType="number" />
 
             <Button
@@ -65,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingLeft="10dp"
                     android:text="0"
                     android:textSize="18sp" />
         </LinearLayout>
@@ -143,9 +144,10 @@
 
             <TextView
                     android:id="@+id/afterTaxBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="19dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingLeft="10dp"
                     android:text="0"
                     android:textSize="18sp" />
         </LinearLayout>
@@ -194,6 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingLeft="10dp"
                     android:text="0"
                     android:textSize="18sp" />
         </LinearLayout>
@@ -217,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="sqr ft"
+                    android:hint="total sqr ft"
                     android:inputType="numberSigned" />
 
             <EditText

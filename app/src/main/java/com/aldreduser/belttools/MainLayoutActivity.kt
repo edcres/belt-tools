@@ -19,6 +19,7 @@ import android.text.Editable as Editable
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
  *
  * ui:
+ * constraint to the top of the app (title bar), rn i only have a quick fix
  * change toast background color to dark
  *
  * optimization:
@@ -118,5 +119,13 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // get number of boxes to buy
         // use an array for the number of results displayed in the button
+        // add error handling to make sure user has both boxes filled
+        resultsButton.setOnClickListener {
+            var totalSqrFeet = homeSqrFt.text.toString().toDouble()
+            var boxSqrFeet = boxSqrFt.text.toString().toDouble()
+            var numOfBoxes = totalSqrFeet / boxSqrFeet
+
+            resultsButton.text = numOfBoxes.toString()
+        }
     }
 }
