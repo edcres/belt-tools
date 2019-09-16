@@ -254,7 +254,7 @@
                 android:orientation="horizontal">
 
             <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/linealSpaceBox"
                     android:layout_width="11dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -263,7 +263,7 @@
                     android:inputType="textPersonName" />
 
             <EditText
-                    android:id="@+id/editText4"
+                    android:id="@+id/backsplashWidthBox"
                     android:layout_width="21dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -272,7 +272,7 @@
                     android:inputType="textPersonName" />
 
             <EditText
-                    android:id="@+id/editText5"
+                    android:id="@+id/cutOutsBox"
                     android:layout_width="2dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -281,14 +281,14 @@
                     android:inputType="textPersonName" />
 
             <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/linealBacksplashEqualsButton"
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="=" />
 
             <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/linealBacksplashResultsBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"

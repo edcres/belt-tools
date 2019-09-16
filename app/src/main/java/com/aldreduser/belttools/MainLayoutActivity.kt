@@ -127,5 +127,10 @@ class MainLayoutActivity : AppCompatActivity() {
 
             resultsButton.text = numOfBoxes.toString()
         }
+
+        // Lineal Backsplash
+        linealBacksplashEqualsButton.setOnClickListener{
+            // multiply the width of the backsplash by 3, divide lineal space over whatever that comes out to
+        }
     }
 }
