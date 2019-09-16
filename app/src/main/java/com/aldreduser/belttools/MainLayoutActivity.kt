@@ -30,6 +30,9 @@ import android.text.Editable as Editable
  * learn to call code from other kotlin files in the project
  * learn to go to another window in the app
  * learn to change the color of a button without changing the borders (the gray part)
+ *
+ * //test 1
+ *
  */
 
 class MainLayoutActivity : AppCompatActivity() {
