@@ -241,6 +241,62 @@
         </LinearLayout>
 
         <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lineal Backsplash"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/editText3"
+                    android:layout_width="11dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="lineal space"
+                    android:inputType="textPersonName" />
+
+            <EditText
+                    android:id="@+id/editText4"
+                    android:layout_width="21dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="width"
+                    android:inputType="textPersonName" />
+
+            <EditText
+                    android:id="@+id/editText5"
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="cut outs"
+                    android:inputType="textPersonName" />
+
+            <Button
+                    android:id="@+id/button4"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="=" />
+
+            <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="0" />
+        </LinearLayout>
+
+        <TextView
                 android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
