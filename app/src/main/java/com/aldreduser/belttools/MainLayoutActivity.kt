@@ -32,6 +32,7 @@ import android.text.Editable as Editable
  * learn to change the color of a button without changing the borders (the gray part)
  *
  * //test 1
+ * //test 2 : changed email on git and made it public on github, should work now
  *
  */
 
