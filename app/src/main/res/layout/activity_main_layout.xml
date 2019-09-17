@@ -250,50 +250,70 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <EditText
-                    android:id="@+id/linealSpaceBox"
-                    android:layout_width="11dp"
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="lineal space"
-                    android:inputType="textPersonName" />
+                    android:orientation="vertical">
 
-            <EditText
-                    android:id="@+id/backsplashWidthBox"
-                    android:layout_width="21dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="width"
-                    android:inputType="textPersonName" />
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-            <EditText
-                    android:id="@+id/cutOutsBox"
-                    android:layout_width="2dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="cut outs"
-                    android:inputType="textPersonName" />
+                    <EditText
+                            android:id="@+id/bakShWidthBox"
+                            android:layout_width="21dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="width"
+                            android:inputType="textPersonName" />
 
-            <Button
-                    android:id="@+id/linealBacksplashEqualsButton"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="=" />
+                    <EditText
+                            android:id="@+id/linealSpaceBox"
+                            android:layout_width="11dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="lineal space"
+                            android:inputType="textPersonName" />
+                </LinearLayout>
 
-            <TextView
-                    android:id="@+id/linealBacksplashResultsBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="0" />
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/cutOutsBox"
+                            android:layout_width="2dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="cut outs"
+                            android:inputType="textPersonName" />
+
+                    <Button
+                            android:id="@+id/bakShEqualsButton"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="=" />
+
+                    <TextView
+                            android:id="@+id/bakShResultsBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="0" />
+
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
         <TextView

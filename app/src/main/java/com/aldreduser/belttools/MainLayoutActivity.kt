@@ -2,19 +2,15 @@ package com.aldreduser.belttools
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
-import android.text.Editable as Editable
 
 // this app will have several calculating tools for work. Plus info guides
 /**
  * TODO:
  *
  * features:
- * how many tile boxes given the square feet of the house areas, has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
- * how many backsplash pieces for linear feet or inches
  * sqr a to sqr b (more options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
  *
@@ -30,9 +26,6 @@ import android.text.Editable as Editable
  * learn to call code from other kotlin files in the project
  * learn to go to another window in the app
  * learn to change the color of a button without changing the borders (the gray part)
- *
- * //test 1
- * //test 2 : changed email on git and made it public on github, should work now
  *
  */
 
@@ -122,6 +115,7 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get number of boxes to buy
+        // has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
         // use an array for the number of results displayed in the button
         // add error handling to make sure user has both boxes filled
         resultsButton.setOnClickListener {
@@ -133,7 +127,14 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // Lineal Backsplash
-        linealBacksplashEqualsButton.setOnClickListener{
+        // how many backsplash pieces for linear feet or inches
+        // add error handling to make sure user has 3 boxes filled
+        bakShEqualsButton.setOnClickListener{
+            var linealSpace = linealSpaceBox.text.toString().toDouble()
+            var bakShWidt = bakShWidthBox.text.toString().toDouble()
+            var cutOuts = cutOutsBox.text.toString().toDouble()
+            var bakShResults = bakShResultsBox.text.toString().toDouble()
+
             // multiply the width of the backsplash by 3, divide lineal space over whatever that comes out to
         }
     }
