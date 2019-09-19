@@ -278,7 +278,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:hint="lineal space"
+                            android:hint="lineal space (in)"
                             android:inputType="textPersonName" />
                 </LinearLayout>
 
@@ -315,14 +315,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="To Be Continued... (one more)"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
         <LinearLayout
                 android:layout_width="match_parent"

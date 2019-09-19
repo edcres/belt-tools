@@ -13,6 +13,7 @@ import java.lang.NumberFormatException
  * features:
  * sqr a to sqr b (more options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
+ * make the entire screen slidable
  *
  * ui:
  * constraint to the top of the app (title bar), rn i only have a quick fix
@@ -67,7 +68,7 @@ class MainLayoutActivity : AppCompatActivity() {
                 // convert it to sqr in
                 var squareFt = sqrFootBox.text.toString().toDouble()
                 var inches = Math.sqrt(squareFt) * 12
-                var sqrIn = ( inches*inches ).toString()
+                var sqrIn = ( inches*inches ).toString() //this line is the only difference between this if brackets and the ones below (make it a function)
                 sqrInBox.setText(sqrIn)
             } else if (sqrInBox.text.isNotEmpty()) {
                 // convert it to sqr ft
@@ -118,6 +119,7 @@ class MainLayoutActivity : AppCompatActivity() {
         // has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
         // use an array for the number of results displayed in the button
         // add error handling to make sure user has both boxes filled
+        // reset when button is clicked again
         resultsButton.setOnClickListener {
             var totalSqrFeet = homeSqrFt.text.toString().toDouble()
             var boxSqrFeet = boxSqrFt.text.toString().toDouble()
@@ -128,14 +130,19 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // Lineal Backsplash
         // how many backsplash pieces for linear feet or inches
+        // add functionality to ask if the given lineal length is ft or in
+        // backsplash width is 12 by deafult, unless user clicks on it
         // add error handling to make sure user has 3 boxes filled
+        // reset when button is clicked again
         bakShEqualsButton.setOnClickListener{
             var linealSpace = linealSpaceBox.text.toString().toDouble()
-            var bakShWidt = bakShWidthBox.text.toString().toDouble()
+            var bakShWidth = bakShWidthBox.text.toString().toDouble()
             var cutOuts = cutOutsBox.text.toString().toDouble()
             var bakShResults = bakShResultsBox.text.toString().toDouble()
 
-            // multiply the width of the backsplash by 3, divide lineal space over whatever that comes out to
+            bakShResults = linealSpace/(bakShWidth*cutOuts)     // this might be wrong
+            bakShResultsBox.text = bakShResults.toString()
+
         }
     }
 }
