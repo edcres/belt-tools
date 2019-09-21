@@ -269,8 +269,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:hint="width"
-                            android:inputType="textPersonName" />
+                            android:hint="width (12in)"
+                            android:inputType="numberSigned" />
 
                     <EditText
                             android:id="@+id/linealSpaceBox"
@@ -279,7 +279,8 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="lineal space (in)"
-                            android:inputType="textPersonName" />
+                            android:inputType="numberSigned" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -294,7 +295,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="cut outs"
-                            android:inputType="textPersonName" />
+                            android:inputType="numberSigned" />
 
                     <Button
                             android:id="@+id/bakShEqualsButton"

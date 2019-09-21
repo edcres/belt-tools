@@ -36,6 +36,8 @@ class MainLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
 
+        var bakShWidthBoxTouched: Boolean
+
         //reset all
         button.setOnClickListener {
             sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
@@ -128,6 +130,8 @@ class MainLayoutActivity : AppCompatActivity() {
             resultsButton.text = numOfBoxes.toString()
         }
 
+
+
         // Lineal Backsplash
         // how many backsplash pieces for linear feet or inches
         // add functionality to ask if the given lineal length is ft or in
@@ -136,13 +140,24 @@ class MainLayoutActivity : AppCompatActivity() {
         // reset when button is clicked again
         bakShEqualsButton.setOnClickListener{
             var linealSpace = linealSpaceBox.text.toString().toDouble()
-            var bakShWidth = bakShWidthBox.text.toString().toDouble()
+
+            var bakShWidth = 12.0
+
+            // turn into switch statement
+            if (bakShWidthBoxTouched == true){
+                var bakShWidth = bakShWidth = bakShWidthBox.text.toString().toDouble()
+            }
+
+
+
             var cutOuts = cutOutsBox.text.toString().toDouble()
             var bakShResults = bakShResultsBox.text.toString().toDouble()
 
-            bakShResults = linealSpace/(bakShWidth*cutOuts)     // this might be wrong
+            bakShResults = linealSpace/(bakShWidth*cutOuts)
             bakShResultsBox.text = bakShResults.toString()
 
         }
+        bakShWidthBox.setOnClickListener() { bakShWidthBoxTouched = true }
+
     }
 }
