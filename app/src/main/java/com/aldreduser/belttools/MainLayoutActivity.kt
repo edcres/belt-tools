@@ -121,19 +121,30 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get number of boxes to buy
+        // limit the result to 4 numbers after the decimal
         // has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
-        // use an array for the number of results displayed in the button
+        // use an array for the number of results displayed in the button (or round it up)
         // add error handling to make sure user has both boxes filled
         // reset when button is clicked again
         resultsButton.setOnClickListener {
-            var totalSqrFeet = homeSqrFt.text.toString().toDouble()
-            var boxSqrFeet = boxSqrFt.text.toString().toDouble()
-            var numOfBoxes = totalSqrFeet / boxSqrFeet
+            if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty() && resultsButton.text != "boxes") {
+                homeSqrFt.setText(""); boxSqrFt.setText(""); resultsButton.setText("boxes")
+            } else {
+                try {
+                    homeSqrFt.setOnClickListener {homeSqrFt.setText("")}
+                    boxSqrFt.setOnClickListener {boxSqrFt.setText("")}
 
-            resultsButton.text = numOfBoxes.toString()
+                    var totalSqrFeet = homeSqrFt.text.toString().toDouble()
+                    var boxSqrFeet = boxSqrFt.text.toString().toDouble()
+                    var numOfBoxes = totalSqrFeet / boxSqrFeet
+
+                    resultsButton.text = numOfBoxes.toString()
+                } catch (e: NumberFormatException) {
+                    toast("Maybe fill both boxes with numbers.")
+                }
+            }
+
         }
-
-
 
         // Lineal Backsplash
         // how many backsplash pieces for linear feet or inches
@@ -142,6 +153,8 @@ class MainLayoutActivity : AppCompatActivity() {
         // reset when button is clicked again
         bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
         bakShEqualsButton.setOnClickListener () {
+            // baksplashwidthBox can be empty
+
             var bakShWidth = 12.0
             if (bakShWidthBoxTouched) {
                 var bakShWidth = bakShWidthBox.text.toString().toDouble()
