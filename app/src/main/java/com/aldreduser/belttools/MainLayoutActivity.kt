@@ -18,6 +18,7 @@ import java.lang.NumberFormatException
  * ui:
  * constraint to the top of the app (title bar), rn i only have a quick fix
  * change toast background color to dark
+ * limit the results at most a few decimal numbers
  *
  * optimization:
  * maybe make a function for resetting individual features. Leaving the boxes at ""
@@ -37,9 +38,7 @@ class MainLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
 
-        var bakShWidthBoxTouched = false
-
-        //reset all
+        // reset all
         resetAllButton.setOnClickListener {
             sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             sqrFootBox.setText(""); sqrInBox.setText("")
@@ -124,8 +123,6 @@ class MainLayoutActivity : AppCompatActivity() {
         // limit the result to 4 numbers after the decimal
         // has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
         // use an array for the number of results displayed in the button (or round it up)
-        // add error handling to make sure user has both boxes filled
-        // reset when button is clicked again
         resultsButton.setOnClickListener {
             if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty() && resultsButton.text != "boxes") {
                 homeSqrFt.setText(""); boxSqrFt.setText(""); resultsButton.setText("boxes")
@@ -143,30 +140,33 @@ class MainLayoutActivity : AppCompatActivity() {
                     toast("Maybe fill both boxes with numbers.")
                 }
             }
-
         }
 
         // Lineal Backsplash
-        // how many backsplash pieces for linear feet or inches
         // add functionality to ask if the given lineal length is ft or in
-        // add error handling to make sure user has 3 boxes filled
-        // reset when button is clicked again
+        var bakShWidthBoxTouched = false
         bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
-        bakShEqualsButton.setOnClickListener () {
-            // baksplashwidthBox can be empty
+        bakShEqualsButton.setOnClickListener {
+            if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
+                // might be a bug here with bakShWidthBox. baksplashwidthBox can be full
+                bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+            } else {
+                try {
+                    var bakShWidth = 12.0
+                    if (bakShWidthBoxTouched) {
+                        var bakShWidth = bakShWidthBox.text.toString().toDouble()
+                    }
 
-            var bakShWidth = 12.0
-            if (bakShWidthBoxTouched) {
-                var bakShWidth = bakShWidthBox.text.toString().toDouble()
+                    var linealSpace = linealSpaceBox.text.toString().toDouble()
+                    var cutOuts = cutOutsBox.text.toString().toDouble()
+                    var bakShResults = bakShResultsBox.text.toString().toDouble()
+
+                    bakShResults = linealSpace/(bakShWidth*cutOuts)
+                    bakShResultsBox.text = bakShResults.toString()
+                } catch (e: NumberFormatException) {
+                    toast("Make sure the boxes are filled.")
+                }
             }
-
-            var linealSpace = linealSpaceBox.text.toString().toDouble()
-            var cutOuts = cutOutsBox.text.toString().toDouble()
-            var bakShResults = bakShResultsBox.text.toString().toDouble()
-
-            bakShResults = linealSpace/(bakShWidth*cutOuts)
-            bakShResultsBox.text = bakShResults.toString()
-
         }
     }
 }
