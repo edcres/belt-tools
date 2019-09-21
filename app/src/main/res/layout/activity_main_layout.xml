@@ -269,7 +269,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:hint="width (12in)"
+                            android:hint="12 in. width"
                             android:inputType="numberSigned" />
 
                     <EditText
@@ -310,7 +310,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:paddingLeft="10dp"
-                            android:text="0" />
+                            android:text="0"
+                            android:textSize="18sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -330,7 +331,7 @@
                     android:text="More..." />
 
             <Button
-                    android:id="@+id/button"
+                    android:id="@+id/resetAllButton"
                     android:layout_width="187dp"
                     android:layout_height="wrap_content"
                     android:text="Reset All" />

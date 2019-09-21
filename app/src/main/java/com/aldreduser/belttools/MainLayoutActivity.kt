@@ -27,6 +27,7 @@ import java.lang.NumberFormatException
  * learn to call code from other kotlin files in the project
  * learn to go to another window in the app
  * learn to change the color of a button without changing the borders (the gray part)
+ * learn about callin variables from function to function (is .setOnClickListener a function?)
  *
  */
 
@@ -36,14 +37,16 @@ class MainLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
 
-        var bakShWidthBoxTouched: Boolean
+        var bakShWidthBoxTouched = false
 
         //reset all
-        button.setOnClickListener {
+        resetAllButton.setOnClickListener {
             sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             sqrFootBox.setText(""); sqrInBox.setText("")
             amountBox.setText(""); afterTaxBox.text = "0"
             windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            homeSqrFt.setText(""); boxSqrFt.setText(""); resultsButton.setText("Boxes")
+            bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
         // get the square feet
@@ -135,21 +138,16 @@ class MainLayoutActivity : AppCompatActivity() {
         // Lineal Backsplash
         // how many backsplash pieces for linear feet or inches
         // add functionality to ask if the given lineal length is ft or in
-        // backsplash width is 12 by deafult, unless user clicks on it
         // add error handling to make sure user has 3 boxes filled
         // reset when button is clicked again
-        bakShEqualsButton.setOnClickListener{
-            var linealSpace = linealSpaceBox.text.toString().toDouble()
-
+        bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
+        bakShEqualsButton.setOnClickListener () {
             var bakShWidth = 12.0
-
-            // turn into switch statement
-            if (bakShWidthBoxTouched == true){
-                var bakShWidth = bakShWidth = bakShWidthBox.text.toString().toDouble()
+            if (bakShWidthBoxTouched) {
+                var bakShWidth = bakShWidthBox.text.toString().toDouble()
             }
 
-
-
+            var linealSpace = linealSpaceBox.text.toString().toDouble()
             var cutOuts = cutOutsBox.text.toString().toDouble()
             var bakShResults = bakShResultsBox.text.toString().toDouble()
 
@@ -157,7 +155,5 @@ class MainLayoutActivity : AppCompatActivity() {
             bakShResultsBox.text = bakShResults.toString()
 
         }
-        bakShWidthBox.setOnClickListener() { bakShWidthBoxTouched = true }
-
     }
 }
