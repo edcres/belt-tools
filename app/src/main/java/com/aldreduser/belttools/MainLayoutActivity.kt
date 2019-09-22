@@ -44,7 +44,7 @@ class MainLayoutActivity : AppCompatActivity() {
             sqrFootBox.setText(""); sqrInBox.setText("")
             amountBox.setText(""); afterTaxBox.text = "0"
             windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            homeSqrFt.setText(""); boxSqrFt.setText(""); resultsButton.setText("Boxes")
+            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("Boxes")
             bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
@@ -122,10 +122,12 @@ class MainLayoutActivity : AppCompatActivity() {
         // get number of boxes to buy
         // limit the result to 4 numbers after the decimal
         // has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
+        // hold boxes button to add up all boxes and display them
         // use an array for the number of results displayed in the button (or round it up)
-        resultsButton.setOnClickListener {
-            if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty() && resultsButton.text != "boxes") {
-                homeSqrFt.setText(""); boxSqrFt.setText(""); resultsButton.setText("boxes")
+        // try to decrease boxes button height
+        tileBoxResultsButton.setOnClickListener {
+            if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty() && tileBoxResultsButton.text != "boxes") {
+                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes")
             } else {
                 try {
                     homeSqrFt.setOnClickListener {homeSqrFt.setText("")}
@@ -135,7 +137,7 @@ class MainLayoutActivity : AppCompatActivity() {
                     var boxSqrFeet = boxSqrFt.text.toString().toDouble()
                     var numOfBoxes = totalSqrFeet / boxSqrFeet
 
-                    resultsButton.text = numOfBoxes.toString()
+                    tileBoxResultsButton.text = numOfBoxes.toString()
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }

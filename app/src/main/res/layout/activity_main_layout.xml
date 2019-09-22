@@ -12,7 +12,6 @@
             android:layout_height="682dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="95dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
@@ -26,7 +25,7 @@
                 android:id="@+id/titleSqrFootIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Get Sqr Foot or Inch"
+                android:text="Get Sqr Ft/In"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -75,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="14sp"
-                android:text="Sqr Foot to Sqr Inch"
+                android:paddingTop="10dp"
+                android:text="Sqr Ft   &lt;--->   Sqr In"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -116,7 +116,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="14sp"
-                android:text="Get + 7% Tax"
+                android:paddingTop="10dp"
+                android:text="7% Tax"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -156,7 +157,8 @@
                 android:id="@+id/titleCutBlindWidth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blind Width"
+                android:paddingTop="10dp"
+                android:text="Cut Blind"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -205,45 +207,55 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="Tile Boxes"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:orientation="horizontal">
+                android:layout_height="160dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <EditText
-                    android:id="@+id/homeSqrFt"
-                    android:layout_width="10dp"
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="total sqr ft"
-                    android:inputType="numberSigned" />
+                    android:orientation="horizontal">
 
-            <EditText
-                    android:id="@+id/boxSqrFt"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="box sqr ft"
-                    android:inputType="numberSigned" />
+                <EditText
+                        android:id="@+id/homeSqrFt"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="total sqr ft"
+                        android:inputType="numberSigned" />
+
+                <EditText
+                        android:id="@+id/boxSqrFt"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="box sqr ft"
+                        android:inputType="numberSigned" />
+            </LinearLayout>
 
             <Button
-                    android:id="@+id/resultsButton"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tileBoxResultsButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="boxes" />
+
         </LinearLayout>
 
         <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="Lineal Backsplash"
                 android:textSize="24sp"
                 android:textStyle="bold" />
