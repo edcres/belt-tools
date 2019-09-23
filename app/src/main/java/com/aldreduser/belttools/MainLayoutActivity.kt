@@ -13,22 +13,19 @@ import java.lang.NumberFormatException
  * features:
  * sqr a to sqr b (more options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
- * make the entire screen slidable
  *
  * ui:
- * constraint to the top of the app (title bar), rn i only have a quick fix
  * change toast background color to dark
- * limit the results at most a few decimal numbers
+ * limit the results doubles length to at most a few decimal numbers
  *
  * optimization:
  * maybe make a function for resetting individual features. Leaving the boxes at ""
  * maybe make a function for try catch 'maybe fill both boxes with numbers'
  *
  * skills:
- * learn to call code from other kotlin files in the project
- * learn to go to another window in the app
+ * learn to call code from other kotlin files in the project (like creating an object in jave)
  * learn to change the color of a button without changing the borders (the gray part)
- * learn about callin variables from function to function (is .setOnClickListener a function?)
+ * learn about calling variables from function to function (is .setOnClickListener a function?)
  *
  */
 
@@ -46,6 +43,12 @@ class MainLayoutActivity : AppCompatActivity() {
             windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
             homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("Boxes")
             bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+        }
+
+        // more options
+        // open a new activity when this is clicked
+        moreOptionsButton.setOnClickListener {
+            toast("It's not ready yet.")
         }
 
         // get the square feet
@@ -125,6 +128,8 @@ class MainLayoutActivity : AppCompatActivity() {
         // hold boxes button to add up all boxes and display them
         // use an array for the number of results displayed in the button (or round it up)
         // try to decrease boxes button height
+        var boxesResults = mutableListOf<String>() // might have to reset this
+        var numOfResults :Int = 0
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty() && tileBoxResultsButton.text != "boxes") {
                 homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes")
@@ -137,7 +142,16 @@ class MainLayoutActivity : AppCompatActivity() {
                     var boxSqrFeet = boxSqrFt.text.toString().toDouble()
                     var numOfBoxes = totalSqrFeet / boxSqrFeet
 
-                    tileBoxResultsButton.text = numOfBoxes.toString()
+                    // add num of boxes to the array
+                    boxesResults.add(numOfBoxes.toString())
+                    numOfResults++
+
+                    // display the elements in the array to the box
+                    while (numOfResults < 7) {
+                        tileBoxResultsButton.text = boxesResults.toString()
+                    }
+
+                    //tileBoxResultsButton.text = numOfBoxes.toString()
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }
