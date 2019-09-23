@@ -5,6 +5,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
+import java.lang.StringBuilder
 
 // this app will have several calculating tools for work. Plus info guides
 /**
@@ -13,6 +14,7 @@ import java.lang.NumberFormatException
  * features:
  * sqr a to sqr b (more options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
+ * limit decimal places for all      "%.2f".format(totalSqrFeet/boxSqrFeet)
  *
  * ui:
  * change toast background color to dark
@@ -21,6 +23,7 @@ import java.lang.NumberFormatException
  * optimization:
  * maybe make a function for resetting individual features. Leaving the boxes at ""
  * maybe make a function for try catch 'maybe fill both boxes with numbers'
+ * create function in another file to convert measurements (call them in this file)
  *
  * skills:
  * learn to call code from other kotlin files in the project (like creating an object in jave)
@@ -30,6 +33,8 @@ import java.lang.NumberFormatException
  */
 
 class MainLayoutActivity : AppCompatActivity() {
+    val resultsStringBuilder = StringBuilder()
+    var boxesResults = 0 // might have to reset this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +42,12 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // reset all
         resetAllButton.setOnClickListener {
+            // make each into a function and the call: reset.name of function
             sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             sqrFootBox.setText(""); sqrInBox.setText("")
             amountBox.setText(""); afterTaxBox.text = "0"
             windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("Boxes")
+            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("Boxes"); boxesResults = 0; resultsStringBuilder.clear()
             bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
@@ -123,35 +129,29 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get number of boxes to buy
-        // limit the result to 4 numbers after the decimal
-        // has the last few results side to side  (house sqft, tileBox sqft, button-results are displayed in the button-)
         // hold boxes button to add up all boxes and display them
-        // use an array for the number of results displayed in the button (or round it up)
-        // try to decrease boxes button height
-        var boxesResults = mutableListOf<String>() // might have to reset this
-        var numOfResults :Int = 0
         tileBoxResultsButton.setOnClickListener {
-            if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty() && tileBoxResultsButton.text != "boxes") {
-                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes")
+            if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
+                // if boxes are empty and button is full
+                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear()
             } else {
                 try {
-                    homeSqrFt.setOnClickListener {homeSqrFt.setText("")}
-                    boxSqrFt.setOnClickListener {boxSqrFt.setText("")}
+                    homeSqrFt.setOnClickListener { homeSqrFt.setText("") }
+                    boxSqrFt.setOnClickListener { boxSqrFt.setText("") }
 
                     var totalSqrFeet = homeSqrFt.text.toString().toDouble()
                     var boxSqrFeet = boxSqrFt.text.toString().toDouble()
-                    var numOfBoxes = totalSqrFeet / boxSqrFeet
+                    var numOfBoxes = "%.2f".format(totalSqrFeet/boxSqrFeet)
 
-                    // add num of boxes to the array
-                    boxesResults.add(numOfBoxes.toString())
-                    numOfResults++
-
-                    // display the elements in the array to the box
-                    while (numOfResults < 7) {
-                        tileBoxResultsButton.text = boxesResults.toString()
+                    if (boxesResults < 7) {
+                        resultsStringBuilder.append(numOfBoxes)
+                        if (boxesResults < 6) { resultsStringBuilder.append(" + ") }
+                        boxesResults ++
+                    } else {
+                        toast("Limit reached.")
                     }
 
-                    //tileBoxResultsButton.text = numOfBoxes.toString()
+                    tileBoxResultsButton.text = resultsStringBuilder
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }
@@ -164,7 +164,6 @@ class MainLayoutActivity : AppCompatActivity() {
         bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
-                // might be a bug here with bakShWidthBox. baksplashwidthBox can be full
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
             } else {
                 try {
