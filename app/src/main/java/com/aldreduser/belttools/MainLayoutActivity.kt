@@ -12,13 +12,13 @@ import java.lang.StringBuilder
  * TODO:
  *
  * features:
- * sqr a to sqr b (more options than sqr foot to square in)
+ * sqr a to sqr b (more measurement options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
- * limit decimal places for all      "%.2f".format(totalSqrFeet/boxSqrFeet)
+ * add an info icon explaining how to use each feature
  *
  * ui:
  * change toast background color to dark
- * limit the results doubles length to at most a few decimal numbers
+ * organize and number the different features in the main page (eventually use picture icons instead of numbers)
  *
  * optimization:
  * maybe make a function for resetting individual features. Leaving the boxes at ""
@@ -33,21 +33,23 @@ import java.lang.StringBuilder
  */
 
 class MainLayoutActivity : AppCompatActivity() {
-    val resultsStringBuilder = StringBuilder()
-    var boxesResults = 0 // might have to reset this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
 
+        val resultsStringBuilder = StringBuilder()
+        var boxesResults = 0
+        val boxesResultsArray = mutableListOf<Double>()
+
         // reset all
         resetAllButton.setOnClickListener {
-            // make each into a function and the call: reset.name of function
+            // make each into a function and then call: reset.nameOfFunction
             sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             sqrFootBox.setText(""); sqrInBox.setText("")
             amountBox.setText(""); afterTaxBox.text = "0"
             windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("Boxes"); boxesResults = 0; resultsStringBuilder.clear()
+            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes"; boxesResults = 0; resultsStringBuilder.clear()
             bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
@@ -63,10 +65,11 @@ class MainLayoutActivity : AppCompatActivity() {
                 sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             } else {
                 try {
-                    var num1 = sqrtBox1.text.toString().toDouble()      // try to convert it straight to double, by skipping toString
+                    var num1 = sqrtBox1.text.toString().toDouble()
                     var num2 = sqrtBox2.text.toString().toDouble()
-                    sqrtBoxResult.text = (num1 * num2).toString()
-                } catch (e: NumberFormatException) {    // might not be the right exception
+                    var result = num1 * num2
+                    sqrtBoxResult.text = "%.4f".format(result)
+                } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }
             }
@@ -78,17 +81,17 @@ class MainLayoutActivity : AppCompatActivity() {
                 sqrFootBox.setText("")
                 sqrInBox.setText("")
             } else if (sqrFootBox.text.isNotEmpty()) {
-                // convert it to sqr in
+                // converts it to sqr in
                 var squareFt = sqrFootBox.text.toString().toDouble()
                 var inches = Math.sqrt(squareFt) * 12
-                var sqrIn = ( inches*inches ).toString() //this line is the only difference between this if brackets and the ones below (make it a function)
-                sqrInBox.setText(sqrIn)
+                var sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
+                sqrInBox.setText("%.4f".format(sqrIn))
             } else if (sqrInBox.text.isNotEmpty()) {
-                // convert it to sqr ft
+                // converts it to sqr ft
                 var squareIn = sqrInBox.text.toString().toDouble()
                 var feet = Math.sqrt(squareIn) / 12
-                var sqrFt = ( feet*feet ).toString()
-                sqrFootBox.setText(sqrFt)
+                var sqrFt = feet*feet
+                sqrFootBox.setText("%.4f".format(sqrFt))
             } else {
                 toast("Maybe fill a box with numbers.")
             }
@@ -101,7 +104,8 @@ class MainLayoutActivity : AppCompatActivity() {
             } else {
                 try {
                     var taxAmount = amountBox.text.toString().toDouble() * 0.07
-                    afterTaxBox.text = (amountBox.text.toString().toDouble() + taxAmount).toString()
+                    var result = (amountBox.text.toString().toDouble() + taxAmount)
+                    afterTaxBox.text = "%.3f".format(result)
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill the box with numbers.")
                 }
@@ -119,9 +123,8 @@ class MainLayoutActivity : AppCompatActivity() {
                 try {
                     var window = windowWidthBox.text.toString().toDouble()
                     var blindPre = blindWidthBox.text.toString().toDouble()
-                    var blindPro :Double = (window - blindPre) / 2
-
-                    blindWidthResult.text = blindPro.toString()
+                    var blindPro = (window - blindPre) / 2
+                    blindWidthResult.text = "%.4f".format(blindPro)
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }
@@ -129,10 +132,8 @@ class MainLayoutActivity : AppCompatActivity() {
         }
 
         // get number of boxes to buy
-        // hold boxes button to add up all boxes and display them
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
-                // if boxes are empty and button is full
                 homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear()
             } else {
                 try {
@@ -141,10 +142,11 @@ class MainLayoutActivity : AppCompatActivity() {
 
                     var totalSqrFeet = homeSqrFt.text.toString().toDouble()
                     var boxSqrFeet = boxSqrFt.text.toString().toDouble()
-                    var numOfBoxes = "%.2f".format(totalSqrFeet/boxSqrFeet)
+                    var numOfBoxes = totalSqrFeet/boxSqrFeet
 
                     if (boxesResults < 7) {
-                        resultsStringBuilder.append(numOfBoxes)
+                        resultsStringBuilder.append("%.2f".format(numOfBoxes))
+                        boxesResultsArray.add(numOfBoxes)
                         if (boxesResults < 6) { resultsStringBuilder.append(" + ") }
                         boxesResults ++
                     } else {
@@ -157,6 +159,11 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
         }
+        tileBoxResultsButton.setOnLongClickListener {
+            val sumOfAllResults = "%.2f".format(boxesResultsArray.sum())
+            toast(sumOfAllResults)
+            return@setOnLongClickListener true
+        }
 
         // Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
@@ -167,6 +174,7 @@ class MainLayoutActivity : AppCompatActivity() {
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
             } else {
                 try {
+                    // width = 12 by default
                     var bakShWidth = 12.0
                     if (bakShWidthBoxTouched) {
                         var bakShWidth = bakShWidthBox.text.toString().toDouble()
@@ -174,10 +182,8 @@ class MainLayoutActivity : AppCompatActivity() {
 
                     var linealSpace = linealSpaceBox.text.toString().toDouble()
                     var cutOuts = cutOutsBox.text.toString().toDouble()
-                    var bakShResults = bakShResultsBox.text.toString().toDouble()
-
-                    bakShResults = linealSpace/(bakShWidth*cutOuts)
-                    bakShResultsBox.text = bakShResults.toString()
+                    var bakShResults = linealSpace/(bakShWidth*cutOuts)
+                    bakShResultsBox.text = "%.4f".format(bakShResults)
                 } catch (e: NumberFormatException) {
                     toast("Make sure the boxes are filled.")
                 }
