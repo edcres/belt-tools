@@ -10,7 +10,7 @@ import java.lang.StringBuilder
 // make sure no company private information is made public by the software developer's actions
 // this app will have several calculating tools for work. Plus info guides
 /**
- * TODO:
+ * TODO: make the app icon **********
  *
  * features:
  * lineal feet to square yard (price of carpet calculator)
@@ -27,6 +27,7 @@ import java.lang.StringBuilder
  * ui:
  * change toast background color to dark
  * organize and number the different features in the main page (eventually use picture icons instead of numbers)
+ *
  *
  * optimization:
  * maybe make a function for resetting individual features. Leaving the boxes at ""

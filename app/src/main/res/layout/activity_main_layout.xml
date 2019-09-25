@@ -53,7 +53,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="width"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
 
                     <EditText
                             android:id="@+id/sqrtBox2"
@@ -62,7 +62,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="length"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
 
                     <Button
                             android:id="@+id/sqrtEqualsButton"
@@ -104,7 +104,7 @@
                             android:baselineAligned="false"
                             android:ems="10"
                             android:hint="sqr ft"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
 
                     <Button
                             android:id="@+id/sqrFootToSqrInButton"
@@ -120,7 +120,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="sqr in"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
                 </LinearLayout>
 
                 <TextView
@@ -145,7 +145,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="amount"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
 
                     <Button
                             android:id="@+id/plusTaxButton"
@@ -186,7 +186,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="window width"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
 
                     <EditText
                             android:id="@+id/blindWidthBox"
@@ -195,7 +195,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="blind width"
-                            android:inputType="number" />
+                            android:inputType="number|numberDecimal" />
 
                     <Button
                             android:id="@+id/blindWidthEqualsButton"
@@ -242,7 +242,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:hint="total sqr ft"
-                                android:inputType="numberSigned" />
+                                android:inputType="number|numberDecimal" />
 
                         <EditText
                                 android:id="@+id/boxSqrFt"
@@ -251,7 +251,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:hint="box sqr ft"
-                                android:inputType="numberSigned" />
+                                android:inputType="number|numberDecimal" />
                     </LinearLayout>
 
                     <Button
@@ -294,7 +294,7 @@
                                     android:layout_weight="1"
                                     android:ems="10"
                                     android:hint="12 in. width"
-                                    android:inputType="numberSigned" />
+                                    android:inputType="number|numberDecimal" />
 
                             <EditText
                                     android:id="@+id/linealSpaceBox"
@@ -303,7 +303,7 @@
                                     android:layout_weight="1"
                                     android:ems="10"
                                     android:hint="lineal space (in)"
-                                    android:inputType="numberSigned" />
+                                    android:inputType="number|numberDecimal" />
 
                         </LinearLayout>
 
@@ -319,7 +319,7 @@
                                     android:layout_weight="1"
                                     android:ems="10"
                                     android:hint="cut outs"
-                                    android:inputType="numberSigned" />
+                                    android:inputType="number|numberDecimal" />
 
                             <Button
                                     android:id="@+id/bakShEqualsButton"
