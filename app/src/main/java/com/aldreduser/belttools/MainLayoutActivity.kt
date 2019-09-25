@@ -7,14 +7,22 @@ import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
 
+// make sure no company private information is made public by the software developer's actions
 // this app will have several calculating tools for work. Plus info guides
 /**
  * TODO:
  *
  * features:
+ * lineal feet to square yard (price of carpet calculator)
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
  * add an info icon explaining how to use each feature
+ * pt2:
+ * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
+ * phone extensions of other stores
+ * click button when enter is pressed on the phone keyboard
+ * virtual reality tape measurer
+ * image recognition of items (or integrate it with the home depot's app)
  *
  * ui:
  * change toast background color to dark
@@ -24,6 +32,7 @@ import java.lang.StringBuilder
  * maybe make a function for resetting individual features. Leaving the boxes at ""
  * maybe make a function for try catch 'maybe fill both boxes with numbers'
  * create function in another file to convert measurements (call them in this file)
+ * count how many time i use each feature on my app, to what which feature to put where (make a radio to check if eah count is real or for a test)
  *
  * skills:
  * learn to call code from other kotlin files in the project (like creating an object in jave)
@@ -68,7 +77,7 @@ class MainLayoutActivity : AppCompatActivity() {
                     var num1 = sqrtBox1.text.toString().toDouble()
                     var num2 = sqrtBox2.text.toString().toDouble()
                     var result = num1 * num2
-                    sqrtBoxResult.text = "%.4f".format(result)
+                    sqrtBoxResult.text = "%.3f".format(result)
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }
@@ -85,13 +94,13 @@ class MainLayoutActivity : AppCompatActivity() {
                 var squareFt = sqrFootBox.text.toString().toDouble()
                 var inches = Math.sqrt(squareFt) * 12
                 var sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
-                sqrInBox.setText("%.4f".format(sqrIn))
+                sqrInBox.setText("%.3f".format(sqrIn))
             } else if (sqrInBox.text.isNotEmpty()) {
                 // converts it to sqr ft
                 var squareIn = sqrInBox.text.toString().toDouble()
                 var feet = Math.sqrt(squareIn) / 12
                 var sqrFt = feet*feet
-                sqrFootBox.setText("%.4f".format(sqrFt))
+                sqrFootBox.setText("%.3f".format(sqrFt))
             } else {
                 toast("Maybe fill a box with numbers.")
             }
@@ -124,7 +133,7 @@ class MainLayoutActivity : AppCompatActivity() {
                     var window = windowWidthBox.text.toString().toDouble()
                     var blindPre = blindWidthBox.text.toString().toDouble()
                     var blindPro = (window - blindPre) / 2
-                    blindWidthResult.text = "%.4f".format(blindPro)
+                    blindWidthResult.text = "%.3f".format(blindPro)
                 } catch (e: NumberFormatException) {
                     toast("Maybe fill both boxes with numbers.")
                 }
@@ -183,7 +192,7 @@ class MainLayoutActivity : AppCompatActivity() {
                     var linealSpace = linealSpaceBox.text.toString().toDouble()
                     var cutOuts = cutOutsBox.text.toString().toDouble()
                     var bakShResults = linealSpace/(bakShWidth*cutOuts)
-                    bakShResultsBox.text = "%.4f".format(bakShResults)
+                    bakShResultsBox.text = "%.3f".format(bakShResults)
                 } catch (e: NumberFormatException) {
                     toast("Make sure the boxes are filled.")
                 }
