@@ -305,6 +305,13 @@
                                     android:hint="lineal space (in)"
                                     android:inputType="number|numberDecimal" />
 
+                            <ToggleButton
+                                    android:id="@+id/toggleButton"
+                                    android:layout_width="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="ToggleButton" />
+
                         </LinearLayout>
 
                         <LinearLayout

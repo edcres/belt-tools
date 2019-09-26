@@ -201,3 +201,12 @@ class MainLayoutActivity : AppCompatActivity() {
         }
     }
 }
+
+
+//func to turn ft. to in., and vice versa
+/*
+ask if var comming is in ft or in. (from the drop down menu)
+take it and turn it into the other
+    multiply or divide by 12
+return the result
+ */
