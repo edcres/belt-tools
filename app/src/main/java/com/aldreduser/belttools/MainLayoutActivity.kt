@@ -190,7 +190,7 @@ class MainLayoutActivity : AppCompatActivity() {
                         var bakShWidth = bakShWidthBox.text.toString().toDouble()
                     }
 
-                    var linealSpace = linealSpaceBox.text.toString().toDouble()
+                    var linealSpace = getFeetToInch() // hopefully this is rigtht
                     var cutOuts = cutOutsBox.text.toString().toDouble()
                     var bakShResults = linealSpace/(bakShWidth*cutOuts)
                     bakShResultsBox.text = "%.3f".format(bakShResults)
@@ -200,27 +200,25 @@ class MainLayoutActivity : AppCompatActivity() {
             }
         }
     }
-}
 
+    fun getFeetToInch(): Double {
+        // function returns inches
+        var num = linealSpaceBox.text.toString().toDouble()
+        var result :Double
 
-//func to turn ft. to in., and vice versa
-/*
-ask if var comming is in ft or in. (from the drop down menu)
-take it and turn it into the other
-    multiply or divide by 12
-return the result
- */
-fun feetToIn {
-    var isGettingInch :Boolean
-    var feet :Double
-    var inch :Double
-
-    if (isGettingInch) {
-        inch = feet*12
-        return inch
-    } else if () {
-        feet = inch/12
-        return feet
-    } else {
+        // if the toggle button is feet, turn to in, else do nothing
+        if (!bakShToggleButton.isChecked) {
+            //inout is feet
+            result = num*12
+            toast("did it")
+            return result
+        } else if (bakShToggleButton.isChecked) {
+            //input is inch
+            toast("not done")
+            return num
+        } else {
+            toast("Something's wrong.")
+            return num
+        }
     }
 }

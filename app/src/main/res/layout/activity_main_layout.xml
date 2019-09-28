@@ -289,7 +289,7 @@
 
                             <EditText
                                     android:id="@+id/bakShWidthBox"
-                                    android:layout_width="21dp"
+                                    android:layout_width="113dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
@@ -298,7 +298,7 @@
 
                             <EditText
                                     android:id="@+id/linealSpaceBox"
-                                    android:layout_width="11dp"
+                                    android:layout_width="121dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
@@ -306,11 +306,16 @@
                                     android:inputType="number|numberDecimal" />
 
                             <ToggleButton
-                                    android:id="@+id/toggleButton"
+                                    android:id="@+id/bakShToggleButton"
                                     android:layout_width="15dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="ToggleButton" />
+                                    android:lineSpacingExtra="10sp"
+                                    android:text="ToggleButton"
+                                    android:textAllCaps="false"
+                                    android:textOff="ft."
+                                    android:textOn="in."
+                                    android:textSize="14sp" />
 
                         </LinearLayout>
 
