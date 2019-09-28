@@ -210,3 +210,17 @@ take it and turn it into the other
     multiply or divide by 12
 return the result
  */
+fun feetToIn {
+    var isGettingInch :Boolean
+    var feet :Double
+    var inch :Double
+
+    if (isGettingInch) {
+        inch = feet*12
+        return inch
+    } else if () {
+        feet = inch/12
+        return feet
+    } else {
+    }
+}
