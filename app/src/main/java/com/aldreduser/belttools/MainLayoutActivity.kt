@@ -59,7 +59,7 @@ class MainLayoutActivity : AppCompatActivity() {
             sqrFootBox.setText(""); sqrInBox.setText("")
             amountBox.setText(""); afterTaxBox.text = "0"
             windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes"; boxesResults = 0; resultsStringBuilder.clear()
+            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes"; boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
             bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
@@ -144,7 +144,8 @@ class MainLayoutActivity : AppCompatActivity() {
         // get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
-                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear()
+                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear();
+                boxesResultsArray.clear();
             } else {
                 try {
                     homeSqrFt.setOnClickListener { homeSqrFt.setText("") }
@@ -190,7 +191,7 @@ class MainLayoutActivity : AppCompatActivity() {
                         var bakShWidth = bakShWidthBox.text.toString().toDouble()
                     }
 
-                    var linealSpace = getFeetToInch() // hopefully this is rigtht
+                    var linealSpace = getFeetToInch() // hopefully this is right
                     var cutOuts = cutOutsBox.text.toString().toDouble()
                     var bakShResults = linealSpace/(bakShWidth*cutOuts)
                     bakShResultsBox.text = "%.3f".format(bakShResults)
