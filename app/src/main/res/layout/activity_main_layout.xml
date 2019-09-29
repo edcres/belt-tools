@@ -82,45 +82,51 @@
                 </LinearLayout>
 
                 <TextView
-                        android:id="@+id/titleSqrFootToSqrIn"
+                        android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lineSpacingExtra="14sp"
                         android:paddingTop="10dp"
-                        android:text="Sqr Ft   &lt;--->   Sqr In"
+                        android:text="Tile Boxes"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="85dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <EditText
-                            android:id="@+id/sqrFootBox"
-                            android:layout_width="8dp"
+                    <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:ems="10"
-                            android:hint="sqr ft"
-                            android:inputType="number|numberDecimal" />
+                            android:orientation="horizontal">
+
+                        <EditText
+                                android:id="@+id/homeSqrFt"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:hint="total sqr ft"
+                                android:inputType="number|numberDecimal" />
+
+                        <EditText
+                                android:id="@+id/boxSqrFt"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:hint="box sqr ft"
+                                android:inputType="number|numberDecimal" />
+                    </LinearLayout>
 
                     <Button
-                            android:id="@+id/sqrFootToSqrInButton"
-                            android:layout_width="7dp"
-                            android:layout_height="36dp"
+                            android:id="@+id/tileBoxResultsButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="&lt;-&gt;" />
+                            android:text="boxes" />
 
-                    <EditText
-                            android:id="@+id/sqrInBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="sqr in"
-                            android:inputType="number|numberDecimal" />
                 </LinearLayout>
 
                 <TextView
@@ -163,6 +169,48 @@
                             android:paddingLeft="10dp"
                             android:text="0"
                             android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/titleSqrFootToSqrIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="14sp"
+                        android:paddingTop="10dp"
+                        android:text="Sqr Ft   &lt;--->   Sqr In"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/sqrFootBox"
+                            android:layout_width="8dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:baselineAligned="false"
+                            android:ems="10"
+                            android:hint="sqr ft"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/sqrFootToSqrInButton"
+                            android:layout_width="7dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:text="&lt;-&gt;" />
+
+                    <EditText
+                            android:id="@+id/sqrInBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="sqr in"
+                            android:inputType="number|numberDecimal" />
                 </LinearLayout>
 
                 <TextView
@@ -216,54 +264,6 @@
                 </LinearLayout>
 
                 <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="Tile Boxes"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="85dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                        <EditText
-                                android:id="@+id/homeSqrFt"
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:hint="total sqr ft"
-                                android:inputType="number|numberDecimal" />
-
-                        <EditText
-                                android:id="@+id/boxSqrFt"
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:ems="10"
-                                android:hint="box sqr ft"
-                                android:inputType="number|numberDecimal" />
-                    </LinearLayout>
-
-                    <Button
-                            android:id="@+id/tileBoxResultsButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="boxes" />
-
-                </LinearLayout>
-
-                <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -302,7 +302,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
-                                    android:hint="lineal space (in)"
+                                    android:hint="lineal space"
                                     android:inputType="number|numberDecimal" />
 
                             <ToggleButton

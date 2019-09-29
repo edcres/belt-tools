@@ -16,11 +16,11 @@ import java.lang.StringBuilder
  * lineal feet to square yard (price of carpet calculator)
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
- * add an info icon explaining how to use each feature
+ * click button when enter is pressed on the phone keyboard *****
+ * add an info icon explaining how to use each feature *****
  * pt2:
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
- * phone extensions of other stores
- * click button when enter is pressed on the phone keyboard
+ * phone extensions of other departments(save the in memory and make them changeable by the user) other stores
  * virtual reality tape measurer
  * image recognition of items (or integrate it with the home depot's app)
  *
@@ -38,7 +38,6 @@ import java.lang.StringBuilder
  * skills:
  * learn to call code from other kotlin files in the project (like creating an object in jave)
  * learn to change the color of a button without changing the borders (the gray part)
- * learn about calling variables from function to function (is .setOnClickListener a function?)
  *
  */
 
@@ -85,61 +84,6 @@ class MainLayoutActivity : AppCompatActivity() {
             }
         }
 
-        // sqr foot to sqr in sqrInBox
-        sqrFootToSqrInButton.setOnClickListener {
-            if (sqrFootBox.text.isNotEmpty() && sqrInBox.text.isNotEmpty() ) {
-                sqrFootBox.setText("")
-                sqrInBox.setText("")
-            } else if (sqrFootBox.text.isNotEmpty()) {
-                // converts it to sqr in
-                var squareFt = sqrFootBox.text.toString().toDouble()
-                var inches = Math.sqrt(squareFt) * 12
-                var sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
-                sqrInBox.setText("%.3f".format(sqrIn))
-            } else if (sqrInBox.text.isNotEmpty()) {
-                // converts it to sqr ft
-                var squareIn = sqrInBox.text.toString().toDouble()
-                var feet = Math.sqrt(squareIn) / 12
-                var sqrFt = feet*feet
-                sqrFootBox.setText("%.3f".format(sqrFt))
-            } else {
-                toast("Maybe fill a box with numbers.")
-            }
-        }
-
-        // get tax
-        plusTaxButton.setOnClickListener {
-            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
-                amountBox.setText(""); afterTaxBox.text = "0"
-            } else {
-                try {
-                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
-                    var result = (amountBox.text.toString().toDouble() + taxAmount)
-                    afterTaxBox.text = "%.3f".format(result)
-                } catch (e: NumberFormatException) {
-                    toast("Maybe fill the box with numbers.")
-                }
-            }
-        }
-
-        // get blind width
-        blindWidthResult.setOnClickListener{
-            toast("Cut on each side")
-        }
-        blindWidthEqualsButton.setOnClickListener {
-            if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
-                windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            } else {
-                try {
-                    var window = windowWidthBox.text.toString().toDouble()
-                    var blindPre = blindWidthBox.text.toString().toDouble()
-                    var blindPro = (window - blindPre) / 2
-                    blindWidthResult.text = "%.3f".format(blindPro)
-                } catch (e: NumberFormatException) {
-                    toast("Maybe fill both boxes with numbers.")
-                }
-            }
-        }
 
         // get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
@@ -176,6 +120,62 @@ class MainLayoutActivity : AppCompatActivity() {
             return@setOnLongClickListener true
         }
 
+        // get tax
+        plusTaxButton.setOnClickListener {
+            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
+                amountBox.setText(""); afterTaxBox.text = "0"
+            } else {
+                try {
+                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
+                    var result = (amountBox.text.toString().toDouble() + taxAmount)
+                    afterTaxBox.text = "%.3f".format(result)
+                } catch (e: NumberFormatException) {
+                    toast("Maybe fill the box with numbers.")
+                }
+            }
+        }
+
+        // sqr foot to sqr in sqrInBox
+        sqrFootToSqrInButton.setOnClickListener {
+            if (sqrFootBox.text.isNotEmpty() && sqrInBox.text.isNotEmpty() ) {
+                sqrFootBox.setText("")
+                sqrInBox.setText("")
+            } else if (sqrFootBox.text.isNotEmpty()) {
+                // converts it to sqr in
+                var squareFt = sqrFootBox.text.toString().toDouble()
+                var inches = Math.sqrt(squareFt) * 12
+                var sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
+                sqrInBox.setText("%.3f".format(sqrIn))
+            } else if (sqrInBox.text.isNotEmpty()) {
+                // converts it to sqr ft
+                var squareIn = sqrInBox.text.toString().toDouble()
+                var feet = Math.sqrt(squareIn) / 12
+                var sqrFt = feet*feet
+                sqrFootBox.setText("%.3f".format(sqrFt))
+            } else {
+                toast("Maybe fill a box with numbers.")
+            }
+        }
+
+        // get blind width
+        blindWidthResult.setOnClickListener{
+            toast("Cut on each side")
+        }
+        blindWidthEqualsButton.setOnClickListener {
+            if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
+                windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            } else {
+                try {
+                    var window = windowWidthBox.text.toString().toDouble()
+                    var blindPre = blindWidthBox.text.toString().toDouble()
+                    var blindPro = (window - blindPre) / 2
+                    blindWidthResult.text = "%.3f".format(blindPro)
+                } catch (e: NumberFormatException) {
+                    toast("Maybe fill both boxes with numbers.")
+                }
+            }
+        }
+
         // Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
         var bakShWidthBoxTouched = false
@@ -202,6 +202,7 @@ class MainLayoutActivity : AppCompatActivity() {
         }
     }
 
+    // function returns inches
     fun getFeetToInch(): Double {
         // function returns inches
         var num = linealSpaceBox.text.toString().toDouble()
