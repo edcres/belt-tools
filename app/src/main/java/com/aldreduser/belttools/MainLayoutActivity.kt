@@ -2,6 +2,8 @@ package com.aldreduser.belttools
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
@@ -10,7 +12,7 @@ import java.lang.StringBuilder
 // make sure no company private information is made public by the software developer's actions
 // this app will have several calculating tools for work. Plus info guides
 /**
- * TODO: make the app icon **********
+ * TODO:
  *
  * features:
  * lineal feet to square yard (price of carpet calculator)
@@ -34,10 +36,12 @@ import java.lang.StringBuilder
  * maybe make a function for try catch 'maybe fill both boxes with numbers'
  * create function in another file to convert measurements (call them in this file)
  * count how many time i use each feature on my app, to what which feature to put where (make a radio to check if eah count is real or for a test)
+ * clean up the code to make user press enter
  *
  * skills:
  * learn to call code from other kotlin files in the project (like creating an object in jave)
  * learn to change the color of a button without changing the borders (the gray part)
+ * idk what ACTION_UP or ACTION_DOWN means
  *
  */
 
@@ -68,6 +72,7 @@ class MainLayoutActivity : AppCompatActivity() {
             toast("It's not ready yet.")
         }
 
+
         // get the square feet
         sqrtEqualsButton.setOnClickListener {
             if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && (sqrtBoxResult.text != "0")) {
@@ -83,6 +88,21 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
         }
+        // click sqrtEqualsButton when user presses enter in box 1
+        sqrtBox1.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                // idk what ACTION_UP or ACTION_DOWN means
+                sqrtEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+        // click sqrtEqualsButton when user presses enter in box 2
+        sqrtBox2.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                sqrtEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
 
 
         // get number of boxes to buy
@@ -99,10 +119,10 @@ class MainLayoutActivity : AppCompatActivity() {
                     var boxSqrFeet = boxSqrFt.text.toString().toDouble()
                     var numOfBoxes = totalSqrFeet/boxSqrFeet
 
-                    if (boxesResults < 7) {
+                    if (boxesResults < 6) {
                         resultsStringBuilder.append("%.2f".format(numOfBoxes))
                         boxesResultsArray.add(numOfBoxes)
-                        if (boxesResults < 6) { resultsStringBuilder.append(" + ") }
+                        if (boxesResults < 5) { resultsStringBuilder.append(" + ") }
                         boxesResults ++
                     } else {
                         toast("Limit reached.")
@@ -119,6 +139,21 @@ class MainLayoutActivity : AppCompatActivity() {
             toast(sumOfAllResults)
             return@setOnLongClickListener true
         }
+        // click Button when user presses enter in box 1
+        homeSqrFt.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                tileBoxResultsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+        // click Button when user presses enter in box 2
+        boxSqrFt.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                tileBoxResultsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+
 
         // get tax
         plusTaxButton.setOnClickListener {
@@ -134,6 +169,13 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
         }
+        // click Button when user presses enter in the box
+        amountBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                plusTaxButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
 
         // sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
@@ -156,11 +198,22 @@ class MainLayoutActivity : AppCompatActivity() {
                 toast("Maybe fill a box with numbers.")
             }
         }
+        // click Button when user presses enter in box 1
+        sqrFootBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                sqrFootToSqrInButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+        // click Button when user presses enter in box 2
+        sqrInBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                sqrFootToSqrInButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
 
         // get blind width
-        blindWidthResult.setOnClickListener{
-            toast("Cut on each side")
-        }
         blindWidthEqualsButton.setOnClickListener {
             if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
                 windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
@@ -175,6 +228,24 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
         }
+        blindWidthResult.setOnClickListener{
+            toast("Cut on each side")
+        }
+        // click Button when user presses enter in box 1
+        windowWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                blindWidthEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+        // click Button when user presses enter in box 2
+        blindWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                blindWidthEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+
 
         // Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
@@ -200,6 +271,27 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
         }
+        // click Button when user presses enter in box 1
+        bakShWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                bakShEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+        // click Button when user presses enter in box 2
+        linealSpaceBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                bakShEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+        // click Button when user presses enter in box 3
+        cutOutsBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                bakShEqualsButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
     }
 
     // function returns inches
@@ -212,11 +304,9 @@ class MainLayoutActivity : AppCompatActivity() {
         if (!bakShToggleButton.isChecked) {
             //inout is feet
             result = num*12
-            toast("did it")
             return result
         } else if (bakShToggleButton.isChecked) {
             //input is inch
-            toast("not done")
             return num
         } else {
             toast("Something's wrong.")

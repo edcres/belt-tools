@@ -302,7 +302,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
-                                    android:hint="lineal space"
+                                    android:hint="lineal space (in)"
                                     android:inputType="number|numberDecimal" />
 
                             <ToggleButton
