@@ -1,5 +1,6 @@
 package com.aldreduser.belttools
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
@@ -25,6 +26,7 @@ import java.lang.StringBuilder
  * phone extensions of other departments(save the in memory and make them changeable by the user) other stores
  * virtual reality tape measurer
  * image recognition of items (or integrate it with the home depot's app)
+ * Turn fractions into decimals and decimals into fractions
  *
  * ui:
  * change toast background color to dark
@@ -69,7 +71,8 @@ class MainLayoutActivity : AppCompatActivity() {
         // more options
         // open a new activity when this is clicked
         moreOptionsButton.setOnClickListener {
-            toast("It's not ready yet.")
+            val newIntent = Intent(this, MoreOptionsMenu::class.java) // maybe change 'newIntent' name
+            startActivity(newIntent)
         }
 
 
