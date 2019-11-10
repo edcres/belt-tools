@@ -17,31 +17,28 @@ import java.lang.StringBuilder
  *
  * features:
  * lineal feet to square yard (price of carpet calculator)
+ * Turn fractions into decimals and decimals into fractions
  * sqr a to sqr b (more measurement options than sqr foot to square in)
- * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app)
- * click button when enter is pressed on the phone keyboard *****
+ * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
  * add an info icon explaining how to use each feature *****
  * pt2:
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  * phone extensions of other departments(save the in memory and make them changeable by the user) other stores
  * virtual reality tape measurer
- * image recognition of items (or integrate it with the home depot's app)
- * Turn fractions into decimals and decimals into fractions
+ * user can choose the department that will show up in the homescreen (can also add features from other departments)
  *
  * ui:
  * change toast background color to dark
  * organize and number the different features in the main page (eventually use picture icons instead of numbers)
- *
+ * make buttons look pretty
  *
  * optimization:
- * maybe make a function for resetting individual features. Leaving the boxes at ""
  * maybe make a function for try catch 'maybe fill both boxes with numbers'
  * create function in another file to convert measurements (call them in this file)
- * count how many time i use each feature on my app, to what which feature to put where (make a radio to check if eah count is real or for a test)
- * clean up the code to make user press enter
+ * count how many times i use each feature on my app, to what which feature to put where (make a radio button to check if eah count is real or for a test)
  *
  * skills:
- * learn to call code from other kotlin files in the project (like creating an object in jave)
+ * learn to call code from other kotlin files in the project (like creating an object in java)
  * learn to change the color of a button without changing the borders (the gray part)
  * idk what ACTION_UP or ACTION_DOWN means
  *
@@ -249,6 +246,15 @@ class MainLayoutActivity : AppCompatActivity() {
             } else false
         })
 
+        // decimal to fraction
+        decimalToFractionButton.setOnClickListener {
+
+        }
+
+        // lineal ft to square yard
+        linealFtToSqrYardButton.setOnClickListener {
+            
+        }
 
         // Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
@@ -295,6 +301,11 @@ class MainLayoutActivity : AppCompatActivity() {
                 return@OnKeyListener true
             } else false
         })
+    }
+
+    // function turns decimals into fractions
+    fun decimalToFraction() {
+        //takes in a decimal number and returns a string ('num' + '/' + 'num')
     }
 
     // function returns inches

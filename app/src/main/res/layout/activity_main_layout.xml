@@ -130,48 +130,6 @@
                 </LinearLayout>
 
                 <TextView
-                        android:id="@+id/titleGetTax"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="14sp"
-                        android:paddingTop="10dp"
-                        android:text="7% Tax"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                    <EditText
-                            android:id="@+id/amountBox"
-                            android:layout_width="6dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="amount"
-                            android:inputType="number|numberDecimal" />
-
-                    <Button
-                            android:id="@+id/plusTaxButton"
-                            android:layout_width="27dp"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:text="plus tax"
-                            android:textAllCaps="true" />
-
-                    <TextView
-                            android:id="@+id/afterTaxBox"
-                            android:layout_width="19dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:paddingLeft="10dp"
-                            android:text="0"
-                            android:textSize="18sp" />
-                </LinearLayout>
-
-                <TextView
                         android:id="@+id/titleSqrFootToSqrIn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -256,6 +214,126 @@
                     <TextView
                             android:id="@+id/blindWidthResult"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="0"
+                            android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/titleDecimaltoFraction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Decimal to Fraction"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/decimalBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="decimal"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/decimalToFractionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-&gt;" />
+
+                    <EditText
+                            android:id="@+id/fractionBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="fraction"
+                            android:inputType="number|numberDecimal" />
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/titleLinealFtToSqrYard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lineal Ft to Sqr Yard"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/linealFtBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="lineal feet"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/linealFtToSqrYardButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-&gt;" />
+
+                    <EditText
+                            android:id="@+id/sqrYardBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="sqr yard"
+                            android:inputType="number|numberDecimal" />
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/titleGetTax"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="14sp"
+                        android:paddingTop="10dp"
+                        android:text="7% Tax"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/amountBox"
+                            android:layout_width="6dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="amount"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/plusTaxButton"
+                            android:layout_width="27dp"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:text="plus tax"
+                            android:textAllCaps="true" />
+
+                    <TextView
+                            android:id="@+id/afterTaxBox"
+                            android:layout_width="19dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:paddingLeft="10dp"
