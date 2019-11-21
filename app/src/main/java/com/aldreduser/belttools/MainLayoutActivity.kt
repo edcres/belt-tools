@@ -248,12 +248,12 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // decimal to fraction
         decimalToFractionButton.setOnClickListener {
-
+            // use decimalToFraction() function. It's at the bottom
         }
 
         // lineal ft to square yard
         linealFtToSqrYardButton.setOnClickListener {
-            
+
         }
 
         // Lineal Backsplash
