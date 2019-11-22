@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F7AB89"
         tools:context=".MoreOptionsMenu">
 
     <ScrollView
@@ -27,7 +28,7 @@
                     android:id="@+id/extensionsButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Department Extensions" />
+                    android:text="Department Extensions" />
 
             <Button
                     android:id="@+id/button2"
