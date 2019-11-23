@@ -11,11 +11,10 @@ import kotlinx.android.synthetic.main.activity_main_layout.*
 /** TODO:
  * Make extension boxes not clickable until an edit button is pressed
  * Ask user if they're sure to update the extension (in a pop-up)
+ * Clean up code and do an array of objects for the ext boxes. Make displayExtensions() and updateExtensions() simple
   */
 
-
 //android:gravity="start|top"
-
 
 class DeptExtensions : AppCompatActivity() {
 
@@ -46,8 +45,14 @@ class DeptExtensions : AppCompatActivity() {
         proDeskExtBox.setText(deptExtensions[5])
         custServExtBox.setText(deptExtensions[6])
         flooringExtBox.setText(deptExtensions[7])
+        cashierExtBox.setText(deptExtensions[8])
+        gardenExtBox.setText(deptExtensions[9])
+        hardwareExtBox.setText(deptExtensions[10])
+        plumbingExtBox.setText(deptExtensions[11])
+        electricalExtBox.setText(deptExtensions[12])
+        paintExtBox.setText(deptExtensions[13])
+        lumberExtBox.setText(deptExtensions[14])
     }
-
     fun updateExtensions() {
         deptExtensions.add(pullerExtBox.text.toString())
         deptExtensions.add(appliancesExtBox.text.toString())
@@ -57,6 +62,13 @@ class DeptExtensions : AppCompatActivity() {
         deptExtensions.add(proDeskExtBox.text.toString())
         deptExtensions.add(custServExtBox.text.toString())
         deptExtensions.add(flooringExtBox.text.toString())
+        deptExtensions.add(cashierExtBox.text.toString())
+        deptExtensions.add(gardenExtBox.text.toString())
+        deptExtensions.add(hardwareExtBox.text.toString())
+        deptExtensions.add(plumbingExtBox.text.toString())
+        deptExtensions.add(electricalExtBox.text.toString())
+        deptExtensions.add(paintExtBox.text.toString())
+        deptExtensions.add(lumberExtBox.text.toString())
     }
 
     fun saveData() { //might have to add (view: View) parameter
