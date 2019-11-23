@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_main_layout.*
  * Make extension boxes not clickable until an edit button is pressed
  * Ask user if they're sure to update the extension (in a pop-up)
  * Clean up code and do an array of objects for the ext boxes. Make displayExtensions() and updateExtensions() simple
+ * UI: have the button below the scrollView
   */
 
 //android:gravity="start|top"
