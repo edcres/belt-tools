@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_main_layout.*
 
 //android:gravity="start|top"
 
-class DeptExtensions : AppCompatActivity() {
+class DeptExtensionsActivity : AppCompatActivity() {
 
     val deptExtensions = ArrayList<String>()
 

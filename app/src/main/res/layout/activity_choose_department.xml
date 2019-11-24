@@ -5,11 +5,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F7AB89"
-        tools:context=".MoreOptionsMenuActivity">
+        tools:context=".ChooseDepartmentActivity">
 
     <ScrollView
-            android:layout_width="361dp"
-            android:layout_height="775dp"
+            android:layout_width="377dp"
+            android:layout_height="791dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -22,37 +22,38 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical" >
 
             <Button
-                    android:id="@+id/extensionsButton"
+                    android:id="@+id/proDeskChooseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Department Extensions" />
+                    android:text="Pro Desk" />
 
             <Button
-                    android:id="@+id/chooseDptButton"
+                    android:id="@+id/flooringChooseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Choose Department" />
+                    android:text="Flooring" />
 
             <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/customerServiceChooseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Skus to work on" />
+                    android:text="Customer Service" />
 
             <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/appliancesChooseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Pallets to work on" />
+                    android:text="Appliances" />
 
             <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/millworkChooseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Specialty Orders" />
+                    android:text="Millwork" />
         </LinearLayout>
     </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

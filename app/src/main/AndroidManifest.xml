@@ -9,11 +9,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".DeptExtensions"></activity>
-        <activity android:name=".ProDeskDept" />
-        <activity android:name=".AppliancesDept" />
-        <activity android:name=".FlooringDept" />
-        <activity android:name=".MoreOptionsMenu" />
+        <activity android:name=".ChooseDepartmentActivity"></activity>
+        <activity android:name=".DeptExtensionsActivity" />
+        <activity android:name=".ProDeskDeptActivity" />
+        <activity android:name=".AppliancesDeptActivity" />
+        <activity android:name=".FlooringDeptActivity" />
+        <activity android:name=".MoreOptionsMenuActivity" />
         <activity android:name=".MainLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

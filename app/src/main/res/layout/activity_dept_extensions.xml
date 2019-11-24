@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F7AB89"
-        tools:context=".DeptExtensions">
+        tools:context=".DeptExtensionsActivity">
 
     <ScrollView
             android:id="@+id/scrollView3"
@@ -440,6 +440,12 @@
                         android:hint="enter extension"
                         android:inputType="textMultiLine" />
             </LinearLayout>
+
+            <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_weight="1" />
 
         </LinearLayout>
     </ScrollView>

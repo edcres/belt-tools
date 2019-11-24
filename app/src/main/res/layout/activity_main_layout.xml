@@ -370,7 +370,7 @@
             </LinearLayout>
 
             <TextView
-                    android:id="@+id/flooringViewBox"
+                    android:id="@+id/linealBacksplashViewBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -465,7 +465,7 @@
             </LinearLayout>
 
             <TextView
-                    android:id="@+id/toolRentalViewBox"
+                    android:id="@+id/spaceFillerBox"
                     android:layout_width="wrap_content"
                     android:layout_height="300dp"
                     android:layout_weight="1"

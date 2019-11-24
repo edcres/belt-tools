@@ -68,7 +68,7 @@ class MainLayoutActivity : AppCompatActivity() {
         // more options
         // open a new activity when this is clicked
         moreOptionsButton.setOnClickListener {
-            val newIntent = Intent(this, MoreOptionsMenu::class.java) // maybe change 'newIntent' name
+            val newIntent = Intent(this, MoreOptionsMenuActivity::class.java) // maybe change 'newIntent' name
             startActivity(newIntent)
         }
 

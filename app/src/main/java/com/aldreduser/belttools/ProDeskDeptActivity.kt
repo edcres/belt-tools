@@ -3,7 +3,7 @@ package com.aldreduser.belttools
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class ProDeskDept : AppCompatActivity() {
+class ProDeskDeptActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
