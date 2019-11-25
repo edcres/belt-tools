@@ -5,7 +5,6 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_dept_extensions.*
 import org.jetbrains.anko.toast
 import android.content.Context
-import kotlinx.android.synthetic.main.activity_main_layout.*
 
 // user can see phone extensions for different departments and is able to edit them
 /** TODO:
@@ -79,7 +78,7 @@ class DeptExtensionsActivity : AppCompatActivity() {
                 putString("$item", deptExtensions[item])
             }
             commit()
-            toast("saved")
+            toast("Saved")
         }
     }
 
