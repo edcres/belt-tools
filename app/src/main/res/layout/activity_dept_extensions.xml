@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Appliances"
+                        android:text="D70 Appliances"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Millwork"
+                        android:text="D30 Millwork"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Pro Desk"
+                        android:text="D42 Pro Desk"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -241,7 +241,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Flooring"
+                        android:text="D23 Flooring"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -293,7 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Garden"
+                        android:text="D28 Garden"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -319,7 +319,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Hardware"
+                        android:text="D25 Hardware"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -345,7 +345,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Plumbing"
+                        android:text="D26 Plumbing"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -373,7 +373,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Electrical"
+                        android:text="D27 Electrical"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -399,7 +399,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Paint"
+                        android:text="D24 Paint"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -425,13 +425,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Lumber"
+                        android:text="D21 Lumber"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                 <EditText
                         android:id="@+id/lumberExtBox"
-                        android:layout_width="269dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:editable="true"
