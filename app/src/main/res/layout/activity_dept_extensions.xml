@@ -55,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Puller"
+                        android:text="D31 Puller"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Tool Rental"
+                        android:text="D78 Tool Rental"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -162,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Receiving"
+                        android:text="D38 Receiving"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -267,7 +267,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Cashier"
+                        android:text="D90 Cashier"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
