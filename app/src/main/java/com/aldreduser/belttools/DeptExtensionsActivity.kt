@@ -5,11 +5,12 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_dept_extensions.*
 import org.jetbrains.anko.toast
 import android.content.Context
+import android.support.v7.app.AlertDialog
+import android.content.DialogInterface
 
 // user can see phone extensions for different departments and is able to edit them
 /** TODO:
  * Make extension boxes not clickable until an edit button is pressed
- * Ask user if they're sure to update the extension (in a pop-up)
  * Clean up code and do an array of objects for the ext boxes. Make displayExtensions() and updateExtensions() simple
  * UI: have the button below the scrollView
   */
@@ -24,15 +25,22 @@ class DeptExtensionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dept_extensions)
 
-        updateExtensions() //I need this here to give values to the array. Might replace later
+        updateExtensions() //I need this here to give initial values to the array. Might replace later
         getData()
         displayExtensions()
 
         // update and save extensions
         saveExtensionsButton.setOnClickListener {
-            deptExtensions.clear()
-            updateExtensions()
-            saveData()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Are you sure?")
+            //builder.setMessage()
+            builder.setPositiveButton("Yes") { dialogInterface: DialogInterface?, i: Int ->
+                deptExtensions.clear()
+                updateExtensions()
+                saveData()
+            }
+            builder.setNegativeButton("No") { dialogInterface: DialogInterface?, i: Int -> }
+            builder.show()
         }
     }
 
