@@ -16,11 +16,10 @@ import java.lang.StringBuilder
  * TODO:
  *
  * features:
- * lineal feet to square yard (price of carpet calculator)
  * Turn fractions into decimals and decimals into fractions
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
- * add an info icon explaining how to use each feature *****
+ * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * pt2:
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  * phone extensions of other departments(save the in memory and make them changeable by the user) other stores
@@ -58,10 +57,13 @@ class MainLayoutActivity : AppCompatActivity() {
         resetAllButton.setOnClickListener {
             // make each into a function and then call: reset.nameOfFunction
             sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
-            sqrFootBox.setText(""); sqrInBox.setText("")
-            amountBox.setText(""); afterTaxBox.text = "0"
-            windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
             homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes"; boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
+            sqrFootBox.setText(""); sqrInBox.setText("")
+            windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            // dec to fraction
+
+            linealFtBox.setText(""); sqrYardBox.setText("")
+            amountBox.setText(""); afterTaxBox.text = "0"
             bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
@@ -253,7 +255,22 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // lineal ft to square yard
         linealFtToSqrYardButton.setOnClickListener {
+            //val widthFt = 12
+            val widthYd = 4
 
+            if (linealFtBox.text.isNotEmpty() && sqrYardBox.text.isNotEmpty()) {
+                linealFtBox.setText(""); sqrYardBox.setText("")
+            } else if (linealFtBox.text.isNotEmpty() && sqrYardBox.text.isEmpty()) {
+                var linealFeet = linealFtBox.text.toString().toDouble()
+                var linealYard = (linealFeet/3) //squared
+                var sqrYard = linealYard * widthYd
+                sqrYardBox.setText(sqrYard.toString())
+            } else if (linealFtBox.text.isEmpty() && sqrYardBox.text.isNotEmpty()) {
+                var sqrYard = sqrYardBox.text.toString().toDouble()
+                var linealYard = sqrYard/widthYd
+                var linealFeet = linealYard*3
+                linealFtBox.setText(linealFeet.toString())
+            } else {}
         }
 
         // Lineal Backsplash
