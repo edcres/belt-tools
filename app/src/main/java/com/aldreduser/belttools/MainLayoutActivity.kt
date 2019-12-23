@@ -16,13 +16,12 @@ import java.lang.StringBuilder
  * TODO:
  *
  * features:
- * Turn fractions into decimals and decimals into fractions
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * pt2:
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
- * phone extensions of other departments(save the in memory and make them changeable by the user) other stores
+ * phone extensions of other departments(save the in memory and make them changeable by the user) OTHER STORES
  * virtual reality tape measurer
  * user can choose the department that will show up in the homescreen (can also add features from other departments)
  *
@@ -251,6 +250,15 @@ class MainLayoutActivity : AppCompatActivity() {
         // decimal to fraction
         decimalToFractionButton.setOnClickListener {
             // use decimalToFraction() function. It's at the bottom
+
+            if (decimalBox.text.isNotEmpty() && fractionBox.text.isNotEmpty()) {
+                decimalBox.setText(""); fractionBox.setText("")
+            } else if (decimalBox.text.isNotEmpty() && fractionBox.text.isEmpty()) {
+                var decimalNun = decimalBox.text.toString().toDouble()
+                fractionBox.setText(decimalToFraction(decimalNun))
+            } else if (decimalBox.text.isEmpty() && fractionBox.text.isNotEmpty()) {
+                toast("Try the left box.")
+            } else {}
         }
 
         // lineal ft to square yard
@@ -321,7 +329,23 @@ class MainLayoutActivity : AppCompatActivity() {
     }
 
     // function turns decimals into fractions
-    fun decimalToFraction() {
+    fun decimalToFraction(num: Double): String {
+        if (num < 0){
+            return "-" + decimalToFraction(-num)
+        }
+        var tolerance:Double = 1.0E-6
+        var h1:Double = 1.0; var h2:Double = 0.0
+        var k1:Double = 0.0; var k2:Double = 1.0
+        var b = num
+        do {
+            var a:Double = Math.floor(b)
+            var aux:Double = h1; h1 = a*h1+h2; h2 = aux
+            aux = k1; k1 = a*k1+k2;  k2 = aux
+            b = 1/(b-a)
+        } while (Math.abs(num-h1/k1) > num*tolerance)
+
+        return "${h1.toInt()}/${k1.toInt()}"
+
         //takes in a decimal number and returns a string ('num' + '/' + 'num')
     }
 
