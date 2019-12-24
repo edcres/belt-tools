@@ -26,7 +26,7 @@ import java.lang.StringBuilder
  * user can choose the department that will show up in the homescreen (can also add features from other departments)
  *
  * ui:
- * change toast background color to dark
+ * change toast background color to dark.  Layout Inflater.  https://stackoverflow.com/questions/11288475/custom-toast-on-android-a-simple-example?noredirect=1&lq=1
  * organize and number the different features in the main page (eventually use picture icons instead of numbers)
  * make buttons look pretty
  *
@@ -249,15 +249,20 @@ class MainLayoutActivity : AppCompatActivity() {
 
         // decimal to fraction
         decimalToFractionButton.setOnClickListener {
-            // use decimalToFraction() function. It's at the bottom
+            var decimalNun:Double
+            var completeFraction:String
 
             if (decimalBox.text.isNotEmpty() && fractionBox.text.isNotEmpty()) {
                 decimalBox.setText(""); fractionBox.setText("")
             } else if (decimalBox.text.isNotEmpty() && fractionBox.text.isEmpty()) {
-                var decimalNun = decimalBox.text.toString().toDouble()
-                fractionBox.setText(decimalToFraction(decimalNun))
+                decimalNun = decimalBox.text.toString().toDouble()
+                completeFraction = decimalToFraction(decimalNun)
+                fractionBox.setText(completeFraction)
             } else if (decimalBox.text.isEmpty() && fractionBox.text.isNotEmpty()) {
-                toast("Try the left box.")
+                completeFraction = fractionBox.text.toString()
+                var numerator = completeFraction.substringBeforeLast("/").toDouble()
+                var denominator = completeFraction.substringAfterLast("/").toDouble()
+                decimalBox.setText( (numerator/denominator).toString() )
             } else {}
         }
 

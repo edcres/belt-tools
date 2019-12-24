@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainLayoutActivity" android:background="@color/colorAccent">
+        android:background="@color/colorAccent"
+        tools:context=".MainLayoutActivity">
 
     <ScrollView
             android:layout_width="match_parent"
@@ -91,8 +91,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingLeft="10dp"
                         android:gravity="center"
+                        android:paddingLeft="10dp"
                         android:text="0"
                         android:textSize="18sp" />
             </LinearLayout>
@@ -122,8 +122,8 @@
                             android:layout_width="10dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center"
                             android:ems="10"
+                            android:gravity="center"
                             android:hint="total sqr ft"
                             android:inputType="number|numberDecimal" />
 
@@ -132,8 +132,8 @@
                             android:layout_width="10dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center"
                             android:ems="10"
+                            android:gravity="center"
                             android:hint="box sqr ft"
                             android:inputType="number|numberDecimal" />
                 </LinearLayout>
@@ -168,8 +168,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:baselineAligned="false"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="sqr ft"
                         android:inputType="number|numberDecimal" />
 
@@ -185,8 +185,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="sqr in"
                         android:inputType="number|numberDecimal" />
             </LinearLayout>
@@ -210,8 +210,8 @@
                         android:layout_width="106dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="window width"
                         android:inputType="number|numberDecimal" />
 
@@ -220,8 +220,8 @@
                         android:layout_width="99dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="blind width"
                         android:inputType="number|numberDecimal" />
 
@@ -238,8 +238,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingLeft="10dp"
                         android:gravity="center"
+                        android:paddingLeft="10dp"
                         android:text="0"
                         android:textSize="18sp" />
             </LinearLayout>
@@ -262,27 +262,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="decimal"
                         android:inputType="number|numberDecimal" />
 
                 <Button
                         android:id="@+id/decimalToFractionButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="108dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="-&gt;" />
+                        android:text="&lt;-&gt;" />
 
                 <EditText
                         android:id="@+id/fractionBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:digits="0123456789/."
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="fraction"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="date|number|numberDecimal" />
             </LinearLayout>
 
             <TextView
@@ -303,14 +304,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="lineal feet"
                         android:inputType="number|numberDecimal" />
 
                 <Button
                         android:id="@+id/linealFtToSqrYardButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="&lt;-&gt;" />
@@ -320,8 +321,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:ems="10"
+                        android:gravity="center"
                         android:hint="sqr yard"
                         android:inputType="number|numberDecimal" />
             </LinearLayout>
@@ -398,8 +399,8 @@
                                 android:layout_width="113dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="center"
                                 android:ems="10"
+                                android:gravity="center"
                                 android:hint="12 in. width"
                                 android:inputType="number|numberDecimal" />
 
@@ -407,9 +408,9 @@
                                 android:id="@+id/linealSpaceBox"
                                 android:layout_width="121dp"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
                                 android:layout_weight="1"
                                 android:ems="10"
+                                android:gravity="center"
                                 android:hint="lineal space (in)"
                                 android:inputType="number|numberDecimal" />
 
@@ -437,8 +438,8 @@
                                 android:layout_width="2dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="center"
                                 android:ems="10"
+                                android:gravity="center"
                                 android:hint="cut outs"
                                 android:inputType="number|numberDecimal" />
 
@@ -454,8 +455,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
                                 android:gravity="center"
+                                android:paddingLeft="10dp"
                                 android:text="0"
                                 android:textSize="18sp" />
 
