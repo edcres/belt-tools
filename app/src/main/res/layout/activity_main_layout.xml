@@ -283,7 +283,7 @@
                         android:ems="10"
                         android:gravity="center"
                         android:hint="fraction"
-                        android:inputType="date|number|numberDecimal" />
+                        android:inputType="date" />
             </LinearLayout>
 
             <TextView
