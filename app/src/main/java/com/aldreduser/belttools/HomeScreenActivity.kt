@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
@@ -47,32 +48,9 @@ import java.lang.StringBuilder
 
 class HomeScreenActivity : AppCompatActivity() {
 
-    // function turns decimals into fractions
-    fun decimalToFraction(num: Double): String {
-        if (num < 0){
-            return "-" + decimalToFraction(-num)
-        }
-        var tolerance:Double = 1.0E-6
-        var h1:Double = 1.0; var h2:Double = 0.0
-        var k1:Double = 0.0; var k2:Double = 1.0
-        var b = num
-        do {
-            var a:Double = Math.floor(b)
-            var aux:Double = h1; h1 = a*h1+h2; h2 = aux
-            aux = k1; k1 = a*k1+k2;  k2 = aux
-            b = 1/(b-a)
-        } while (Math.abs(num-h1/k1) > num*tolerance)
-
-        return "${h1.toInt()}/${k1.toInt()}"
-
-        //takes in a decimal number and returns a string ('num' + '/' + 'num')
-    }
-
-    // make sure no company private information is made public by the software developer's actions
-// this app will have several calculating tools for work. Plus info guides
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_layout)
+        setContentView(R.layout.activity_home_screen)
 
         val resultsStringBuilder = StringBuilder()
         var boxesResults = 0
@@ -377,5 +355,26 @@ class HomeScreenActivity : AppCompatActivity() {
             toast("Something's wrong.")
             return num
         }
+    }
+
+    // function turns decimals into fractions
+    fun decimalToFraction(num: Double): String {
+        if (num < 0){
+            return "-" + decimalToFraction(-num)
+        }
+        var tolerance:Double = 1.0E-6
+        var h1:Double = 1.0; var h2:Double = 0.0
+        var k1:Double = 0.0; var k2:Double = 1.0
+        var b = num
+        do {
+            var a:Double = Math.floor(b)
+            var aux:Double = h1; h1 = a*h1+h2; h2 = aux
+            aux = k1; k1 = a*k1+k2;  k2 = aux
+            b = 1/(b-a)
+        } while (Math.abs(num-h1/k1) > num*tolerance)
+
+        return "${h1.toInt()}/${k1.toInt()}"
+
+        //takes in a decimal number and returns a string ('num' + '/' + 'num')
     }
 }
