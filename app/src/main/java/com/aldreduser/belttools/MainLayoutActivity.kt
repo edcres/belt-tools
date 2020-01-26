@@ -42,6 +42,10 @@ import java.lang.StringBuilder
  *
  */
 
+
+//https://stackoverflow.com/questions/31175601/how-can-i-change-default-toast-message-color-and-background-color-in-android
+// change toast background color
+
 class MainLayoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
