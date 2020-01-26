@@ -10,6 +10,8 @@ import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
 
+// make sure no company private information is made public by the software developer's actions
+// this app will have several calculating tools for work. Plus info guides
 /**
  * TODO:
  *
@@ -40,11 +42,10 @@ import java.lang.StringBuilder
  *
  */
 
-
 //https://stackoverflow.com/questions/31175601/how-can-i-change-default-toast-message-color-and-background-color-in-android
 // change toast background color
 
-class MainLayoutActivity : AppCompatActivity() {
+class HomeScreenActivity : AppCompatActivity() {
 
     // function turns decimals into fractions
     fun decimalToFraction(num: Double): String {

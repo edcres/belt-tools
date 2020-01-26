@@ -3,6 +3,7 @@ package com.aldreduser.belttools
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.aldreduser.belttools.choosedepartment.ChooseDepartmentActivity
 import kotlinx.android.synthetic.main.activity_more_options_menu.*
 
 /**

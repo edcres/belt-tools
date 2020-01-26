@@ -1,8 +1,9 @@
-package com.aldreduser.belttools
+package com.aldreduser.belttools.choosedepartment
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.aldreduser.belttools.R
 import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.activity_appliances_dept.*
 
