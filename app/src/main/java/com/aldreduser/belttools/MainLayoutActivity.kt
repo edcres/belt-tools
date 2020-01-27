@@ -8,11 +8,19 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main_layout.*
 
+
+/*
+TODO
+ theres probably another way to make the launch screen. In my apps, a whit screen is shown first,
+ in famous apps, the launch screen is shown first
+ */
+
 class MainLayoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
+        supportActionBar!!.hide()
 
         ic_logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_in))
         Handler().postDelayed({

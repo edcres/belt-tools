@@ -10,11 +10,11 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +39,9 @@
 
                 <Button
                         android:id="@+id/resetAllButton"
-                        android:layout_width="187dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Reset All" />
 
             </LinearLayout>
@@ -49,7 +50,8 @@
                     android:id="@+id/titleSqrFootIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
                     android:text="Get Sqr Ft/In"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -57,6 +59,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -101,7 +104,8 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:text="Tile Boxes"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -110,6 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="85dp"
                     android:layout_weight="1"
+                    android:background="@color/whiteSmoke"
                     android:orientation="vertical">
 
                 <LinearLayout
@@ -151,8 +156,9 @@
                     android:id="@+id/titleSqrFootToSqrIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:lineSpacingExtra="14sp"
-                    android:paddingTop="10dp"
                     android:text="Sqr Ft   &lt;--->   Sqr In"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -160,6 +166,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -195,7 +202,8 @@
                     android:id="@+id/titleCutBlindWidth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:text="Cut Blind"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -203,6 +211,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -248,6 +257,8 @@
                     android:id="@+id/titleDecimaltoFraction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:text="Decimal to Fraction"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -255,6 +266,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -290,6 +302,8 @@
                     android:id="@+id/titleLinealFtToSqrYard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:text="Lineal Ft to Sqr Yard"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -297,6 +311,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -331,8 +346,9 @@
                     android:id="@+id/titleGetTax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:lineSpacingExtra="14sp"
-                    android:paddingTop="10dp"
                     android:text="7% Tax"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -340,6 +356,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -374,7 +391,8 @@
                     android:id="@+id/linealBacksplashViewBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/whiteSmoke"
                     android:text="Lineal Backsplash"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -382,6 +400,7 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <LinearLayout
