@@ -9,11 +9,9 @@ import kotlinx.android.synthetic.main.activity_more_options_menu.*
 /**
  * TODO:
  *
- * make phone extensions editable by the user
- * choose by department button should be a drop-down menu
- *
  *  SKUs to work on: phone can scan barcode and save item code (hopefully read the sku too). Can keep notes of skus to work and what to do
  *  Pallets to work on: phone can scan barcode and save pallet code. Can keep notes of pallets to work and what to do
+ *  ^^^ copy to clipboard (so it can be pasted to the store app)
  *
  * make the home screen contact the more options screen through the button
  */

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_home_screen.*
-import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
@@ -17,14 +16,25 @@ import java.lang.StringBuilder
  * TODO:
  *
  * features:
+ * price per sqrft of tile
+ * how many louvers will a vertical blind need
+ * clean up code
+ * put everything into a recyclerview
+ * how much sqr footage in each room
+ * user can choose the department that will show up in the homescreen (can also add features from other departments)
+ * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
+ * fix warnings
+ * box say where the magnet is (and where it was last seen)
+ * choose by department button (in more options activity) should be a drop-down menu
+ * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
+ *
+ * pt2 (features):
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
- * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
- * pt2:
- * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
- * phone extensions of other departments(save the in memory and make them changeable by the user) OTHER STORES
  * virtual reality tape measurer
- * user can choose the department that will show up in the homescreen (can also add features from other departments)
+ * cut wire shelves with the least waste possible. Given the customer's measurements
+ * user can pick different features from each department and choose what to display in the home screen
  *
  * ui:
  * change toast background color to dark.  Layout Inflater.  https://stackoverflow.com/questions/11288475/custom-toast-on-android-a-simple-example?noredirect=1&lq=1
@@ -43,8 +53,10 @@ import java.lang.StringBuilder
  *
  */
 
-//https://stackoverflow.com/questions/31175601/how-can-i-change-default-toast-message-color-and-background-color-in-android
-// change toast background color
+// https://stackoverflow.com/questions/31175601/how-can-i-change-default-toast-message-color-and-background-color-in-android
+// change toast background color (make it into a function and pass a string as a parameter)
+
+//todo make new features resettable
 
 class HomeScreenActivity : AppCompatActivity() {
 
@@ -59,15 +71,14 @@ class HomeScreenActivity : AppCompatActivity() {
         // reset all
         resetAllButton.setOnClickListener {
             // make each into a function and then call: reset.nameOfFunction
-            sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
-            homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes"; boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
-            sqrFootBox.setText(""); sqrInBox.setText("")
-            windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            // dec to fraction
-
-            linealFtBox.setText(""); sqrYardBox.setText("")
-            amountBox.setText(""); afterTaxBox.text = "0"
-            bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+   /*1*/         sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+   /*2*/         homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
+   /*3*/         amountBox.setText(""); afterTaxBox.text = "0"
+   /*4*/         sqrFootBox.setText(""); sqrInBox.setText("")
+   /*5*/         windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+   /*6*/         decimalBox.setText(""); fractionBox.setText("")
+   /*7*/         linealFtBox.setText(""); sqrYardBox.setText("")
+   /*8*/         bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
 
         // more options
@@ -77,8 +88,9 @@ class HomeScreenActivity : AppCompatActivity() {
             startActivity(newIntent)
         }
 
-
-        // get the square feet
+        //1 get the square feet
+        // add sqrft per room at the bottom of the layout
+        // m ake it so when the box is clicked (with sqft per room), it's added to 'num of boxes',
         sqrtEqualsButton.setOnClickListener {
             if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && (sqrtBoxResult.text != "0")) {
                 sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
@@ -109,8 +121,7 @@ class HomeScreenActivity : AppCompatActivity() {
             } else false
         })
 
-
-        // get number of boxes to buy
+        //2 get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
                 homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear();
@@ -159,30 +170,7 @@ class HomeScreenActivity : AppCompatActivity() {
             } else false
         })
 
-
-        // get tax
-        plusTaxButton.setOnClickListener {
-            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
-                amountBox.setText(""); afterTaxBox.text = "0"
-            } else {
-                try {
-                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
-                    var result = (amountBox.text.toString().toDouble() + taxAmount)
-                    afterTaxBox.text = "%.3f".format(result)
-                } catch (e: NumberFormatException) {
-                    toast("Maybe fill the box with numbers.")
-                }
-            }
-        }
-        // click Button when user presses enter in the box
-        amountBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                plusTaxButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
-
-        // sqr foot to sqr in sqrInBox
+        //4 sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
             if (sqrFootBox.text.isNotEmpty() && sqrInBox.text.isNotEmpty() ) {
                 sqrFootBox.setText("")
@@ -218,7 +206,7 @@ class HomeScreenActivity : AppCompatActivity() {
             } else false
         })
 
-        // get blind width
+        //5 get blind width
         blindWidthEqualsButton.setOnClickListener {
             if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
                 windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
@@ -251,7 +239,11 @@ class HomeScreenActivity : AppCompatActivity() {
             } else false
         })
 
-        // decimal to fraction
+
+
+
+
+        //6 decimal to fraction
         decimalToFractionButton.setOnClickListener {
             var decimalNun:Double
             var completeFraction:String
@@ -270,7 +262,7 @@ class HomeScreenActivity : AppCompatActivity() {
             } else {}
         }
 
-        // lineal ft to square yard
+        //7 lineal ft to square yard
         linealFtToSqrYardButton.setOnClickListener {
             //val widthFt = 12
             val widthYd = 4
@@ -290,7 +282,29 @@ class HomeScreenActivity : AppCompatActivity() {
             } else {}
         }
 
-        // Lineal Backsplash
+        //3 get tax
+        plusTaxButton.setOnClickListener {
+            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
+                amountBox.setText(""); afterTaxBox.text = "0"
+            } else {
+                try {
+                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
+                    var result = (amountBox.text.toString().toDouble() + taxAmount)
+                    afterTaxBox.text = "%.3f".format(result)
+                } catch (e: NumberFormatException) {
+                    toast("Maybe fill the box with numbers.")
+                }
+            }
+        }
+        // click Button when user presses enter in the box
+        amountBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                plusTaxButton.performClick()
+                return@OnKeyListener true
+            } else false
+        })
+
+        //8 Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
         var bakShWidthBoxTouched = false
         bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
@@ -337,7 +351,6 @@ class HomeScreenActivity : AppCompatActivity() {
         })
     }
 
-    // function returns inches
     fun getFeetToInch(): Double {
         // function returns inches
         var num = linealSpaceBox.text.toString().toDouble()
@@ -357,7 +370,6 @@ class HomeScreenActivity : AppCompatActivity() {
         }
     }
 
-    // function turns decimals into fractions
     fun decimalToFraction(num: Double): String {
         if (num < 0){
             return "-" + decimalToFraction(-num)

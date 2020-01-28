@@ -10,7 +10,6 @@ import android.content.DialogInterface
 
 // user can see phone extensions for different departments and is able to edit them
 /** TODO:
- * Make extension boxes not clickable until an edit button is pressed
  * Clean up code and do an array of objects for the ext boxes. Make displayExtensions() and updateExtensions() simple
  * UI: have the button below the scrollView
   */
