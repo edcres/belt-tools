@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/mainThemeColor"
         tools:context=".HomeScreenActivity">
 
     <ScrollView
@@ -36,7 +36,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="More..." />
-
                 <Button
                         android:id="@+id/resetAllButton"
                         android:layout_width="wrap_content"
@@ -46,75 +45,83 @@
 
             </LinearLayout>
 
-            <TextView
-                    android:id="@+id/titleSqrFootIn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/whiteSmoke"
-                    android:text="Get Sqr Ft/In"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
                     android:background="@color/whiteSmoke"
-                    android:orientation="horizontal">
-
-                <EditText
-                        android:id="@+id/sqrtBox1"
-                        android:layout_width="65dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:hint="width"
-                        android:inputType="number|numberDecimal" />
-
-                <EditText
-                        android:id="@+id/sqrtBox2"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:hint="length"
-                        android:inputType="number|numberDecimal" />
-
-                <Button
-                        android:id="@+id/sqrtEqualsButton"
-                        android:layout_width="25dp"
-                        android:layout_height="36dp"
-                        android:layout_weight="1"
-                        android:text="=" />
+                    android:orientation="vertical">
 
                 <TextView
-                        android:id="@+id/sqrtBoxResult"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/titleSqrFootIn"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:text="0"
-                        android:textSize="18sp" />
+                        android:text="Get Sqr Ft/In"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/sqrtBox1"
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="width"
+                            android:inputType="number|numberDecimal" />
+
+                    <EditText
+                            android:id="@+id/sqrtBox2"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="length"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/sqrtEqualsButton"
+                            android:layout_width="25dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:text="=" />
+
+                    <TextView
+                            android:id="@+id/sqrtBoxResult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:text="0"
+                            android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:text="Tile Boxes"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="85dp"
                     android:layout_weight="1"
-                    android:background="@color/whiteSmoke"
                     android:orientation="vertical">
 
                 <LinearLayout
@@ -151,22 +158,26 @@
                         android:text="boxes" />
 
             </LinearLayout>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/titleSqrFootToSqrIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:lineSpacingExtra="14sp"
                     android:text="Sqr Ft   &lt;--->   Sqr In"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -197,21 +208,25 @@
                         android:hint="sqr in"
                         android:inputType="number|numberDecimal" />
             </LinearLayout>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/titleCutBlindWidth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:text="Cut Blind"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -252,21 +267,25 @@
                         android:text="0"
                         android:textSize="18sp" />
             </LinearLayout>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/titleDecimaltoFraction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:text="Decimal to Fraction"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -297,21 +316,25 @@
                         android:hint="fraction"
                         android:inputType="date" />
             </LinearLayout>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/titleLinealFtToSqrYard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:text="Lineal Ft to Sqr Yard"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -341,22 +364,26 @@
                         android:hint="sqr yard"
                         android:inputType="number|numberDecimal" />
             </LinearLayout>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/titleGetTax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:lineSpacingExtra="14sp"
                     android:text="7% Tax"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <EditText
@@ -386,21 +413,25 @@
                         android:text="0"
                         android:textSize="18sp" />
             </LinearLayout>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical">
             <TextView
                     android:id="@+id/linealBacksplashViewBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/whiteSmoke"
                     android:text="Lineal Backsplash"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/whiteSmoke"
                     android:orientation="horizontal">
 
                 <LinearLayout
@@ -483,13 +514,11 @@
                 </LinearLayout>
 
             </LinearLayout>
+        </LinearLayout>
 
-            <TextView
-                    android:id="@+id/spaceFillerBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp"
-                    android:layout_weight="1"
-                    android:textSize="18sp" />
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
 
         </LinearLayout>
     </ScrollView>
