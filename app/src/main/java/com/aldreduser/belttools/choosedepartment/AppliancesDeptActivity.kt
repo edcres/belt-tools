@@ -3,11 +3,13 @@ package com.aldreduser.belttools.choosedepartment
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.aldreduser.belttools.HomeScreenActivity
 import com.aldreduser.belttools.R
+import com.aldreduser.belttools.extra.displayToastMessage
 import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.activity_appliances_dept.*
 
-class AppliancesDeptActivity : AppCompatActivity() {
+class AppliancesDeptActivity(context: Context) : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +27,16 @@ class AppliancesDeptActivity : AppCompatActivity() {
         with(appliancesNotesSharedPref.edit()) {
             putString("Notes", appliancesNotesText.text.toString())
             commit()
-            toast("Saved")
+            callToast("Saved")
         }
     }
 
     fun getData() {
         val appliancesNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         appliancesNotesText.setText(appliancesNotesSharedPref.getString("Notes", ""))
+    }
+
+    fun callToast(message: String) {
+        displayToastMessage(this, message)
     }
 }

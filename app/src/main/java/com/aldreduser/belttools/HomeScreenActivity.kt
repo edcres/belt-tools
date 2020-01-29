@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
@@ -31,19 +32,20 @@ import java.lang.StringBuilder
  *
  * pt2 (features):
  * sqr a to sqr b (more measurement options than sqr foot to square in)
+ *  * create function in another file to convert measurements (call them in this file)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
  * virtual reality tape measurer
  * cut wire shelves with the least waste possible. Given the customer's measurements
  * user can pick different features from each department and choose what to display in the home screen
  *
  * ui:
- * change toast background color to dark.  Layout Inflater.  https://stackoverflow.com/questions/11288475/custom-toast-on-android-a-simple-example?noredirect=1&lq=1
+ * make toast edges round
  * organize and number the different features in the main page (eventually use picture icons instead of numbers)
  * make buttons look pretty
+ * rounded edgesin buttons, and smokey layouts
  *
  * optimization:
- * maybe make a function for try catch 'maybe fill both boxes with numbers'
- * create function in another file to convert measurements (call them in this file)
+ * maybe make a function for try catch 'maybe fill both boxes with numbers' (probably delete almost all try catches)
  * count how many times i use each feature on my app, to what which feature to put where (make a radio button to check if eah count is real or for a test)
  *
  * skills:
@@ -52,9 +54,6 @@ import java.lang.StringBuilder
  * idk what ACTION_UP or ACTION_DOWN means
  *
  */
-
-// https://stackoverflow.com/questions/31175601/how-can-i-change-default-toast-message-color-and-background-color-in-android
-// change toast background color (make it into a function and pass a string as a parameter)
 
 //todo make new features resettable
 
@@ -101,7 +100,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     var result = num1 * num2
                     sqrtBoxResult.text = "%.3f".format(result)
                 } catch (e: NumberFormatException) {
-                    toast("Maybe fill both boxes with numbers.")
+                    displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
             }
         }
@@ -141,18 +140,18 @@ class HomeScreenActivity : AppCompatActivity() {
                         if (boxesResults < 5) { resultsStringBuilder.append(" + ") }
                         boxesResults ++
                     } else {
-                        toast("Limit reached.")
+                        displayToastMessage(this, "Limit reached.")
                     }
 
                     tileBoxResultsButton.text = resultsStringBuilder
                 } catch (e: NumberFormatException) {
-                    toast("Maybe fill both boxes with numbers.")
+                    displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
             }
         }
         tileBoxResultsButton.setOnLongClickListener {
             val sumOfAllResults = "%.2f".format(boxesResultsArray.sum())
-            toast(sumOfAllResults)
+            displayToastMessage(this, sumOfAllResults)
             return@setOnLongClickListener true
         }
         // click Button when user presses enter in box 1
@@ -188,7 +187,7 @@ class HomeScreenActivity : AppCompatActivity() {
                 var sqrFt = feet*feet
                 sqrFootBox.setText("%.3f".format(sqrFt))
             } else {
-                toast("Maybe fill a box with numbers.")
+                displayToastMessage(this, "Maybe fill a box with numbers.")
             }
         }
         // click Button when user presses enter in box 1
@@ -217,12 +216,12 @@ class HomeScreenActivity : AppCompatActivity() {
                     var blindPro = (window - blindPre) / 2
                     blindWidthResult.text = "%.3f".format(blindPro)
                 } catch (e: NumberFormatException) {
-                    toast("Maybe fill both boxes with numbers.")
+                    displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
             }
         }
         blindWidthResult.setOnClickListener{
-            toast("Cut on each side")
+            displayToastMessage(this, "Cut on each side")
         }
         // click Button when user presses enter in box 1
         windowWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
@@ -292,7 +291,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     var result = (amountBox.text.toString().toDouble() + taxAmount)
                     afterTaxBox.text = "%.3f".format(result)
                 } catch (e: NumberFormatException) {
-                    toast("Maybe fill the box with numbers.")
+                    displayToastMessage(this, "Maybe fill the box with numbers.")
                 }
             }
         }
@@ -324,7 +323,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     var bakShResults = linealSpace/(bakShWidth*cutOuts)
                     bakShResultsBox.text = "%.3f".format(bakShResults)
                 } catch (e: NumberFormatException) {
-                    toast("Make sure the boxes are filled.")
+                    displayToastMessage(this, "Make sure the boxes are filled.")
                 }
             }
         }
@@ -365,7 +364,7 @@ class HomeScreenActivity : AppCompatActivity() {
             //input is inch
             return num
         } else {
-            toast("Something's wrong.")
+            displayToastMessage(this, "Something's wrong.")
             return num
         }
     }

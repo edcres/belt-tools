@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.aldreduser.belttools.R
+import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_pro_desk_dept.*
 import org.jetbrains.anko.toast
 
@@ -25,12 +26,16 @@ class ProDeskDeptActivity : AppCompatActivity() {
         with(proDeskNotesSharedPref.edit()) {
             putString("Notes", proDeskNotesText.text.toString())
             commit()
-            toast("Saved")
+            callToast("Saved")
         }
     }
 
     fun getData() {
         val proDeskNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         proDeskNotesText.setText(proDeskNotesSharedPref.getString("Notes", ""))
+    }
+
+    fun callToast(message: String) {
+        displayToastMessage(this, message)
     }
 }
