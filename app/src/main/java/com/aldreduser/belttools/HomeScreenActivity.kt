@@ -55,8 +55,6 @@ import java.lang.StringBuilder
  *
  */
 
-//todo make new features resettable
-
 class HomeScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

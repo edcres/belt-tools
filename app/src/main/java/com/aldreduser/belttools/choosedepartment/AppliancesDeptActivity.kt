@@ -9,7 +9,7 @@ import com.aldreduser.belttools.extra.displayToastMessage
 import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.activity_appliances_dept.*
 
-class AppliancesDeptActivity(context: Context) : AppCompatActivity() {
+class AppliancesDeptActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
