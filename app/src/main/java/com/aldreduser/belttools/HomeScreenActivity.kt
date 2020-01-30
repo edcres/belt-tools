@@ -3,13 +3,16 @@ package com.aldreduser.belttools
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.KeyListener
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Button
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import org.jetbrains.anko.toast
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
+import kotlin.math.sqrt
 
 // make sure no company private information is made public by the software developer's actions
 // this app will have several calculating tools for work. Plus info guides
@@ -17,18 +20,20 @@ import java.lang.StringBuilder
  * TODO:
  *
  * features:
+ * add enter pressed
+ * take out View.OnKeyListener
+ * make fun for enter pressed
+ * clean up code (including warnings)
  * price per sqrft of tile
- * how many louvers will a vertical blind need
- * clean up code
- * put everything into a recyclerview
  * how much sqr footage in each room
- * user can choose the department that will show up in the homescreen (can also add features from other departments)
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
+ * put everything into a recyclerview
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  * fix warnings
  * box say where the magnet is (and where it was last seen)
  * choose by department button (in more options activity) should be a drop-down menu
- * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
+ * how many louvers will a vertical blind need
  *
  * pt2 (features):
  * sqr a to sqr b (more measurement options than sqr foot to square in)
@@ -36,7 +41,7 @@ import java.lang.StringBuilder
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
  * virtual reality tape measurer
  * cut wire shelves with the least waste possible. Given the customer's measurements
- * user can pick different features from each department and choose what to display in the home screen
+ * user can pick different features from each department and choose what to display in the home screen (each feature would be in their respective department classes/files)
  *
  * ui:
  * make toast edges round
@@ -57,37 +62,17 @@ import java.lang.StringBuilder
 
 class HomeScreenActivity : AppCompatActivity() {
 
+    private val resultsStringBuilder = StringBuilder()
+    private var boxesResults = 0
+    private val boxesResultsArray = mutableListOf<Double>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
 
-        val resultsStringBuilder = StringBuilder()
-        var boxesResults = 0
-        val boxesResultsArray = mutableListOf<Double>()
-
-        // reset all
-        resetAllButton.setOnClickListener {
-            // make each into a function and then call: reset.nameOfFunction
-   /*1*/         sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
-   /*2*/         homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
-   /*3*/         amountBox.setText(""); afterTaxBox.text = "0"
-   /*4*/         sqrFootBox.setText(""); sqrInBox.setText("")
-   /*5*/         windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-   /*6*/         decimalBox.setText(""); fractionBox.setText("")
-   /*7*/         linealFtBox.setText(""); sqrYardBox.setText("")
-   /*8*/         bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
-        }
-
-        // more options
-        // open a new activity when this is clicked
-        moreOptionsButton.setOnClickListener {
-            val newIntent = Intent(this, MoreOptionsMenuActivity::class.java) // maybe change 'newIntent' name
-            startActivity(newIntent)
-        }
-
         //1 get the square feet
         // add sqrft per room at the bottom of the layout
-        // m ake it so when the box is clicked (with sqft per room), it's added to 'num of boxes',
+        // make it so when the box is clicked (with sqft per room), it's added to 'num of boxes',
         sqrtEqualsButton.setOnClickListener {
             if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && (sqrtBoxResult.text != "0")) {
                 sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
@@ -104,25 +89,21 @@ class HomeScreenActivity : AppCompatActivity() {
         }
         // click sqrtEqualsButton when user presses enter in box 1
         sqrtBox1.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+            pressEnter(sqrtEqualsButton, keyCode, event)
+            /*if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
                 // idk what ACTION_UP or ACTION_DOWN means
                 sqrtEqualsButton.performClick()
                 return@OnKeyListener true
-            } else false
+            } else false*/
         })
         // click sqrtEqualsButton when user presses enter in box 2
-        sqrtBox2.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                sqrtEqualsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        sqrtBox2.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(sqrtEqualsButton, keyCode, event) })
 
         //2 get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
-                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear();
-                boxesResultsArray.clear();
+                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear()
+                boxesResultsArray.clear()
             } else {
                 try {
                     homeSqrFt.setOnClickListener { homeSqrFt.setText("") }
@@ -153,19 +134,9 @@ class HomeScreenActivity : AppCompatActivity() {
             return@setOnLongClickListener true
         }
         // click Button when user presses enter in box 1
-        homeSqrFt.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                tileBoxResultsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        homeSqrFt.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(tileBoxResultsButton, keyCode, event) })
         // click Button when user presses enter in box 2
-        boxSqrFt.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                tileBoxResultsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        boxSqrFt.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(tileBoxResultsButton, keyCode, event) })
 
         //4 sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
@@ -175,7 +146,7 @@ class HomeScreenActivity : AppCompatActivity() {
             } else if (sqrFootBox.text.isNotEmpty()) {
                 // converts it to sqr in
                 var squareFt = sqrFootBox.text.toString().toDouble()
-                var inches = Math.sqrt(squareFt) * 12
+                var inches = sqrt(squareFt) * 12
                 var sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
                 sqrInBox.setText("%.3f".format(sqrIn))
             } else if (sqrInBox.text.isNotEmpty()) {
@@ -189,19 +160,9 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
         // click Button when user presses enter in box 1
-        sqrFootBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                sqrFootToSqrInButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        sqrFootBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(sqrFootToSqrInButton, keyCode, event) })
         // click Button when user presses enter in box 2
-        sqrInBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                sqrFootToSqrInButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        sqrInBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(sqrFootToSqrInButton, keyCode, event) })
 
         //5 get blind width
         blindWidthEqualsButton.setOnClickListener {
@@ -222,25 +183,13 @@ class HomeScreenActivity : AppCompatActivity() {
             displayToastMessage(this, "Cut on each side")
         }
         // click Button when user presses enter in box 1
-        windowWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                blindWidthEqualsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        windowWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(blindWidthEqualsButton, keyCode, event) })
         // click Button when user presses enter in box 2
-        blindWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                blindWidthEqualsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
-
-
-
+        blindWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(blindWidthEqualsButton, keyCode, event) })
 
 
         //6 decimal to fraction
+        //todo make it so it is called when enter is pressed
         decimalToFractionButton.setOnClickListener {
             var decimalNun:Double
             var completeFraction:String
@@ -260,6 +209,7 @@ class HomeScreenActivity : AppCompatActivity() {
         }
 
         //7 lineal ft to square yard
+        //todo make it so it is called when enter is pressed
         linealFtToSqrYardButton.setOnClickListener {
             //val widthFt = 12
             val widthYd = 4
@@ -294,12 +244,7 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
         // click Button when user presses enter in the box
-        amountBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                plusTaxButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        amountBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(plusTaxButton, keyCode, event) })
 
         //8 Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
@@ -326,26 +271,38 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
         // click Button when user presses enter in box 1
-        bakShWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                bakShEqualsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        bakShWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(bakShEqualsButton, keyCode, event) })
         // click Button when user presses enter in box 2
-        linealSpaceBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                bakShEqualsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        linealSpaceBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(bakShEqualsButton, keyCode, event) })
         // click Button when user presses enter in box 3
-        cutOutsBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
-                bakShEqualsButton.performClick()
-                return@OnKeyListener true
-            } else false
-        })
+        cutOutsBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressEnter(bakShEqualsButton, keyCode, event) })
+    }
+
+    // more options activity
+    fun moreOptionsButtonClicked(view: View) {
+        val newIntent = Intent(this, MoreOptionsMenuActivity::class.java)
+        startActivity(newIntent)
+    }
+    // reset all
+    fun resetAllButtonClicked(view: View) {
+        // make each into a function and then call: reset.nameOfFunction
+        /*1*/         sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+        /*2*/         homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
+        /*3*/         amountBox.setText(""); afterTaxBox.text = "0"
+        /*4*/         sqrFootBox.setText(""); sqrInBox.setText("")
+        /*5*/         windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+        /*6*/         decimalBox.setText(""); fractionBox.setText("")
+        /*7*/         linealFtBox.setText(""); sqrYardBox.setText("")
+        /*8*/         bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+    }
+
+    // enter presses = button
+    fun pressEnter(itemToClicked: Button, keycode: Int, theEvent: KeyEvent): Boolean {
+        if (keycode == KeyEvent.KEYCODE_ENTER && theEvent.action == KeyEvent.ACTION_UP){
+            // idk what ACTION_UP or ACTION_DOWN means
+            itemToClicked.performClick()
+            return true
+        } else {return false}
     }
 
     fun getFeetToInch(): Double {
@@ -366,7 +323,6 @@ class HomeScreenActivity : AppCompatActivity() {
             return num
         }
     }
-
     fun decimalToFraction(num: Double): String {
         if (num < 0){
             return "-" + decimalToFraction(-num)

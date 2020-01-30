@@ -34,12 +34,14 @@
                         android:id="@+id/moreOptionsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="moreOptionsButtonClicked"
                         android:layout_weight="1"
                         android:text="More..." />
                 <Button
                         android:id="@+id/resetAllButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="resetAllButtonClicked"
                         android:layout_weight="1"
                         android:text="Reset All" />
 
