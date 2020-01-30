@@ -7,6 +7,6 @@
     <color name="whiteSmoke">#2CF0F0F0</color>
     <color name="mainThemeColor">#F7AB89</color>
 
-    <color name="toastBackground">#811D1D1D</color>
-    <color name="toastText">#AAAAAA</color>
+    <color name="toastBackground">#B01D1D1D</color>
+    <color name="toastText">#CACACA</color>
 </resources>
