@@ -464,7 +464,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:gravity="center"
-                                android:hint="lineal space (in)"
+                                android:hint="lineal space"
                                 android:inputType="number|numberDecimal" />
 
                         <ToggleButton

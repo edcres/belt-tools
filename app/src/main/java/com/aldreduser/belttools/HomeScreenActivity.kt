@@ -248,26 +248,20 @@ class HomeScreenActivity : AppCompatActivity() {
 
         //8 Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
-        var bakShWidthBoxTouched = false // todo instead of touched, maybe make it chanched
-        bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
             } else {
                 try {
                     // width = 12 by default
-                    var bakShWidth = 12.0
-                    if (bakShWidthBoxTouched) {
-                        var bakShWidth = bakShWidthBox.text.toString().toDouble()
-                    }
+                    val bakShWidth:Double = if (bakShWidthBox.text.isEmpty()) 12.0 else bakShWidthBox.text.toString().toDouble()
 
                     var linealSpace = getFeetToInch() // hopefully this is right
                     var cutOuts = cutOutsBox.text.toString().toDouble()
                     var bakShResults = linealSpace/(bakShWidth*cutOuts)
                     bakShResultsBox.text = "%.3f".format(bakShResults)
                 } catch (e: NumberFormatException) {
-                    displayToastMessage(this, "Make sure the boxes are filled.")
-                }
+                    displayToastMessage(this, "Make sure the boxes are filled.") }
             }
         }
 
