@@ -18,7 +18,7 @@ import android.content.DialogInterface
 
 class DeptExtensionsActivity : AppCompatActivity() {
 
-    val deptExtensions = ArrayList<String>()
+    private val deptExtensions = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +32,12 @@ class DeptExtensionsActivity : AppCompatActivity() {
         saveExtensionsButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Are you sure?")
-            //builder.setMessage()
-            builder.setPositiveButton("Yes") { dialogInterface: DialogInterface?, i: Int ->
+            builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
                 deptExtensions.clear()
                 updateExtensions()
                 saveData()
             }
-            builder.setNegativeButton("No") { dialogInterface: DialogInterface?, i: Int -> }
+            builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
             builder.show()
         }
     }

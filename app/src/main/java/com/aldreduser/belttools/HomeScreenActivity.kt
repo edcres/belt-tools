@@ -1,8 +1,10 @@
 package com.aldreduser.belttools
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
@@ -18,7 +20,6 @@ import kotlin.math.sqrt
  * TODO:
  *
  * features:
- * take out View.OnKeyListener
  * make it so individual result is cleared when clicked (or something like that)
  * make fun for enter pressed
  * clean up code (including warnings)
@@ -85,6 +86,8 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             }
         }
+        sqrtBox1.setOnClickListener{sqrtBox1.setText("")}
+        sqrtBox2.setOnClickListener{sqrtBox2.setText("")}
         // click sqrtEqualsButton when user presses enter in box 1 or 2
         sqrtBox1.setOnKeyListener { v, keyCode, event -> pressedEnter(sqrtEqualsButton, keyCode, event) }
         sqrtBox2.setOnKeyListener { v, keyCode, event -> pressedEnter(sqrtEqualsButton, keyCode, event) }
@@ -96,9 +99,6 @@ class HomeScreenActivity : AppCompatActivity() {
                 boxesResultsArray.clear()
             } else {
                 try {
-                    homeSqrFt.setOnClickListener { homeSqrFt.setText("") }
-                    boxSqrFt.setOnClickListener { boxSqrFt.setText("") }
-
                     var totalSqrFeet = homeSqrFt.text.toString().toDouble()
                     var boxSqrFeet = boxSqrFt.text.toString().toDouble()
                     var numOfBoxes = totalSqrFeet/boxSqrFeet
@@ -123,26 +123,11 @@ class HomeScreenActivity : AppCompatActivity() {
             displayToastMessage(this, sumOfAllResults)
             return@setOnLongClickListener true
         }
+        homeSqrFt.setOnClickListener { homeSqrFt.setText("") }
+        boxSqrFt.setOnClickListener { boxSqrFt.setText("") }
         // click Button when user presses enter in box 1 or 2
         homeSqrFt.setOnKeyListener { v, keyCode, event -> pressedEnter(tileBoxResultsButton, keyCode, event) }
         boxSqrFt.setOnKeyListener { v, keyCode, event -> pressedEnter(tileBoxResultsButton, keyCode, event) }
-
-        //3 get tax
-        plusTaxButton.setOnClickListener {
-            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
-                amountBox.setText(""); afterTaxBox.text = "0"
-            } else {
-                try {
-                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
-                    var result = (amountBox.text.toString().toDouble() + taxAmount)
-                    afterTaxBox.text = "%.3f".format(result)
-                } catch (e: NumberFormatException) {
-                    displayToastMessage(this, "Maybe fill the box with numbers.")
-                }
-            }
-        }
-        // click Button when user presses enter in the box
-        amountBox.setOnKeyListener { v, keyCode, event -> pressedEnter(plusTaxButton, keyCode, event) }
 
         //4 sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
@@ -165,6 +150,8 @@ class HomeScreenActivity : AppCompatActivity() {
                 displayToastMessage(this, "Maybe fill a box with numbers.")
             }
         }
+        sqrFootBox.setOnClickListener{sqrFootBox.setText("")}
+        sqrInBox.setOnClickListener {sqrInBox.setText("")}
         // click Button when user presses enter in box 1 or 2
         sqrFootBox.setOnKeyListener { v, keyCode, event -> pressedEnter(sqrFootToSqrInButton, keyCode, event) }
         sqrInBox.setOnKeyListener { v, keyCode, event -> pressedEnter(sqrFootToSqrInButton, keyCode, event) }
@@ -184,32 +171,35 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             }
         }
-        blindWidthResult.setOnClickListener{
-            displayToastMessage(this, "Cut on each side")
-        }
+        blindWidthResult.setOnClickListener{ displayToastMessage(this, "Cut on each side") }
+        windowWidthBox.setOnClickListener { windowWidthBox.setText("") }
+        blindWidthBox.setOnClickListener { blindWidthBox.setText("") }
         // click Button when user presses enter in box 1 or 2
         windowWidthBox.setOnKeyListener { v, keyCode, event -> pressedEnter(blindWidthEqualsButton, keyCode, event) }
         blindWidthBox.setOnKeyListener { v, keyCode, event -> pressedEnter(blindWidthEqualsButton, keyCode, event) }
 
         //6 decimal to fraction
-        // todo: if number in fraction box is not fraction, toast 'write a fraction'
         decimalToFractionButton.setOnClickListener {
-            var decimalNun:Double
+            var decimalNum:Double
             var completeFraction:String
 
             if (decimalBox.text.isNotEmpty() && fractionBox.text.isNotEmpty()) {
                 decimalBox.setText(""); fractionBox.setText("")
             } else if (decimalBox.text.isNotEmpty() && fractionBox.text.isEmpty()) {
-                decimalNun = decimalBox.text.toString().toDouble()
-                completeFraction = decimalToFraction(decimalNun)
+                decimalNum = decimalBox.text.toString().toDouble()
+                completeFraction = decimalToFraction(decimalNum)
                 fractionBox.setText(completeFraction)
             } else if (decimalBox.text.isEmpty() && fractionBox.text.isNotEmpty()) {
-                completeFraction = fractionBox.text.toString()
-                var numerator = completeFraction.substringBeforeLast("/").toDouble()
-                var denominator = completeFraction.substringAfterLast("/").toDouble()
-                decimalBox.setText( (numerator/denominator).toString() )
-            } else {}
+                if (fractionBox.text.contains("/")) {
+                    completeFraction = fractionBox.text.toString()
+                    var numerator = completeFraction.substringBeforeLast("/").toDouble()
+                    var denominator = completeFraction.substringAfterLast("/").toDouble()
+                    decimalBox.setText((numerator / denominator).toString())
+                }else {displayToastMessage(this, "Write a fraction.")}
+            }
         }
+        decimalBox.setOnClickListener { decimalBox.setText("") }
+        fractionBox.setOnClickListener { fractionBox.setText("") }
         // click button when user presses enter
         decimalBox.setOnKeyListener { v, keyCode, event -> pressedEnter(decimalToFractionButton, keyCode, event) }
         fractionBox.setOnKeyListener { v, keyCode, event -> pressedEnter(decimalToFractionButton, keyCode, event) }
@@ -232,13 +222,33 @@ class HomeScreenActivity : AppCompatActivity() {
                 linealFtBox.setText(linealFeet.toString())
             } else {}
         }
+        linealFtBox.setOnClickListener { linealFtBox.setText("") }
+        sqrYardBox.setOnClickListener { sqrYardBox.setText("") }
         // click button when user presses enter
-        linealFtBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) })
-        sqrYardBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) })
+        linealFtBox.setOnKeyListener { v, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
+        sqrYardBox.setOnKeyListener { v, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
+
+        //3 get tax
+        plusTaxButton.setOnClickListener {
+            if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
+                amountBox.setText(""); afterTaxBox.text = "0"
+            } else {
+                try {
+                    var taxAmount = amountBox.text.toString().toDouble() * 0.07
+                    var result = (amountBox.text.toString().toDouble() + taxAmount)
+                    afterTaxBox.text = "%.3f".format(result)
+                } catch (e: NumberFormatException) {
+                    displayToastMessage(this, "Maybe fill the box with numbers.")
+                }
+            }
+        }
+        // click Button when user presses enter in the box
+        amountBox.setOnClickListener { amountBox.setText("") }
+        amountBox.setOnKeyListener { v, keyCode, event -> pressedEnter(plusTaxButton, keyCode, event) }
 
         //8 Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
-        var bakShWidthBoxTouched = false
+        var bakShWidthBoxTouched = false // todo instead of touched, maybe make it chanched
         bakShWidthBox.setOnClickListener { bakShWidthBoxTouched = true }
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
@@ -260,28 +270,36 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             }
         }
+
+        bakShWidthBox.setOnClickListener { bakShWidthBox.setText("") }
+        linealSpaceBox.setOnClickListener { linealSpaceBox.setText("") }
+        cutOutsBox.setOnClickListener { cutOutsBox.setText("") }
         // click Button when user presses enter in box 1, 2, or 3
-        bakShWidthBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressedEnter(bakShEqualsButton, keyCode, event) })
-        linealSpaceBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressedEnter(bakShEqualsButton, keyCode, event) })
-        cutOutsBox.setOnKeyListener(View.OnKeyListener { v, keyCode, event -> pressedEnter(bakShEqualsButton, keyCode, event) })
+        bakShWidthBox.setOnKeyListener { v, keyCode, event -> pressedEnter(bakShEqualsButton, keyCode, event) }
+        linealSpaceBox.setOnKeyListener { v, keyCode, event -> pressedEnter(bakShEqualsButton, keyCode, event) }
+        cutOutsBox.setOnKeyListener { v, keyCode, event -> pressedEnter(bakShEqualsButton, keyCode, event) }
     }
 
-    // more options activity
     fun moreOptionsButtonClicked(view: View) {
         val newIntent = Intent(this, MoreOptionsMenuActivity::class.java)
         startActivity(newIntent)
     }
-    // reset all
     fun resetAllButtonClicked(view: View) {
         // make each into a function and then call: reset.nameOfFunction
-        /*1*/         sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
-        /*2*/         homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
-        /*3*/         amountBox.setText(""); afterTaxBox.text = "0"
-        /*4*/         sqrFootBox.setText(""); sqrInBox.setText("")
-        /*5*/         windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-        /*6*/         decimalBox.setText(""); fractionBox.setText("")
-        /*7*/         linealFtBox.setText(""); sqrYardBox.setText("")
-        /*8*/         bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Are you sure?")
+        builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
+            /*1*/    sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+            /*2*/    homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
+            /*3*/    amountBox.setText(""); afterTaxBox.text = "0"
+            /*4*/    sqrFootBox.setText(""); sqrInBox.setText("")
+            /*5*/    windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            /*6*/    decimalBox.setText(""); fractionBox.setText("")
+            /*7*/    linealFtBox.setText(""); sqrYardBox.setText("")
+            /*8*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+        }
+        builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
+        builder.show()
     }
 
     // enter presses = button
