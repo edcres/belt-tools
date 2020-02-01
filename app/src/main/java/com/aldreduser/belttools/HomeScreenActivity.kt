@@ -61,6 +61,7 @@ import kotlin.math.sqrt
 
 class HomeScreenActivity : AppCompatActivity() {
 
+    // these are here bc there are 2 listener blocks using them
     private val resultsStringBuilder = StringBuilder()
     private var boxesResults = 0
     private val boxesResultsArray = mutableListOf<Double>()
@@ -70,22 +71,23 @@ class HomeScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_screen)
 
         //1 get the square feet
-        // add sqrft per room at the bottom of the layout
+        // todo: add sqrft per room at the bottom of the layout
         // make it so when the box is clicked (with sqft per room), it's added to 'num of boxes',
         sqrtEqualsButton.setOnClickListener {
             if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && (sqrtBoxResult.text != "0")) {
                 sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             } else {
                 try {
-                    var num1 = sqrtBox1.text.toString().toDouble()
-                    var num2 = sqrtBox2.text.toString().toDouble()
-                    var result = num1 * num2
+                    val num1 = sqrtBox1.text.toString().toDouble()
+                    val num2 = sqrtBox2.text.toString().toDouble()
+                    val result = num1 * num2
                     sqrtBoxResult.text = "%.3f".format(result)
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
             }
         }
+        sqrtBoxResult.setOnClickListener{sqrtBoxResult.text = ""}
         sqrtBox1.setOnClickListener{sqrtBox1.setText("")}
         sqrtBox2.setOnClickListener{sqrtBox2.setText("")}
         // click sqrtEqualsButton when user presses enter in box 1 or 2
@@ -95,13 +97,13 @@ class HomeScreenActivity : AppCompatActivity() {
         //2 get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
-                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.setText("boxes"); boxesResults = 0; resultsStringBuilder.clear()
+                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "boxes"; boxesResults = 0; resultsStringBuilder.clear()
                 boxesResultsArray.clear()
             } else {
                 try {
-                    var totalSqrFeet = homeSqrFt.text.toString().toDouble()
-                    var boxSqrFeet = boxSqrFt.text.toString().toDouble()
-                    var numOfBoxes = totalSqrFeet/boxSqrFeet
+                    val totalSqrFeet = homeSqrFt.text.toString().toDouble()
+                    val boxSqrFeet = boxSqrFt.text.toString().toDouble()
+                    val numOfBoxes = totalSqrFeet/boxSqrFeet
 
                     if (boxesResults < 6) {
                         resultsStringBuilder.append("%.2f".format(numOfBoxes))
@@ -171,7 +173,8 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             }
         }
-        blindWidthResult.setOnClickListener{ displayToastMessage(this, "Cut on each side") }
+        blindWidthResult.setOnClickListener{blindWidthResult.text = ""}
+        // todo    displayToastMessage(this, "Cut on each side") }
         windowWidthBox.setOnClickListener { windowWidthBox.setText("") }
         blindWidthBox.setOnClickListener { blindWidthBox.setText("") }
         // click Button when user presses enter in box 1 or 2
@@ -242,6 +245,7 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             }
         }
+        afterTaxBox.setOnClickListener{afterTaxBox.text = ""}
         // click Button when user presses enter in the box
         amountBox.setOnClickListener { amountBox.setText("") }
         amountBox.setOnKeyListener { v, keyCode, event -> pressedEnter(plusTaxButton, keyCode, event) }
@@ -264,7 +268,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     displayToastMessage(this, "Make sure the boxes are filled.") }
             }
         }
-
+        bakShResultsBox.setOnClickListener{bakShResultsBox.text = ""}
         bakShWidthBox.setOnClickListener { bakShWidthBox.setText("") }
         linealSpaceBox.setOnClickListener { linealSpaceBox.setText("") }
         cutOutsBox.setOnClickListener { cutOutsBox.setText("") }
@@ -337,9 +341,6 @@ class HomeScreenActivity : AppCompatActivity() {
             aux = k1; k1 = a*k1+k2;  k2 = aux
             b = 1/(b-a)
         } while (Math.abs(num-h1/k1) > num*tolerance)
-
         return "${h1.toInt()}/${k1.toInt()}"
-
-        //takes in a decimal number and returns a string ('num' + '/' + 'num')
     }
 }
