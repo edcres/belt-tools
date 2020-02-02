@@ -20,8 +20,7 @@ import kotlin.math.sqrt
  * TODO:
  *
  * features:
- * make it so individual result is cleared when clicked (or something like that)
- * make fun for enter pressed
+ * take out get tax
  * clean up code (including warnings)
  * price per sqrft of tile
  * how much sqr footage in each room
@@ -80,14 +79,16 @@ class HomeScreenActivity : AppCompatActivity() {
                 try {
                     val num1 = sqrtBox1.text.toString().toDouble()
                     val num2 = sqrtBox2.text.toString().toDouble()
-                    val result = num1 * num2
-                    sqrtBoxResult.text = "%.3f".format(result)
+                    val result = num1*num2
+
+                    sqrtBoxResult.text = offExtraZeros("%.3f", result)
+
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
             }
         }
-        sqrtBoxResult.setOnClickListener{sqrtBoxResult.text = ""}
+        sqrtBoxResult.setOnClickListener{sqrtBoxResult.text = "0"}
         sqrtBox1.setOnClickListener{sqrtBox1.setText("")}
         sqrtBox2.setOnClickListener{sqrtBox2.setText("")}
         // click sqrtEqualsButton when user presses enter in box 1 or 2
@@ -106,7 +107,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     val numOfBoxes = totalSqrFeet/boxSqrFeet
 
                     if (boxesResults < 6) {
-                        resultsStringBuilder.append("%.2f".format(numOfBoxes))
+                        resultsStringBuilder.append(offExtraZeros("%.2f", numOfBoxes))
                         boxesResultsArray.add(numOfBoxes)
                         if (boxesResults < 5) { resultsStringBuilder.append(" + ") }
                         boxesResults ++
@@ -121,7 +122,7 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
         tileBoxResultsButton.setOnLongClickListener {
-            val sumOfAllResults = "%.2f".format(boxesResultsArray.sum())
+            val sumOfAllResults = offExtraZeros("%.2f", boxesResultsArray.sum())
             displayToastMessage(this, sumOfAllResults)
             return@setOnLongClickListener true
         }
@@ -141,13 +142,13 @@ class HomeScreenActivity : AppCompatActivity() {
                 var squareFt = sqrFootBox.text.toString().toDouble()
                 var inches = sqrt(squareFt) * 12
                 var sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
-                sqrInBox.setText("%.3f".format(sqrIn))
+                sqrInBox.setText(offExtraZeros("%.3f", sqrIn))
             } else if (sqrInBox.text.isNotEmpty()) {
                 // converts it to sqr ft
                 var squareIn = sqrInBox.text.toString().toDouble()
                 var feet = Math.sqrt(squareIn) / 12
                 var sqrFt = feet*feet
-                sqrFootBox.setText("%.3f".format(sqrFt))
+                sqrFootBox.setText(offExtraZeros("%.3f", sqrFt))
             } else {
                 displayToastMessage(this, "Maybe fill a box with numbers.")
             }
@@ -167,14 +168,14 @@ class HomeScreenActivity : AppCompatActivity() {
                     var window = windowWidthBox.text.toString().toDouble()
                     var blindPre = blindWidthBox.text.toString().toDouble()
                     var blindPro = (window - blindPre) / 2
-                    blindWidthResult.text = "%.3f".format(blindPro)
+                    blindWidthResult.text = offExtraZeros("%.3f", blindPro)
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
             }
         }
-        blindWidthResult.setOnClickListener{blindWidthResult.text = ""}
-        // todo    displayToastMessage(this, "Cut on each side") }
+        blindWidthResult.setOnClickListener{blindWidthResult.text = "0"}
+        // todo    displayToastMessage(this, "Cut on each side") } (when info button is made)
         windowWidthBox.setOnClickListener { windowWidthBox.setText("") }
         blindWidthBox.setOnClickListener { blindWidthBox.setText("") }
         // click Button when user presses enter in box 1 or 2
@@ -195,9 +196,9 @@ class HomeScreenActivity : AppCompatActivity() {
             } else if (decimalBox.text.isEmpty() && fractionBox.text.isNotEmpty()) {
                 if (fractionBox.text.contains("/")) {
                     completeFraction = fractionBox.text.toString()
-                    var numerator = completeFraction.substringBeforeLast("/").toDouble()
-                    var denominator = completeFraction.substringAfterLast("/").toDouble()
-                    decimalBox.setText((numerator / denominator).toString())
+                    val numerator = completeFraction.substringBeforeLast("/").toDouble()
+                    val denominator = completeFraction.substringAfterLast("/").toDouble()
+                    decimalBox.setText(offExtraZeros("%.3f", numerator/denominator))
                 }else {displayToastMessage(this, "Write a fraction.")}
             }
         }
@@ -217,12 +218,12 @@ class HomeScreenActivity : AppCompatActivity() {
                 var linealFeet = linealFtBox.text.toString().toDouble()
                 var linealYard = (linealFeet/3) //squared
                 var sqrYard = linealYard * widthYd
-                sqrYardBox.setText(sqrYard.toString())
+                sqrYardBox.setText(offExtraZeros("%.3f", sqrYard))
             } else if (linealFtBox.text.isEmpty() && sqrYardBox.text.isNotEmpty()) {
                 var sqrYard = sqrYardBox.text.toString().toDouble()
                 var linealYard = sqrYard/widthYd
                 var linealFeet = linealYard*3
-                linealFtBox.setText(linealFeet.toString())
+                linealFtBox.setText(offExtraZeros("%.3f", linealFeet))
             } else {}
         }
         linealFtBox.setOnClickListener { linealFtBox.setText("") }
@@ -239,13 +240,13 @@ class HomeScreenActivity : AppCompatActivity() {
                 try {
                     var taxAmount = amountBox.text.toString().toDouble() * 0.07
                     var result = (amountBox.text.toString().toDouble() + taxAmount)
-                    afterTaxBox.text = "%.3f".format(result)
+                    afterTaxBox.text = offExtraZeros("%.3f", result)
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Maybe fill the box with numbers.")
                 }
             }
         }
-        afterTaxBox.setOnClickListener{afterTaxBox.text = ""}
+        afterTaxBox.setOnClickListener{afterTaxBox.text = "0"}
         // click Button when user presses enter in the box
         amountBox.setOnClickListener { amountBox.setText("") }
         amountBox.setOnKeyListener { v, keyCode, event -> pressedEnter(plusTaxButton, keyCode, event) }
@@ -263,12 +264,12 @@ class HomeScreenActivity : AppCompatActivity() {
                     var linealSpace = getFeetToInch() // hopefully this is right
                     var cutOuts = cutOutsBox.text.toString().toDouble()
                     var bakShResults = linealSpace/(bakShWidth*cutOuts)
-                    bakShResultsBox.text = "%.3f".format(bakShResults)
+                    bakShResultsBox.text = offExtraZeros("%.3f", bakShResults)
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Make sure the boxes are filled.") }
             }
         }
-        bakShResultsBox.setOnClickListener{bakShResultsBox.text = ""}
+        bakShResultsBox.setOnClickListener{bakShResultsBox.text = "0"}
         bakShWidthBox.setOnClickListener { bakShWidthBox.setText("") }
         linealSpaceBox.setOnClickListener { linealSpaceBox.setText("") }
         cutOutsBox.setOnClickListener { cutOutsBox.setText("") }
@@ -309,6 +310,19 @@ class HomeScreenActivity : AppCompatActivity() {
         } else {return false}
     }
 
+    fun offExtraZeros(digits: String, rsltNum: Double): String {
+        // take out extra zeros after the decimal
+        var answer = digits.format(rsltNum).toDouble().toString()
+        if (answer.last() == '0'){
+            try {
+                answer = answer.toDouble().toInt().toString()
+                //var sds = answer
+            } catch (e: NumberFormatException){
+                displayToastMessage(this, "Something went wrong.")
+            }
+        }
+        return answer
+    }
     fun getFeetToInch(): Double {
         // function returns inches
         var num = linealSpaceBox.text.toString().toDouble()
