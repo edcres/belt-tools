@@ -132,7 +132,7 @@ class HomeScreenActivity : AppCompatActivity() {
         homeSqrFt.setOnKeyListener { v, keyCode, event -> pressedEnter(tileBoxResultsButton, keyCode, event) }
         boxSqrFt.setOnKeyListener { v, keyCode, event -> pressedEnter(tileBoxResultsButton, keyCode, event) }
 
-        //4 sqr foot to sqr in sqrInBox
+        //3 sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
             if (sqrFootBox.text.isNotEmpty() && sqrInBox.text.isNotEmpty() ) {
                 sqrFootBox.setText("")
@@ -159,7 +159,7 @@ class HomeScreenActivity : AppCompatActivity() {
         sqrFootBox.setOnKeyListener { v, keyCode, event -> pressedEnter(sqrFootToSqrInButton, keyCode, event) }
         sqrInBox.setOnKeyListener { v, keyCode, event -> pressedEnter(sqrFootToSqrInButton, keyCode, event) }
 
-        //5 get blind width
+        //4 get blind width
         blindWidthEqualsButton.setOnClickListener {
             if (windowWidthBox.text.isNotEmpty() && blindWidthBox.text.isNotEmpty() && blindWidthResult.text != "0"){
                 windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
@@ -182,7 +182,7 @@ class HomeScreenActivity : AppCompatActivity() {
         windowWidthBox.setOnKeyListener { v, keyCode, event -> pressedEnter(blindWidthEqualsButton, keyCode, event) }
         blindWidthBox.setOnKeyListener { v, keyCode, event -> pressedEnter(blindWidthEqualsButton, keyCode, event) }
 
-        //6 decimal to fraction
+        //5 decimal to fraction
         decimalToFractionButton.setOnClickListener {
             var decimalNum:Double
             var completeFraction:String
@@ -208,7 +208,7 @@ class HomeScreenActivity : AppCompatActivity() {
         decimalBox.setOnKeyListener { v, keyCode, event -> pressedEnter(decimalToFractionButton, keyCode, event) }
         fractionBox.setOnKeyListener { v, keyCode, event -> pressedEnter(decimalToFractionButton, keyCode, event) }
 
-        //7 lineal ft to square yard
+        //6 lineal ft to square yard
         linealFtToSqrYardButton.setOnClickListener {
             //val widthFt = 12
             val widthYd = 4
@@ -232,6 +232,7 @@ class HomeScreenActivity : AppCompatActivity() {
         linealFtBox.setOnKeyListener { v, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
         sqrYardBox.setOnKeyListener { v, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
 
+        /*
         //3 get tax
         plusTaxButton.setOnClickListener {
             if (amountBox.text.isNotEmpty() && afterTaxBox.text != "0"){
@@ -250,8 +251,9 @@ class HomeScreenActivity : AppCompatActivity() {
         // click Button when user presses enter in the box
         amountBox.setOnClickListener { amountBox.setText("") }
         amountBox.setOnKeyListener { v, keyCode, event -> pressedEnter(plusTaxButton, keyCode, event) }
+         */
 
-        //8 Lineal Backsplash
+        //7 Lineal Backsplash
         // add functionality to ask if the given lineal length is ft or in
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
@@ -290,12 +292,11 @@ class HomeScreenActivity : AppCompatActivity() {
         builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
             /*1*/    sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
             /*2*/    homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
-            /*3*/    amountBox.setText(""); afterTaxBox.text = "0"
-            /*4*/    sqrFootBox.setText(""); sqrInBox.setText("")
-            /*5*/    windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
-            /*6*/    decimalBox.setText(""); fractionBox.setText("")
-            /*7*/    linealFtBox.setText(""); sqrYardBox.setText("")
-            /*8*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+            /*3*/    sqrFootBox.setText(""); sqrInBox.setText("")
+            /*4*/    windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            /*5*/    decimalBox.setText(""); fractionBox.setText("")
+            /*6*/    linealFtBox.setText(""); sqrYardBox.setText("")
+            /*7*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
         builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
         builder.show()

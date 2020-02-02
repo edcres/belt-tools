@@ -224,7 +224,7 @@
                     android:id="@+id/titleCutBlindWidth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cut Blind"
+                    android:text="Cut Blind Width"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             <LinearLayout
@@ -239,7 +239,7 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:gravity="center"
-                        android:hint="window width"
+                        android:hint="opening"
                         android:inputType="number|numberDecimal" />
 
                 <EditText
@@ -249,7 +249,7 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:gravity="center"
-                        android:hint="blind width"
+                        android:hint="blind"
                         android:inputType="number|numberDecimal" />
 
                 <Button
@@ -367,55 +367,10 @@
                         android:hint="sqr yard"
                         android:inputType="number|numberDecimal" />
             </LinearLayout>
-        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:padding="5dp"
-                android:background="@color/whiteSmoke"
-                android:orientation="vertical">
-            <TextView
-                    android:id="@+id/titleGetTax"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="14sp"
-                    android:text="7% Tax"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                <EditText
-                        android:id="@+id/amountBox"
-                        android:layout_width="6dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:hint="amount"
-                        android:inputType="number|numberDecimal" />
 
-                <Button
-                        android:id="@+id/plusTaxButton"
-                        android:layout_width="27dp"
-                        android:layout_height="38dp"
-                        android:layout_weight="1"
-                        android:text="plus tax"
-                        android:textAllCaps="true" />
 
-                <TextView
-                        android:id="@+id/afterTaxBox"
-                        android:layout_width="19dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textSize="18sp" />
-            </LinearLayout>
         </LinearLayout>
 
             <LinearLayout
