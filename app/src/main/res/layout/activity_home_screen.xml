@@ -87,23 +87,16 @@
                             android:hint="length"
                             android:inputType="number|numberDecimal" />
 
-                    <Button
-                            android:id="@+id/sqrtEqualsButton"
-                            android:layout_width="25dp"
-                            android:layout_height="36dp"
-                            android:layout_weight="1"
-                            android:text="=" />
-
-                    <TextView
-                            android:id="@+id/sqrtBoxResult"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:paddingLeft="10dp"
-                            android:text="0"
-                            android:textSize="18sp" />
                 </LinearLayout>
+
+                <Button
+                        android:id="@+id/sqrPerRoomButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="Sqr Per Room"
+                        android:layout_weight="1"/>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -156,7 +149,7 @@
                 <Button
                         android:id="@+id/tileBoxResultsButton"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="boxes" />
 
@@ -409,7 +402,7 @@
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:gravity="center"
-                                android:hint="12 in. width"
+                                android:hint="width (12 in.)"
                                 android:inputType="number|numberDecimal" />
 
                         <EditText

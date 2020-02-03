@@ -93,7 +93,7 @@ class DeptExtensionsActivity : AppCompatActivity() {
         for (item in deptExtensions.indices) {
             try {
                 deptExtensions[item] = deptExtensionsSharedPref.getString("$item", "")!!  //this is unwrapped
-            } catch (e: NullPointerException) {toast("Something went wrong.")}
+            } catch (e: NullPointerException) {toast("Something went wrong.")} //probably wrong exception
         }
     }
 }

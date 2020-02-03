@@ -11,58 +11,60 @@ import android.widget.Button
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import java.lang.NumberFormatException
-import java.lang.StringBuilder
 import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.sqrt
+import kotlin.text.StringBuilder
 
 // make sure no company private information is made public by the software developer's actions
 // this app will have several calculating tools for work. Plus info guides
 /**
  * TODO:
  *
- * features:
- * clean up code (including warnings)
- * price per sqrft of tile
+ * Features:
+ *          pt1:
  * how much sqr footage in each room
+ * price per sqrft of tile
+ * fix startup animation
+ * box say where the magnet is (and where it was last seen)
+ * how many louvers will a vertical blind need
+ * put everything into a recyclerview
+ *          pt2:
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
- * put everything into a recyclerview
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
- * fix warnings
- * box say where the magnet is (and where it was last seen)
  * choose by department button (in more options activity) should be a drop-down menu
- * how many louvers will a vertical blind need
- *
- * pt2 (features):
+ *          pt3:
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  *  * create function in another file to convert measurements (call them in this file)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
  * virtual reality tape measurer
- * cut wire shelves with the least waste possible. Given the customer's measurements
+ * cut wire shelves with the least waste possible. Given the customer's measurements     <<<- ***************************
  * user can pick different features from each department and choose what to display in the home screen (each feature would be in their respective department classes/files)
  *
  * ui:
- * make are you sure pop up darker
+ * make 'are you sure pop ups' darker
  * make toast edges round
  * organize and number the different features in the main page (eventually use picture icons instead of numbers)
  * make buttons look pretty
- * rounded edges in buttons, and smokey layouts
+ *  * rounded edges in buttons, and smokey layouts
  *
  * optimization:
- * maybe make a function for try catch 'maybe fill both boxes with numbers' (probably delete almost all try catches)
  * count how many times i use each feature on my app, to what which feature to put where (make a radio button to check if eah count is real or for a test)
  *
  * skills:
- * learn to call code from other kotlin files in the project (like creating an object in java)
- * learn to change the color of a button without changing the borders (the gray part)
  * idk what ACTION_UP or ACTION_DOWN means
  *
  */
 
 class HomeScreenActivity : AppCompatActivity() {
 
-    // these are here bc there are 2 listener blocks using them
+    // reset all is using these variables
+    // sqr per room
+    private val roomSqrStringBuilder = StringBuilder()
+    private var roomSqrResult = 0
+    private val roomSqrResultArray = mutableListOf<Double>()
+    // boxes per room
     private val resultsStringBuilder = StringBuilder()
     private var boxesResults = 0
     private val boxesResultsArray = mutableListOf<Double>()
@@ -74,41 +76,77 @@ class HomeScreenActivity : AppCompatActivity() {
         //1 get the square feet
         // todo: add sqrft per room at the bottom of the layout
         // make it so when the box is clicked (with sqft per room), it's added to 'num of boxes',
-        sqrtEqualsButton.setOnClickListener {
-            if (sqrtBox1.text.isNotEmpty() && sqrtBox2.text.isNotEmpty() && (sqrtBoxResult.text != "0")) {
-                sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+        // clear it
+        // put this and the one below into a function
+        sqrPerRoomButton.setOnClickListener {
+            if (sqrtBox1.text.isEmpty() && sqrtBox2.text.isEmpty() && (sqrPerRoomButton.text != "Sqr Per Room")) {
+                sqrtBox1.setText(""); sqrtBox2.setText(""); sqrPerRoomButton.text = "Sqr Per Room"; roomSqrResult = 0
+                roomSqrStringBuilder.clear(); roomSqrResultArray.clear()
+                //sqrtBoxResult.text = "0"
             } else {
-                try {
+                try { //if all input boxes are filled
                     val num1 = sqrtBox1.text.toString().toDouble()
                     val num2 = sqrtBox2.text.toString().toDouble()
-                    val result = num1*num2
+                    val result = num1*num2 // this is the only thing preventing me from doing it all
 
-                    sqrtBoxResult.text = offExtraZeros("%.3f", result)
 
-                } catch (e: NumberFormatException) {
-                    displayToastMessage(this, "Maybe fill both boxes with numbers.")
-                }
+
+
+                    //Int, StringBuilder, Double, MutableList<Double>, Button!
+                    //dksnksndknsknk
+                    addAndDisplayRoomSqrsAndMaterials(roomSqrResult, roomSqrStringBuilder, result, roomSqrResultArray,
+                        sqrPerRoomButton)
+
+
+
+                    /*
+                    //result will go in an array, the array will go to this button
+                    if (roomSqrResult < 6) {
+                        roomSqrStringBuilder.append(offExtraZeros("%.2f", result))
+                        roomSqrResultArray.add(result)
+                        if (roomSqrResult < 5) {roomSqrStringBuilder.append(" + ")}
+                        roomSqrResult++
+                    } else {
+                        displayToastMessage(this, "Limit reached.")
+                    }
+                    sqrPerRoomButton.text = roomSqrStringBuilder
+                    //sqrtBoxResult.text = offExtraZeros("%.3f", result)
+                    */
+                } catch (e: NumberFormatException) { displayToastMessage(this, "Maybe fill both boxes with numbers.") }
             }
         }
-        sqrtBoxResult.setOnClickListener{sqrtBoxResult.text = "0"}
+        sqrPerRoomButton.setOnLongClickListener {
+            val sumOfAllResults = offExtraZeros("%.2f", roomSqrResultArray.sum())
+            displayToastMessage(this, sumOfAllResults)
+            homeSqrFt.setText(sumOfAllResults)
+            return@setOnLongClickListener true
+        }
         sqrtBox1.setOnClickListener{sqrtBox1.setText("")}
         sqrtBox2.setOnClickListener{sqrtBox2.setText("")}
         // click sqrtEqualsButton when user presses enter in box 1 or 2
-        sqrtBox1.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrtEqualsButton, keyCode, event) }
-        sqrtBox2.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrtEqualsButton, keyCode, event) }
+        sqrtBox1.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrPerRoomButton, keyCode, event) }
+        sqrtBox2.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrPerRoomButton, keyCode, event) }
 
         //2 get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != "boxes") {
-                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "boxes"; boxesResults = 0; resultsStringBuilder.clear()
-                boxesResultsArray.clear()
+                homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "boxes"; boxesResults = 0
+                resultsStringBuilder.clear(); boxesResultsArray.clear()
             } else {
-                try {
+                try { //if all input boxes are filled
                     val totalSqrFeet = homeSqrFt.text.toString().toDouble()
                     val boxSqrFeet = boxSqrFt.text.toString().toDouble()
                     val numOfBoxes = totalSqrFeet/boxSqrFeet
 
+
+                    //dksnksndknsknk
+                    addAndDisplayRoomSqrsAndMaterials(boxesResults, resultsStringBuilder, numOfBoxes, boxesResultsArray,
+                        tileBoxResultsButton)
+
+
+                    /*
                     if (boxesResults < 6) {
+                        //add number to the array and string until there are 6 numbers. Add a '+' until there are 5
                         resultsStringBuilder.append(offExtraZeros("%.2f", numOfBoxes))
                         boxesResultsArray.add(numOfBoxes)
                         if (boxesResults < 5) { resultsStringBuilder.append(" + ") }
@@ -116,11 +154,9 @@ class HomeScreenActivity : AppCompatActivity() {
                     } else {
                         displayToastMessage(this, "Limit reached.")
                     }
-
                     tileBoxResultsButton.text = resultsStringBuilder
-                } catch (e: NumberFormatException) {
-                    displayToastMessage(this, "Maybe fill both boxes with numbers.")
-                }
+                    */
+                } catch (e: NumberFormatException) { displayToastMessage(this, "Maybe fill both boxes with numbers.") }
             }
         }
         tileBoxResultsButton.setOnLongClickListener {
@@ -137,8 +173,7 @@ class HomeScreenActivity : AppCompatActivity() {
         //3 sqr foot to sqr in sqrInBox
         sqrFootToSqrInButton.setOnClickListener {
             if (sqrFootBox.text.isNotEmpty() && sqrInBox.text.isNotEmpty() ) {
-                sqrFootBox.setText("")
-                sqrInBox.setText("")
+                sqrFootBox.setText(""); sqrInBox.setText("")
             } else if (sqrFootBox.text.isNotEmpty()) {
                 // converts it to sqr in
                 val squareFt = sqrFootBox.text.toString().toDouble()
@@ -188,7 +223,6 @@ class HomeScreenActivity : AppCompatActivity() {
         decimalToFractionButton.setOnClickListener {
             val decimalNum:Double
             val completeFraction:String
-
             if (decimalBox.text.isNotEmpty() && fractionBox.text.isNotEmpty()) {
                 decimalBox.setText(""); fractionBox.setText("")
             } else if (decimalBox.text.isNotEmpty() && fractionBox.text.isEmpty()) {
@@ -212,7 +246,6 @@ class HomeScreenActivity : AppCompatActivity() {
 
         //6 lineal ft to square yard
         linealFtToSqrYardButton.setOnClickListener {
-            //val widthFt = 12
             val widthYd = 4
             if (linealFtBox.text.isNotEmpty() && sqrYardBox.text.isNotEmpty()) {
                 linealFtBox.setText(""); sqrYardBox.setText("")
@@ -235,7 +268,6 @@ class HomeScreenActivity : AppCompatActivity() {
         sqrYardBox.setOnKeyListener { _, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
 
         //7 Lineal Backsplash
-        // add functionality to ask if the given lineal length is ft or in
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
@@ -243,8 +275,7 @@ class HomeScreenActivity : AppCompatActivity() {
                 try {
                     // width = 12 by default
                     val bakShWidth:Double = if (bakShWidthBox.text.isEmpty()) 12.0 else bakShWidthBox.text.toString().toDouble()
-
-                    val linealSpace = getFeetToInch() // hopefully this is right
+                    val linealSpace = getFeetOrInch()
                     val cutOuts = cutOutsBox.text.toString().toDouble()
                     val bakShResults = linealSpace/(bakShWidth*cutOuts)
                     bakShResultsBox.text = offExtraZeros("%.3f", bakShResults)
@@ -271,7 +302,7 @@ class HomeScreenActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Are you sure?")
         builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
-            /*1*/    sqrtBox1.setText(""); sqrtBox2.setText(""); sqrtBoxResult.text = "0"
+            /*1*/    sqrtBox1.setText(""); sqrtBox2.setText(""); sqrPerRoomButton.text = "Sqr Per Room"; roomSqrResult = 0; roomSqrStringBuilder.clear(); roomSqrResultArray.clear()
             /*2*/    homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = "Boxes";boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
             /*3*/    sqrFootBox.setText(""); sqrInBox.setText("")
             /*4*/    windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
@@ -307,7 +338,40 @@ class HomeScreenActivity : AppCompatActivity() {
         }
         return answer
     }
-    fun getFeetToInch(): Double {
+    fun addAndDisplayRoomSqrsAndMaterials(numOfResults: Int, stringBuilder: StringBuilder, result: Double,
+                                          arrayToSum: MutableList<Double>, resultsButton: Button) {
+        // this will be called by 'sqr per room' and 'box per room'
+        var tempNumOfResults = numOfResults
+
+        //Int, StringBuilder, Double, MutableList<Double>, Button!
+        //dksnksndknsknk
+        /*
+        addAndDisplayRoomSqrsAndMaterials(numOfResults, stringBuilder,
+            result, arrayToSum, resultsButton)
+
+        addAndDisplayRoomSqrsAndMaterials(roomSqrResult, roomSqrStringBuilder,
+            result, roomSqrResultArray, sqrPerRoomButton)
+
+        */
+
+
+
+
+
+
+        if (tempNumOfResults < 6) {
+            stringBuilder.append(offExtraZeros("%.2f", result))
+            arrayToSum.add(result)
+            if (tempNumOfResults < 5) {stringBuilder.append(" + ")}
+            tempNumOfResults++
+        } else {
+            displayToastMessage(this, "Limit reached.")
+        }
+        resultsButton.text = stringBuilder
+    }
+
+
+    fun getFeetOrInch(): Double {
         // function returns inches
         val num = linealSpaceBox.text.toString().toDouble()
         val result :Double
