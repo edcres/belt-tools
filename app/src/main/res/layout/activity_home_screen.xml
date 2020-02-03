@@ -93,7 +93,7 @@
                         android:id="@+id/sqrPerRoomButton"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:text="Sqr Per Room"
+                        android:text="@string/sqrPerRoomButton_text"
                         android:layout_weight="1"/>
 
 
@@ -151,7 +151,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="boxes" />
+                        android:text="@string/tileBoxResultsButton_text" />
 
             </LinearLayout>
         </LinearLayout>
