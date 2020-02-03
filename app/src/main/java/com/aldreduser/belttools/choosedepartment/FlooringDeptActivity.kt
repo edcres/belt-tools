@@ -21,7 +21,7 @@ class FlooringDeptActivity : AppCompatActivity() {
         }
     }
 
-    fun saveData() { //might have to add (view: View) parameter
+    private fun saveData() { //might have to add (view: View) parameter
         val flooringNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(flooringNotesSharedPref.edit()) {
             putString("Notes", flooringNotesText.text.toString())
@@ -30,12 +30,12 @@ class FlooringDeptActivity : AppCompatActivity() {
         }
     }
 
-    fun getData() {
+    private fun getData() {
         val flooringNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         flooringNotesText.setText(flooringNotesSharedPref.getString("Notes", ""))
     }
 
-    fun callToast(message: String) {
+    private fun callToast(message: String) {
         displayToastMessage(this, message)
     }
 }

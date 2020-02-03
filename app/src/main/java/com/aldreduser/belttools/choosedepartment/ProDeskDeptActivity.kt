@@ -21,7 +21,7 @@ class ProDeskDeptActivity : AppCompatActivity() {
         }
     }
 
-    fun saveData() { //might have to add (view: View) parameter
+    private fun saveData() { //might have to add (view: View) parameter
         val proDeskNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(proDeskNotesSharedPref.edit()) {
             putString("Notes", proDeskNotesText.text.toString())
@@ -30,12 +30,12 @@ class ProDeskDeptActivity : AppCompatActivity() {
         }
     }
 
-    fun getData() {
+    private fun getData() {
         val proDeskNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         proDeskNotesText.setText(proDeskNotesSharedPref.getString("Notes", ""))
     }
 
-    fun callToast(message: String) {
+    private fun callToast(message: String) {
         displayToastMessage(this, message)
     }
 }

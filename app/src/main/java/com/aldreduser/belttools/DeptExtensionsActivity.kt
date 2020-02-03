@@ -42,7 +42,7 @@ class DeptExtensionsActivity : AppCompatActivity() {
         }
     }
 
-    fun displayExtensions() {
+    private fun displayExtensions() {
         pullerExtBox.setText(deptExtensions[0])
         appliancesExtBox.setText(deptExtensions[1])
         toolRentalExtBox.setText(deptExtensions[2])
@@ -59,7 +59,7 @@ class DeptExtensionsActivity : AppCompatActivity() {
         paintExtBox.setText(deptExtensions[13])
         lumberExtBox.setText(deptExtensions[14])
     }
-    fun updateExtensions() {
+    private fun updateExtensions() {
         deptExtensions.add(pullerExtBox.text.toString())
         deptExtensions.add(appliancesExtBox.text.toString())
         deptExtensions.add(toolRentalExtBox.text.toString())
@@ -77,7 +77,7 @@ class DeptExtensionsActivity : AppCompatActivity() {
         deptExtensions.add(lumberExtBox.text.toString())
     }
 
-    fun saveData() { //might have to add (view: View) parameter
+    private fun saveData() { //might have to add (view: View) parameter
         val deptExtensionsSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(deptExtensionsSharedPref.edit()) {
             for(item in deptExtensions.indices) {   // might be a problem here
@@ -88,10 +88,12 @@ class DeptExtensionsActivity : AppCompatActivity() {
         }
     }
 
-    fun getData() {
+    private fun getData() {
         val deptExtensionsSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         for (item in deptExtensions.indices) {
-            deptExtensions[item] = deptExtensionsSharedPref.getString("$item", "")
+            try {
+                deptExtensions[item] = deptExtensionsSharedPref.getString("$item", "")!!  //this is unwrapped
+            } catch (e: NullPointerException) {toast("Something went wrong.")}
         }
     }
 }
