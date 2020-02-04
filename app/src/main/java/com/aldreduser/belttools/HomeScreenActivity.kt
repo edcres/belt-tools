@@ -4,7 +4,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.support.v7.app.AlertDialog
 import android.view.KeyEvent
 import android.view.View
@@ -24,8 +23,7 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * 'Sqr Per Room" and 'boxes' put in strings.xml
- * price per sqrft of tile
+ * price per sqrft of tile (price of the box, divided by the sqrft it covers)
  * fix startup animation
  * box say where the magnet is (and where it was last seen)
  * how many louvers will a vertical blind need
@@ -40,6 +38,7 @@ import kotlin.text.StringBuilder
  *  * create function in another file to convert measurements (call them in this file)
  * make it so that there's a history of problems solved, and is deleted when the app is closed. (like the calculator app, restart when the app is closed)
  * virtual reality tape measurer
+ * in price per sqrft, different prices can be displayed and compared (like in boxes per room) and be under a name to identify them
  * cut wire shelves with the least waste possible. Given the customer's measurements     <<<- ***************************
  * user can pick different features from each department and choose what to display in the home screen (each feature would be in their respective department classes/files)
  *
@@ -55,20 +54,19 @@ import kotlin.text.StringBuilder
  *
  * skills:
  * idk what ACTION_UP or ACTION_DOWN means
- *
  */
 
 class HomeScreenActivity : AppCompatActivity() {
 
     // reset all is using these variables
     // sqr per room
-    private val roomSqrStringBuilder = StringBuilder()
+    private val roomSqrStringBuilder = StringBuilder() //can probably send this inside the funtion
+    private val roomSqrResultArray = mutableListOf<Double>() //can probably send this inside the funtion
     private var roomSqrResult = 0
-    private val roomSqrResultArray = mutableListOf<Double>()
     // boxes per room
-    private val resultsStringBuilder = StringBuilder()
+    private val resultsStringBuilder = StringBuilder() //can probably send this inside the funtion
+    private val boxesResultsArray = mutableListOf<Double>() //can probably send this inside the funtion
     private var boxesResults = 0
-    private val boxesResultsArray = mutableListOf<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,12 +74,11 @@ class HomeScreenActivity : AppCompatActivity() {
 
         //1 get the square feet
         sqrPerRoomButton.setOnClickListener {
-            var thisFeature = "sqrRoom"
+            val thisFeature = "sqrRoom"
             val buttonText = getString(R.string.sqrPerRoomButton_text) // should be a string
             if (sqrtBox1.text.isEmpty() && sqrtBox2.text.isEmpty() && (sqrPerRoomButton.text != buttonText)) {
                 sqrtBox1.setText(""); sqrtBox2.setText(""); sqrPerRoomButton.text = buttonText; roomSqrResult = 0
                 roomSqrStringBuilder.clear(); roomSqrResultArray.clear()
-                //sqrtBoxResult.text = "0"
             } else {
                 try { //if all input boxes are filled
                     val num1 = sqrtBox1.text.toString().toDouble()
@@ -109,7 +106,7 @@ class HomeScreenActivity : AppCompatActivity() {
 
         //2 get number of boxes to buy
         tileBoxResultsButton.setOnClickListener {
-            var thisFeature = "numOfBoxes"
+            val thisFeature = "numOfBoxes"
             val buttonText = getString(R.string.tileBoxResultsButton_text)
             if (homeSqrFt.text.isEmpty() && boxSqrFt.text.isEmpty() && tileBoxResultsButton.text != buttonText) {
                 homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = buttonText; boxesResults = 0
@@ -145,7 +142,7 @@ class HomeScreenActivity : AppCompatActivity() {
                 // converts it to sqr in
                 val squareFt = sqrFootBox.text.toString().toDouble()
                 val inches = sqrt(squareFt) * 12
-                val sqrIn =  inches*inches  //this line is the only difference between this if brackets and the ones below (make it a function)
+                val sqrIn =  inches*inches
                 sqrInBox.setText(offExtraZeros("%.3f", sqrIn))
             } else if (sqrInBox.text.isNotEmpty()) {
                 // converts it to sqr ft
@@ -322,7 +319,7 @@ class HomeScreenActivity : AppCompatActivity() {
         }
         resultsButton.text = stringBuilder
     }
-    
+
     fun getFeetOrInch(): Double {
         // function returns inches
         val num = linealSpaceBox.text.toString().toDouble()
