@@ -23,7 +23,6 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * price per sqrft of tile (price of the box, divided by the sqrft it covers)
  * fix startup animation
  * box say where the magnet is (and where it was last seen)
  * how many louvers will a vertical blind need
@@ -44,6 +43,7 @@ import kotlin.text.StringBuilder
  *
  * ui:
  * make 'are you sure pop ups' darker
+ * fix UI in xml code
  * make toast edges round
  * organize and number the different features in the main page (eventually use picture icons instead of numbers)
  * make buttons look pretty
@@ -231,7 +231,27 @@ class HomeScreenActivity : AppCompatActivity() {
         linealFtBox.setOnKeyListener { _, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
         sqrYardBox.setOnKeyListener { _, keyCode, event -> pressedEnter(linealFtToSqrYardButton, keyCode, event) }
 
-        //7 Lineal Backsplash
+        //7 Price per Sqr Ft
+        sqrFtPriceButton.setOnClickListener{
+            if (boxPriceBox.text.isNotEmpty() && boxSqrFtBox.text.isNotEmpty() && sqrFtPriceBox.text != "0"){
+                boxPriceBox.setText(""); boxSqrFtBox.setText(""); sqrFtPriceBox.text = "0"
+            } else {
+                try {
+                    val boxPrice = boxPriceBox.text.toString().toDouble()
+                    val boxSqrFtNum = boxSqrFtBox.text.toString().toDouble()
+                    val pricePerSqrFoot = boxPrice/boxSqrFtNum
+
+                    sqrFtPriceBox.text = offExtraZeros("%.2f", pricePerSqrFoot)
+                } catch (e: NumberFormatException) { displayToastMessage(this, "Make sure the boxes are filled.") }
+            }
+        }
+        sqrFtPriceBox.setOnClickListener { sqrFtPriceBox.text = "0" }
+        boxPriceBox.setOnClickListener { boxPriceBox.setText("") }
+        boxSqrFtBox.setOnClickListener { boxSqrFtBox.setText("") }
+        boxPriceBox.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrFtPriceButton, keyCode, event) }
+        boxSqrFtBox.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrFtPriceButton, keyCode, event) }
+
+        //8 Lineal Backsplash
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
@@ -243,8 +263,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     val cutOuts = cutOutsBox.text.toString().toDouble()
                     val bakShResults = linealSpace/(bakShWidth*cutOuts)
                     bakShResultsBox.text = offExtraZeros("%.3f", bakShResults)
-                } catch (e: NumberFormatException) {
-                    displayToastMessage(this, "Make sure the boxes are filled.") }
+                } catch (e: NumberFormatException) { displayToastMessage(this, "Make sure the boxes are filled.") }
             }
         }
         bakShResultsBox.setOnClickListener{bakShResultsBox.text = "0"}
@@ -272,7 +291,8 @@ class HomeScreenActivity : AppCompatActivity() {
             /*4*/    windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
             /*5*/    decimalBox.setText(""); fractionBox.setText("")
             /*6*/    linealFtBox.setText(""); sqrYardBox.setText("")
-            /*7*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+            /*7*/    boxPriceBox.setText(""); boxSqrFtBox.setText(""); sqrFtPriceBox.text = "0"
+            /*8*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
         builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
         builder.show()
