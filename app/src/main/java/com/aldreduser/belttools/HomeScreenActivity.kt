@@ -17,13 +17,12 @@ import kotlin.math.sqrt
 import kotlin.text.StringBuilder
 
 // make sure no company private information is made public by the software developer's actions
-// this app will have several calculating tools for work. Plus info guides
+// this app will have calculating tools for work. Plus info guides
 /**
  * TODO:
  *
  * Features:
  *          pt1:
- * fix startup animation
  * box say where the magnet is (and where it was last seen)
  * how many louvers will a vertical blind need
  * put everything into a recyclerview
@@ -51,9 +50,6 @@ import kotlin.text.StringBuilder
  *
  * optimization:
  * count how many times i use each feature on my app, to what which feature to put where (make a radio button to check if eah count is real or for a test)
- *
- * skills:
- * idk what ACTION_UP or ACTION_DOWN means
  */
 
 class HomeScreenActivity : AppCompatActivity() {
@@ -301,7 +297,6 @@ class HomeScreenActivity : AppCompatActivity() {
     // enter presses = button
     fun pressedEnter(itemToClicked: Button, keycode: Int, theEvent: KeyEvent): Boolean {
         return if (keycode == KeyEvent.KEYCODE_ENTER && theEvent.action == KeyEvent.ACTION_UP){
-            // idk what ACTION_UP or ACTION_DOWN means
             itemToClicked.performClick()
             true
         } else {

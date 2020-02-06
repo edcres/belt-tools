@@ -8,8 +8,9 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".HomeScreenActivity"></activity>
+            android:theme="@style/AppTheme.Launcher">
+        <activity android:name=".SplashScreen"></activity>
+        <activity android:name=".HomeScreenActivity" />
         <activity android:name=".choosedepartment.ChooseDepartmentActivity" />
         <activity android:name=".DeptExtensionsActivity" />
         <activity android:name=".choosedepartment.ProDeskDeptActivity" />
