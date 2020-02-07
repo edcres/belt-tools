@@ -26,11 +26,11 @@ import kotlin.text.StringBuilder
  * box say where the magnet is (and where it was last seen)
  * how many louvers will a vertical blind need
  * put everything into a recyclerview
- *          pt2:
- * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
- * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
+ *          pt2:
  * choose by department button (in more options activity) should be a drop-down menu
+ * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  *          pt3:
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  *  * create function in another file to convert measurements (call them in this file)

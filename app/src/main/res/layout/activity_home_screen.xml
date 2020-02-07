@@ -520,7 +520,56 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Locate Magnet"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/newMagnetLocationBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="New Location"
+                            android:inputType="date" />
+
+                    <Button
+                            android:id="@+id/magnetLocationSaveButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:text="Save" />
+
+                    <TextView
+                            android:id="@+id/lastMagnetLocationBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <Space
                     android:layout_width="match_parent"
