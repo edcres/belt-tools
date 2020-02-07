@@ -1,5 +1,6 @@
 package com.aldreduser.belttools
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -67,6 +68,7 @@ class HomeScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
+        getMagnetData()
 
         //1 get the square feet
         sqrPerRoomButton.setOnClickListener {
@@ -247,7 +249,13 @@ class HomeScreenActivity : AppCompatActivity() {
         boxPriceBox.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrFtPriceButton, keyCode, event) }
         boxSqrFtBox.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrFtPriceButton, keyCode, event) }
 
-        //8 Lineal Backsplash
+        //8 Magnet location
+        magnetLocationSaveButton.setOnClickListener{
+            saveMagnetData()
+            getMagnetData()
+        }
+
+        //9 Lineal Backsplash
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
@@ -288,10 +296,23 @@ class HomeScreenActivity : AppCompatActivity() {
             /*5*/    decimalBox.setText(""); fractionBox.setText("")
             /*6*/    linealFtBox.setText(""); sqrYardBox.setText("")
             /*7*/    boxPriceBox.setText(""); boxSqrFtBox.setText(""); sqrFtPriceBox.text = "0"
-            /*8*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+            /*8*/    newMagnetLocationBox.setText("") //last location should not be erased from stored memory
+            /*9*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
         builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
         builder.show()
+    }
+    private fun saveMagnetData(){
+        val magnetLocationSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(magnetLocationSharedPref.edit()) {
+            putString("Location", newMagnetLocationBox.text.toString())
+            commit()
+            displayToastMessage(this@HomeScreenActivity, "Saved")
+        }
+    }
+    private fun getMagnetData(){
+        val magnetLocationSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        lastMagnetLocationBox.text = magnetLocationSharedPref.getString("Location", "")
     }
 
     // enter presses = button
