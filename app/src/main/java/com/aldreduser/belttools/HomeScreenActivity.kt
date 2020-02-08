@@ -24,7 +24,6 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * box say where the magnet is (and where it was last seen)
  * how many louvers will a vertical blind need
  * put everything into a recyclerview
  * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
