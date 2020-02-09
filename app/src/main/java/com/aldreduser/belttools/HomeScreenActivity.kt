@@ -24,11 +24,10 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * how many louvers will a vertical blind need
- * put everything into a recyclerview
  * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
- *          pt2:
+ * put everything into a recyclerview
  * choose by department button (in more options activity) should be a drop-down menu
+ *          pt2:
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  *          pt3:

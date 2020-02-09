@@ -26,5 +26,7 @@ class ChooseDepartmentActivity : AppCompatActivity() {
             val newIntent = Intent(this, ProDeskDeptActivity::class.java) // maybe change 'newIntent' name
             startActivity(newIntent)
         }
+
+
     }
 }
