@@ -248,13 +248,28 @@ class HomeScreenActivity : AppCompatActivity() {
         boxPriceBox.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrFtPriceButton, keyCode, event) }
         boxSqrFtBox.setOnKeyListener { _, keyCode, event -> pressedEnter(sqrFtPriceButton, keyCode, event) }
 
-        //8 Magnet location
+        //8 number of vertical louvers
+        numOfLouversEqualsButton.setOnClickListener {
+            if (verticalBlindWidthBox.text.isNotEmpty() && numberOfLouversBox.text != "0") {
+                verticalBlindWidthBox.setText(""); numberOfLouversBox.text = "0"
+            } else {
+                val blindWidth = verticalBlindWidthBox.text.toString().toDouble()
+                val numOfLouvers = blindWidth/3
+                numberOfLouversBox.text = offExtraZeros("%.1f", numOfLouvers)
+            }
+        }
+        verticalBlindWidthBox.setOnClickListener { verticalBlindWidthBox.setText("") }
+        numberOfLouversBox.setOnClickListener { numberOfLouversBox.text = "0" }
+        verticalBlindWidthBox.setOnKeyListener { _, keyCode, event -> pressedEnter(numOfLouversEqualsButton, keyCode, event) }
+
+        //9 Magnet location
         magnetLocationSaveButton.setOnClickListener{
             saveMagnetData()
             getMagnetData()
         }
+        newMagnetLocationBox.setOnKeyListener { _, keyCode, event -> pressedEnter(magnetLocationSaveButton, keyCode, event) }
 
-        //9 Lineal Backsplash
+        //10 Lineal Backsplash
         bakShEqualsButton.setOnClickListener {
             if (linealSpaceBox.text.isNotEmpty() && cutOutsBox.text.isNotEmpty() && bakShResultsBox.text != "0") {
                 bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
@@ -295,8 +310,9 @@ class HomeScreenActivity : AppCompatActivity() {
             /*5*/    decimalBox.setText(""); fractionBox.setText("")
             /*6*/    linealFtBox.setText(""); sqrYardBox.setText("")
             /*7*/    boxPriceBox.setText(""); boxSqrFtBox.setText(""); sqrFtPriceBox.text = "0"
-            /*8*/    newMagnetLocationBox.setText("") //last location should not be erased from stored memory
-            /*9*/    bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+            /*8*/    verticalBlindWidthBox.setText(""); numberOfLouversBox.text = "0"
+            /*9*/    newMagnetLocationBox.setText("") //last location should not be erased from stored memory
+            /*10*/   bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
         }
         builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
         builder.show()
@@ -340,7 +356,7 @@ class HomeScreenActivity : AppCompatActivity() {
     private fun addAndDisplayRoomSqrsAndMaterials(theFeature: String, stringBuilder: StringBuilder, result: Double,
                                           arrayToSum: MutableList<Double>, resultsButton: Button) {
         // this will be called by 'sqr per room' and 'box per room'
-        var tempNumOfResults = if (theFeature == "sqrRoom") roomSqrResult else boxesResults
+        val tempNumOfResults = if (theFeature == "sqrRoom") roomSqrResult else boxesResults
 
         if (tempNumOfResults < 6) {
             stringBuilder.append(offExtraZeros("%.2f", result))

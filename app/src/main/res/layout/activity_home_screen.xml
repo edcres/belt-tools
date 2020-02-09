@@ -444,7 +444,7 @@
                     android:id="@+id/textView2868"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vertical Louvers #"
+                    android:text="N Vertical Louvers"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -460,7 +460,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="blind width"
-                        android:inputType="date" />
+                        android:inputType="number|numberDecimal" />
 
                 <Button
                         android:id="@+id/numOfLouversEqualsButton"
@@ -478,6 +478,7 @@
                         android:text="0"
                         android:textSize="18sp" />
             </LinearLayout>
+        </LinearLayout>
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -636,7 +637,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="400dp" />
 
-        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
