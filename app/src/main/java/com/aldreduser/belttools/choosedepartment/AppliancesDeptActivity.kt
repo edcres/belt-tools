@@ -5,21 +5,19 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
-import kotlinx.android.synthetic.main.activity_appliances_dept.*
+//import kotlinx.android.synthetic.main.ppliances_dept.*
 
 class AppliancesDeptActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_appliances_dept)
+        //setContentView(R.layout.activity_dept_notes)
 
-        getData()
+ //       getData()
 
-        appliancesNotesSaveButton.setOnClickListener {
-            saveData()
-        }
+        //appliancesNotesSaveButton.setOnClickListener { saveData() }
     }
-
+/*
     private fun saveData() { //might have to add (view: View) parameter
         val appliancesNotesSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(appliancesNotesSharedPref.edit()) {
@@ -37,4 +35,6 @@ class AppliancesDeptActivity : AppCompatActivity() {
     private fun callToast(message: String) {
         displayToastMessage(this, message)
     }
+
+ */
 }
