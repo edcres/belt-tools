@@ -6,13 +6,15 @@ import android.os.Bundle
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_dept_notes.*
+import org.jetbrains.anko.toast
 
-// pass data to this app (string saying what department the user wants)
+// pass data to this activity (string saying what department the user wants)
 
 class DepartmentsNotesActivity : AppCompatActivity() {
 
-    private var departmentPassed:String = ""
-    private var savedNoteName:String = ""
+    //private var departmentPassed:String = ""
+    private lateinit var departmentPassed: String
+    private lateinit var savedNoteName:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +22,7 @@ class DepartmentsNotesActivity : AppCompatActivity() {
 
         departmentPassed = intent.getStringExtra("departmentName")
         savedNoteName = "$departmentPassed note"
-
         depmntNoteTitleBox.text = departmentPassed
-
         getData()
 
         departmentsNotesSaveButton.setOnClickListener {

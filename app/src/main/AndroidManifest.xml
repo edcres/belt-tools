@@ -13,9 +13,7 @@
         <activity android:name=".HomeScreenActivity" />
         <activity android:name=".choosedepartment.ChooseDepartmentActivity" />
         <activity android:name=".DeptExtensionsActivity" />
-        <activity android:name=".choosedepartment.ProDeskDeptActivity" />
         <activity android:name=".choosedepartment.DepartmentsNotesActivity" />
-        <activity android:name=".choosedepartment.FlooringDeptActivity" />
         <activity android:name=".MoreOptionsMenuActivity" />
         <activity android:name=".MainLayoutActivity">
             <intent-filter>

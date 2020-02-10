@@ -16,30 +16,18 @@ class ChooseDepartmentActivity : AppCompatActivity() {
             var intentApp = Intent(this, DepartmentsNotesActivity::class.java)
             intentApp.putExtra("departmentName", "Appliances")
             startActivity(intentApp)
-
-            // delete below
-            /*val newIntent = Intent(this, AppliancesDeptActivity::class.java) // maybe change 'newIntent' name
-            startActivity(newIntent)*/
         }
 
         flooringChooseButton.setOnClickListener {
             var intentFlr = Intent(this, DepartmentsNotesActivity::class.java)
             intentFlr.putExtra("departmentName", "Flooring")
             startActivity(intentFlr)
-
-            // delete below
-            /*val newIntent = Intent(this, FlooringDeptActivity::class.java) // maybe change 'newIntent' name
-            startActivity(newIntent)*/
         }
 
         proDeskChooseButton.setOnClickListener {
             var intentPro = Intent(this, DepartmentsNotesActivity::class.java)
             intentPro.putExtra("departmentName", "Pro Desk")
             startActivity(intentPro)
-
-            // delete below
-            /*val newIntent = Intent(this, ProDeskDeptActivity::class.java) // maybe change 'newIntent' name
-            startActivity(newIntent)*/
         }
 
     }

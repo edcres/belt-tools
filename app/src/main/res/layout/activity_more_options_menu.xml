@@ -30,6 +30,15 @@
                     android:layout_height="wrap_content"
                     android:text="Department Extensions" />
 
+
+            <Spinner
+                    android:id="@+id/chooseDepartmentSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:background="#DADADA" />
+
+
             <Button
                     android:id="@+id/chooseDptButton"
                     android:layout_width="match_parent"

@@ -24,10 +24,11 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * each department in choose department should be an object and displayed in the same activity, (not each have its own activity)
+ * choose by department button (in more options activity) should be a drop-down lists
  * put everything into a recyclerview
- * choose by department button (in more options activity) should be a drop-down menu
+ * make this app a MVP
  *          pt2:
+ * Manifest File warning: "App is not indexable by google search; consider adding one activity with ACTION_VIEW intent filter."
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  *          pt3:
