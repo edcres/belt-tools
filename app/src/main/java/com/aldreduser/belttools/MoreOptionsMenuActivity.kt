@@ -35,51 +35,27 @@ class MoreOptionsMenuActivity : AppCompatActivity() {
             startActivity(newIntent)
         }
 
-
-
-
-
-        val adapter = ArrayAdapter.createFromResource(this, R.array.departMentsToChooseArray, android.R.layout.simple_list_item_1)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        chooseDepartmentSpinner.adapter = adapter
-
-        // todo: when department is selected, it's not going to the notes screen. There's no .onItemSelectedListener
-        val nameInArray = resources.getStringArray(R.array.departMentsToChooseArray)
-        when (chooseDepartmentSpinner.selectedItem.toString()) {
-            //each one should be a string (ie. "Flooring")
-            //nameInArray[0]  is the default text "Choose Department"    (quick fix)
-            nameInArray[1] -> sendDepartmentName(nameInArray[1])
-            nameInArray[2] -> sendDepartmentName(nameInArray[2])
-            nameInArray[3] -> sendDepartmentName(nameInArray[3])
-            nameInArray[4] -> sendDepartmentName(nameInArray[4])
-            nameInArray[5] -> sendDepartmentName(nameInArray[5])
-        }
-
-        /*
         // make drop down list (spinner)
-        var options = arrayOf("Pro Desk", "Flooring", "Customer Service", "Appliances", "Millwork")
+        // warning. change a name in the array and saved data is lost
+        val options = arrayOf("Choose Department", "Pro Desk", "Flooring", "Customer Service", "Appliances", "Millwork")
         chooseDepartmentSpinner.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
-
         chooseDepartmentSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                //textForSpinner.text = "Select an Option"
+                //textForSpinner.text = "Choose Department"
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // choose what happens when each option is clicked (position)
-
-
-
-                textForSpinner.text = options.get(position)
+                when (options[position]) {
+                    //each one should be a string (ie. "Flooring")
+                    //options[0]  is the default text "Choose Department"    (quick fix)
+                    options[1] -> sendDepartmentName(options[1])
+                    options[2] -> sendDepartmentName(options[2])
+                    options[3] -> sendDepartmentName(options[3])
+                    options[4] -> sendDepartmentName(options[4])
+                    options[5] -> sendDepartmentName(options[5])
+                }
             }
         }
-
-         */
-
-
-
-
-
-
 
         chooseDptButton.setOnClickListener {
             val newIntent = Intent(this, ChooseDepartmentActivity::class.java)

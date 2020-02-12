@@ -24,11 +24,10 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * choose by department button (in more options activity) should be a drop-down lists
- * put everything into a recyclerview
  * make this app a MVP
  *          pt2:
  * Manifest File warning: "App is not indexable by google search; consider adding one activity with ACTION_VIEW intent filter."
+ * Choose department spinner: options need to be in a textview in order to be edited ->https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
  *          pt3:

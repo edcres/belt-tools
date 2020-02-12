@@ -4,13 +4,4 @@
     <string name="sqrPerRoomButton_text">Sqr Per Room</string>
     <string name="tileBoxResultsButton_text">Boxes</string>
 
-    <string-array name="departMentsToChooseArray">
-        <item>Choose Department</item>
-        <item>Pro Desk</item>
-        <item>Flooring</item>
-        <item>Customer Service</item>
-        <item>Appliances</item>
-        <item>Millwork</item>
-    </string-array>
-
 </resources>

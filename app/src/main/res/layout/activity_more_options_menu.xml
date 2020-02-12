@@ -31,14 +31,6 @@
                     android:text="Department Extensions" />
 
 
-            <Spinner
-                    android:id="@+id/chooseDepartmentSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_margin="5dp"
-                    android:background="#DADADA" />
-
-
             <Button
                     android:id="@+id/chooseDptButton"
                     android:layout_width="match_parent"
@@ -62,6 +54,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="!Specialty Orders" />
+
+            <Spinner
+                    android:id="@+id/chooseDepartmentSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="90dp"
+                    android:paddingRight="50dp"
+                    android:layout_margin="5dp"
+                    android:background="#DADADA"
+                    android:gravity="center" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
