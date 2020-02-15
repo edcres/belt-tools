@@ -12,7 +12,6 @@ import org.jetbrains.anko.toast
 
 class DepartmentsNotesActivity : AppCompatActivity() {
 
-    //private var departmentPassed:String = ""
     private lateinit var departmentPassed: String
     private lateinit var savedNoteName:String
 
@@ -49,5 +48,4 @@ class DepartmentsNotesActivity : AppCompatActivity() {
     private fun callToast(message: String) {
         displayToastMessage(this, message)
     }
-
 }

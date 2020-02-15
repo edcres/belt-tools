@@ -32,37 +32,34 @@
 
 
             <Button
-                    android:id="@+id/chooseDptButton"
+                    android:id="@+id/sKUsToWorkOnButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Choose Department" />
+                    android:text="Skus to work on" />
 
             <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/palletsToWorkOnButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Skus to work on" />
+                    android:text="Pallets to work on" />
 
             <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/specialtyOrdersButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="!Pallets to work on" />
-
-            <Button
-                    android:id="@+id/button5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="!Specialty Orders" />
+                    android:text="Specialty Orders" />
 
             <Spinner
                     android:id="@+id/chooseDepartmentSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="90dp"
-                    android:paddingRight="50dp"
-                    android:layout_margin="5dp"
-                    android:background="#DADADA"
+
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="90dp"
+
+                    android:background="#D2F3F3F3"
+                    android:layout_gravity="center"
                     android:gravity="center" />
         </LinearLayout>
     </ScrollView>

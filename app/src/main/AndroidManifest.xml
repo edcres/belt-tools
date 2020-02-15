@@ -9,9 +9,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".SplashScreen"></activity>
+        <activity android:name=".specialtyorders.SpecialtyOrdersActivity"></activity>
+        <activity android:name=".palletstoworkon.PalletsToWorkOnActivity" />
+        <activity android:name=".skustoworkon.SKUsToWorkOnActivity" />
+        <activity android:name=".SplashScreen" />
         <activity android:name=".HomeScreenActivity" />
-        <activity android:name=".choosedepartment.ChooseDepartmentActivity" />
         <activity android:name=".DeptExtensionsActivity" />
         <activity android:name=".choosedepartment.DepartmentsNotesActivity" />
         <activity android:name=".MoreOptionsMenuActivity" />
