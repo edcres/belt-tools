@@ -24,12 +24,11 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * Manifest File warning: "x    "
- *          pt2:
+ * Manifest File warning: "App is not indexable by google search; consider adding one activity with ACTION_VIEW intent filter."
  * Choose department spinner: options need to be in a textview in order to be edited (to look pretty) ->https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  * (flooring, appliances, pro desk exports) product info (info stored in phone) (get info from the work notebook)
- *          pt3:
+ *          pt2:
  * sqr a to sqr b (more measurement options than sqr foot to square in)
  *  * create function in another file to convert measurements (call them in this file)
  * make it so that there's a history of problems solved, and is deleted when cleared. (like the calculator app, restart when the app is closed)
