@@ -87,7 +87,7 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
         sqrPerRoomButton.setOnLongClickListener {
-            val sumOfAllResults = offExtraZeros("%.2f", roomSqrResultArray.sum())
+            val sumOfAllResults = offExtraZeros("%.3f", roomSqrResultArray.sum())
             displayToastMessage(this, sumOfAllResults)
             homeSqrFt.setText(sumOfAllResults)
             return@setOnLongClickListener true
@@ -137,13 +137,13 @@ class HomeScreenActivity : AppCompatActivity() {
                 val squareFt = sqrFootBox.text.toString().toDouble()
                 val inches = sqrt(squareFt) * 12
                 val sqrIn =  inches*inches
-                sqrInBox.setText(offExtraZeros("%.3f", sqrIn))
+                sqrInBox.setText(offExtraZeros("%.4f", sqrIn))
             } else if (sqrInBox.text.isNotEmpty()) {
                 // converts it to sqr ft
                 val squareIn = sqrInBox.text.toString().toDouble()
                 val feet = sqrt(squareIn) / 12
                 val sqrFt = feet*feet
-                sqrFootBox.setText(offExtraZeros("%.3f", sqrFt))
+                sqrFootBox.setText(offExtraZeros("%.4f", sqrFt))
             } else {
                 displayToastMessage(this, "Maybe fill a box with numbers.")
             }
@@ -163,7 +163,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     val window = windowWidthBox.text.toString().toDouble()
                     val blindPre = blindWidthBox.text.toString().toDouble()
                     val blindPro = (window - blindPre) / 2
-                    blindWidthResult.text = offExtraZeros("%.3f", blindPro)
+                    blindWidthResult.text = offExtraZeros("%.4f", blindPro)
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
@@ -192,7 +192,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     completeFraction = fractionBox.text.toString()
                     val numerator = completeFraction.substringBeforeLast("/").toDouble()
                     val denominator = completeFraction.substringAfterLast("/").toDouble()
-                    decimalBox.setText(offExtraZeros("%.3f", numerator/denominator))
+                    decimalBox.setText(offExtraZeros("%.4f", numerator/denominator))
                 }else {displayToastMessage(this, "Write a fraction.")}
             }
         }
@@ -211,12 +211,12 @@ class HomeScreenActivity : AppCompatActivity() {
                 val linealFeet = linealFtBox.text.toString().toDouble()
                 val linealYard = (linealFeet/3) //squared
                 val sqrYard = linealYard * widthYd
-                sqrYardBox.setText(offExtraZeros("%.3f", sqrYard))
+                sqrYardBox.setText(offExtraZeros("%.4f", sqrYard))
             } else if (linealFtBox.text.isEmpty() && sqrYardBox.text.isNotEmpty()) {
                 val sqrYard = sqrYardBox.text.toString().toDouble()
                 val linealYard = sqrYard/widthYd
                 val linealFeet = linealYard*3
-                linealFtBox.setText(offExtraZeros("%.3f", linealFeet))
+                linealFtBox.setText(offExtraZeros("%.4f", linealFeet))
             }
         }
         linealFtBox.setOnClickListener { linealFtBox.setText("") }
@@ -277,7 +277,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     val linealSpace = getFeetOrInch()
                     val cutOuts = cutOutsBox.text.toString().toDouble()
                     val bakShResults = linealSpace/(bakShWidth*cutOuts)
-                    bakShResultsBox.text = offExtraZeros("%.3f", bakShResults)
+                    bakShResultsBox.text = offExtraZeros("%.4f", bakShResults)
                 } catch (e: NumberFormatException) { displayToastMessage(this, "Make sure the boxes are filled.") }
             }
         }
@@ -356,7 +356,7 @@ class HomeScreenActivity : AppCompatActivity() {
         val tempNumOfResults = if (theFeature == "sqrRoom") roomSqrResult else boxesResults
 
         if (tempNumOfResults < 6) {
-            stringBuilder.append(offExtraZeros("%.2f", result))
+            stringBuilder.append(offExtraZeros("%.3f", result))
             arrayToSum.add(result)
             if (tempNumOfResults < 5) {
                 stringBuilder.append(" + ")
