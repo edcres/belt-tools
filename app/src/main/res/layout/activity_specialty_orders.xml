@@ -20,30 +20,49 @@
             app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-                android:id="@+id/specialtyOrdersText"
+                android:id="@+id/specialtyOrdersTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Specialty Orders"
+                android:text="New Order"
                 android:textSize="30sp" />
 
-        <TextView
-                android:layout_width="match_parent"
+        <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notes" />
+                android:ems="10"
+                android:hint="order-number"
+                android:inputType="textPersonName" />
 
         <EditText
-                android:id="@+id/specialtyOrdersNotes"
+                android:id="@+id/specialtyOrdersInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="info"
                 android:inputType="textMultiLine" />
+
+        <EditText
+                android:id="@+id/editText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="note"
+                android:inputType="textPersonName" />
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/allOrdersButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="All Orders" />
 
             <Space
                     android:layout_width="wrap_content"

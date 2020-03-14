@@ -28,6 +28,7 @@
                     android:id="@+id/extensionsButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAllCaps="false"
                     android:text="Department Extensions" />
 
 
@@ -35,18 +36,21 @@
                     android:id="@+id/sKUsToWorkOnButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAllCaps="false"
                     android:text="Skus to work on" />
 
             <Button
                     android:id="@+id/palletsToWorkOnButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAllCaps="false"
                     android:text="Pallets to work on" />
 
             <Button
                     android:id="@+id/specialtyOrdersButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAllCaps="false"
                     android:text="Specialty Orders" />
 
             <Spinner

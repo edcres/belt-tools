@@ -25,7 +25,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //pass the name of the note as a parameter
         val ordersSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(ordersSharedPref.edit()) {
-            putString(savedNoteName, specialtyOrdersNotes.text.toString())
+            putString(savedNoteName, specialtyOrdersInfo.text.toString())
             commit()
             callToast("Saved")
         }
@@ -34,7 +34,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun getData() {
         //pass the name of the note as a parameter
         val ordersSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        specialtyOrdersNotes.setText(ordersSharedPref.getString(savedNoteName, ""))
+        specialtyOrdersInfo.setText(ordersSharedPref.getString(savedNoteName, ""))
     }
 
     private fun callToast(message: String) {
