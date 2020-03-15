@@ -37,10 +37,10 @@
                     android:id="@+id/lookUpOrderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_gravity=""
+                    android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="#A3E1DCDC"
+                    android:background="#C6E1DCDC"
                     android:text="Look Up :"
                     android:textAllCaps="false"
                     android:textSize="12sp" />

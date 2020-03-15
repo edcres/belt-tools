@@ -1,31 +1,32 @@
 package com.aldreduser.belttools.specialtyorders;
 
 class SpecialtyOrder {
-    String orderNum;
-    String info;
-    String note;
+    // these are the names of the shared preferences
+    String orderNumStorage;
+    String infoStorage;
+    String noteStorage;
 
     SpecialtyOrder() {
     }
 
-    String getOrderNum() {
-        return orderNum;
+    String getOrderNumStorage() {
+        return orderNumStorage;
     }
-    String setOrderNum() {
-        this.orderNum = orderNum;
-    }
-
-    String getInfo() {
-        return info;
-    }
-    String setInfo() {
-        this.info = info;
+    void setOrderNum() {
+        this.orderNumStorage = orderNumStorage;
     }
 
-    String getNote() {
-        return note;
+    String getInfoStorage() {
+        return infoStorage;
     }
-    String setNote() {
-        this.note = orderNum;
+    void setInfo() {
+        this.infoStorage = infoStorage;
+    }
+
+    String getNoteStorage() {
+        return noteStorage;
+    }
+    void setNote() {
+        this.noteStorage = orderNumStorage;
     }
 }

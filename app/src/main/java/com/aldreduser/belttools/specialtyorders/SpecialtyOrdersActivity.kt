@@ -8,16 +8,22 @@ import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
 
 //todo show order numbers and notes available (in order of date added)
+//todo delete orders feature
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
-    private var savedNoteName = "SKU notes"
+
+    private var savedInfoName = "the name"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specialty_orders)
 
-        getData()
+        loadPastOrders()
 
+        allOrdersButton.setOnClickListener {
+            // orders text should be hidden by default
+            //make the orders text visible
+        }
         specialtyOrdersSaveButton.setOnClickListener {
             //todo order number is saved with info and data
             //todo order number is the key and it will be connected to the info and data
@@ -25,20 +31,32 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveData() { //might have to add (view: View) parameter
+    private fun saveData() {
+        // otherOrdersText = stringbuilder + \t new order# with the note
+        // the order number is the name of the shared preference that saves the info
+        // the note is saved under 'order number $note'
+        var orderNumber = orderNumText.text.toString()
+        var orderInfo = specialtyOrdersInfo.text.toString()
+        var note = orderNoteText.text.toString()
+
+
         //pass the name of the note as a parameter
         val ordersSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(ordersSharedPref.edit()) {
-            putString(savedNoteName, specialtyOrdersInfo.text.toString())
+            putString(savedInfoName, specialtyOrdersInfo.text.toString())
             commit()
             callToast("Saved")
         }
     }
 
-    private fun getData() {
-        //pass the name of the note as a parameter
+    private fun getOrder() {
+        // user types in the order number
+        // get info from shared preferences using the order number
         val ordersSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        specialtyOrdersInfo.setText(ordersSharedPref.getString(savedNoteName, ""))
+        specialtyOrdersInfo.setText(ordersSharedPref.getString(savedInfoName, ""))
+    }
+    private fun loadPastOrders() {
+        //load the past orders
     }
 
     private fun callToast(message: String) {
