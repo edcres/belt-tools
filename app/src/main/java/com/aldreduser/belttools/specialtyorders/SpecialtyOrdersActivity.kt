@@ -7,6 +7,8 @@ import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
 
+//todo show order numbers and notes available (in order of date added)
+
 class SpecialtyOrdersActivity : AppCompatActivity() {
     private var savedNoteName = "SKU notes"
 
@@ -17,6 +19,8 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         getData()
 
         specialtyOrdersSaveButton.setOnClickListener {
+            //todo order number is saved with info and data
+            //todo order number is the key and it will be connected to the info and data
             saveData()
         }
     }

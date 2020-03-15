@@ -25,6 +25,7 @@ import kotlin.text.StringBuilder
  * Features:
  *          pt1:
  * Add and look up different irders in 'specialty orders'
+ * make top navbar thing look good
  * Manifest File warning: "App is not indexable by google search; consider adding one activity with ACTION_VIEW intent filter."
  * Choose department spinner: options need to be in a textview in order to be edited (to look pretty) ->https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
