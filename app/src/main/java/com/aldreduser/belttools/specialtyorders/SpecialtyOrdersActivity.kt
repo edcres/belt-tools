@@ -3,6 +3,7 @@ package com.aldreduser.belttools.specialtyorders
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
@@ -21,8 +22,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         loadPastOrders()
 
         allOrdersButton.setOnClickListener {
-            // orders text should be hidden by default
             //make the orders text visible
+            if(otherOrdersText.visibility == View.INVISIBLE){
+                otherOrdersText.visibility = View.VISIBLE
+            } else {
+                otherOrdersText.visibility = View.INVISIBLE
+            }
         }
         specialtyOrdersSaveButton.setOnClickListener {
             //todo order number is saved with info and data
