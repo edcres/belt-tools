@@ -11,8 +11,11 @@ import java.lang.StringBuilder
 
 //todo show order numbers and notes available (in order of date added)
 //todo feature to delete orders
+//scrollview for past orders doesn't seem to be working
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
+
+    val pastOrdersSPKey = "past_orders"
 
     private var pastOrdersStrBuilder = StringBuilder()
     private var savedInfoName = "the name"
@@ -43,6 +46,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         var note = orderNoteText.text.toString()
         // otherOrdersText = stringbuilder + \t new order# with the note
         pastOrdersStrBuilder.append("$orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
+        var pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        //todo find out how to delete and order from paste orders (maybe number them)
+        with(pastOrdersSP.edit()) {
+            putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
+            commit()
+            callToast("Saved")
+        }
         loadPastOrders()
 
         // the order number is the name of the shared preference that saves the info
