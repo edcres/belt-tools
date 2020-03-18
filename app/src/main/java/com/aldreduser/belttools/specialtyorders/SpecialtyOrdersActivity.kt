@@ -15,10 +15,9 @@ import java.lang.StringBuilder
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
 
-    val pastOrdersSPKey = "past_orders"
-
+    private val pastOrdersSPKey = "past_orders"
+    private var pastOrdersCount:Int = 0
     private var pastOrdersStrBuilder = StringBuilder()
-    private var savedInfoName = "the name"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +38,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             saveOrderInfo()
         }
     }
-
     private fun saveOrderInfo() {
         var orderNumber = orderNumText.text.toString()
         var orderInfo = specialtyOrdersInfo.text.toString()
         var note = orderNoteText.text.toString()
         // otherOrdersText = stringbuilder + \t new order# with the note
-        pastOrdersStrBuilder.append("$orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
+        pastOrdersCount++
+        pastOrdersStrBuilder.append("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
         var pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         //todo find out how to delete and order from paste orders (maybe number them)
         with(pastOrdersSP.edit()) {
@@ -56,14 +55,24 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         loadPastOrders()
 
         // the order number is the name of the shared preference that saves the info
-        // the note is saved under 'order number $note'
+
 
 
 
         //pass the name of the note as a parameter
-        val ordersSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(ordersSharedPref.edit()) {
-            putString(savedInfoName, specialtyOrdersInfo.text.toString())
+        val orderInfoSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderInfoSharedPref.edit()) {
+            putString(orderNumber, specialtyOrdersInfo.text.toString())
+            commit()
+            callToast("Saved")
+        }
+
+
+
+        // the note is saved under 'order number $note'
+        val orderNoteSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderNoteSharedPref.edit()) {
+            putString(orderNumber, note)
             commit()
             callToast("Saved")
         }
