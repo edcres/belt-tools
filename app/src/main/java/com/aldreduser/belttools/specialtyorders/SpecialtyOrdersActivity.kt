@@ -12,6 +12,7 @@ import java.lang.StringBuilder
 //todo show order numbers and notes available (in order of date added)
 //todo feature to delete orders
 //scrollview for past orders doesn't seem to be working
+//this activity is probably full of nullpointerexception errors from user input in text boxes
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
 
@@ -25,6 +26,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
         loadPastOrders()
 
+        lookUpOrderButton.setOnClickListener {
+            displayOrder()
+        }
+        specialtyOrdersSaveButton.setOnClickListener {
+            saveOrderInfo()
+        }
         allOrdersButton.setOnClickListener {
             if(otherOrdersText.visibility == View.INVISIBLE){
                 otherOrdersText.visibility = View.VISIBLE
@@ -32,21 +39,15 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
                 otherOrdersText.visibility = View.INVISIBLE
             }
         }
-        specialtyOrdersSaveButton.setOnClickListener {
-            //todo order number is saved with info and data
-            //todo order number is the key and it will be connected to the info and data
-            saveOrderInfo()
-        }
     }
     private fun saveOrderInfo() {
-        var orderNumber = orderNumText.text.toString()
-        var orderInfo = specialtyOrdersInfo.text.toString()
-        var note = orderNoteText.text.toString()
+        val orderNumber = orderNumText.text.toString()
+        val note = orderNoteText.text.toString()
         // otherOrdersText = stringbuilder + \t new order# with the note
         pastOrdersCount++
         pastOrdersStrBuilder.append("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
-        var pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         //todo find out how to delete and order from paste orders (maybe number them)
+        val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(pastOrdersSP.edit()) {
             putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
             commit()
@@ -54,35 +55,33 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         }
         loadPastOrders()
 
+        // todo: probably save order info and order note into a text file and not a shared preference
         // the order number is the name of the shared preference that saves the info
-
-
-
-
-        //pass the name of the note as a parameter
-        val orderInfoSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(orderInfoSharedPref.edit()) {
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderInfoSP.edit()) {
             putString(orderNumber, specialtyOrdersInfo.text.toString())
             commit()
             callToast("Saved")
         }
-
-
-
         // the note is saved under 'order number $note'
-        val orderNoteSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(orderNoteSharedPref.edit()) {
-            putString(orderNumber, note)
+        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderNoteSP.edit()) {
+            putString("$orderNumber N", orderNoteText.text.toString())
             commit()
             callToast("Saved")
         }
     }
 
-    private fun getOrder() {
-        // user types in the order number
+    private fun displayOrder() {
+        val orderNumber = orderNumText.text.toString()
         // get info from shared preferences using the order number
-        val ordersSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        specialtyOrdersInfo.setText(ordersSharedPref.getString(savedInfoName, ""))
+        // todo: display order info and order note
+
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        specialtyOrdersInfo.setText(orderInfoSP.getString(orderNumber, ""))
+
+        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        specialtyOrdersInfo.setText(orderNoteSP.getString("$orderNumber N", ""))
     }
     private fun loadPastOrders() {
         //load the past orders
@@ -90,6 +89,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     }
 
     private fun callToast(message: String) {
+        // well maybe one time it won't be 'saved'
         displayToastMessage(this, message)
     }
 }
