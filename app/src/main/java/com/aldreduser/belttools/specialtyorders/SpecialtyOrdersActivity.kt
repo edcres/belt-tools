@@ -7,12 +7,14 @@ import android.view.View
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
+import java.lang.StringBuilder
 
 //todo show order numbers and notes available (in order of date added)
-//todo delete orders feature
+//todo feature to delete orders
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
 
+    private var pastOrdersStrBuilder = StringBuilder()
     private var savedInfoName = "the name"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +24,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         loadPastOrders()
 
         allOrdersButton.setOnClickListener {
-            //make the orders text visible
             if(otherOrdersText.visibility == View.INVISIBLE){
                 otherOrdersText.visibility = View.VISIBLE
             } else {
@@ -32,17 +33,21 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         specialtyOrdersSaveButton.setOnClickListener {
             //todo order number is saved with info and data
             //todo order number is the key and it will be connected to the info and data
-            saveData()
+            saveOrderInfo()
         }
     }
 
-    private fun saveData() {
-        // otherOrdersText = stringbuilder + \t new order# with the note
-        // the order number is the name of the shared preference that saves the info
-        // the note is saved under 'order number $note'
+    private fun saveOrderInfo() {
         var orderNumber = orderNumText.text.toString()
         var orderInfo = specialtyOrdersInfo.text.toString()
         var note = orderNoteText.text.toString()
+        // otherOrdersText = stringbuilder + \t new order# with the note
+        pastOrdersStrBuilder.append("$orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
+        loadPastOrders()
+
+        // the order number is the name of the shared preference that saves the info
+        // the note is saved under 'order number $note'
+
 
 
         //pass the name of the note as a parameter
@@ -62,6 +67,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     }
     private fun loadPastOrders() {
         //load the past orders
+        otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
 
     private fun callToast(message: String) {
