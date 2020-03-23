@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import java.lang.StringBuilder
 
 //todo show order numbers and notes available (in order of date added)
-//todo feature to delete orders
+//todo feature to delete orders (put them in a mutable list first, then in the string builder, so I can use tab)
+//      will look for the order name in past orders, then delete the whole line
 //scrollview for past orders doesn't seem to be working
 //this activity is probably full of nullpointerexception errors from user input in text boxes
 
@@ -19,6 +20,8 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private val pastOrdersSPKey = "past_orders"
     private var pastOrdersCount:Int = 0
     private var pastOrdersStrBuilder = StringBuilder()
+
+    private var ordersList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +46,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun saveOrderInfo() {
         val orderNumber = orderNumText.text.toString()
         val note = orderNoteText.text.toString()
+
+        ordersList.add(orderNumber)
+
         // otherOrdersText = stringbuilder + \t new order# with the note
         pastOrdersCount++
         pastOrdersStrBuilder.append("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
-        //todo find out how to delete and order from paste orders (maybe number them)
         val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(pastOrdersSP.edit()) {
             putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
@@ -71,11 +76,9 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             callToast("Saved")
         }
     }
-
     private fun displayOrder() {
         val orderNumber = orderNumText.text.toString()
         // get info from shared preferences using the order number
-        // todo: display order info and order note
 
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         specialtyOrdersInfo.setText(orderInfoSP.getString(orderNumber, ""))
@@ -87,7 +90,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //load the past orders
         otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
-
     private fun callToast(message: String) {
         // well maybe one time it won't be 'saved'
         displayToastMessage(this, message)
