@@ -90,7 +90,6 @@ class HomeScreenActivity : AppCompatActivity() {
         }
         sqrPerRoomButton.setOnLongClickListener {
             val sumOfAllResults = offExtraZeros("%.3f", roomSqrResultArray.sum())
-            displayToastMessage(this, sumOfAllResults)
             homeSqrFt.setText(sumOfAllResults)
             return@setOnLongClickListener true
         }

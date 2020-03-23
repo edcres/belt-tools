@@ -7,21 +7,25 @@ import android.view.View
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
-import java.lang.StringBuilder
+import kotlin.text.StringBuilder
 
-//todo show order numbers and notes available (in order of date added)
-//todo feature to delete orders (put them in a mutable list first, then in the string builder, so I can use tab)
-//      will look for the order name in past orders, then delete the whole line
+//todo: show order numbers and notes available (in order of date added)
+
+//todo: feature to delete orders (put order# and strngbuilder[order# & note] in keymap, then add keymap to string builder)
+//      add the hashMap of string in the 'pastOrdersStrBuilder'
+//      will remove order note and info from the key (order#) in shared preferences
+//need to figure out how to put the 'pastOrderSBs' in order, when they come from the hashMap (maybe by the order number, organize it by the last 5 digits)
+
 //scrollview for past orders doesn't seem to be working
 //this activity is probably full of nullpointerexception errors from user input in text boxes
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
 
     private val pastOrdersSPKey = "past_orders"
-    private var pastOrdersCount:Int = 0
+    private var pastOrdersCount:Int = 0         //for user to keep track
+    private var pastOrderSB = StringBuilder()
+    private var orderAndNoteMap = HashMap<String, String>()
     private var pastOrdersStrBuilder = StringBuilder()
-
-    private var ordersList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +50,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun saveOrderInfo() {
         val orderNumber = orderNumText.text.toString()
         val note = orderNoteText.text.toString()
-
-        ordersList.add(orderNumber)
-
         // otherOrdersText = stringbuilder + \t new order# with the note
         pastOrdersCount++
-        pastOrdersStrBuilder.append("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //maybe check if user input is null. Also might have to initialise the array
+        pastOrdersStrBuilder.append("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after tthe hashmap
+        
         val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(pastOrdersSP.edit()) {
             putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
@@ -75,6 +77,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             commit()
             callToast("Saved")
         }
+    }
+    private fun deleteOrder() {
+        //todo:   v v v v
+        //get order number from input box
+        //delete instance of the keyMap of strings that is rendered to the stringBuilder (keymap has order# and string)
+        //rerender the string builder to the text box
     }
     private fun displayOrder() {
         val orderNumber = orderNumText.text.toString()
