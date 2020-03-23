@@ -23,7 +23,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
     private val pastOrdersSPKey = "past_orders"
     private var pastOrdersCount:Int = 0         //for user to keep track
-    private var pastOrderSB = StringBuilder()
     private var orderAndNoteMap = HashMap<String, String>()
     private var pastOrdersStrBuilder = StringBuilder()
 
@@ -52,8 +51,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val note = orderNoteText.text.toString()
         // otherOrdersText = stringbuilder + \t new order# with the note
         pastOrdersCount++
-        pastOrdersStrBuilder.append("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after tthe hashmap
-        
+        val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
+        orderAndNoteMap[orderNumber] = textLine
+
+        //todo: put something in this method
+        //sort them by the number in the first character (account for more than one character, ie. 9 or more)
+        sortAndRenderOrders()
+
         val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(pastOrdersSP.edit()) {
             putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
@@ -81,8 +85,11 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun deleteOrder() {
         //todo:   v v v v
         //get order number from input box
+        val orderNumber = orderNumText.text.toString()
         //delete instance of the keyMap of strings that is rendered to the stringBuilder (keymap has order# and string)
+        orderAndNoteMap.remove(orderNumber) //todo: check if this works
         //rerender the string builder to the text box
+        sortAndRenderOrders()
     }
     private fun displayOrder() {
         val orderNumber = orderNumText.text.toString()
@@ -97,6 +104,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun loadPastOrders() {
         //load the past orders
         otherOrdersText.text = pastOrdersStrBuilder.toString()
+    }
+    private fun sortAndRenderOrders() {
+        /*
+        for(key in hashMap.keys){
+            println("Element at key $key = ${hashMap[key]}")
+        }*/
+        //maybe fuse this function with loadPastOrders()
     }
     private fun callToast(message: String) {
         // well maybe one time it won't be 'saved'
