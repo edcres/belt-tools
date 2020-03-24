@@ -50,7 +50,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val orderNumber = orderNumText.text.toString()
         val note = orderNoteText.text.toString()
         // otherOrdersText = stringbuilder + \t new order# with the note
-        pastOrdersCount++
+        pastOrdersCount++ //todo: this count restarts every time the app is closed. fix it
         val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
         orderAndNoteMap[orderNumber] = textLine
 
@@ -106,10 +106,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
     private fun sortAndRenderOrders() {
-        /*
-        for(key in hashMap.keys){
-            println("Element at key $key = ${hashMap[key]}")
-        }*/
+        for(key in orderAndNoteMap.keys){
+            //add it to the string builder
+            pastOrdersStrBuilder.append(orderAndNoteMap[key]) //might have to convert this toString()
+        }
         //maybe fuse this function with loadPastOrders()
     }
     private fun callToast(message: String) {
