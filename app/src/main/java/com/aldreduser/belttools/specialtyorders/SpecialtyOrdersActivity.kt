@@ -9,6 +9,21 @@ import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import kotlin.text.StringBuilder
 
+/**
+ * In this activity:
+ * -User can add OrderNumber, OrderInfo, and OrderNote to a list and save it in SharedPreferences.
+ * -User can LookUp or Delete and order by typing the order number.
+ * -Orders are organized (todo: idk how yet)
+ *
+ * -Order numbers and notes are added to a hashMap
+ * -Info and Notes are shared in SharedPreferences under the OrderNumber key
+ * -To Delete an orders:
+ *      -get the OrderNumber as input
+ *      -delete Info and Notes from SharedPreferences
+ *      -delete Order from hashMap
+ *      -refresh past orders textbox loadPastOrders()
+ */
+
 //todo: show order numbers and notes available (in order of date added)
 
 //todo: feature to delete orders (put order# and strngbuilder[order# & note] in keymap, then add keymap to string builder)
@@ -90,6 +105,16 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         orderAndNoteMap.remove(orderNumber) //todo: check if this works
         //rerender the string builder to the text box
         sortAndRenderOrders()
+        loadPastOrders()
+
+        //todo: delete from shared preferences
+        //info
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+
+        this.getPreferences(orderNumber, 0).edit().remove().commit()
+        //notes
+        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+
     }
     private fun displayOrder() {
         val orderNumber = orderNumText.text.toString()
