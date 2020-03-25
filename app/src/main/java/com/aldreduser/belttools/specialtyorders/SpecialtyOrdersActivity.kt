@@ -8,6 +8,7 @@ import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import kotlin.text.StringBuilder
+//this is probably complicated for no reason
 
 /**
  * In this activity:
@@ -19,9 +20,9 @@ import kotlin.text.StringBuilder
  * -Info and Notes are shared in SharedPreferences under the OrderNumber key
  * -To Delete an orders:
  *      -get the OrderNumber as input
- *      -delete Info and Notes from SharedPreferences
  *      -delete Order from hashMap
  *      -refresh past orders textbox loadPastOrders()
+ *      -delete Info and Notes from SharedPreferences
  */
 
 //todo: show order numbers and notes available (in order of date added)
@@ -64,20 +65,17 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun saveOrderInfo() {
         val orderNumber = orderNumText.text.toString()
         val note = orderNoteText.text.toString()
-        // otherOrdersText = stringbuilder + \t new order# with the note
+
         pastOrdersCount++ //todo: this count restarts every time the app is closed. fix it
         val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
         orderAndNoteMap[orderNumber] = textLine
 
-        //todo: put something in this method
-        //sort them by the number in the first character (account for more than one character, ie. 9 or more)
         sortAndRenderOrders()
 
         val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(pastOrdersSP.edit()) {
             putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
             commit()
-            callToast("Saved")
         }
         loadPastOrders()
 
@@ -87,14 +85,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         with(orderInfoSP.edit()) {
             putString(orderNumber, specialtyOrdersInfo.text.toString())
             commit()
-            callToast("Saved")
         }
         // the note is saved under 'order number $note'
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderNoteSP.edit()) {
             putString("$orderNumber N", orderNoteText.text.toString())
             commit()
-            callToast("Saved")
         }
     }
     private fun deleteOrder() {
@@ -110,11 +106,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //todo: delete from shared preferences
         //info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-
-        this.getPreferences(orderNumber, 0).edit().remove().commit()
+        orderInfoSP.edit().remove(orderNumber).commit()
         //notes
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-
+        orderNoteSP.edit().remove("$orderNumber N").commit()
     }
     private fun displayOrder() {
         val orderNumber = orderNumText.text.toString()
@@ -124,11 +119,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         specialtyOrdersInfo.setText(orderInfoSP.getString(orderNumber, ""))
 
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        specialtyOrdersInfo.setText(orderNoteSP.getString("$orderNumber N", ""))
-    }
-    private fun loadPastOrders() {
-        //load the past orders
-        otherOrdersText.text = pastOrdersStrBuilder.toString()
+        orderNoteText.setText(orderNoteSP.getString("$orderNumber N", ""))
     }
     private fun sortAndRenderOrders() {
         for(key in orderAndNoteMap.keys){
@@ -137,8 +128,23 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         }
         //maybe fuse this function with loadPastOrders()
     }
+    private fun loadPastOrders() {
+        //load the past orders
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        otherOrdersText.text = orderInfoSP.getString(pastOrdersSPKey, "Empty")
+
+        //otherOrdersText.text = pastOrdersStrBuilder.toString()
+    }
     private fun callToast(message: String) {
         // well maybe one time it won't be 'saved'
         displayToastMessage(this, message)
+    }
+
+
+
+    private fun deleteAllPreferences(){
+        // get rid of this function when done debugging
+        val otherOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        otherOrdersSP.edit().clear().commit()
     }
 }
