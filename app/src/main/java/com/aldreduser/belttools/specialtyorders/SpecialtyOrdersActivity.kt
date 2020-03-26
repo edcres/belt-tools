@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import kotlin.text.StringBuilder
 
 /**
- * In this activity:
+ * In this activity: (might not be accurate)
  * -User can add OrderNumber, OrderInfo, and OrderNote to a list and save it in SharedPreferences.
  * -User can LookUp or Delete and order by typing the order number.
  * -Orders are organized (todo: idk how yet)
@@ -24,12 +24,16 @@ import kotlin.text.StringBuilder
  *      -delete Info and Notes from SharedPreferences
  */
 
-//todo: ask user if they sure they wanna overwrite the other order
-//todo: show order numbers and notes available IN ORDER OF DATE ADDED
+// todo bug: every time i restart the app and there was something saved in past orders text, when some new order is added, everything is deleted from the text box
+//      prob bc the string builder is not given a value from SharedPreferences
 
-//todo: feature to delete orders (put order# and strngbuilder[order# & note] in keymap, then add keymap to string builder)
+//todo bug: feature to delete orders (put order# and strngbuilder[order# & note] in keymap, then add keymap to string builder)
 //      add the hashMap of string in the 'pastOrdersStrBuilder'
 //      will remove order note and info from the key (order#) in shared preferences
+// is deleted but still shows up in the text (prob bc the hashmap is not saved in SharedPreferences)
+
+//todo: ask user if they sure they wanna overwrite the other order
+//todo: show order numbers and notes available IN ORDER OF DATE ADDED
 
 //This code is probably overcomplicated for no good reason
 //Scrollview for past orders doesn't seem to be working
@@ -64,13 +68,19 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         deleteOrderButton.setOnClickListener {
             deleteOrder()
         }
+        deleteOrdersButton.setOnClickListener {
+            //todo: get rid of this button eventually, when you can delete specific orders from the text box
+            deleteAllPreferences()
+            loadPastOrders()
+        }
     }
     private fun saveOrderInfo() {
         val orderNumber = orderNumText.text.toString()
         val note = orderNoteText.text.toString()
 
         pastOrdersCount++ //todo: this count restarts every time the app is closed. fix it
-        val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
+        //val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
+        val textLine = ("$orderNumber \t\t $note \n")
         orderAndNoteMap[orderNumber] = textLine
 
         pastOrdersStrBuilder.append(orderAndNoteMap[orderNumber])
@@ -99,12 +109,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun deleteOrder() {
         val orderNumber = orderNumText.text.toString()
         //delete instance of the keyMap of strings that is rendered to the stringBuilder (keymap has order# and note)
-        orderAndNoteMap.remove(orderNumber) //todo: check if this works
+        orderAndNoteMap.remove(orderNumber)
         //rerender the string builder to the text box
         //might need to clear the stringbuilder add all the values for the hasmap to the string builder
         loadPastOrders()
 
-        //todo: delete from shared preferences
+        // deletes from shared preferences
         //info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderInfoSP.edit().remove(orderNumber).commit()
@@ -124,8 +134,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     }
     private fun loadPastOrders() {
         //load the past orders
+        pastOrdersStrBuilder.clear()
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        otherOrdersText.text = orderInfoSP.getString(pastOrdersSPKey, "No Orders")
+        pastOrdersStrBuilder.append(orderInfoSP.getString(pastOrdersSPKey, ""))  //todo: eventually make defValue: "No Orders"
+        otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
     private fun callToast(message: String) {
         //todo: call toast somewhere
@@ -134,8 +146,8 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         displayToastMessage(this, message)
     }
 
-    private fun sortAndRenderOrders() {
-        //todo: maybe delete this function (is called 2 times: deleteOrder(), saveOrderInfo())
+    private fun mapToStrgBldr() {
+        //is called in: deleteOrder()
 
         for(key in orderAndNoteMap.keys){
             //add it to the string builder
