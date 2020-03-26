@@ -8,7 +8,7 @@ import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import kotlin.text.StringBuilder
-//this is probably complicated for no reason
+//This code is probably overcomplicated for no good reason
 
 /**
  * In this activity:
@@ -25,7 +25,7 @@ import kotlin.text.StringBuilder
  *      -delete Info and Notes from SharedPreferences
  */
 
-//todo: show order numbers and notes available (in order of date added)
+//todo: show order numbers and notes available IN ORDER OF DATE ADDED
 
 //todo: feature to delete orders (put order# and strngbuilder[order# & note] in keymap, then add keymap to string builder)
 //      add the hashMap of string in the 'pastOrdersStrBuilder'
@@ -70,7 +70,8 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
         orderAndNoteMap[orderNumber] = textLine
 
-        sortAndRenderOrders()
+        //sortAndRenderOrders() //todo: maybe here bug
+        pastOrdersStrBuilder.append(orderAndNoteMap[orderNumber])
 
         val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(pastOrdersSP.edit()) {
@@ -100,7 +101,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //delete instance of the keyMap of strings that is rendered to the stringBuilder (keymap has order# and string)
         orderAndNoteMap.remove(orderNumber) //todo: check if this works
         //rerender the string builder to the text box
-        sortAndRenderOrders()
+        //sortAndRenderOrders()
         loadPastOrders()
 
         //todo: delete from shared preferences
@@ -122,18 +123,17 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         orderNoteText.setText(orderNoteSP.getString("$orderNumber N", ""))
     }
     private fun sortAndRenderOrders() {
+        //todo: maybe delete this function (is called 2 times: deleteOrder(), saveOrderInfo())
+
         for(key in orderAndNoteMap.keys){
             //add it to the string builder
             pastOrdersStrBuilder.append(orderAndNoteMap[key]) //might have to convert this toString()
         }
-        //maybe fuse this function with loadPastOrders()
     }
     private fun loadPastOrders() {
         //load the past orders
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        otherOrdersText.text = orderInfoSP.getString(pastOrdersSPKey, "Empty")
-
-        //otherOrdersText.text = pastOrdersStrBuilder.toString()
+        otherOrdersText.text = orderInfoSP.getString(pastOrdersSPKey, "No Orders")
     }
     private fun callToast(message: String) {
         // well maybe one time it won't be 'saved'
