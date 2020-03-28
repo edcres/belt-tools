@@ -24,6 +24,9 @@ import kotlin.text.StringBuilder
  *      -delete Info and Notes from SharedPreferences
  */
 
+//todo: restructure: save hashmap key and values in shared preferences
+//  when loading, call them instead of pastOrdersStrBuilder from shared preferences
+
 // todo bug: every time i restart the app and there was something saved in past orders text, when some new order is added, everything is deleted from the text box
 //      prob bc the string builder is not given a value from SharedPreferences
 
@@ -31,6 +34,7 @@ import kotlin.text.StringBuilder
 //      add the hashMap of string in the 'pastOrdersStrBuilder'
 //      will remove order note and info from the key (order#) in shared preferences
 // is deleted but still shows up in the text (prob bc the hashmap is not saved in SharedPreferences)
+//  save hashmap key and values in shared preferences
 
 //todo: ask user if they sure they wanna overwrite the other order
 //todo: show order numbers and notes available IN ORDER OF DATE ADDED
@@ -146,12 +150,21 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         displayToastMessage(this, message)
     }
 
-    private fun mapToStrgBldr() {
+    private fun saveHashMapValues() {
+        val orderNumber = orderNumText.text.toString()
         //is called in: deleteOrder()
+        //https://stackoverflow.com/questions/7944601/how-to-save-hashmap-to-shared-preferences 'ut i need to save the hash map as itself like we adding vector'
 
         for(key in orderAndNoteMap.keys){
+
+            val saveHashMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            with(saveHashMapSP.edit()) {
+                putString("HashMap $orderNumber", orderAndNoteMap[key])
+                commit()
+            }
+
             //add it to the string builder
-            pastOrdersStrBuilder.append(orderAndNoteMap[key]) //might have to convert this toString()
+            //pastOrdersStrBuilder.append(orderAndNoteMap[key]) //might have to convert this toString()
         }
     }
 
