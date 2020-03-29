@@ -25,7 +25,7 @@ import kotlin.text.StringBuilder
  */
 
 //todo: restructure: save hashmap key and values in shared preferences
-//  have to save all the order numbers in different shared preferences, to the call them from memory (the keys for this will be ints and the biggest int will be saved in memory)
+//  have to save all the order numbers in different shared preferences (done), to then call them from memory (the keys for this will be ints and the biggest int will be saved in memory)
 //  when loading, call them instead of pastOrdersStrBuilder from shared preferences
 
 // todo bug: every time i restart the app and there was something saved in past orders text, when some new order is added, everything is deleted from the text box
@@ -155,16 +155,41 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
 
 
-    private fun callHashMapValues(){
+    private fun loadPastData(){
         //to replace loadPastOrders()
         pastOrdersStrBuilder.clear()
 
-        //display all the order numbers with the notes
+        //gets from memory the number of past orders and assign it to numOfOrders
+        val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        numOfOrders = numOfOrdersSP.getInt("numOfOrders", 0)
+
+        //displays all the order numbers with the notes
+        for(num in 1..numOfOrders){
+
+            val pastOrderNumsSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            var tempOrderNumber = pastOrderNumsSP.getInt("numOfOrder: $num", 0)
+
+            //todo: get the notes and add them to the 'pastOrdersStrBuilder' with the order numbers
+        }
 
     }
+    private fun saveOrderNumber(orderNum: String) {
+        numOfOrders++
+
+        val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(numOfOrdersSP.edit()) {
+            putInt("numOfOrders", numOfOrders)
+            commit()
+        }
+        val pastOrderNumsSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(pastOrderNumsSP.edit()) {
+            putString("numOfOrder: $numOfOrders", orderNum)
+            commit()
+        }
+    }
     private fun saveHashMapValues() {
+        //maybe just save one value
         val orderNumber = orderNumText.text.toString()
-        //is called in: deleteOrder()
         //https://stackoverflow.com/questions/7944601/how-to-save-hashmap-to-shared-preferences 'ut i need to save the hash map as itself like we adding vector'
 
         for(key in orderAndNoteMap.keys){
@@ -174,14 +199,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
                 putString("HashMap $orderNumber", orderAndNoteMap[key])
                 commit()
             }
-
-            //add it to the string builder
-            //pastOrdersStrBuilder.append(orderAndNoteMap[key]) //might have to convert this toString()
         }
-    }
-    private fun saveOrderNumber(orderNum: String) {
-        numOfOrders++
-        
     }
 
 
