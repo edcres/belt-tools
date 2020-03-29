@@ -25,6 +25,7 @@ import kotlin.text.StringBuilder
  */
 
 //todo: restructure: save hashmap key and values in shared preferences
+//  have to save all the order numbers in different shared preferences, to the call them from memory (the keys for this will be ints and the biggest int will be saved in memory)
 //  when loading, call them instead of pastOrdersStrBuilder from shared preferences
 
 // todo bug: every time i restart the app and there was something saved in past orders text, when some new order is added, everything is deleted from the text box
@@ -45,6 +46,7 @@ import kotlin.text.StringBuilder
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
 
+    private var numOfOrders:Int = 0     //will be used to save and call order numbers from memory
     private val pastOrdersSPKey = "past_orders"
     private var pastOrdersCount:Int = 0         //for user to keep track
     private var orderAndNoteMap = HashMap<String, String>()
@@ -73,6 +75,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             deleteOrder()
         }
         deleteOrdersButton.setOnClickListener {
+            //deletes all data from shared preferences in this activity
             //todo: get rid of this button eventually, when you can delete specific orders from the text box
             deleteAllPreferences()
             loadPastOrders()
@@ -150,6 +153,15 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         displayToastMessage(this, message)
     }
 
+
+
+    private fun callHashMapValues(){
+        //to replace loadPastOrders()
+        pastOrdersStrBuilder.clear()
+
+        //display all the order numbers with the notes
+
+    }
     private fun saveHashMapValues() {
         val orderNumber = orderNumText.text.toString()
         //is called in: deleteOrder()
@@ -166,6 +178,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             //add it to the string builder
             //pastOrdersStrBuilder.append(orderAndNoteMap[key]) //might have to convert this toString()
         }
+    }
+    private fun saveOrderNumber(orderNum: String) {
+        numOfOrders++
+        
     }
 
 
