@@ -167,9 +167,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         for(num in 1..numOfOrders){
 
             val pastOrderNumsSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            var tempOrderNumber = pastOrderNumsSP.getInt("numOfOrder: $num", 0)
+            val tempOrderNumber = pastOrderNumsSP.getInt("numOfOrder: $num", 0)
 
-            //todo: get the notes and add them to the 'pastOrdersStrBuilder' with the order numbers
+            //gets the notes and add them to the 'pastOrdersStrBuilder' with the order numbers
+            val pastNotesSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            val tempOrderNote = pastNotesSP.getInt("$tempOrderNumber N", 0)
+
+            val pastOrderAndNote = "$num \t\t $tempOrderNumber \t---\t $tempOrderNote" //todo: bug: 'num' here might not work
         }
 
     }
