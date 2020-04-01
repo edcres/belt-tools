@@ -146,70 +146,76 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         pastOrdersStrBuilder.append(orderInfoSP.getString(pastOrdersSPKey, ""))  //todo: eventually make defValue: "No Orders"
         otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
-    private fun callToast(message: String) {
-        //todo: call toast somewhere
 
-        // well maybe one time it won't be 'saved'
-        displayToastMessage(this, message)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    private fun newDeleteOrder(){
+        //todo: new deleteOrder function (orderNumSP, NoteSP, InfoSP, numOfOrdersSP - 1, orderAndNoteMap[order#])
     }
-
-
 
     private fun loadPastData(){
         //to replace loadPastOrders()
+        //call when activity starts, and when order is saved and deleted
         pastOrdersStrBuilder.clear()
 
         //gets from memory the number of past orders and assign it to numOfOrders
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         numOfOrders = numOfOrdersSP.getInt("numOfOrders", 0)
 
-        //displays all the order numbers with the notes
+        //gets and displays all the order numbers with the notes
         for(num in 1..numOfOrders){
 
-            val pastOrderNumsSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            val tempOrderNumber = pastOrderNumsSP.getInt("numOfOrder: $num", 0)
+            val pastOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            val tempOrderNumber = pastOrderNumSP.getString("numOfOrder: $num", "0") //returns ie. h6872-25298
 
-            //gets the notes and add them to the 'pastOrdersStrBuilder' with the order numbers
-            val pastNotesSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            val tempOrderNote = pastNotesSP.getInt("$tempOrderNumber N", 0)
+            //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
+            val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            val tempOrderNote = pastNoteSP.getString("$tempOrderNumber N", "0")
 
             val pastOrderAndNote = "$num \t\t $tempOrderNumber \t---\t $tempOrderNote" //todo: bug: 'num' here might not work
+            pastOrdersStrBuilder.append("$pastOrderAndNote\n")
         }
-
     }
     private fun saveOrderNumber(orderNum: String) {
+        //called when order is saved
         numOfOrders++
 
+        //save 'numOfOrders'
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(numOfOrdersSP.edit()) {
             putInt("numOfOrders", numOfOrders)
             commit()
         }
-        val pastOrderNumsSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(pastOrderNumsSP.edit()) {
+        //save 'orderNum'
+        val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderNumSP.edit()) {
             putString("numOfOrder: $numOfOrders", orderNum)
             commit()
         }
     }
-    private fun saveHashMapValues() {
-        //maybe just save one value
+    private fun saveHashMapValue() {
+        //save order and note with "HashMap $orderNumber" as the key
+        //will be called when user saves order
         val orderNumber = orderNumText.text.toString()
         //https://stackoverflow.com/questions/7944601/how-to-save-hashmap-to-shared-preferences 'ut i need to save the hash map as itself like we adding vector'
 
-        for(key in orderAndNoteMap.keys){
-
-            val saveHashMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            with(saveHashMapSP.edit()) {
-                putString("HashMap $orderNumber", orderAndNoteMap[key])
-                commit()
-            }
+        val saveHashMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(saveHashMapSP.edit()) {
+            putString("HashMap $orderNumber", orderAndNoteMap[orderNumber])
+            commit()
         }
     }
 
-
     private fun deleteAllPreferences(){
-        // get rid of this function when done debugging
+        // todo: get rid of this function when done debugging
         val otherOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         otherOrdersSP.edit().clear().commit()
+    }
+    private fun callToast(message: String) {
+        //todo: call toast somewhere
+
+        // well maybe one time it won't be 'saved'
+        displayToastMessage(this, message)
     }
 }

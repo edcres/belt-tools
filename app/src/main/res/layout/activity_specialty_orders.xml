@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Delete Orders" />
+                    android:text="Delete Saves" />
             <Button
                     android:id="@+id/specialtyOrdersSaveButton"
                     android:layout_width="wrap_content"
