@@ -152,6 +152,25 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
     private fun newDeleteOrder(){
         //todo: new deleteOrder function (orderNumSP, NoteSP, InfoSP, numOfOrdersSP - 1, orderAndNoteMap[order#])
+        val orderNumber = orderNumText.text.toString()
+
+        //delete order#
+        val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        orderNumSP.edit().remove("numOfOrder: $numOfOrders").commit()   //todo: idk how to do this yet, maybe save the order# with order# instead of numOfOrders
+
+        //delete info
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        orderInfoSP.edit().remove(orderNumber).commit()
+
+        //delete note
+        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        orderNoteSP.edit().remove("$orderNumber N").commit()
+
+        //todo: numOfOrdersSP - 1
+
+        //todo: delete orderAndNoteMap[order#]
+        val orderAndNoteMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        orderAndNoteMapSP.edit().remove("$orderNumber N").commit()
     }
 
     private fun loadPastData(){
@@ -167,7 +186,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         for(num in 1..numOfOrders){
 
             val pastOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            val tempOrderNumber = pastOrderNumSP.getString("numOfOrder: $num", "0") //returns ie. h6872-25298
+            val tempOrderNumber = pastOrderNumSP.getString("numOfOrder: $num", "0") //returns (ie. h6872-25298)
 
             //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
             val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
