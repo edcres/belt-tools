@@ -174,11 +174,18 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderNoteSP.edit().remove("$orderNumber $noteSPKey").commit()
 
-        //todo: numOfOrdersSP - 1
+        //numOfOrders - 1 and save. Should have already been loaded when activity starts
+        numOfOrders - 1
+        val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(numOfOrdersSP.edit()) {
+            putInt(numOfOrdersSPKey, numOfOrders)
+            commit()
+        }
 
-        //todo: delete orderAndNoteMap[order#]
+        //delete orderAndNoteMap[order#]
         val orderAndNoteMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderAndNoteMapSP.edit().remove("$orderNumber $orderAndNoteSPKey").commit()
+        if (orderAndNoteMap.containsKey(orderNumber)){ orderAndNoteMap.remove(orderNumber) }
     }
 
     private fun loadPastData(){
