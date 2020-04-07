@@ -55,8 +55,8 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private val orderAndNoteSPKey = "order#AndNote"
 
     private var numOfOrders:Int = 0     //will be used to save and call order numbers from memory
-    private val pastOrdersSPKey = "past_orders"
-    private var pastOrdersCount:Int = 0         //for user to keep track
+    private val pastOrdersSPKey = "past_orders"  //todo: replace with 'numOfOrdersSPKey'
+    private var pastOrdersCount:Int = 0         //for user to keep track todo: replace with 'numOfOrders'
     private var orderAndNoteMap = HashMap<String, String>()
     private var pastOrdersStrBuilder = StringBuilder()
 
@@ -89,77 +89,46 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             loadPastOrders()
         }
     }
-    private fun saveOrderInfo() {
+
+    private fun saveOrder(){
+        // to replace saveOrderInfo
+        //todo: i think this function is good, check to make sure and continue
         val orderNumber = orderNumText.text.toString()
         val note = orderNoteText.text.toString()
 
-        pastOrdersCount++ //todo: this count restarts every time the app is closed. fix it
-        //val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
-        val textLine = ("$orderNumber \t\t $note \n")
-        orderAndNoteMap[orderNumber] = textLine
+        saveOrderNumber(orderNumber)
+        saveHashMapValue(orderNumber)
 
-        pastOrdersStrBuilder.append(orderAndNoteMap[orderNumber])
-
-        val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(pastOrdersSP.edit()) {
-            putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
-            commit()
-        }
-        loadPastOrders()
-
-        // todo: probably save order info and order note into a text file and not a shared preference
-        // the order number is the name of the shared preference that saves the info
+        // info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderInfoSP.edit()) {
             putString("$orderNumber $orderInfoSPKey", specialtyOrdersInfo.text.toString())
             commit()
         }
-        // the note is saved under 'order number $note'
+        // note
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderNoteSP.edit()) {
             putString("$orderNumber $noteSPKey", orderNoteText.text.toString())
             commit()
         }
-    }
-    private fun deleteOrder() {
-        val orderNumber = orderNumText.text.toString()
-        //delete instance of the keyMap of strings that is rendered to the stringBuilder (keymap has order# and note)
-        orderAndNoteMap.remove(orderNumber)
-        //rerender the string builder to the text box
-        //might need to clear the stringbuilder add all the values for the hasmap to the string builder
-        loadPastOrders()
 
-        // deletes from shared preferences
-        //info
-        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        orderInfoSP.edit().remove("$orderNumber $orderInfoSPKey").commit()
-        //notes
-        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        orderNoteSP.edit().remove("$orderNumber $noteSPKey").commit()
+        loadPastData()
     }
+
     private fun displayOrder() {
+        // get info and notes from memory
         val orderNumber = orderNumText.text.toString()
-        // get info from shared preferences using the order number
 
+        // info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         specialtyOrdersInfo.setText(orderInfoSP.getString("$orderNumber $orderInfoSPKey", ""))
-
+        // note
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderNoteText.setText(orderNoteSP.getString("$orderNumber $noteSPKey", ""))
     }
-    private fun loadPastOrders() {
-        //load the past orders
-        pastOrdersStrBuilder.clear()
-        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        pastOrdersStrBuilder.append(orderInfoSP.getString(pastOrdersSPKey, ""))  //todo: eventually make defValue: "No Orders"
-        otherOrdersText.text = pastOrdersStrBuilder.toString()
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     private fun newDeleteOrder(){
-        //todo: new deleteOrder function (orderNumSP, NoteSP, InfoSP, numOfOrdersSP - 1, orderAndNoteMap[order#], order number sorted)
+        //new deleteOrder function (orderNumSP, InfoSP, NoteSP, numOfOrdersSP - 1, orderAndNoteMap[order#])
         val orderNumber = orderNumText.text.toString()
 
         //delete order#
@@ -210,12 +179,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             val pastOrderAndNote = "$num \t\t $orderNumber \t---\t $orderNote" //todo: bug: 'num' here might not work
             pastOrdersStrBuilder.append("$pastOrderAndNote\n")
         }
+        //todo: might need to set the text box equal to the string builder 'pastOrdersStrBuilder'
     }
     private fun saveOrderNumber(orderNum: String) {
         //called when order is saved
         numOfOrders++
 
-        //save 'numOfOrders' todo: maybe don't save numOfOrders in this function
+        //save 'numOfOrders'
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(numOfOrdersSP.edit()) {
             putInt(numOfOrdersSPKey, numOfOrders)
@@ -234,18 +204,81 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             commit()
         }
     }
-    private fun saveHashMapValue() {
-        //save order and note with "HashMap $orderNumber" as the key
+    private fun saveHashMapValue(orderNum: String) {
+        //save order and note with "$orderNumber $orderAndNoteSPKey" as the key
         //will be called when user saves order
-        val orderNumber = orderNumText.text.toString()
         //https://stackoverflow.com/questions/7944601/how-to-save-hashmap-to-shared-preferences 'ut i need to save the hash map as itself like we adding vector'
 
         val saveHashMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(saveHashMapSP.edit()) {
-            putString("$orderNumber $orderAndNoteSPKey", orderAndNoteMap[orderNumber])
+            putString("$orderNum $orderAndNoteSPKey", orderAndNoteMap[orderNum])
             commit()
         }
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //todo: comment these below functions out instead of deleting the for a while.
+
+    private fun saveOrderInfo() {
+        val orderNumber = orderNumText.text.toString()
+        val note = orderNoteText.text.toString()
+
+        pastOrdersCount++ //todo: this count restarts every time the app is closed. fix it
+        //val textLine = ("$pastOrdersCount \t\t $orderNumber \t\t $note \n") //this (...) will be pastOrderSB will be appended after the hashmap
+        val textLine = ("$orderNumber \t\t $note \n")
+        orderAndNoteMap[orderNumber] = textLine
+
+        pastOrdersStrBuilder.append(orderAndNoteMap[orderNumber])
+
+        val pastOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(pastOrdersSP.edit()) {
+            putString(pastOrdersSPKey, pastOrdersStrBuilder.toString())
+            commit()
+        }
+        loadPastOrders()
+
+        // todo: probably save order info and order note into a text file and not a shared preference
+        // the order number is the name of the shared preference that saves the info
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderInfoSP.edit()) {
+            putString("$orderNumber $orderInfoSPKey", specialtyOrdersInfo.text.toString())
+            commit()
+        }
+        // the note is saved under 'order number $note'
+        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(orderNoteSP.edit()) {
+            putString("$orderNumber $noteSPKey", orderNoteText.text.toString())
+            commit()
+        }
+    }
+
+
+
+    private fun deleteOrder() {
+        //todo: to delete (ready)
+        val orderNumber = orderNumText.text.toString()
+        //delete instance of the keyMap of strings that is rendered to the stringBuilder (keymap has order# and note)
+        orderAndNoteMap.remove(orderNumber)
+
+        //info
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        orderInfoSP.edit().remove("$orderNumber $orderInfoSPKey").commit()
+        //notes
+        val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        orderNoteSP.edit().remove("$orderNumber $noteSPKey").commit()
+    }
+    private fun loadPastOrders() {
+        //todo: to delete (ready)
+        //load the past orders
+        pastOrdersStrBuilder.clear()
+        val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        pastOrdersStrBuilder.append(orderInfoSP.getString(pastOrdersSPKey, ""))  //todo: eventually make defValue: "No Orders"
+        otherOrdersText.text = pastOrdersStrBuilder.toString()
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
     private fun deleteAllPreferences(){
         // todo: get rid of this function when done debugging
