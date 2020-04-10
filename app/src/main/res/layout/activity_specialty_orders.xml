@@ -141,7 +141,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/whiteSmoke"
-                    android:paddingTop="8dp"
+                    android:layout_margin="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="12dp"
                     android:inputType="textMultiLine"
                     android:visibility="visible" />
         </LinearLayout>
