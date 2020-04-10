@@ -64,13 +64,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specialty_orders)
 
-        loadPastOrders()
+        loadPastData()
 
         lookUpOrderButton.setOnClickListener {
             displayOrder()
         }
         specialtyOrdersSaveButton.setOnClickListener {
-            saveOrderInfo()
+            saveOrder()
         }
         allOrdersButton.setOnClickListener {
             if(otherOrdersText.visibility == View.INVISIBLE){
@@ -80,13 +80,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             }
         }
         deleteOrderButton.setOnClickListener {
-            deleteOrder()
+            newDeleteOrder()
         }
         deleteOrdersButton.setOnClickListener {
             //deletes all data from shared preferences in this activity
             //todo: get rid of this button eventually, when you can delete specific orders from the text box
             deleteAllPreferences()
-            loadPastOrders()
+            loadPastData()
         }
     }
 
@@ -111,8 +111,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             putString("$orderNumber $noteSPKey", orderNoteText.text.toString())
             commit()
         }
-
-        loadPastData()
+        loadPastData() //todo: i think the problem is here
     }
 
     private fun displayOrder() {
@@ -131,6 +130,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //new deleteOrder function (orderNumSP, InfoSP, NoteSP, numOfOrdersSP - 1, orderAndNoteMap[order#])
         val orderNumber = orderNumText.text.toString()
 
+        //todo problem might be here
         //delete order#
         val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderNumSP.edit().remove("$orderNumber $orderNumSPKey").commit()
@@ -151,10 +151,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             commit()
         }
 
-        //delete orderAndNoteMap[order#]
+        //delete orderAndNoteMap[order#]  //todo problem might be here
         val orderAndNoteMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderAndNoteMapSP.edit().remove("$orderNumber $orderAndNoteSPKey").commit()
         if (orderAndNoteMap.containsKey(orderNumber)){ orderAndNoteMap.remove(orderNumber) }
+
+        loadPastData()
     }
 
     private fun loadPastData(){
@@ -170,16 +172,16 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         for(num in 1..numOfOrders){
 
             val pastOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            val orderNumber = pastOrderNumSP.getString("$orderNumSortedSPKey $num", "0") //returns (ie. h6872-25298)
+            val orderNumber = pastOrderNumSP.getString("$num $orderNumSortedSPKey", "0") //returns (ie. h6872-25298)
 
             //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
             val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
             val orderNote = pastNoteSP.getString("$orderNumber $noteSPKey", "0")
 
-            val pastOrderAndNote = "$num \t\t $orderNumber \t---\t $orderNote" //todo: bug: 'num' here might not work
+            val pastOrderAndNote = "$num \t\t $orderNumber \t---\t $orderNote" //todo: bug: 'num' here might not work (might restart at some point)
             pastOrdersStrBuilder.append("$pastOrderAndNote\n")
         }
-        //todo: might need to set the text box equal to the string builder 'pastOrdersStrBuilder'
+        otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
     private fun saveOrderNumber(orderNum: String) {
         //called when order is saved
@@ -194,7 +196,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //save 'orderNum' under numOfOrders (so i can iterate through them when displaying them)
         val sortedOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(sortedOrderNumSP.edit()) {
-            putString("$orderNumSortedSPKey $numOfOrders", orderNum)
+            putString("$numOfOrders $orderNumSortedSPKey", orderNum)
             commit()
         }
         //save 'orderNum' under order#
@@ -216,7 +218,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         }
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //todo: comment these below functions out instead of deleting the for a while.
+    //todo: comment these below functions out instead of deleting them for a while.
 
     private fun saveOrderInfo() {
         val orderNumber = orderNumText.text.toString()
@@ -276,7 +278,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 

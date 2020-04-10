@@ -140,8 +140,10 @@
                     android:id="@+id/otherOrdersText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteSmoke"
+                    android:paddingTop="8dp"
                     android:inputType="textMultiLine"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
         </LinearLayout>
     </ScrollView>
 
