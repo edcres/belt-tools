@@ -12,21 +12,15 @@ import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import kotlin.text.StringBuilder
 
 /**
- * In this activity: (might not be accurate)
+ * In this activity:
  * -User can add OrderNumber, OrderInfo, and OrderNote to a list and save it in SharedPreferences.
- * -User can LookUp or Delete and order by typing the order number.
- * -Orders are organized (todo: idk how yet)
+ *      -also saved: numOfOrders, and orderNum under its unique numOfOrders
+ * -User can LookUp, Add, Edit, or Delete an order by typing the order number.
  *
- * -Order numbers and notes are added to a hashMap
- * -Info and Notes are shared in SharedPreferences under the OrderNumber key
- * -To Delete an orders:
- *      -get the OrderNumber as input
- *      -delete Order from hashMap
- *      -refresh past orders textbox loadPastOrders()
- *      -delete Info and Notes from SharedPreferences
+ * -Order numbers and notes are added to a hashMap in order to be displayed with a stringBuilder
+ * -Orders are loaded up, saved and deleted directly from sharedPreferences
  */
-// asked user if they sure they wanna overwrite the other order
-// called toast to save and delete orders
+// asked user before deleting one order, and all orders. Also updated documentation
 // todo: Scrollview for past orders doesn't seem to be working
 
 // todo: probably save order info and order note into a text file and not a shared preference
@@ -78,13 +72,25 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             }
         }
         deleteOrderButton.setOnClickListener {
-            deleteOrder()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete order?")
+            builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
+                deleteOrder()
+            }
+            builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
+            builder.show()
         }
         deleteOrdersButton.setOnClickListener {
             //deletes all data from shared preferences in this activity
             //todo: get rid of this button eventually, when you can delete specific orders from the text box
-            deleteAllPreferences()
-            loadPastData()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete all saved orders?")
+            builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
+                deleteAllPreferences()
+                loadPastData()
+            }
+            builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
+            builder.show()
         }
     }
 
@@ -218,13 +224,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private fun deleteAllPreferences(){
-        // todo: get rid of this function when done debugging
         val otherOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         otherOrdersSP.edit().clear().commit()
     }
     private fun callToast(message: String) {
-        //todo: call toast somewhere
-
         // well maybe one time it won't be 'saved'
         displayToastMessage(this, message)
     }
