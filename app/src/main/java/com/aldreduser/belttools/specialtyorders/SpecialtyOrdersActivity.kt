@@ -1,8 +1,10 @@
 package com.aldreduser.belttools.specialtyorders
 
 import android.content.Context
+import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.View
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
@@ -23,28 +25,13 @@ import kotlin.text.StringBuilder
  *      -refresh past orders textbox loadPastOrders()
  *      -delete Info and Notes from SharedPreferences
  */
-//todo: change the names of shared preferences key
+// asked user if they sure they wanna overwrite the other order
+// called toast to save and delete orders
+// todo: Scrollview for past orders doesn't seem to be working
 
 // todo: probably save order info and order note into a text file and not a shared preference
-//todo: restructure: save hashmap key and values in shared preferences
-//  have to save all the order numbers in different shared preferences (done), to then call them from memory (the keys for this will be ints and the biggest int will be saved in memory)
-//  when loading, call them instead of pastOrdersStrBuilder from shared preferences
-
-// todo bug: every time i restart the app and there was something saved in past orders text, when some new order is added, everything is deleted from the text box
-//      prob bc the string builder is not given a value from SharedPreferences
-
-//todo bug: feature to delete orders (put order# and strngbuilder[order# & note] in keymap, then add keymap to string builder)
-//      add the hashMap of string in the 'pastOrdersStrBuilder'
-//      will remove order note and info from the key (order#) in shared preferences
-// is deleted but still shows up in the text (prob bc the hashmap is not saved in SharedPreferences)
-//  save hashmap key and values in shared preferences
-
-//todo: ask user if they sure they wanna overwrite the other order
-//todo: show order numbers and notes available IN ORDER OF DATE ADDED
-
-//This code is probably overcomplicated for no good reason
-//Scrollview for past orders doesn't seem to be working
-//this activity is probably full of nullpointerexception errors from user input in text boxes
+// todo: its better to display past orders in a 2 or 3 column recyclerview. Add delete features next to where it's displayed
+// todo: show order numbers and notes available IN ORDER OF DATE ADDED
 
 class SpecialtyOrdersActivity : AppCompatActivity() {
 
@@ -69,7 +56,19 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             displayOrder()
         }
         specialtyOrdersSaveButton.setOnClickListener {
-            saveOrder()
+            val orderNum = orderNumText.text.toString()
+            val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
+            //val orderNumb = orderNumbSP.getString("$orderNum $orderNumSPKey", orderNum)
+            // if selected order already exists, ask user if they're sure, else saveOrder()
+            if(orderNumSP.contains("$orderNum $orderNumSPKey")) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Overwrite order?")
+                builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
+                    saveOrder()
+                }
+                builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
+                builder.show()
+            } else {saveOrder()}
         }
         allOrdersButton.setOnClickListener {
             if(otherOrdersText.visibility == View.INVISIBLE){
@@ -79,7 +78,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             }
         }
         deleteOrderButton.setOnClickListener {
-            newDeleteOrder()
+            deleteOrder()
         }
         deleteOrdersButton.setOnClickListener {
             //deletes all data from shared preferences in this activity
@@ -92,7 +91,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private fun saveOrder(){
         // to replace saveOrderInfo
         val orderNumber = orderNumText.text.toString()
-        val note = orderNoteText.text.toString()
 
         saveOrderNumber(orderNumber)
         saveHashMapValue(orderNumber)
@@ -102,6 +100,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         with(orderInfoSP.edit()) {
             putString("$orderNumber $orderInfoSPKey", specialtyOrdersInfo.text.toString())
             commit()
+            callToast("Saved")
         }
         // note
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
@@ -124,13 +123,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         orderNoteText.setText(orderNoteSP.getString("$orderNumber $noteSPKey", ""))
     }
 
-    private fun newDeleteOrder(){
+    private fun deleteOrder(){
         //new deleteOrder function (orderNumSP, InfoSP, NoteSP, numOfOrdersSP - 1, orderAndNoteMap[order#])
         val orderNumber = orderNumText.text.toString()
 
-        
-        val sortedOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        sortedOrderNumSP.edit().remove("2 $orderNumSortedSPKey").commit()
         //delete order#
         val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderNumSP.edit().remove("$orderNumber $orderNumSPKey").commit()
@@ -138,6 +134,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //delete info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderInfoSP.edit().remove("$orderNumber $orderInfoSPKey").commit()
+        callToast("Deleted")
 
         //delete note
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
@@ -176,10 +173,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
             //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
             val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            val orderNote = pastNoteSP.getString("$orderNumber $noteSPKey", "Order was deleted")
+            val orderNote = pastNoteSP.getString("$orderNumber $noteSPKey", "Order was deleted.")
 
             val pastOrderAndNote = "$num \t\t $orderNumber \t---\t $orderNote"
-            if(orderNote != "Order was deleted"){pastOrdersStrBuilder.append("$pastOrderAndNote\n")}
+            if(orderNote != "Order was deleted."){pastOrdersStrBuilder.append("$pastOrderAndNote\n")}
         }
         otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
@@ -194,7 +191,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             commit()
         }
         //save 'orderNum' under numOfOrders (so i can iterate through them when displaying them)
-        //todo: this will always be stored in the user's memory (cannot be deleted), maybe fix it
+        //this will always be stored in the user's memory (cannot be deleted), maybe fix it
         val sortedOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(sortedOrderNumSP.edit()) {
             putString("$numOfOrders $orderNumSortedSPKey", orderNum)

@@ -31,27 +31,34 @@
                     android:textAllCaps="false"
                     android:text="Department Extensions" />
 
-
-            <Button
-                    android:id="@+id/sKUsToWorkOnButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="false"
-                    android:text="Skus to work on" />
-
-            <Button
-                    android:id="@+id/palletsToWorkOnButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="false"
-                    android:text="Pallets to work on" />
-
             <Button
                     android:id="@+id/specialtyOrdersButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
                     android:text="Specialty Orders" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/sKUsToWorkOnButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Skus to work on"
+                        android:textAllCaps="false" />
+
+                <Button
+                        android:id="@+id/palletsToWorkOnButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Pallets to work on"
+                        android:textAllCaps="false" />
+            </LinearLayout>
 
             <Spinner
                     android:id="@+id/chooseDepartmentSpinner"
