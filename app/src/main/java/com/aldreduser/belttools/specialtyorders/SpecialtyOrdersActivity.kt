@@ -20,7 +20,6 @@ import kotlin.text.StringBuilder
  * -Order numbers and notes are added to a hashMap in order to be displayed with a stringBuilder
  * -Orders are loaded up, saved and deleted directly from sharedPreferences
  */
-// asked user before deleting one order, and all orders. Also updated documentation
 // todo: Scrollview for past orders doesn't seem to be working
 
 // todo: probably save order info and order note into a text file and not a shared preference

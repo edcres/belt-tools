@@ -7,6 +7,10 @@
         android:background="#F7AB89"
         tools:context=".MoreOptionsMenuActivity">
 
+    <include
+            android:id="@+id/moreOptionsToolbar"
+            layout="@layout/action_bar"/>
+
     <ScrollView
             android:layout_width="361dp"
             android:layout_height="775dp"

@@ -21,7 +21,7 @@ class MainLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_layout)
 
-        supportActionBar!!.hide()
+//        supportActionBar!!.hide()
 
         ic_logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_in))
         Handler().postDelayed({

@@ -3,6 +3,7 @@ package com.aldreduser.belttools
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -25,6 +26,8 @@ class MoreOptionsMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_more_options_menu)
+
+        setSupportActionBar(moreOptionsToolbar as Toolbar)
 
         extensionsButton.setOnClickListener {
             val newIntent = Intent(this, DeptExtensionsActivity::class.java)
