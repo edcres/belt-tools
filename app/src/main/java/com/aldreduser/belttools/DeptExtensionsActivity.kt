@@ -7,6 +7,9 @@ import org.jetbrains.anko.toast
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.content.DialogInterface
+import android.support.v7.widget.Toolbar
+import kotlinx.android.synthetic.main.action_bar.*
+import kotlinx.android.synthetic.main.activity_more_options_menu.*
 
 // user can see phone extensions for different departments and is able to edit them
 /** TODO:
@@ -23,6 +26,9 @@ class DeptExtensionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dept_extensions)
+
+        setSupportActionBar(extensionsToolbar as Toolbar)
+        toolbar_text.text = "Extensions"
 
         updateExtensions() //I need this here to give initial values to the array. Might replace later
         getData()

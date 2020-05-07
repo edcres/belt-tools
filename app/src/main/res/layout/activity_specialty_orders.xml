@@ -6,6 +6,13 @@
         android:layout_height="match_parent"
         tools:context=".specialtyorders.SpecialtyOrdersActivity">
 
+    <include
+            layout="@layout/action_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/specialtyOrdersToolbar"/>
+
     <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -18,15 +25,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-                android:id="@+id/specialtyOrdersTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="New Order"
-                android:textSize="30sp" />
+            app:layout_constraintTop_toBottomOf="@+id/specialtyOrdersToolbar">
 
         <LinearLayout
                 android:layout_width="match_parent"

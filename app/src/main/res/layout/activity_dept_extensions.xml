@@ -7,6 +7,13 @@
         android:background="#F7AB89"
         tools:context=".DeptExtensionsActivity">
 
+    <include
+            layout="@layout/action_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/extensionsToolbar" />
+
     <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="372dp"
@@ -18,7 +25,7 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/extensionsToolbar">
 
         <LinearLayout
                 android:layout_width="match_parent"

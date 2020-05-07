@@ -5,9 +5,12 @@ import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.Toolbar
 import android.view.View
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
+import kotlinx.android.synthetic.main.action_bar.*
+import kotlinx.android.synthetic.main.activity_more_options_menu.*
 import kotlinx.android.synthetic.main.activity_specialty_orders.*
 import kotlin.text.StringBuilder
 
@@ -42,6 +45,9 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_specialty_orders)
+
+        setSupportActionBar(specialtyOrdersToolbar as Toolbar)
+        toolbar_text.text = "Orders"
 
         loadPastData()
 

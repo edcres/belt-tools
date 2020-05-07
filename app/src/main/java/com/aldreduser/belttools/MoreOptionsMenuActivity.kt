@@ -11,6 +11,7 @@ import com.aldreduser.belttools.choosedepartment.DepartmentsNotesActivity
 import com.aldreduser.belttools.palletstoworkon.PalletsToWorkOnActivity
 import com.aldreduser.belttools.skustoworkon.SKUsToWorkOnActivity
 import com.aldreduser.belttools.specialtyorders.SpecialtyOrdersActivity
+import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_more_options_menu.*
 
 /**
@@ -28,6 +29,7 @@ class MoreOptionsMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_more_options_menu)
 
         setSupportActionBar(moreOptionsToolbar as Toolbar)
+        toolbar_text.text = "Options"
 
         extensionsButton.setOnClickListener {
             val newIntent = Intent(this, DeptExtensionsActivity::class.java)

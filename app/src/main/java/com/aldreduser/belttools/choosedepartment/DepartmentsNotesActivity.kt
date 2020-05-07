@@ -3,9 +3,12 @@ package com.aldreduser.belttools.choosedepartment
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
+import kotlinx.android.synthetic.main.action_bar.*
 import kotlinx.android.synthetic.main.activity_dept_notes.*
+import kotlinx.android.synthetic.main.activity_more_options_menu.*
 import org.jetbrains.anko.toast
 
 // pass data to this activity (string saying what department the user wants)
@@ -21,7 +24,10 @@ class DepartmentsNotesActivity : AppCompatActivity() {
 
         departmentPassed = intent.getStringExtra("departmentName")
         savedNoteName = "$departmentPassed note"
-        depmntNoteTitleBox.text = departmentPassed
+
+        setSupportActionBar(deptNotesToolbar as Toolbar)
+        toolbar_text.text = departmentPassed
+
         getData()
 
         departmentsNotesSaveButton.setOnClickListener {

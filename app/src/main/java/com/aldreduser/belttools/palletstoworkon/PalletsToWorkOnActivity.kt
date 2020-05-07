@@ -3,8 +3,11 @@ package com.aldreduser.belttools.palletstoworkon
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import com.aldreduser.belttools.R
 import com.aldreduser.belttools.extra.displayToastMessage
+import kotlinx.android.synthetic.main.action_bar.*
+import kotlinx.android.synthetic.main.activity_more_options_menu.*
 import kotlinx.android.synthetic.main.activity_pallets_to_work_on.*
 
 class PalletsToWorkOnActivity : AppCompatActivity() {
@@ -13,6 +16,9 @@ class PalletsToWorkOnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pallets_to_work_on)
+
+        setSupportActionBar(moreOptionsToolbar as Toolbar)
+        toolbar_text.text = "Pallets"
 
         getData()
 
