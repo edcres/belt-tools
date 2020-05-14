@@ -19,6 +19,9 @@ import kotlin.text.StringBuilder
 
 // make sure no company private information is made public by the software developer's actions
 // this app will have calculating tools for work. Plus info guides
+
+//todo: bug: In specialty order, when an order is overwritten, it shows up again with a +1 order count
+
 /**
  * TODO:
  *
