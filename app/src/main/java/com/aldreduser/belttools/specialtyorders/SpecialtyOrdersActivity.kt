@@ -28,7 +28,6 @@ import kotlin.text.StringBuilder
         //orders are displayed again each time they are saved
 //TODO: BUG: the numbers displayed in past orders are tied to the orders when they are saved. Should be 1 to last with no gaps.
 
-// todo: all orders should just be open by default, no need to press the button
 // todo: have a default store code in the begining of the order # (ie. h6872-) so the user doesn't have to type the whole thing
 // todo: probably save order info and order note into a text file and not a shared preference
 // todo: its better to display past orders in a 2 or 3 column recyclerview. Add delete features next to where it's displayed
@@ -60,7 +59,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             displayOrder()
         }
 
-
         //i think this is supposed to be the save orders button
         specialtyOrdersSaveButton.setOnClickListener {
             val orderNum = orderNumText.text.toString()
@@ -78,14 +76,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             } else {saveOrder()}
         }
 
-
-        allOrdersButton.setOnClickListener {
-            if(otherOrdersText.visibility == View.INVISIBLE){
-                otherOrdersText.visibility = View.VISIBLE
-            } else {
-                otherOrdersText.visibility = View.INVISIBLE
-            }
-        }
         //delete one order
         deleteOrderButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -189,7 +179,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
         //gets and displays all the order numbers with the notes
         for(num in 1..numOfOrders){
-
             val pastOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
             val orderNumber = pastOrderNumSP.getString("$num $orderNumSortedSPKey", "0") //returns (ie. h6872-25298)
 
