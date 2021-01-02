@@ -17,7 +17,7 @@ class PalletsToWorkOnActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pallets_to_work_on)
 
-        setSupportActionBar(moreOptionsToolbar as Toolbar)
+        setSupportActionBar(palletsToolbar as Toolbar)
         toolbar_text.text = "Pallets"
 
         getData()

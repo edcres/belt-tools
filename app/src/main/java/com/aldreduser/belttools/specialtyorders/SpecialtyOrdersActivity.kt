@@ -23,8 +23,13 @@ import kotlin.text.StringBuilder
  * -Order numbers and notes are added to a hashMap in order to be displayed with a stringBuilder
  * -Orders are loaded up, saved and deleted directly from sharedPreferences
  */
-// todo: Scrollview for past orders doesn't seem to be working
 
+//TODO: BUG: older saved orders are displaying more than once
+        //orders are displayed again each time they are saved
+//TODO: BUG: the numbers displayed in past orders are tied to the orders when they are saved. Should be 1 to last with no gaps.
+
+// todo: all orders should just be open by default, no need to press the button
+// todo: have a default store code in the begining of the order # (ie. h6872-) so the user doesn't have to type the whole thing
 // todo: probably save order info and order note into a text file and not a shared preference
 // todo: its better to display past orders in a 2 or 3 column recyclerview. Add delete features next to where it's displayed
 // todo: show order numbers and notes available IN ORDER OF DATE ADDED
@@ -54,6 +59,9 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         lookUpOrderButton.setOnClickListener {
             displayOrder()
         }
+
+
+        //i think this is supposed to be the save orders button
         specialtyOrdersSaveButton.setOnClickListener {
             val orderNum = orderNumText.text.toString()
             val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
@@ -69,6 +77,8 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
                 builder.show()
             } else {saveOrder()}
         }
+
+
         allOrdersButton.setOnClickListener {
             if(otherOrdersText.visibility == View.INVISIBLE){
                 otherOrdersText.visibility = View.VISIBLE
@@ -76,6 +86,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
                 otherOrdersText.visibility = View.INVISIBLE
             }
         }
+        //delete one order
         deleteOrderButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Delete order?")
@@ -85,6 +96,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
             builder.show()
         }
+        //delete all orders
         deleteOrdersButton.setOnClickListener {
             //deletes all data from shared preferences in this activity
             //todo: get rid of this button eventually, when you can delete specific orders from the text box
@@ -168,11 +180,10 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     }
 
     private fun loadPastData(){
-        //to replace loadPastOrders()
         //call when activity starts, and when order is saved and deleted
         pastOrdersStrBuilder.clear()
 
-        //gets from memory the number of past orders and assign it to numOfOrders
+        //gets from memory the number of past orders and assigns it to numOfOrders
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         numOfOrders = numOfOrdersSP.getInt(numOfOrdersSPKey, 0)
 

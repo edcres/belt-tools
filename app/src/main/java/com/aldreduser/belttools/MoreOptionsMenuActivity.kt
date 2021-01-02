@@ -49,13 +49,6 @@ class MoreOptionsMenuActivity : AppCompatActivity() {
         }
 
 
-
-
-
-
-
-
-
         // make drop down list (spinner)
         // warning. change a name in the array and saved data is lost
         val options = arrayOf("Choose Department", "Pro Desk", "Flooring", "Customer Service", "Appliances", "Millwork")
