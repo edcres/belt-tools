@@ -43,7 +43,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private val orderAndNoteSPKey = "order#AndNote"
 
     private var numOfOrders:Int = 0     //will be used to save and call order numbers from memory
-    private var orderAndNoteMap = HashMap<String, String>()
+    private var orderAndNoteMap = LinkedHashMap<String, String>()
     private var pastOrdersStrBuilder = StringBuilder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +78,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
         //delete one order
         deleteOrderButton.setOnClickListener {
+            //ask user if they are sure?
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Delete order?")
             builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
@@ -108,14 +109,14 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         saveOrderNumber(orderNumber)
         saveHashMapValue(orderNumber)
 
-        // info
+        // save info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderInfoSP.edit()) {
             putString("$orderNumber $orderInfoSPKey", specialtyOrdersInfo.text.toString())
             commit()
             callToast("Saved")
         }
-        // note
+        // save note
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderNoteSP.edit()) {
             putString("$orderNumber $noteSPKey", orderNoteText.text.toString())
@@ -153,15 +154,15 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderNoteSP.edit().remove("$orderNumber $noteSPKey").commit()
 
-        //numOfOrders - 1 and save. Should have already been loaded when activity starts
-        numOfOrders - 1
+        //numOfOrders-- and save. Should have already been loaded when activity starts
+        numOfOrders--
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(numOfOrdersSP.edit()) {
             putInt(numOfOrdersSPKey, numOfOrders)
             commit()
         }
 
-        //delete orderAndNoteMap[order#]
+        //remove orderAndNoteMap[order#]
         val orderAndNoteMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderAndNoteMapSP.edit().remove("$orderNumber $orderAndNoteSPKey").commit()
         if (orderAndNoteMap.containsKey(orderNumber)){ orderAndNoteMap.remove(orderNumber) }
@@ -177,22 +178,36 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         numOfOrders = numOfOrdersSP.getInt(numOfOrdersSPKey, 0)
 
+        //use mutable set to make sure past orders do not repeat
+        var orderNumsMutableSet = mutableSetOf<String>()
+
         //gets and displays all the order numbers with the notes
         for(num in 1..numOfOrders){
+
             val pastOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
             val orderNumber = pastOrderNumSP.getString("$num $orderNumSortedSPKey", "0") //returns (ie. h6872-25298)
 
-            //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
-            val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-            val orderNote = pastNoteSP.getString("$orderNumber $noteSPKey", "Order was deleted.")
+            //if mutable set does NOT contain order#, add order#, and append to past orders
+            // todo: this is a quick fix, might not be necessary if underlying problems are fixed
+            if (!orderNumsMutableSet.contains(orderNumber)){
+                orderNumsMutableSet.add(orderNumber)
 
-            val pastOrderAndNote = "$num \t\t $orderNumber \t---\t $orderNote"
-            if(orderNote != "Order was deleted."){pastOrdersStrBuilder.append("$pastOrderAndNote\n")}
+                //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
+                val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+                val orderNote = pastNoteSP.getString("$orderNumber $noteSPKey", "Order was deleted.")
+
+                val pastOrderAndNote = "$num $numOfOrders \t\t $orderNumber \t---\t $orderNote"
+
+                if(orderNote != "Order was deleted.") { pastOrdersStrBuilder.append("$pastOrderAndNote\n") }
+            }
         }
         otherOrdersText.text = pastOrdersStrBuilder.toString()
     }
+
+    //called from saveOrder()
     private fun saveOrderNumber(orderNum: String) {
         //called when order is saved
+        //todo: only do this if its not the same order as one of the ones before
         numOfOrders++
 
         //save 'numOfOrders'
@@ -215,6 +230,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             commit()
         }
     }
+    //called from saveOrder()
     private fun saveHashMapValue(orderNum: String) {
         //save order and note with "$orderNumber $orderAndNoteSPKey" as the key
         //will be called when user saves order
