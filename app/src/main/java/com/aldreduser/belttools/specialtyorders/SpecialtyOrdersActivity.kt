@@ -78,8 +78,9 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         //delete one order
         deleteOrderButton.setOnClickListener {
             //ask user if they are sure?
+            val orderNum = orderNumText.text.toString()
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Delete order?")
+            builder.setTitle("Delete order $orderNum?")
             builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
                 deleteOrder()
             }
