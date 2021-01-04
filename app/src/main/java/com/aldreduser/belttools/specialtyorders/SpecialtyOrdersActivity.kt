@@ -24,9 +24,8 @@ import kotlin.text.StringBuilder
  * -Orders are loaded up, saved and deleted directly from sharedPreferences
  */
 
-//TODO: BUG: older saved orders are displaying more than once
-        //orders are displayed again each time they are saved
 //TODO: BUG: the numbers displayed in past orders are tied to the orders when they are saved. Should be 1 to last with no gaps.
+// fix this by checking if the new order is overwritten. If it is don't give it another ordernumber or raise the order count
 
 // todo: have a default store code in the begining of the order # (ie. h6872-) so the user doesn't have to type the whole thing
 // todo: probably save order info and order note into a text file and not a shared preference
@@ -38,13 +37,12 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     private val orderNumSortedSPKey = "order#Sorted" //used to iterate through orders when loading orders and notes //this SPreference won't be removed
     private val orderNumSPKey = "order#"
     private val orderInfoSPKey = "info"
-    private val noteSPKey = "note"
+    private val noteSPKey = "note"                      //with the order#, I can find the note
     private val numOfOrdersSPKey = "numOfOrders"
-    private val orderAndNoteSPKey = "order#AndNote"
 
     private var numOfOrders:Int = 0     //will be used to save and call order numbers from memory
     private var orderAndNoteMap = LinkedHashMap<String, String>()
-    private var pastOrdersStrBuilder = StringBuilder()
+    private var pastOrdersStrBuilder = StringBuilder()      //used to display past orders in a multi-text box
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +57,9 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             displayOrder()
         }
 
-        //i think this is supposed to be the save orders button
+        //save order button
         specialtyOrdersSaveButton.setOnClickListener {
+            var isOverwritten = false
             val orderNum = orderNumText.text.toString()
             val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
             //val orderNumb = orderNumbSP.getString("$orderNum $orderNumSPKey", orderNum)
@@ -69,11 +68,11 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Overwrite order?")
                 builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
-                    saveOrder()
+                    saveOrder(true)
                 }
                 builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
                 builder.show()
-            } else {saveOrder()}
+            } else {saveOrder(false)}
         }
 
         //delete one order
@@ -102,21 +101,20 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveOrder(){
+    private fun saveOrder(isOverwritten: Boolean){
         // to replace saveOrderInfo
         val orderNumber = orderNumText.text.toString()
 
-        saveOrderNumber(orderNumber)
-        saveHashMapValue(orderNumber)
+        saveOrderNumber(orderNumber, isOverwritten)
 
-        // save info
+        //save info
         val orderInfoSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderInfoSP.edit()) {
             putString("$orderNumber $orderInfoSPKey", specialtyOrdersInfo.text.toString())
             commit()
             callToast("Saved")
         }
-        // save note
+        //save note
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderNoteSP.edit()) {
             putString("$orderNumber $noteSPKey", orderNoteText.text.toString())
@@ -154,18 +152,13 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val orderNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         orderNoteSP.edit().remove("$orderNumber $noteSPKey").commit()
 
-        //numOfOrders-- and save. Should have already been loaded when activity starts
+        //numOfOrders-- and save
         numOfOrders--
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(numOfOrdersSP.edit()) {
             putInt(numOfOrdersSPKey, numOfOrders)
             commit()
         }
-
-        //remove orderAndNoteMap[order#]
-        val orderAndNoteMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        orderAndNoteMapSP.edit().remove("$orderNumber $orderAndNoteSPKey").commit()
-        if (orderAndNoteMap.containsKey(orderNumber)){ orderAndNoteMap.remove(orderNumber) }
 
         loadPastData()
     }
@@ -179,6 +172,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         numOfOrders = numOfOrdersSP.getInt(numOfOrdersSPKey, 0)
 
         //use mutable set to make sure past orders do not repeat
+        //todo: might replace this with orderAndNoteMap  (populate the hashmap here and make it into its own function)
         var orderNumsMutableSet = mutableSetOf<String>()
 
         //gets and displays all the order numbers with the notes
@@ -205,39 +199,31 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
     }
 
     //called from saveOrder()
-    private fun saveOrderNumber(orderNum: String) {
-        //called when order is saved
-        //todo: only do this if its not the same order as one of the ones before
-        numOfOrders++
+    private fun saveOrderNumber(orderNum: String, isOverwritten: Boolean) {
+        //increase numOfOrders if order saved is new, and not overwritten
+        if(!isOverwritten) {
+            numOfOrders++
 
-        //save 'numOfOrders'
-        val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(numOfOrdersSP.edit()) {
-            putInt(numOfOrdersSPKey, numOfOrders)
-            commit()
+            //save 'numOfOrders'
+            val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            with(numOfOrdersSP.edit()) {
+                putInt(numOfOrdersSPKey, numOfOrders)
+                commit()
+            }
+
+            //save 'orderNum' under numOfOrders (so i can iterate through them when displaying them)
+            val sortedOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
+            with(sortedOrderNumSP.edit()) {
+                putString("$numOfOrders $orderNumSortedSPKey", orderNum)
+                commit()
+            }
         }
-        //save 'orderNum' under numOfOrders (so i can iterate through them when displaying them)
-        //this will always be stored in the user's memory (cannot be deleted), maybe fix it
-        val sortedOrderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(sortedOrderNumSP.edit()) {
-            putString("$numOfOrders $orderNumSortedSPKey", orderNum)
-            commit()
-        }
-        //save 'orderNum' under order#
+
+        //save 'orderNum' under order# //why tho
+        //using this to ask user if they want to overwrite older order
         val orderNumSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(orderNumSP.edit()) {
             putString("$orderNum $orderNumSPKey", orderNum)
-            commit()
-        }
-    }
-    //called from saveOrder()
-    private fun saveHashMapValue(orderNum: String) {
-        //save order and note with "$orderNumber $orderAndNoteSPKey" as the key
-        //will be called when user saves order
-
-        val saveHashMapSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(saveHashMapSP.edit()) {
-            putString("$orderNum $orderAndNoteSPKey", orderAndNoteMap[orderNum])
             commit()
         }
     }
