@@ -24,8 +24,12 @@ import kotlin.text.StringBuilder
  * -Orders are loaded up, saved and deleted directly from sharedPreferences
  */
 
-//TODO: BUG: the numbers displayed in past orders are tied to the orders when they are saved. Should be 1 to last with no gaps.
-// fix this by checking if the new order is overwritten. If it is don't give it another ordernumber or raise the order count
+/*
+ *TODO: BUG: when deleting one of the orders that is not the last order displayed, the last order displayed disappears but is not deleted
+ * the same order can be deleted more than once and the count decreases each time (not good)
+ * when loading data, if one loop is added to the loops, the last order doesn't immediately disappear,
+ * but it does once another one is deleted (i think)
+*/
 
 // todo: have a default store code in the begining of the order # (ie. h6872-) so the user doesn't have to type the whole thing
 // todo: probably save order info and order note into a text file and not a shared preference
@@ -77,15 +81,18 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
 
         //delete one order
         deleteOrderButton.setOnClickListener {
-            //ask user if they are sure?
             val orderNum = orderNumText.text.toString()
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Delete order $orderNum?")
-            builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
-                deleteOrder()
-            }
-            builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
-            builder.show()
+            //if the order inputted exists
+            if (orderAndNoteMap.contains(orderNum)) {
+                //ask user if they are sure?
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Delete order $orderNum?")
+                builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
+                    deleteOrder()
+                }
+                builder.setNegativeButton("No") { _: DialogInterface?, _: Int -> }
+                builder.show()
+            } else { callToast("Order doesn't exist.") }
         }
         //delete all orders
         deleteOrdersButton.setOnClickListener {
@@ -160,7 +167,6 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             putInt(numOfOrdersSPKey, numOfOrders)
             commit()
         }
-
         loadPastData()
     }
 
@@ -172,10 +178,7 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
         val numOfOrdersSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
         numOfOrders = numOfOrdersSP.getInt(numOfOrdersSPKey, 0)
 
-        //use mutable set to make sure past orders do not repeat
-        //todo: might replace this with orderAndNoteMap  (populate the hashmap here and make it into its own function)
-        var orderNumsMutableSet = mutableSetOf<String>()
-
+        orderAndNoteMap.clear()
         //gets and displays all the order numbers with the notes
         for(num in 1..numOfOrders){
 
@@ -183,13 +186,14 @@ class SpecialtyOrdersActivity : AppCompatActivity() {
             val orderNumber = pastOrderNumSP.getString("$num $orderNumSortedSPKey", "0") //returns (ie. h6872-25298)
 
             //if mutable set does NOT contain order#, add order#, and append to past orders
-            // todo: this is a quick fix, might not be necessary if underlying problems are fixed
-            if (!orderNumsMutableSet.contains(orderNumber)){
-                orderNumsMutableSet.add(orderNumber)
-
+            //this is a quick fix, might not be necessary if underlying problems are fixed
+            if (!orderAndNoteMap.contains(orderNumber)){
                 //gets the notes and adds them to the 'pastOrdersStrBuilder' with the order numbers
                 val pastNoteSP = this.getPreferences(Context.MODE_PRIVATE) ?: return
                 val orderNote = pastNoteSP.getString("$orderNumber $noteSPKey", "Order was deleted.")
+
+                //populate the orderAndNoteMap
+                orderAndNoteMap[orderNumber] = orderNote       //might be wrong the syntax for this, its supposed to be a new key
 
                 val pastOrderAndNote = "$num $numOfOrders \t\t $orderNumber \t---\t $orderNote"
 
