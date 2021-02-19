@@ -1,2 +1,2 @@
 # BeltToolsApp
-Android tools app for work. 
+Android tools app for retail home improvement job. 
