@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainThemeColor"
+        tools:context=".HomeScreenActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/moreOptionsButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="moreOptionsButtonClicked"
+                        android:text="More..." />
+
+                <Button
+                        android:id="@+id/resetAllButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="resetAllButtonClicked"
+                        android:text="Reset All" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/titleSqrFootIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Get Sqr Ft/In"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/sqrtBox1"
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="width"
+                            android:inputType="number|numberDecimal" />
+
+                    <EditText
+                            android:id="@+id/sqrtBox2"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="length"
+                            android:inputType="number|numberDecimal" />
+
+                </LinearLayout>
+
+                <Button
+                        android:id="@+id/sqrPerRoomButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sqrPerRoomButton_text" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Number of Boxes"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <EditText
+                                android:id="@+id/homeSqrFt"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:hint="total sqr ft"
+                                android:inputType="number|numberDecimal" />
+
+                        <EditText
+                                android:id="@+id/boxSqrFt"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:hint="box sqr ft"
+                                android:inputType="number|numberDecimal" />
+                    </LinearLayout>
+
+                    <Button
+                            android:id="@+id/tileBoxResultsButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/tileBoxResultsButton_text" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/titleSqrFootToSqrIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="14sp"
+                        android:text="Sqr Ft   &lt;--->   Sqr In"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/sqrFootBox"
+                            android:layout_width="8dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:baselineAligned="false"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="sqr ft"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/sqrFootToSqrInButton"
+                            android:layout_width="7dp"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:text="&lt;-&gt;" />
+
+                    <EditText
+                            android:id="@+id/sqrInBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="sqr in"
+                            android:inputType="number|numberDecimal" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/titleCutBlindWidth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cut Blind Width"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/windowWidthBox"
+                            android:layout_width="106dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="opening"
+                            android:inputType="number|numberDecimal" />
+
+                    <EditText
+                            android:id="@+id/blindWidthBox"
+                            android:layout_width="99dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="blind"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/blindWidthEqualsButton"
+                            android:layout_width="63dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="="
+                            android:textSize="14sp" />
+
+                    <TextView
+                            android:id="@+id/blindWidthResult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:text="0"
+                            android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/titleDecimaltoFraction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Decimal to Fraction"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/decimalBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="decimal"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/decimalToFractionButton"
+                            android:layout_width="108dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="&lt;-&gt;" />
+
+                    <EditText
+                            android:id="@+id/fractionBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:digits="0123456789/."
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="fraction"
+                            android:inputType="date" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/titleLinealFtToSqrYard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lineal Ft to Sqr Yard"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/linealFtBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="lineal feet"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/linealFtToSqrYardButton"
+                            android:layout_width="111dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="&lt;-&gt;" />
+
+                    <EditText
+                            android:id="@+id/sqrYardBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="sqr yard"
+                            android:inputType="number|numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sqr Ft Price"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/boxPriceBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="box price"
+                            android:inputType="number|numberDecimal" />
+
+                    <EditText
+                            android:id="@+id/boxSqrFtBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="box sqr ft"
+                            android:inputType="number|numberDecimal" />
+
+                    <Button
+                            android:id="@+id/sqrFtPriceButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:text="=" />
+
+                    <TextView
+                            android:id="@+id/sqrFtPriceBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+            <TextView
+                    android:id="@+id/textView2868"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="N Vertical Louvers"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/verticalBlindWidthBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="blind width"
+                        android:inputType="number|numberDecimal" />
+
+                <Button
+                        android:id="@+id/numOfLouversEqualsButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="=" />
+
+                <TextView
+                        android:id="@+id/numberOfLouversBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                <TextView
+                        android:id="@+id/linealBacksplashViewBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lineal Backsplash"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                            <EditText
+                                    android:id="@+id/bakShWidthBox"
+                                    android:layout_width="113dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:gravity="center"
+                                    android:hint="width (12 in.)"
+                                    android:inputType="number|numberDecimal" />
+
+                            <EditText
+                                    android:id="@+id/linealSpaceBox"
+                                    android:layout_width="121dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:gravity="center"
+                                    android:hint="lineal space"
+                                    android:inputType="number|numberDecimal" />
+
+                            <ToggleButton
+                                    android:id="@+id/bakShToggleButton"
+                                    android:layout_width="15dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:lineSpacingExtra="10sp"
+                                    android:text="ToggleButton"
+                                    android:textAllCaps="false"
+                                    android:textOff="ft."
+                                    android:textOn="in."
+                                    android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                            <EditText
+                                    android:id="@+id/cutOutsBox"
+                                    android:layout_width="2dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:gravity="center"
+                                    android:hint="cut outs"
+                                    android:inputType="number|numberDecimal" />
+
+                            <Button
+                                    android:id="@+id/bakShEqualsButton"
+                                    android:layout_width="25dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="=" />
+
+                            <TextView
+                                    android:id="@+id/bakShResultsBox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:paddingLeft="10dp"
+                                    android:text="0"
+                                    android:textSize="18sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/whiteSmoke"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Locate Magnet"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/newMagnetLocationBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="new location"
+                            android:inputType="date" />
+
+                    <Button
+                            android:id="@+id/magnetLocationSaveButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:text="Save" />
+
+                    <TextView
+                            android:id="@+id/lastMagnetLocationBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="18sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

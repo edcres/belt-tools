@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Belt Tools</string>
+
+    <string name="sqrPerRoomButton_text">Sqr Per Room</string>
+    <string name="tileBoxResultsButton_text">Boxes</string>
+
+</resources>

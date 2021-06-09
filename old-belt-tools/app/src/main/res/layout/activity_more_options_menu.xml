@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F7AB89"
+        tools:context=".MoreOptionsMenuActivity">
+
+    <include
+            layout="@layout/action_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/moreOptionsToolbar"/>
+
+    <ScrollView
+            android:layout_width="361dp"
+            android:layout_height="775dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moreOptionsToolbar">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <Button
+                    android:id="@+id/extensionsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Department Extensions"
+                    android:textAllCaps="false" />
+
+            <Button
+                    android:id="@+id/specialtyOrdersButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Specialty Orders"
+                    android:textAllCaps="false" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/sKUsToWorkOnButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Skus to work on"
+                        android:textAllCaps="false" />
+
+                <Button
+                        android:id="@+id/palletsToWorkOnButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Pallets to work on"
+                        android:textAllCaps="false" />
+            </LinearLayout>
+
+            <Spinner
+                    android:id="@+id/chooseDepartmentSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginTop="15dp"
+
+                    android:layout_marginRight="90dp"
+                    android:background="#D2F3F3F3"
+                    android:gravity="center" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

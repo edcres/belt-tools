@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f9ff7710</color>
+    <color name="colorPrimaryDark">#9a4000</color>
+    <color name="colorAccent">#505050</color>
+
+    <color name="whiteSmoke">#2CF0F0F0</color>
+    <color name="mainThemeColor">#F7AB89</color>
+
+    <color name="toastBackground">#B01D1D1D</color>
+    <color name="toastText">#CACACA</color>
+</resources>
