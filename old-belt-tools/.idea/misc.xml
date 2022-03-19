@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.32" />
         <entry key="../../../../../Library/Android/sdk/platforms/android-29/data/res/layout/simple_list_item_1.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.158" />
         <entry key="app/src/main/res/layout/action_bar.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_dept_extensions.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.3098958333333333" />

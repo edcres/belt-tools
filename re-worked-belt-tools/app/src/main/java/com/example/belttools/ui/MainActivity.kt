@@ -7,9 +7,9 @@ import com.example.belttools.R
 
 /**
  *
- * - set up the viewModel
  * - make the functions in the StartFragment
  * - make the database
+ * - make the launcher icon
  * - make the navigation drawer
  * - Have the navigation drawer
  *      - Department Extensions
