@@ -7,7 +7,6 @@ import com.example.belttools.R
 
 /**
  *
- * - set up dataBinding
  * - set up the viewModel
  * - make the functions in the StartFragment
  * - make the database
