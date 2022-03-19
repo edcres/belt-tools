@@ -12,7 +12,7 @@ import com.aldreduser.belttools.R
 fun displayToastMessage(context: Context, message: String) {
 
     val toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
-    val view:View = toast.view
+    val view: View = toast.view
 
     val backgroundColor = ContextCompat.getColor(context, R.color.toastBackground)
     val textColor = ContextCompat.getColor(context, R.color.toastText)

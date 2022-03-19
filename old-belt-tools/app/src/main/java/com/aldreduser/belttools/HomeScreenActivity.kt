@@ -27,7 +27,7 @@ import kotlin.text.StringBuilder
  *
  * Features:
  *          pt1:
- * Add and look up different irders in 'specialty orders'
+ * Add and look up different orders in 'specialty orders'
  * make top navbar thing look good
  * Manifest File warning: "App is not indexable by google search; consider adding one activity with ACTION_VIEW intent filter."
  * Choose department spinner: options need to be in a textview in order to be edited (to look pretty) ->https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color
@@ -332,9 +332,9 @@ class HomeScreenActivity : AppCompatActivity() {
     }
 
     // enter presses = button
-    fun pressedEnter(itemToClicked: Button, keycode: Int, theEvent: KeyEvent): Boolean {
+    fun pressedEnter(itemToClick: Button, keycode: Int, theEvent: KeyEvent): Boolean {
         return if (keycode == KeyEvent.KEYCODE_ENTER && theEvent.action == KeyEvent.ACTION_UP){
-            itemToClicked.performClick()
+            itemToClick.performClick()
             true
         } else {
             false
