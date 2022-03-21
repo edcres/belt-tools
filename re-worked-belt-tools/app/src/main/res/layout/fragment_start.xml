@@ -55,7 +55,7 @@
                         tools:layout_editor_absoluteX="5dp">
 
                         <EditText
-                            android:id="@+id/sqrtBox1"
+                            android:id="@+id/sqrt_width_et"
                             android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -66,7 +66,7 @@
                             android:inputType="number|numberDecimal" />
 
                         <EditText
-                            android:id="@+id/sqrtBox2"
+                            android:id="@+id/sqrt_length_et"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -111,7 +111,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:id="@+id/linearLayout2"
+                        android:id="@+id/linear_layout_2"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:orientation="horizontal"
@@ -120,7 +120,7 @@
                         app:layout_constraintTop_toBottomOf="@id/num_boxes_txt">
 
                         <EditText
-                            android:id="@+id/homeSqrFt"
+                            android:id="@+id/home_sqr_ft"
                             android:layout_width="10dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -130,7 +130,7 @@
                             android:inputType="number|numberDecimal" />
 
                         <EditText
-                            android:id="@+id/boxSqrFt"
+                            android:id="@+id/box_sqr_ft"
                             android:layout_width="10dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -141,7 +141,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/tileBoxResultsButton"
+                        android:id="@+id/tile_box_results_btn"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:textColor="@color/black"
@@ -149,7 +149,7 @@
                         android:text="@string/tile_box_results_btn"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_2" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -162,7 +162,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/titleSqrFootToSqrIn"
+                        android:id="@+id/sqr_foot_to_sqr_in_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="14sp"
@@ -174,32 +174,32 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/sqrFootBox"
+                        android:id="@+id/sqr_foot_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:gravity="center"
                         android:hint="@string/sqr_ft"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintEnd_toStartOf="@+id/sqrFootToSqrInButton"
+                        app:layout_constraintEnd_toStartOf="@+id/sqr_foot_to_sqr_in_btn"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleSqrFootToSqrIn" />
+                        app:layout_constraintTop_toBottomOf="@+id/sqr_foot_to_sqr_in_txt" />
 
                     <Button
-                        android:id="@+id/sqrFootToSqrInButton"
+                        android:id="@+id/sqr_foot_to_sqr_in_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="@string/both_ways_arrow"
                         android:textColor="@color/black"
                         android:backgroundTint="@color/action_btn_color"
-                        app:layout_constraintBottom_toBottomOf="@+id/sqrInBox"
+                        app:layout_constraintBottom_toBottomOf="@+id/sqr_in_et"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleSqrFootToSqrIn" />
+                        app:layout_constraintTop_toBottomOf="@+id/sqr_foot_to_sqr_in_txt" />
 
                     <EditText
-                        android:id="@+id/sqrInBox"
+                        android:id="@+id/sqr_in_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -207,8 +207,8 @@
                         android:hint="@string/sqr_in"
                         android:inputType="number|numberDecimal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/sqrFootToSqrInButton"
-                        app:layout_constraintTop_toBottomOf="@+id/titleSqrFootToSqrIn" />
+                        app:layout_constraintStart_toEndOf="@+id/sqr_foot_to_sqr_in_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/sqr_foot_to_sqr_in_txt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,7 +221,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/titleCutBlindWidth"
+                        android:id="@+id/cut_blind_width_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cut_blind_width"
@@ -232,7 +232,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/windowWidthBox"
+                        android:id="@+id/window_width_et"
                         android:layout_width="106dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -241,10 +241,10 @@
                         android:hint="@string/opening"
                         android:inputType="number|numberDecimal"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleCutBlindWidth" />
+                        app:layout_constraintTop_toBottomOf="@+id/cut_blind_width_txt" />
 
                     <EditText
-                        android:id="@+id/blindWidthBox"
+                        android:id="@+id/blind_width_et"
                         android:layout_width="99dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -252,33 +252,33 @@
                         android:gravity="center"
                         android:hint="@string/blind"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintStart_toEndOf="@+id/windowWidthBox"
-                        app:layout_constraintTop_toBottomOf="@+id/titleCutBlindWidth" />
+                        app:layout_constraintStart_toEndOf="@+id/window_width_et"
+                        app:layout_constraintTop_toBottomOf="@+id/cut_blind_width_txt" />
 
                     <Button
-                        android:id="@+id/blindWidthEqualsButton"
+                        android:id="@+id/blind_width_equals_btn"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="@string/equals_symbol"
                         android:textSize="14sp"
                         android:textColor="@color/black"
                         android:backgroundTint="@color/action_btn_color"
-                        app:layout_constraintBottom_toBottomOf="@+id/blindWidthBox"
-                        app:layout_constraintStart_toEndOf="@+id/blindWidthBox"
-                        app:layout_constraintTop_toBottomOf="@+id/titleCutBlindWidth" />
+                        app:layout_constraintBottom_toBottomOf="@+id/blind_width_et"
+                        app:layout_constraintStart_toEndOf="@+id/blind_width_et"
+                        app:layout_constraintTop_toBottomOf="@+id/cut_blind_width_txt" />
 
                     <TextView
-                        android:id="@+id/blindWidthResult"
+                        android:id="@+id/blind_width_result_txt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:layout_marginStart="16dp"
                         android:text="@string/zero"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/blindWidthBox"
+                        app:layout_constraintBottom_toBottomOf="@+id/blind_width_et"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/blindWidthEqualsButton"
-                        app:layout_constraintTop_toBottomOf="@+id/titleCutBlindWidth" />
+                        app:layout_constraintStart_toEndOf="@+id/blind_width_equals_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/cut_blind_width_txt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -291,7 +291,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/titleDecimalToFraction"
+                        android:id="@+id/decimal_to_fraction_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/decimal_to_fraction"
@@ -302,38 +302,38 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/decimalBox"
+                        android:id="@+id/decimal_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="@string/decimal"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintEnd_toStartOf="@+id/decimalToFractionButton"
+                        app:layout_constraintEnd_toStartOf="@+id/decimal_to_fraction_btn"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleDecimalToFraction" />
+                        app:layout_constraintTop_toBottomOf="@+id/decimal_to_fraction_txt" />
 
                     <Button
-                        android:id="@+id/decimalToFractionButton"
+                        android:id="@+id/decimal_to_fraction_btn"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="@string/both_ways_arrow"
                         android:textColor="@color/black"
                         android:backgroundTint="@color/action_btn_color"
-                        app:layout_constraintBottom_toBottomOf="@+id/decimalBox"
+                        app:layout_constraintBottom_toBottomOf="@+id/decimal_et"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleDecimalToFraction" />
+                        app:layout_constraintTop_toBottomOf="@+id/decimal_to_fraction_txt" />
 
                     <EditText
-                        android:id="@+id/fractionBox"
+                        android:id="@+id/fraction_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="@string/fraction"
                         android:inputType="date"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/decimalToFractionButton"
-                        app:layout_constraintTop_toBottomOf="@+id/titleDecimalToFraction" />
+                        app:layout_constraintStart_toEndOf="@+id/decimal_to_fraction_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/decimal_to_fraction_txt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -346,7 +346,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/titleLinealFtToSqrYard"
+                        android:id="@+id/lineal_ft_to_sqr_yd_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/lineal_ft_to_sqr_yard"
@@ -357,18 +357,18 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/linealFtBox"
+                        android:id="@+id/lineal_ft_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="@string/lineal_feet"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintEnd_toStartOf="@+id/linealFtToSqrYardButton"
+                        app:layout_constraintEnd_toStartOf="@+id/lineal_ft_to_sqr_yard_btn"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleLinealFtToSqrYard" />
+                        app:layout_constraintTop_toBottomOf="@+id/lineal_ft_to_sqr_yd_txt" />
 
                     <Button
-                        android:id="@+id/linealFtToSqrYardButton"
+                        android:id="@+id/lineal_ft_to_sqr_yard_btn"
                         android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -377,18 +377,18 @@
                         android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/titleLinealFtToSqrYard" />
+                        app:layout_constraintTop_toBottomOf="@+id/lineal_ft_to_sqr_yd_txt" />
 
                     <EditText
-                        android:id="@+id/sqrYardBox"
+                        android:id="@+id/sqr_yard_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="@string/sqr_yard"
                         android:inputType="number|numberDecimal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/linealFtToSqrYardButton"
-                        app:layout_constraintTop_toBottomOf="@+id/titleLinealFtToSqrYard" />
+                        app:layout_constraintStart_toEndOf="@+id/lineal_ft_to_sqr_yard_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/lineal_ft_to_sqr_yd_txt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -402,7 +402,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/sqr_ft_price_title_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sqr_ft_price"
@@ -413,7 +413,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/boxPriceBox"
+                        android:id="@+id/box_price_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -422,43 +422,43 @@
                         android:hint="@string/box_price"
                         android:inputType="number|numberDecimal"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/sqr_ft_price_title_txt" />
 
                     <EditText
-                        android:id="@+id/boxSqrFtBox"
+                        android:id="@+id/box_sqr_ft_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="5"
                         android:gravity="center"
                         android:hint="@string/box_sqr_ft"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintStart_toEndOf="@+id/boxPriceBox"
-                        app:layout_constraintTop_toTopOf="@+id/boxPriceBox" />
+                        app:layout_constraintStart_toEndOf="@+id/box_price_et"
+                        app:layout_constraintTop_toTopOf="@+id/box_price_et" />
 
                     <Button
-                        android:id="@+id/sqrFtPriceButton"
+                        android:id="@+id/sqr_ft_price_btn"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:text="@string/equals_symbol"
                         android:textColor="@color/black"
                         android:backgroundTint="@color/action_btn_color"
-                        app:layout_constraintBottom_toBottomOf="@+id/boxPriceBox"
-                        app:layout_constraintStart_toEndOf="@+id/boxSqrFtBox"
-                        app:layout_constraintTop_toTopOf="@+id/boxPriceBox" />
+                        app:layout_constraintBottom_toBottomOf="@+id/box_price_et"
+                        app:layout_constraintStart_toEndOf="@+id/box_sqr_ft_et"
+                        app:layout_constraintTop_toTopOf="@+id/box_price_et" />
 
                     <TextView
-                        android:id="@+id/sqrFtPriceBox"
+                        android:id="@+id/sqr_ft_price_txt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:gravity="start"
                         android:text="@string/zero"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/boxPriceBox"
-                        app:layout_constraintEnd_toEndOf="@+id/textView5"
-                        app:layout_constraintStart_toEndOf="@+id/sqrFtPriceButton"
-                        app:layout_constraintTop_toTopOf="@+id/boxPriceBox" />
+                        app:layout_constraintBottom_toBottomOf="@+id/box_price_et"
+                        app:layout_constraintEnd_toEndOf="@+id/sqr_ft_price_title_txt"
+                        app:layout_constraintStart_toEndOf="@+id/sqr_ft_price_btn"
+                        app:layout_constraintTop_toTopOf="@+id/box_price_et" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -472,7 +472,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView2868"
+                        android:id="@+id/vertical_louver_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/n_vertical_louvers"
@@ -484,39 +484,39 @@
 
 
                     <EditText
-                        android:id="@+id/verticalBlindWidthBox"
+                        android:id="@+id/v_blind_width_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="@string/blind_width"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintBottom_toBottomOf="@+id/numOfLouversEqualsButton"
-                        app:layout_constraintEnd_toStartOf="@+id/numOfLouversEqualsButton"
+                        app:layout_constraintBottom_toBottomOf="@+id/num_of_louvers_equals_btn"
+                        app:layout_constraintEnd_toStartOf="@+id/num_of_louvers_equals_btn"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/numOfLouversEqualsButton" />
+                        app:layout_constraintTop_toTopOf="@+id/num_of_louvers_equals_btn" />
 
                     <Button
-                        android:id="@+id/numOfLouversEqualsButton"
+                        android:id="@+id/num_of_louvers_equals_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/equals_symbol"
                         android:textColor="@color/black"
                         android:backgroundTint="@color/action_btn_color"
-                        app:layout_constraintEnd_toEndOf="@+id/textView2868"
+                        app:layout_constraintEnd_toEndOf="@+id/vertical_louver_txt"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2868" />
+                        app:layout_constraintTop_toBottomOf="@+id/vertical_louver_txt" />
 
                     <TextView
-                        android:id="@+id/numberOfLouversBox"
+                        android:id="@+id/num_of_louvers_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/zero"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/numOfLouversEqualsButton"
+                        app:layout_constraintBottom_toBottomOf="@+id/num_of_louvers_equals_btn"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/numOfLouversEqualsButton"
-                        app:layout_constraintTop_toTopOf="@+id/numOfLouversEqualsButton" />
+                        app:layout_constraintStart_toEndOf="@+id/num_of_louvers_equals_btn"
+                        app:layout_constraintTop_toTopOf="@+id/num_of_louvers_equals_btn" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -530,7 +530,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/linealBacksplashViewBox"
+                        android:id="@+id/lineal_bk_sh_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/lineal_backsplash"
@@ -541,7 +541,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/bakShWidthBox"
+                        android:id="@+id/bak_sh_width_et"
                         android:layout_width="113dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -550,10 +550,10 @@
                         android:hint="@string/width_12_in"
                         android:inputType="number|numberDecimal"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linealBacksplashViewBox" />
+                        app:layout_constraintTop_toBottomOf="@+id/lineal_bk_sh_txt" />
 
                     <EditText
-                        android:id="@+id/linealSpaceBox"
+                        android:id="@+id/lineal_space_et"
                         android:layout_width="121dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -561,11 +561,11 @@
                         android:gravity="center"
                         android:hint="@string/lineal_space"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintStart_toEndOf="@+id/bakShWidthBox"
-                        app:layout_constraintTop_toBottomOf="@+id/linealBacksplashViewBox" />
+                        app:layout_constraintStart_toEndOf="@+id/bak_sh_width_et"
+                        app:layout_constraintTop_toBottomOf="@+id/lineal_bk_sh_txt" />
 
                     <ToggleButton
-                        android:id="@+id/bakShToggleButton"
+                        android:id="@+id/bak_sh_toggle_btn"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -574,12 +574,12 @@
                         android:textOff="@string/ft."
                         android:textOn="@string/in."
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/linealSpaceBox"
-                        app:layout_constraintStart_toEndOf="@+id/linealSpaceBox"
-                        app:layout_constraintTop_toTopOf="@+id/linealSpaceBox" />
+                        app:layout_constraintBottom_toBottomOf="@+id/lineal_space_et"
+                        app:layout_constraintStart_toEndOf="@+id/lineal_space_et"
+                        app:layout_constraintTop_toTopOf="@+id/lineal_space_et" />
 
                     <EditText
-                        android:id="@+id/cutOutsBox"
+                        android:id="@+id/cut_outs_et"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -587,34 +587,34 @@
                         android:gravity="center"
                         android:hint="@string/cut_outs"
                         android:inputType="number|numberDecimal"
-                        app:layout_constraintEnd_toStartOf="@+id/bakShEqualsButton"
+                        app:layout_constraintEnd_toStartOf="@+id/bak_sh_equals_btn"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/bakShWidthBox" />
+                        app:layout_constraintTop_toBottomOf="@+id/bak_sh_width_et" />
 
                     <Button
-                        android:id="@+id/bakShEqualsButton"
+                        android:id="@+id/bak_sh_equals_btn"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/equals_symbol"
                         android:textColor="@color/black"
                         android:backgroundTint="@color/action_btn_color"
-                        app:layout_constraintBottom_toBottomOf="@+id/cutOutsBox"
+                        app:layout_constraintBottom_toBottomOf="@+id/cut_outs_et"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linealSpaceBox" />
+                        app:layout_constraintTop_toBottomOf="@+id/lineal_space_et" />
 
                     <TextView
-                        android:id="@+id/bakShResultsBox"
+                        android:id="@+id/bak_sh_results_txt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/zero"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/cutOutsBox"
+                        app:layout_constraintBottom_toBottomOf="@+id/cut_outs_et"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/bakShEqualsButton"
-                        app:layout_constraintTop_toTopOf="@+id/cutOutsBox" />
+                        app:layout_constraintStart_toEndOf="@+id/bak_sh_equals_btn"
+                        app:layout_constraintTop_toTopOf="@+id/cut_outs_et" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -628,7 +628,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/textView20"
+                        android:id="@+id/locate_magnet_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/locate_magnet"
@@ -639,20 +639,20 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/newMagnetLocationBox"
+                        android:id="@+id/new_magnet_location_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="@string/new_location"
                         android:inputType="date"
-                        app:layout_constraintBottom_toBottomOf="@+id/magnetLocationSaveButton"
-                        app:layout_constraintEnd_toStartOf="@+id/magnetLocationSaveButton"
+                        app:layout_constraintBottom_toBottomOf="@+id/magnet_location_save_btn"
+                        app:layout_constraintEnd_toStartOf="@+id/magnet_location_save_btn"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/magnetLocationSaveButton" />
+                        app:layout_constraintTop_toTopOf="@+id/magnet_location_save_btn" />
 
                     <Button
-                        android:id="@+id/magnetLocationSaveButton"
+                        android:id="@+id/magnet_location_save_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
@@ -661,20 +661,20 @@
                         android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                        app:layout_constraintTop_toBottomOf="@+id/locate_magnet_txt" />
 
                     <TextView
-                        android:id="@+id/lastMagnetLocationBox"
+                        android:id="@+id/last_magnet_location_txt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:gravity="start"
                         android:text="@string/zero"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/magnetLocationSaveButton"
+                        app:layout_constraintBottom_toBottomOf="@+id/magnet_location_save_btn"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/magnetLocationSaveButton"
-                        app:layout_constraintTop_toTopOf="@+id/magnetLocationSaveButton" />
+                        app:layout_constraintStart_toEndOf="@+id/magnet_location_save_btn"
+                        app:layout_constraintTop_toTopOf="@+id/magnet_location_save_btn" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
