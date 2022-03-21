@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.belttools.R
 import com.example.belttools.databinding.FragmentStartBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
@@ -27,6 +28,36 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
+        }
+        setUpClickListeners()
+    }
+
+    private fun setUpClickListeners() {
+        binding?.apply {
+            //1 get the square feet
+            sqrPerRoomBtn.setOnClickListener {
+
+            }
+        }
+    }
+
+    // HELPERS //
+    private fun resetAllClicked() {
+        // todo: make a btn to call this function
+        // todo: popup a dialog box (material) and ask: "Are you sure?"
+        binding?.apply {
+            sqrtWidthEt.text.clear(); sqrtLengthEt.text.clear(); sqrPerRoomBtn.text =
+            getString(R.string.sqr_per_room_btn)
+            homeSqrFt.text.clear(); boxSqrFt.text.clear(); tileBoxResultsBtn.text =
+            getString(R.string.tile_box_results_btn)
+            sqrFootEt.text.clear(); sqrInEt.text.clear()
+            windowWidthEt.text.clear(); blindWidthEt.text.clear(); blindWidthResultTxt.text = "0"
+            decimalEt.text.clear(); fractionEt.text.clear() // 5
+            linealFtEt.text.clear(); sqrYardEt.text.clear()
+            boxPriceEt.text.clear(); boxSqrFtEt.text.clear(); sqrFtPriceTxt.text = "0"
+            vBlindWidthEt.text.clear(); numOfLouversTxt.text = "0"
+            newMagnetLocationEt.text.clear(); linealSpaceEt.text.clear(); cutOutsEt.text.clear();
+            bakShResultsTxt.text = "0"
         }
     }
 }

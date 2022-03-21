@@ -301,16 +301,22 @@ class HomeScreenActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Are you sure?")
         builder.setPositiveButton("Yes") { _: DialogInterface?, _: Int ->
-            /*1*/    sqrtBox1.setText(""); sqrtBox2.setText(""); sqrPerRoomButton.text = getString(R.string.sqrPerRoomButton_text); roomSqrResult = 0; roomSqrStringBuilder.clear(); roomSqrResultArray.clear()
-            /*2*/    homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text = getString(R.string.tileBoxResultsButton_text);boxesResults = 0; resultsStringBuilder.clear(); boxesResultsArray.clear()
+            /*1*/    sqrtBox1.setText(""); sqrtBox2.setText(""); sqrPerRoomButton.text =
+            getString(R.string.sqrPerRoomButton_text); roomSqrResult =
+            0; roomSqrStringBuilder.clear(); roomSqrResultArray.clear()
+            /*2*/    homeSqrFt.setText(""); boxSqrFt.setText(""); tileBoxResultsButton.text =
+            getString(R.string.tileBoxResultsButton_text);boxesResults = 0;
+            resultsStringBuilder.clear(); boxesResultsArray.clear()
             /*3*/    sqrFootBox.setText(""); sqrInBox.setText("")
-            /*4*/    windowWidthBox.setText(""); blindWidthBox.setText(""); blindWidthResult.text = "0"
+            /*4*/    windowWidthBox.setText(""); blindWidthBox.setText("");
+            blindWidthResult.text = "0"
             /*5*/    decimalBox.setText(""); fractionBox.setText("")
             /*6*/    linealFtBox.setText(""); sqrYardBox.setText("")
             /*7*/    boxPriceBox.setText(""); boxSqrFtBox.setText(""); sqrFtPriceBox.text = "0"
             /*8*/    verticalBlindWidthBox.setText(""); numberOfLouversBox.text = "0"
             /*9*/    newMagnetLocationBox.setText("") //last location should not be erased from stored memory
-            /*10*/   bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText(""); bakShResultsBox.text = "0"
+            /*10*/   bakShWidthBox.setText(""); linealSpaceBox.setText(""); cutOutsBox.setText("");
+            bakShResultsBox.text = "0"
         }
         builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
         builder.show()
