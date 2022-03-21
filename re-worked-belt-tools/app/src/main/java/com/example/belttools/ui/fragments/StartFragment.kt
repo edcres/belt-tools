@@ -22,4 +22,11 @@ class StartFragment : Fragment() {
         binding = fragmentBinding
         return fragmentBinding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
+    }
 }

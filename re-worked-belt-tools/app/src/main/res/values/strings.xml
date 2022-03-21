@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Belt Tools</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="sqr_per_room_btn">Sqr Per Room</string>
+    <string name="tile_box_results_btn">Boxes</string>
+
+    <string name="get_sqr_ft_in">Get Sqr Ft/In</string>
+    <string name="width">width</string>
+    <string name="length">length</string>
+    <string name="number_of_boxes">Number of Boxes</string>
+    <string name="total_sqr_ft">sqr ft to fill</string>
+    <string name="box_sqr_ft">sqr ft per box</string>
 </resources>

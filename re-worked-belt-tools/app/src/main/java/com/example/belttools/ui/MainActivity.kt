@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
 /**
- *
+ * - change widget ids to df_sdf_sdf
+ * - put xml string in string.xml
  * - make the functions in the StartFragment
  * - make the database
- * - make the launcher icon
+ * - Set up material toolbar
  * - make the navigation drawer
  * - Have the navigation drawer
  *      - Department Extensions
@@ -23,6 +24,7 @@ import com.example.belttools.R
  *
  *  Have the animation in the beginning
  *
+ * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  */
 
 class MainActivity : AppCompatActivity() {
