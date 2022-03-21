@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
 /**
- * - change widget ids to df_sdf_sdf
- * - put xml string in string.xml
+ *
  * - make the functions in the StartFragment
  * - make the database
  * - Set up material toolbar
