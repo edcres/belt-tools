@@ -10,4 +10,6 @@
 
     <color name="background">#F7AB89</color>
     <color name="fading_background">#2CF0F0F0</color>
+    <color name="action_btn_color">#D1D1D1</color>
+
 </resources>

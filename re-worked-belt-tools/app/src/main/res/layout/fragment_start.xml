@@ -83,6 +83,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sqr_per_room_btn"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintEnd_toEndOf="@+id/sqr_foot_In_txt"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/sqr_ft_in_layout" />
@@ -143,6 +145,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         android:text="@string/tile_box_results_btn"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -189,6 +193,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="&lt;-&gt;"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintBottom_toBottomOf="@+id/sqrInBox"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -257,6 +263,8 @@
                         android:layout_height="wrap_content"
                         android:text="="
                         android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintBottom_toBottomOf="@+id/blindWidthBox"
                         app:layout_constraintStart_toEndOf="@+id/blindWidthBox"
                         app:layout_constraintTop_toBottomOf="@+id/titleCutBlindWidth" />
@@ -311,6 +319,8 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="&lt;-&gt;"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintBottom_toBottomOf="@+id/decimalBox"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -365,6 +375,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="&lt;-&gt;"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/titleLinealFtToSqrYard" />
@@ -431,6 +443,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:text="="
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintBottom_toBottomOf="@+id/boxPriceBox"
                         app:layout_constraintStart_toEndOf="@+id/boxSqrFtBox"
                         app:layout_constraintTop_toTopOf="@+id/boxPriceBox" />
@@ -488,6 +502,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="="
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintEnd_toEndOf="@+id/textView2868"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView2868" />
@@ -552,7 +568,7 @@
 
                     <ToggleButton
                         android:id="@+id/bakShToggleButton"
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:lineSpacingExtra="10sp"
@@ -584,6 +600,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="="
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintBottom_toBottomOf="@+id/cutOutsBox"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -642,6 +660,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
                         android:text="Save"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/action_btn_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView20" />
