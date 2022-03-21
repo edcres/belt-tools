@@ -10,4 +10,33 @@
     <string name="number_of_boxes">Number of Boxes</string>
     <string name="total_sqr_ft">sqr ft to fill</string>
     <string name="box_sqr_ft">sqr ft per box</string>
+    <string name="sqr_ft_to_sqr_in">Sqr Ft   &lt; --- >   Sqr In</string>
+    <string name="sqr_ft">sqr ft</string>
+    <string name="both_ways_arrow">&lt;-&gt;</string>
+    <string name="sqr_in">sqr in</string>
+    <string name="cut_blind_width">Cut Blind Width</string>
+    <string name="opening">opening</string>
+    <string name="blind">blind</string>
+    <string name="equals_symbol">=</string>
+    <string name="zero">0</string>
+    <string name="decimal_to_fraction">Decimal to Fraction</string>
+    <string name="decimal">decimal</string>
+    <string name="fraction">fraction</string>
+    <string name="lineal_ft_to_sqr_yard">Lineal Ft to Sqr Yard</string>
+    <string name="lineal_feet">lineal feet</string>
+    <string name="sqr_yard">sqr yard</string>
+    <string name="sqr_ft_price">Sqr Ft Price</string>
+    <string name="box_price">box price</string>
+    <string name="n_vertical_louvers">N Vertical Louvers</string>
+    <string name="blind_width">blind width</string>
+    <string name="lineal_backsplash">Lineal Backsplash</string>
+    <string name="width_12_in">width (12 in.)</string>
+    <string name="lineal_space">lineal space</string>
+    <string name="ft.">ft.</string>
+    <string name="in.">in.</string>
+    <string name="cut_outs">cut outs</string>
+    <string name="locate_magnet">Locate Magnet</string>
+    <string name="new_location">new location</string>
+    <string name="save">Save</string>
+
 </resources>
