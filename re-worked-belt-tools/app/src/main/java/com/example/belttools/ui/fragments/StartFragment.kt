@@ -42,25 +42,27 @@ class StartFragment : Fragment() {
             //1 get the square feet
             sqrPerRoomBtn.setOnClickListener {
                 if (sqrtWidthEt.text.isNotEmpty() && sqrtLengthEt.text.isNotEmpty()) {
-                    val width = sqrtWidthEt.text.toString().toDouble()
-                    val length = sqrtLengthEt.text.toString().toDouble()
-                    val result = width * length
-                    val buttonTxt = sqrPerRoomBtn.text.toString()
-                    if (buttonTxt != getString(R.string.sqr_per_room_btn)) {
-                        Log.d(fragmentTAG, buttonTxt)
-                        val squaresList = joinMaterialsList(
-                            addRoomSquaresOrBoxes(
-                                buttonTxt.split(PLUS_JOIN).toMutableList(),
-                                offExtraZeros(result)
-                            )
-                        )
-                        if (squaresList.isNullOrEmpty()) {
-                            displayToast(requireContext(), "Limit Reached")
-                        } else sqrPerRoomBtn.text = squaresList
-                    } else {
-                        sqrPerRoomBtn.text = offExtraZeros(result)
-                    }
+                    val squaresList = sharedViewModel.getSqrPerRoom(
+                        sqrtWidthEt.text.toString().toDouble(),
+                        sqrtLengthEt.text.toString().toDouble(),
+                        sqrPerRoomBtn.text.toString(),
+                        getString(R.string.sqr_per_room_btn)
+                    )
+                    if (squaresList.isNullOrEmpty()) {
+                        displayToast(requireContext(), "Limit Reached")
+                    } else sqrPerRoomBtn.text = squaresList
                 }
+            }
+            sqrPerRoomBtn.setOnLongClickListener {
+                if (sqrPerRoomBtn.text.toString() != getString(R.string.sqr_per_room_btn)) {
+                    homeSqrFt.setText(
+                        offExtraZeros(sumListOfString(sqrPerRoomBtn.text.split(PLUS_JOIN)))
+                    )
+                }
+                return@setOnLongClickListener true
+            }
+            sqrtWidthEt.setOnKeyListener {
+                    _, keyCode, keyEvent -> pressedEnter(sqrPerRoomBtn, keyCode, keyEvent)
             }
         }
     }

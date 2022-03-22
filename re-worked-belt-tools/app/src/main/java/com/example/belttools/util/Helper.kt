@@ -57,6 +57,14 @@ fun joinMaterialsList(materialsQty: List<String>?): String? {
 //    return materialsQty.joinToString(PLUS_JOIN)
 }
 
+fun sumListOfString(btnSquares: List<String>): Double {
+    var squaresSummed = 0.0
+    btnSquares.forEach {
+        squaresSummed += it.toDouble()
+    }
+    return squaresSummed
+}
+
 fun getInches(num: Double, getFeet: Boolean): Double {
     // If it's not getFeet it's getInches
     return if (getFeet) {
