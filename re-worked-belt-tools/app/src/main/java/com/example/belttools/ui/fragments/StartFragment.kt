@@ -1,10 +1,12 @@
 package com.example.belttools.ui.fragments
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.belttools.R
 import com.example.belttools.databinding.FragmentStartBinding
@@ -60,4 +62,13 @@ class StartFragment : Fragment() {
             bakShResultsTxt.text = "0"
         }
     }
+    private fun pressedEnter(itemToClick: Button, keycode: Int, theEvent: KeyEvent): Boolean {
+        return if (keycode == KeyEvent.KEYCODE_ENTER && theEvent.action == KeyEvent.ACTION_UP){
+            itemToClick.performClick()
+            true
+        } else {
+            false
+        }
+    }
+    // HELPERS //
 }

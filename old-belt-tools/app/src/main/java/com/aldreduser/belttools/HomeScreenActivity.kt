@@ -321,7 +321,7 @@ class HomeScreenActivity : AppCompatActivity() {
         builder.setNegativeButton("No") { _: DialogInterface?, _: Int ->}
         builder.show()
     }
-    private fun saveMagnetData(){
+    private fun saveMagnetData() {
         val magnetLocationSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         with(magnetLocationSharedPref.edit()) {
             putString("Location", newMagnetLocationBox.text.toString())
@@ -329,7 +329,7 @@ class HomeScreenActivity : AppCompatActivity() {
             displayToastMessage(this@HomeScreenActivity, "Saved")
         }
     }
-    private fun getMagnetData(){
+    private fun getMagnetData() {
         val magnetLocationSharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         lastMagnetLocationBox.text = magnetLocationSharedPref.getString("Location", "")
     }
@@ -357,6 +357,7 @@ class HomeScreenActivity : AppCompatActivity() {
         }
         return answer
     }
+
     private fun addAndDisplayRoomSqrsAndMaterials(theFeature: String, stringBuilder: StringBuilder, result: Double,
                                           arrayToSum: MutableList<Double>, resultsButton: Button) {
         // this will be called by 'sqr per room' and 'box per room'
