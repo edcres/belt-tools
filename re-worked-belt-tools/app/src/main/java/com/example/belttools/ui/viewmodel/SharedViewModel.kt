@@ -1,10 +1,10 @@
 package com.example.belttools.ui.viewmodel
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.belttools.util.MAGNET_LOCATION
 import com.example.belttools.util.MAGNET_LOCATION_TAG
+import com.example.belttools.util.displayToast
 
 class SharedViewModel: ViewModel() {
 

@@ -1,6 +1,7 @@
 package com.example.belttools.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +12,11 @@ import androidx.fragment.app.activityViewModels
 import com.example.belttools.R
 import com.example.belttools.databinding.FragmentStartBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
+import com.example.belttools.util.*
 
 class StartFragment : Fragment() {
 
+    private val fragmentTAG = "StartFrag_TAG"
     private var binding: FragmentStartBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -38,7 +41,26 @@ class StartFragment : Fragment() {
         binding?.apply {
             //1 get the square feet
             sqrPerRoomBtn.setOnClickListener {
-
+                if (sqrtWidthEt.text.isNotEmpty() && sqrtLengthEt.text.isNotEmpty()) {
+                    val width = sqrtWidthEt.text.toString().toDouble()
+                    val length = sqrtLengthEt.text.toString().toDouble()
+                    val result = width * length
+                    val buttonTxt = sqrPerRoomBtn.text.toString()
+                    if (buttonTxt != getString(R.string.sqr_per_room_btn)) {
+                        Log.d(fragmentTAG, buttonTxt)
+                        val squaresList = joinMaterialsList(
+                            addRoomSquaresOrBoxes(
+                                buttonTxt.split(PLUS_JOIN).toMutableList(),
+                                offExtraZeros(result)
+                            )
+                        )
+                        if (squaresList.isNullOrEmpty()) {
+                            displayToast(requireContext(), "Limit Reached")
+                        } else sqrPerRoomBtn.text = squaresList
+                    } else {
+                        sqrPerRoomBtn.text = offExtraZeros(result)
+                    }
+                }
             }
         }
     }
