@@ -24,7 +24,23 @@ class SharedViewModel: ViewModel() {
     fun getSqrPerRoom(width: Double, length: Double, btnTxt: String, btnDefault: String): String? {
         val result = width * length
         return if (btnTxt != btnDefault) {
-            return joinMaterialsList(
+            joinMaterialsList(
+                addRoomSquaresOrBoxes(
+                    btnTxt.split(PLUS_JOIN).toMutableList(),
+                    offExtraZeros(result)
+                )
+            )
+        } else {
+            offExtraZeros(result)
+        }
+    }
+
+    fun getNumberOfBoxes(
+        width: Double, length: Double, btnTxt: String, btnDefault: String
+    ): String? {
+        val result = width / length
+        return if (btnTxt != btnDefault) {
+            joinMaterialsList(
                 addRoomSquaresOrBoxes(
                     btnTxt.split(PLUS_JOIN).toMutableList(),
                     offExtraZeros(result)

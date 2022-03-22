@@ -39,7 +39,7 @@ class StartFragment : Fragment() {
 
     private fun setUpClickListeners() {
         binding?.apply {
-            //1 get the square feet
+            //1 Get the square feet
             sqrPerRoomBtn.setOnClickListener {
                 if (sqrtWidthEt.text.isNotEmpty() && sqrtLengthEt.text.isNotEmpty()) {
                     val squaresList = sharedViewModel.getSqrPerRoom(
@@ -61,9 +61,41 @@ class StartFragment : Fragment() {
                 }
                 return@setOnLongClickListener true
             }
-            sqrtWidthEt.setOnKeyListener {
-                    _, keyCode, keyEvent -> pressedEnter(sqrPerRoomBtn, keyCode, keyEvent)
+            sqrtWidthEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(sqrPerRoomBtn, keyCode, keyEvent)
             }
+            sqrtLengthEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(sqrPerRoomBtn, keyCode, keyEvent)
+            }
+
+            //2 Get number of boxes to buy
+            tileBoxResultsBtn.setOnClickListener {
+                if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty()) {
+                    val boxesList = sharedViewModel.getNumberOfBoxes(
+                        homeSqrFt.text.toString().toDouble(),
+                        boxSqrFt.text.toString().toDouble(),
+                        tileBoxResultsBtn.text.toString(),
+                        getString(R.string.tile_box_results_btn)
+                    )
+                    if (boxesList.isNullOrEmpty()) {
+                        displayToast(requireContext(), "Limit Reached")
+                    } else tileBoxResultsBtn.text = boxesList
+                }
+            }
+            tileBoxResultsBtn.setOnLongClickListener {
+                if (tileBoxResultsBtn.text.toString() != getString(R.string.tile_box_results_btn)) {
+                    tileBoxResultsBtn.text =
+                        offExtraZeros(sumListOfString(tileBoxResultsBtn.text.split(PLUS_JOIN)))
+                }
+                return@setOnLongClickListener true
+            }
+            homeSqrFt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(tileBoxResultsBtn, keyCode, keyEvent)
+            }
+            boxSqrFt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(tileBoxResultsBtn, keyCode, keyEvent)
+            }
+
         }
     }
 
