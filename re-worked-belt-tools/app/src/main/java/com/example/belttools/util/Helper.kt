@@ -15,12 +15,12 @@ fun displayToast(context: Context, msg: String) {
     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 }
 
-fun offExtraZeros(resultNum: Double): String {
+fun offExtraZeros(decimalSpaces: String, resultNum: Double): String {
     // Take out extra zeros after the decimal.
     return if (getLastTwoChars(resultNum.toString()) == ".0") {
         resultNum.toInt().toString()
     } else {
-        "%.2f".format(resultNum).toDouble().toString()
+        decimalSpaces.format(resultNum).toDouble().toString()
     }
 }
 

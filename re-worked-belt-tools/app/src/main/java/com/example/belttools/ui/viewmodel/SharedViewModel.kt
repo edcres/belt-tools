@@ -3,6 +3,7 @@ package com.example.belttools.ui.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.belttools.util.*
+import kotlin.math.sqrt
 
 class SharedViewModel: ViewModel() {
 
@@ -27,11 +28,11 @@ class SharedViewModel: ViewModel() {
             joinMaterialsList(
                 addRoomSquaresOrBoxes(
                     btnTxt.split(PLUS_JOIN).toMutableList(),
-                    offExtraZeros(result)
+                    offExtraZeros("%.2f", result)
                 )
             )
         } else {
-            offExtraZeros(result)
+            offExtraZeros("%.2f", result)
         }
     }
 
@@ -43,11 +44,26 @@ class SharedViewModel: ViewModel() {
             joinMaterialsList(
                 addRoomSquaresOrBoxes(
                     btnTxt.split(PLUS_JOIN).toMutableList(),
-                    offExtraZeros(result)
+                    offExtraZeros("%.4f", result)
                 )
             )
         } else {
-            offExtraZeros(result)
+            offExtraZeros("%.4f", result)
+        }
+    }
+
+    fun getSqrFtOrSqrIn(
+        sqrFt: String,
+        sqrIn: String
+    ): String {
+        return if (sqrFt.isNotEmpty()) {
+            val inches = sqrt(sqrFt.toDouble()) * 12
+            offExtraZeros("%.4f", inches * inches)
+        } else if (sqrIn.isNotEmpty()) {
+            val feet = sqrt(sqrIn.toDouble()) / 12
+            offExtraZeros("%.4f", feet * feet)
+        } else {
+            return "0"
         }
     }
     // HELPERS //

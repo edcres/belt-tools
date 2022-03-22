@@ -56,7 +56,7 @@ class StartFragment : Fragment() {
             sqrPerRoomBtn.setOnLongClickListener {
                 if (sqrPerRoomBtn.text.toString() != getString(R.string.sqr_per_room_btn)) {
                     homeSqrFt.setText(
-                        offExtraZeros(sumListOfString(sqrPerRoomBtn.text.split(PLUS_JOIN)))
+                        offExtraZeros("%.2f", sumListOfString(sqrPerRoomBtn.text.split(PLUS_JOIN)))
                     )
                 }
                 return@setOnLongClickListener true
@@ -85,7 +85,10 @@ class StartFragment : Fragment() {
             tileBoxResultsBtn.setOnLongClickListener {
                 if (tileBoxResultsBtn.text.toString() != getString(R.string.tile_box_results_btn)) {
                     tileBoxResultsBtn.text =
-                        offExtraZeros(sumListOfString(tileBoxResultsBtn.text.split(PLUS_JOIN)))
+                        offExtraZeros(
+                            "%.4f",
+                            sumListOfString(tileBoxResultsBtn.text.split(PLUS_JOIN))
+                        )
                 }
                 return@setOnLongClickListener true
             }
@@ -94,6 +97,24 @@ class StartFragment : Fragment() {
             }
             boxSqrFt.setOnKeyListener { _, keyCode, keyEvent ->
                 pressedEnter(tileBoxResultsBtn, keyCode, keyEvent)
+            }
+
+            //3 sqr foot to sqr in sqrInBox
+            sqrFootToSqrInBtn.setOnClickListener {
+                if (sqrFootEt.text.isNotEmpty() && sqrInEt.text.isNotEmpty()) {
+                    sqrFootEt.text.clear(); sqrInEt.text.clear()
+                } else if (sqrFootEt.text.isEmpty() && sqrInEt.text.isEmpty()) {
+                    sqrFootToSqrInBtn.text = sharedViewModel.getSqrFtOrSqrIn(
+                        sqrFootEt.text.toString(),
+                        sqrInEt.text.toString()
+                    )
+                }
+            }
+            sqrFootEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(sqrFootToSqrInBtn, keyCode, keyEvent)
+            }
+            sqrInEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(sqrFootToSqrInBtn, keyCode, keyEvent)
             }
 
         }
