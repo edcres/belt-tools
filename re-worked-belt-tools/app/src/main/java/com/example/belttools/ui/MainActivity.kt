@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
 /**
- *
  * - make the functions in the StartFragment
+ * - put more code from the View to the viewModel
  * - make the database
  * - Set up material toolbar
  * - make the navigation drawer

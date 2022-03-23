@@ -58,14 +58,18 @@ class SharedViewModel: ViewModel() {
         sqrFt: String,
         sqrIn: String
     ): String {
-        return if (sqrFt.isNotEmpty()) {
-            val inches = sqrt(sqrFt.toDouble()) * 12
-            offExtraZeros("%.4f", inches * inches)
-        } else if (sqrIn.isNotEmpty()) {
-            val feet = sqrt(sqrIn.toDouble()) / 12
-            offExtraZeros("%.4f", feet * feet)
-        } else {
-            return "0"
+        return when {
+            sqrFt.isNotEmpty() -> {
+                val inches = sqrt(sqrFt.toDouble()) * 12
+                offExtraZeros("%.4f", inches * inches)
+            }
+            sqrIn.isNotEmpty() -> {
+                val feet = sqrt(sqrIn.toDouble()) / 12
+                offExtraZeros("%.4f", feet * feet)
+            }
+            else -> {
+                return "0"
+            }
         }
     }
 

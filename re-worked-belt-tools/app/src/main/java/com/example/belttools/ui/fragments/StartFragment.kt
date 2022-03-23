@@ -135,8 +135,7 @@ class StartFragment : Fragment() {
             //5 decimal to fraction
             decimalToFractionBtn.setOnClickListener {
                 if (decimalEt.text.isNotEmpty() && fractionEt.text.isNotEmpty()) {
-                    decimalEt.text.clear()
-                    fractionEt.text.clear()
+                    decimalEt.text.clear(); fractionEt.text.clear()
                 } else if (decimalEt.text.isNotEmpty()) {
                     fractionEt.setText(decimalToFraction(decimalEt.text.toString().toDouble()))
                 } else if (fractionEt.text.isNotEmpty()) {
@@ -156,6 +155,33 @@ class StartFragment : Fragment() {
                 pressedEnter(decimalToFractionBtn, keyCode, keyEvent)
             }
             //6 lineal ft to square yard
+            linealFtToSqrYardBtn.setOnClickListener {
+                if (linealFtEt.text.isNotEmpty() && sqrYardEt.text.isNotEmpty()) {
+                    linealFtEt.text.clear(); sqrYardEt.text.clear()
+                } else if (linealFtEt.text.isNotEmpty()) {
+                    sqrYardEt.setText(
+                        offExtraZeros(
+                            "%.3f",
+                            linealFeetToSqrYard(linealFtEt.text.toString().toDouble())
+                        )
+                    )
+                } else if (sqrYardEt.text.isNotEmpty()) {
+                    linealFtEt.setText(
+                        offExtraZeros(
+                            "%.3f",
+                            sqrYardToLinealFeet(sqrYardEt.text.toString().toDouble())
+                        )
+                    )
+                }
+            }
+            linealFtEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(linealFtToSqrYardBtn, keyCode, keyEvent)
+            }
+            sqrYardEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(linealFtToSqrYardBtn, keyCode, keyEvent)
+            }
+            //7 Price per Sqr Ft
+
         }
     }
 
