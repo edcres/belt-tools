@@ -423,7 +423,7 @@
                         android:id="@+id/box_sqr_ft_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="5"
+                        android:ems="6"
                         android:gravity="center"
                         android:hint="@string/box_sqr_ft"
                         android:inputType="number|numberDecimal"

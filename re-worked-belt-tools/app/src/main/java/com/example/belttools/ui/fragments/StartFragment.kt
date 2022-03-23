@@ -181,6 +181,26 @@ class StartFragment : Fragment() {
                 pressedEnter(linealFtToSqrYardBtn, keyCode, keyEvent)
             }
             //7 Price per Sqr Ft
+            sqrFtPriceBtn.setOnClickListener {
+                if (boxPriceEt.text.isNotEmpty() && boxSqrFtEt.text.isNotEmpty()) {
+                    sqrFtPriceTxt.text = offExtraZeros(
+                        "",
+                        getPricePerSqrFoot(
+                            boxPriceEt.text.toString().toDouble(),
+                            boxSqrFtEt.text.toString().toDouble()
+                        )
+                    )
+                } else {
+                    displayToast(requireContext(), "Fill both boxes")
+                }
+            }
+            boxPriceEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(sqrFtPriceBtn, keyCode, keyEvent)
+            }
+            boxSqrFtEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(sqrFtPriceBtn, keyCode, keyEvent)
+            }
+
 
         }
     }

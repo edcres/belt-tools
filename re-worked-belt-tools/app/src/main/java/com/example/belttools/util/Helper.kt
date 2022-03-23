@@ -71,6 +71,10 @@ fun linealFeetToSqrYard(linealFeet: Double) = (linealFeet/3) * 4
 
 fun sqrYardToLinealFeet(sqrYard: Double) = (sqrYard / 4) * 3
 
+fun getPricePerSqrFoot(boxPrice: Double, boxSqrFtNum: Double): Double {
+    return boxPrice/boxSqrFtNum
+}
+
 fun getInches(num: Double, getFeet: Boolean): Double {
     // If it's not getFeet it's getInches
     return if (getFeet) {
