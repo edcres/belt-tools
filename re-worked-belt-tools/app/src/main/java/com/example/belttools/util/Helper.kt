@@ -43,14 +43,14 @@ fun addRoomSquaresOrBoxes(
     }
 }
 
-fun joinMaterialsList(materialsQty: List<String>?): String? {
+fun joinMaterialsList(decimalSpaces: String, materialsQty: List<String>?): String? {
     Log.d(GLOBAL_TAG, "HELPER: list = \n$materialsQty")
     if(materialsQty.isNullOrEmpty()) return null
     var joinedMaterials = materialsQty[0]
     for (i in materialsQty.indices) {
         if (i != 0) {
-            joinedMaterials =
-                "$joinedMaterials$PLUS_JOIN${offExtraZeros(materialsQty[i].toDouble())}"
+            joinedMaterials = "$joinedMaterials$PLUS_JOIN" +
+                    offExtraZeros(decimalSpaces, materialsQty[i].toDouble())
         }
     }
     return joinedMaterials

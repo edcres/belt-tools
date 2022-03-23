@@ -26,6 +26,7 @@ class SharedViewModel: ViewModel() {
         val result = width * length
         return if (btnTxt != btnDefault) {
             joinMaterialsList(
+                "%.2f",
                 addRoomSquaresOrBoxes(
                     btnTxt.split(PLUS_JOIN).toMutableList(),
                     offExtraZeros("%.2f", result)
@@ -42,6 +43,7 @@ class SharedViewModel: ViewModel() {
         val result = width / length
         return if (btnTxt != btnDefault) {
             joinMaterialsList(
+                "%.4f",
                 addRoomSquaresOrBoxes(
                     btnTxt.split(PLUS_JOIN).toMutableList(),
                     offExtraZeros("%.4f", result)
