@@ -67,7 +67,6 @@ class StartFragment : Fragment() {
             sqrtLengthEt.setOnKeyListener { _, keyCode, keyEvent ->
                 pressedEnter(sqrPerRoomBtn, keyCode, keyEvent)
             }
-
             //2 Get number of boxes to buy
             tileBoxResultsBtn.setOnClickListener {
                 if (homeSqrFt.text.isNotEmpty() && boxSqrFt.text.isNotEmpty()) {
@@ -98,7 +97,6 @@ class StartFragment : Fragment() {
             boxSqrFt.setOnKeyListener { _, keyCode, keyEvent ->
                 pressedEnter(tileBoxResultsBtn, keyCode, keyEvent)
             }
-
             //3 sqr foot to sqr in sqrInBox
             sqrFootToSqrInBtn.setOnClickListener {
                 if (sqrFootEt.text.isNotEmpty() && sqrInEt.text.isNotEmpty()) {
@@ -116,7 +114,48 @@ class StartFragment : Fragment() {
             sqrInEt.setOnKeyListener { _, keyCode, keyEvent ->
                 pressedEnter(sqrFootToSqrInBtn, keyCode, keyEvent)
             }
-
+            //4 get blind width
+            blindWidthEqualsBtn.setOnClickListener {
+                if (windowWidthEt.text.isEmpty() && blindWidthEt.text.isEmpty()) {
+                    blindWidthResultTxt.text = offExtraZeros(
+                        "%.4f",
+                        getNewBlindWidth(
+                            windowWidthEt.text.toString().toDouble(),
+                            blindWidthEt.text.toString().toDouble()
+                        )
+                    )
+                }
+            }
+            windowWidthEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(blindWidthEqualsBtn, keyCode, keyEvent)
+            }
+            blindWidthEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(blindWidthEqualsBtn, keyCode, keyEvent)
+            }
+            //5 decimal to fraction
+            decimalToFractionBtn.setOnClickListener {
+                if (decimalEt.text.isNotEmpty() && fractionEt.text.isNotEmpty()) {
+                    decimalEt.text.clear()
+                    fractionEt.text.clear()
+                } else if (decimalEt.text.isNotEmpty()) {
+                    fractionEt.setText(decimalToFraction(decimalEt.text.toString().toDouble()))
+                } else if (fractionEt.text.isNotEmpty()) {
+                    val rawDecimal =
+                        sharedViewModel.turnFractionToDecimal(fractionEt.text.toString())
+                    if (rawDecimal != null) {
+                        decimalEt.setText(offExtraZeros("%.3f", rawDecimal))
+                    } else {
+                        displayToast(requireContext(), "Write a fraction with /.")
+                    }
+                }
+            }
+            decimalEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(decimalToFractionBtn, keyCode, keyEvent)
+            }
+            fractionEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(decimalToFractionBtn, keyCode, keyEvent)
+            }
+            //6 lineal ft to square yard
         }
     }
 

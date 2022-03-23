@@ -65,6 +65,10 @@ fun sumListOfString(btnSquares: List<String>): Double {
     return squaresSummed
 }
 
+fun getNewBlindWidth(windowWidth: Double, blindPre: Double): Double {
+    return (windowWidth - blindPre) / 2
+}
+
 fun getInches(num: Double, getFeet: Boolean): Double {
     // If it's not getFeet it's getInches
     return if (getFeet) {

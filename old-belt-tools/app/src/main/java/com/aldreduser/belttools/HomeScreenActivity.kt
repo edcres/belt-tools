@@ -163,8 +163,8 @@ class HomeScreenActivity : AppCompatActivity() {
                 try {
                     val window = windowWidthBox.text.toString().toDouble()
                     val blindPre = blindWidthBox.text.toString().toDouble()
-                    val blindPro = (window - blindPre) / 2
-                    blindWidthResult.text = offExtraZeros("%.4f", blindPro)
+                    val blindPost = (window - blindPre) / 2
+                    blindWidthResult.text = offExtraZeros("%.4f", blindPost)
                 } catch (e: NumberFormatException) {
                     displayToastMessage(this, "Maybe fill both boxes with numbers.")
                 }
@@ -180,8 +180,8 @@ class HomeScreenActivity : AppCompatActivity() {
 
         //5 decimal to fraction
         decimalToFractionButton.setOnClickListener {
-            val decimalNum:Double
-            val completeFraction:String
+            val decimalNum: Double
+            val completeFraction: String
             if (decimalBox.text.isNotEmpty() && fractionBox.text.isNotEmpty()) {
                 decimalBox.setText(""); fractionBox.setText("")
             } else if (decimalBox.text.isNotEmpty() && fractionBox.text.isEmpty()) {
@@ -194,7 +194,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     val numerator = completeFraction.substringBeforeLast("/").toDouble()
                     val denominator = completeFraction.substringAfterLast("/").toDouble()
                     decimalBox.setText(offExtraZeros("%.4f", numerator/denominator))
-                }else {displayToastMessage(this, "Write a fraction.")}
+                } else {displayToastMessage(this, "Write a fraction.")}
             }
         }
         decimalBox.setOnClickListener { decimalBox.setText("") }

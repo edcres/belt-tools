@@ -68,5 +68,13 @@ class SharedViewModel: ViewModel() {
             return "0"
         }
     }
+
+    fun turnFractionToDecimal(fraction: String): Double? {
+        return if (fraction.contains("/")) {
+            val numerator = fraction.substringBeforeLast("/").toDouble()
+            val denominator = fraction.substringAfterLast("/").toDouble()
+            numerator / denominator
+        } else null
+    }
     // HELPERS //
 }
