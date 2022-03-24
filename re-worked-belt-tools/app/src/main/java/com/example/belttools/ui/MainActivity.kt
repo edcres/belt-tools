@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
 /**
- * - Set up material toolbar
  * - make the navigation drawer
  * - Have in the navigation drawer
  *      - Department Extensions

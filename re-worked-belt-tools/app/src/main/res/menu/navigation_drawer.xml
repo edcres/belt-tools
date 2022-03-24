@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/drawer_group_1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/functions_screen"
+            android:icon="@drawable/ic_calculate_24"
+            android:title="@string/functions"
+            android:checked="true" />
+        <item
+            android:id="@+id/departments_ext_screen"
+            android:icon="@drawable/ic_phone_24"
+            android:title="@string/extensions" />
+        <item
+            android:id="@+id/orders_screen"
+            android:icon="@drawable/ic_order_24"
+            android:title="@string/orders" />
+
+        <item
+            android:id="@+id/notes_screen"
+            android:icon="@drawable/ic_note_24"
+            android:title="@string/notes" />
+
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/skus_screen"
+            android:icon="@drawable/ic_qr_code_24"
+            android:title="@string/skus" />
+        <item
+            android:id="@+id/pallets_screen"
+            android:icon="@drawable/ic_forklift_24"
+            android:title="@string/pallets" />
+
+    </group>
+
+</menu>

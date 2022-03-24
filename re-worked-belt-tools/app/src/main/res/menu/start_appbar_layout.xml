@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group
-        android:id="@+id/drawer_group"
-        android:checkableBehavior="single">
-
-    </group>
-
     <item
         android:id="@+id/clear_texts_btn"
         android:icon="@drawable/ic_clear_texts_24"

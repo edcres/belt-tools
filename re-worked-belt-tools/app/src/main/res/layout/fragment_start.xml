@@ -9,6 +9,13 @@
         android:layout_height="match_parent"
         android:background="@color/background">
 
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:menu="@menu/navigation_drawer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/start_appbar_layout"
             android:layout_width="match_parent"
