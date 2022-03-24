@@ -36,8 +36,24 @@ class StartFragment : Fragment() {
         }
         setUpClickListeners()
         displayMagnetLocation()
+        setUpAppBar()
     }
 
+    // SET UP //
+    private fun setUpAppBar() {
+        binding?.apply {
+            startTopAppbar.title = "Functions"
+            startTopAppbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.clear_texts_btn -> {
+                        resetAllClicked()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
+    }
     private fun setUpClickListeners() {
         binding?.apply {
             //1 Get the square feet
@@ -251,6 +267,7 @@ class StartFragment : Fragment() {
             }
         }
     }
+    // SET UP //
 
     // HELPERS //
     private fun resetAllClicked() {

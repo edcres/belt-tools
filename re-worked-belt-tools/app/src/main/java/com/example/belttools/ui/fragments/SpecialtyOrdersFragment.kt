@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.belttools.R
 import com.example.belttools.databinding.FragmentSpecialtyOrdersBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
@@ -28,6 +29,14 @@ class SpecialtyOrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
+        }
+        setUpAppBar()
+    }
+
+    // SET UP //
+    private fun setUpAppBar() {
+        binding?.apply {
+            topAppbar.title = "Specialty Orders"
         }
     }
 }

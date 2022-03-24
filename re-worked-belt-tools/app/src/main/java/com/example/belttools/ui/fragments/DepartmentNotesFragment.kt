@@ -29,5 +29,14 @@ class DepartmentNotesFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
         }
+        setUpAppBar()
+    }
+
+    // SET UP //
+    private fun setUpAppBar() {
+        binding?.apply {
+            // todo: "$departmentName Notes"
+            topAppbar.title = "Department Notes"
+        }
     }
 }

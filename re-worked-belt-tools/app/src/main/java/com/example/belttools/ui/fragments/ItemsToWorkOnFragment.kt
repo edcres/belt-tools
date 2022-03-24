@@ -29,5 +29,14 @@ class ItemsToWorkOnFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
         }
+        setUpAppBar()
+    }
+
+    // SET UP //
+    private fun setUpAppBar() {
+        binding?.apply {
+            // todo: either "Skus To Work On" or "Pallets To Work On"
+            topAppbar.title = "Work On"
+        }
     }
 }

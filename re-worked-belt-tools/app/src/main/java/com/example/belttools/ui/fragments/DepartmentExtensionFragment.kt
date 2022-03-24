@@ -30,5 +30,13 @@ class DepartmentExtensionFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
         }
+        setUpAppBar()
+    }
+
+    // SET UP //
+    private fun setUpAppBar() {
+        binding?.apply {
+            topAppbar.title = "Extensions"
+        }
     }
 }

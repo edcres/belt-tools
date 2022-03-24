@@ -4,6 +4,8 @@
     <string name="sqr_per_room_btn">Sqr Per Room</string>
     <string name="tile_box_results_btn">Boxes</string>
 
+    <string name="clear_texts">Clear Texts</string>
+
     <string name="get_sqr_ft_in">Get Sqr Ft/In</string>
     <string name="width">width</string>
     <string name="length">length</string>
