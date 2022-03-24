@@ -6,10 +6,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
 /**
- * - make the database
  * - Set up material toolbar
  * - make the navigation drawer
- * - Have the navigation drawer
+ * - Have in the navigation drawer
  *      - Department Extensions
  *      - Specialty orders
  *      - Skus to work on
@@ -22,6 +21,8 @@ import com.example.belttools.R
  *  Have the animation in the beginning
  *
  * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ *
+ * test the StartFragment features
  */
 
 class MainActivity : AppCompatActivity() {

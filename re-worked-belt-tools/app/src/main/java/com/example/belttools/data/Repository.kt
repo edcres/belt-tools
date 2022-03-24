@@ -1,4 +1,6 @@
 package com.example.belttools.data
 
-class Repository {
+import com.example.belttools.data.model.MainRoomDatabase
+
+class Repository(private val db: MainRoomDatabase) {
 }

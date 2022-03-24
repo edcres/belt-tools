@@ -1,11 +1,17 @@
 package com.example.belttools.ui.viewmodel
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import com.example.belttools.data.Repository
+import com.example.belttools.data.model.MainRoomDatabase
 import com.example.belttools.util.*
 import kotlin.math.sqrt
 
 class SharedViewModel: ViewModel() {
+
+    private lateinit var roomDb: MainRoomDatabase
+    private lateinit var repository: Repository
 
     // HELPERS //
     fun saveMagnetLocation(context: Context, location: String) {
@@ -88,10 +94,17 @@ class SharedViewModel: ViewModel() {
         // If it's not in feet, it's in inches
         // width = 12 by default
         val bakShWidth: Double = if (widthInp.isEmpty()) 12.0 else widthInp.toDouble()
-        var convertedLinealSpace = if (inFeet) linealSpace * 12 else linealSpace
+        val convertedLinealSpace = if (inFeet) linealSpace * 12 else linealSpace
         return convertedLinealSpace / (bakShWidth * cutOuts)
     }
     // HELPERS //
+
+    // SET UP //
+    fun setUpDatabase(application: Application) {
+        // todo: call this function
+        roomDb = MainRoomDatabase.getInstance(application)
+        repository = Repository(roomDb)
+    }
 }
 
 
