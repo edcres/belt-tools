@@ -71,18 +71,9 @@ fun linealFeetToSqrYard(linealFeet: Double) = (linealFeet/3) * 4
 
 fun sqrYardToLinealFeet(sqrYard: Double) = (sqrYard / 4) * 3
 
-fun getPricePerSqrFoot(boxPrice: Double, boxSqrFtNum: Double): Double {
-    return boxPrice/boxSqrFtNum
-}
+fun getPricePerSqrFoot(boxPrice: Double, boxSqrFtNum: Double) = boxPrice/boxSqrFtNum
 
-fun getInches(num: Double, getFeet: Boolean): Double {
-    // If it's not getFeet it's getInches
-    return if (getFeet) {
-        num*12
-    } else {
-        num
-    }
-}
+fun getNumberOfLouvers(blindWidth: Double) = blindWidth / 3
 
 fun decimalToFraction(num: Double): String {
     if (num < 0){

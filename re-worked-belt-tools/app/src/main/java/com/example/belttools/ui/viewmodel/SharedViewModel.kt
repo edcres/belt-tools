@@ -80,5 +80,39 @@ class SharedViewModel: ViewModel() {
             numerator / denominator
         } else null
     }
+
+    fun getLinealBacksplash(
+        widthInp: String, linealSpace: Double,
+        inFeet: Boolean, cutOuts: Int
+    ): Double {
+        // If it's not in feet, it's in inches
+        // width = 12 by default
+        val bakShWidth: Double = if (widthInp.isEmpty()) 12.0 else widthInp.toDouble()
+        var convertedLinealSpace = if (inFeet) linealSpace * 12 else linealSpace
+        return convertedLinealSpace / (bakShWidth * cutOuts)
+    }
     // HELPERS //
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

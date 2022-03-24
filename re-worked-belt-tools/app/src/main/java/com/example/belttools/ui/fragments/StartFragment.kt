@@ -35,6 +35,7 @@ class StartFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
         setUpClickListeners()
+        displayMagnetLocation()
     }
 
     private fun setUpClickListeners() {
@@ -200,8 +201,54 @@ class StartFragment : Fragment() {
             boxSqrFtEt.setOnKeyListener { _, keyCode, keyEvent ->
                 pressedEnter(sqrFtPriceBtn, keyCode, keyEvent)
             }
-
-
+            //8 number of vertical louvers
+            numOfLouversEqualsBtn.setOnClickListener {
+                if (vBlindWidthEt.text.isNotEmpty() && numOfLouversTxt.text.isNotEmpty()) {
+                    vBlindWidthEt.text.clear(); numOfLouversTxt.text = "0"
+                } else if (vBlindWidthEt.text.isNotEmpty()) {
+                    numOfLouversTxt.text = offExtraZeros(
+                        "%.1f",
+                        getNumberOfLouvers(vBlindWidthEt.text.toString().toDouble())
+                    )
+                }
+            }
+            vBlindWidthEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(numOfLouversEqualsBtn, keyCode, keyEvent)
+            }
+            //9 Lineal Backsplash
+            bakShEqualsBtn.setOnClickListener {
+                if (bkShLinealSpaceEt.text.isNotEmpty() && cutOutsEt.text
+                        .isNotEmpty() && bakShResultsTxt.text.toString() != "0") {
+                    bakShWidthEt.text.clear(); bkShLinealSpaceEt.text.clear()
+                    cutOutsEt.text.clear(); bakShResultsTxt.text = "0"
+                } else {
+                    bakShResultsTxt.text = offExtraZeros(
+                        "%.4f",
+                        sharedViewModel.getLinealBacksplash(
+                            bakShWidthEt.text.toString(),
+                            bkShLinealSpaceEt.text.toString().toDouble(),
+                            !bakShToggleBtn.isChecked, // in feet
+                            cutOutsEt.text.toString().toInt()
+                        )
+                    )
+                }
+            }
+            bkShLinealSpaceEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(bakShEqualsBtn, keyCode, keyEvent)
+            }
+            cutOutsEt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(bakShEqualsBtn, keyCode, keyEvent)
+            }
+            bakShResultsTxt.setOnKeyListener { _, keyCode, keyEvent ->
+                pressedEnter(bakShEqualsBtn, keyCode, keyEvent)
+            }
+            //10 Magnet location
+            magnetLocationSaveBtn.setOnClickListener {
+                sharedViewModel.saveMagnetLocation(
+                    requireContext(),
+                    newMagnetLocationEt.text.toString()
+                )
+            }
         }
     }
 
@@ -220,7 +267,7 @@ class StartFragment : Fragment() {
             linealFtEt.text.clear(); sqrYardEt.text.clear()
             boxPriceEt.text.clear(); boxSqrFtEt.text.clear(); sqrFtPriceTxt.text = "0"
             vBlindWidthEt.text.clear(); numOfLouversTxt.text = "0"
-            newMagnetLocationEt.text.clear(); linealSpaceEt.text.clear(); cutOutsEt.text.clear();
+            newMagnetLocationEt.text.clear(); bkShLinealSpaceEt.text.clear(); cutOutsEt.text.clear();
             bakShResultsTxt.text = "0"
         }
     }
@@ -231,6 +278,10 @@ class StartFragment : Fragment() {
         } else {
             false
         }
+    }
+    private fun displayMagnetLocation() {
+        val magnetLocation = sharedViewModel.getMagnetLocation(requireContext())
+        if (magnetLocation.isNullOrEmpty()) binding!!.lastMagnetLocationTxt.text = magnetLocation
     }
     // HELPERS //
 }

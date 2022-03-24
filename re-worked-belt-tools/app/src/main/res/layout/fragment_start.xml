@@ -547,7 +547,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/lineal_bk_sh_txt" />
 
                     <EditText
-                        android:id="@+id/lineal_space_et"
+                        android:id="@+id/bk_sh_lineal_space_et"
                         android:layout_width="121dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -566,9 +566,9 @@
                         android:textOff="@string/ft."
                         android:textOn="@string/in."
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/lineal_space_et"
-                        app:layout_constraintStart_toEndOf="@+id/lineal_space_et"
-                        app:layout_constraintTop_toTopOf="@+id/lineal_space_et" />
+                        app:layout_constraintBottom_toBottomOf="@+id/bk_sh_lineal_space_et"
+                        app:layout_constraintStart_toEndOf="@+id/bk_sh_lineal_space_et"
+                        app:layout_constraintTop_toTopOf="@+id/bk_sh_lineal_space_et" />
 
                     <EditText
                         android:id="@+id/cut_outs_et"
@@ -592,7 +592,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/cut_outs_et"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lineal_space_et" />
+                        app:layout_constraintTop_toBottomOf="@+id/bk_sh_lineal_space_et" />
 
                     <TextView
                         android:id="@+id/bak_sh_results_txt"
