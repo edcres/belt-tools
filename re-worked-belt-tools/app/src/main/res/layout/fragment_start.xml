@@ -26,7 +26,7 @@
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/start_top_appbar"
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                    style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_scrollFlags="scroll|enterAlways|snap"
@@ -706,14 +706,16 @@
                 </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/navigation_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                app:menu="@menu/navigation_drawer" />
-
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:backgroundTint="@color/drawer_background"
+            app:headerLayout="@layout/header_navigation_drawer"
+            app:menu="@menu/navigation_drawer" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
