@@ -4,16 +4,17 @@ import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
+import com.example.belttools.data.model.entities.SpecialtyOrder
+import com.example.belttools.data.model.room.SpecialtyOrderDao
 
-@Database(entities = [/* todo: WorkoutGroup::class, Workout::class, WorkoutSet::class*/],
+@Database(
+    entities = [SpecialtyOrder::class],
     version = 1,
-    exportSchema = false)
+    exportSchema = false
+)
 abstract class MainRoomDatabase : RoomDatabase() {
 
-    // todo:
-//    abstract fun workoutGroupDao(): WorkoutGroupDao
-//    abstract fun workoutDao(): WorkoutDao
-//    abstract fun workoutSetDao(): WorkoutSetDao
+    abstract fun specialtyOrderDao(): SpecialtyOrderDao
 
     companion object {
         @Volatile

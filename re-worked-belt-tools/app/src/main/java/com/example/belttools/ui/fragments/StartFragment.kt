@@ -52,6 +52,14 @@ class StartFragment : Fragment() {
                     else -> false
                 }
             }
+            startTopAppbar.setNavigationOnClickListener {
+                drawerLayout.open()
+            }
+            navigationView.setNavigationItemSelectedListener { menuItem ->
+                menuItem.isChecked = true
+                drawerLayout.close()
+                true
+            }
         }
     }
     private fun setUpClickListeners() {
