@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.example.belttools.databinding.FragmentItemsToWorkOnBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
@@ -37,6 +38,11 @@ class ItemsToWorkOnFragment : Fragment() {
         binding?.apply {
             // todo: either "Skus To Work On" or "Pallets To Work On"
             topAppbar.title = "Work On"
+            topAppbar.setNavigationOnClickListener {
+                val navController =
+                    Navigation.findNavController(requireParentFragment().requireView())
+                navController.navigateUp()
+            }
         }
     }
 }

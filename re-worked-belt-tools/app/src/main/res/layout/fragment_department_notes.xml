@@ -30,6 +30,7 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_scrollFlags="scroll|enterAlways|snap"
                     app:menu="@menu/default_appbar_layout"
+                    app:navigationIcon="@drawable/ic_navigate_up_24"
                     app:titleTextColor="@color/black" />
             </com.google.android.material.appbar.AppBarLayout>
 

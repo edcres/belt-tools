@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.example.belttools.databinding.FragmentDepartmentExtensionBinding
 import com.example.belttools.databinding.FragmentStartBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
@@ -37,6 +38,11 @@ class DepartmentExtensionFragment : Fragment() {
     private fun setUpAppBar() {
         binding?.apply {
             topAppbar.title = "Extensions"
+            topAppbar.setNavigationOnClickListener {
+                val navController =
+                    Navigation.findNavController(requireParentFragment().requireView())
+                navController.navigateUp()
+            }
         }
     }
 }
