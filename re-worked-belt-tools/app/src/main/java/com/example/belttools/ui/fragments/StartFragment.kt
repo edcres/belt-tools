@@ -283,6 +283,7 @@ class StartFragment : Fragment() {
                     requireContext(),
                     newMagnetLocationEt.text.toString()
                 )
+                lastMagnetLocationTxt.text = newMagnetLocationEt.text.toString()
             }
         }
     }
@@ -316,7 +317,7 @@ class StartFragment : Fragment() {
     }
     private fun displayMagnetLocation() {
         val magnetLocation = sharedViewModel.getMagnetLocation(requireContext())
-        if (magnetLocation.isNullOrEmpty()) binding!!.lastMagnetLocationTxt.text = magnetLocation
+        if (!magnetLocation.isNullOrEmpty()) binding!!.lastMagnetLocationTxt.text = magnetLocation
     }
     private fun populateNavList() {
         val destinationsList = listOf(
