@@ -9,7 +9,20 @@
         android:id="@+id/startFragment"
         android:name="com.example.belttools.ui.fragments.StartFragment"
         android:label="fragment_start"
-        tools:layout="@layout/fragment_start" />
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_departmentExtensionFragment"
+            app:destination="@id/departmentExtensionFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_itemsToWorkOnFragment"
+            app:destination="@id/itemsToWorkOnFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_specialtyOrdersFragment"
+            app:destination="@id/specialtyOrdersFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_departmentNotesFragment"
+            app:destination="@id/departmentNotesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/departmentExtensionFragment"
         android:name="com.example.belttools.ui.fragments.DepartmentExtensionFragment"

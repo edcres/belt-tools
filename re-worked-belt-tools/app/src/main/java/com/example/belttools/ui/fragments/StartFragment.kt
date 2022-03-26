@@ -2,13 +2,11 @@ package com.example.belttools.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.example.belttools.R
 import com.example.belttools.databinding.FragmentStartBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
@@ -37,6 +35,7 @@ class StartFragment : Fragment() {
         setUpClickListeners()
         displayMagnetLocation()
         setUpAppBar()
+        populateNavList()
     }
 
     // SET UP //
@@ -56,6 +55,18 @@ class StartFragment : Fragment() {
                 drawerLayout.open()
             }
             navigationView.setNavigationItemSelectedListener { menuItem ->
+                val navController =
+                    Navigation.findNavController(requireParentFragment().requireView())
+                when (menuItem.title) {
+                    sharedViewModel.navDestinationsList[1] -> navController
+                        .navigate(R.id.action_startFragment_to_departmentExtensionFragment)
+                    sharedViewModel.navDestinationsList[2] -> navController
+                        .navigate(R.id.action_startFragment_to_specialtyOrdersFragment)
+                    sharedViewModel.navDestinationsList[3] -> navController
+                            .navigate(R.id.action_startFragment_to_departmentNotesFragment)
+                    sharedViewModel.navDestinationsList[4] -> navController
+                            .navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
+                }
                 menuItem.isChecked = true
                 drawerLayout.close()
                 true
@@ -279,7 +290,6 @@ class StartFragment : Fragment() {
 
     // HELPERS //
     private fun resetAllClicked() {
-        // todo: make a btn to call this function
         // todo: popup a dialog box (material) and ask: "Are you sure?"
         binding?.apply {
             sqrtWidthEt.text.clear(); sqrtLengthEt.text.clear(); sqrPerRoomBtn.text =
@@ -307,6 +317,17 @@ class StartFragment : Fragment() {
     private fun displayMagnetLocation() {
         val magnetLocation = sharedViewModel.getMagnetLocation(requireContext())
         if (magnetLocation.isNullOrEmpty()) binding!!.lastMagnetLocationTxt.text = magnetLocation
+    }
+    private fun populateNavList() {
+        val destinationsList = listOf(
+            getString(R.string.functions),
+            getString(R.string.extensions),
+            getString(R.string.orders),
+            getString(R.string.notes),
+            getString(R.string.skus),
+            getString(R.string.pallets)
+        )
+        sharedViewModel.populateNavList(destinationsList)
     }
     // HELPERS //
 }

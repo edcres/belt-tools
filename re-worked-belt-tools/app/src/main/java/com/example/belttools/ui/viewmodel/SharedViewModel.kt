@@ -3,6 +3,8 @@ package com.example.belttools.ui.viewmodel
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import com.example.belttools.R
 import com.example.belttools.data.Repository
 import com.example.belttools.data.model.MainRoomDatabase
 import com.example.belttools.util.*
@@ -10,10 +12,14 @@ import kotlin.math.sqrt
 
 class SharedViewModel: ViewModel() {
 
+    lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
     private lateinit var repository: Repository
 
     // HELPERS //
+    fun populateNavList(navList: List<String>) {
+        navDestinationsList = navList
+    }
     fun saveMagnetLocation(context: Context, location: String) {
         val magnetLocationSharedPref = context
             .getSharedPreferences(MAGNET_LOCATION_TAG, Context.MODE_PRIVATE) ?: return
