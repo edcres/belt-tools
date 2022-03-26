@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.belttools.data.Repository
 import com.example.belttools.data.model.MainRoomDatabase
 import com.example.belttools.data.model.entities.Department
+import com.example.belttools.data.model.entities.SKU
 import com.example.belttools.util.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -123,7 +124,17 @@ class SharedViewModel: ViewModel() {
         }
     }
     fun insertDepartment(department: Department) {
-
+        // todo:
+    }
+    fun insertSKU(sku: SKU) {
+        // todo: call this, user types their own primary id
+        // todo:
+    }
+    fun updateExtensions(department: Department) {
+        // todo:
+    }
+    fun updateSKU(sku: SKU) {
+        // todo:
     }
     // DATABASE QUERIES //
 

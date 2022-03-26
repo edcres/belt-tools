@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.belttools.data.model.entities.Department
-import com.example.belttools.databinding.ItemsToWorkItemBinding
+import com.example.belttools.databinding.DeptExtensionItemBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
 class DeptExtensionsAdapter(
@@ -22,13 +22,19 @@ class DeptExtensionsAdapter(
 
     class DeptExtensionsViewHolder private constructor(
         private val viewModel: SharedViewModel,
-        private val binding: ItemsToWorkItemBinding
+        private val binding: DeptExtensionItemBinding
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(department: Department) {
-
             binding.apply {
+                departmentEt.setText(department.name)
+                extensionEt.setText(department.extensions)
 
+                saveBtn.setOnClickListener {
+                    department.name = departmentEt.text.toString()
+                    department.extensions = extensionEt.text.toString()
+                    viewModel.updateExtensions(department)
+                }
             }
         }
 
@@ -38,7 +44,8 @@ class DeptExtensionsAdapter(
                 parent: ViewGroup
             ): DeptExtensionsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemsToWorkItemBinding.inflate(layoutInflater, parent, false)
+                val binding = DeptExtensionItemBinding
+                    .inflate(layoutInflater, parent, false)
                 return DeptExtensionsViewHolder(viewModel, binding)
             }
         }

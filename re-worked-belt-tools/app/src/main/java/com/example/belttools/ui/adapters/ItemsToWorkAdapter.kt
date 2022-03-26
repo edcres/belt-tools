@@ -25,9 +25,16 @@ class ItemsToWorkAdapter(
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(sKU: SKU) {
+            // todo: check if it's pallet or floor and display the items accordingly
 
             binding.apply {
+                skuTxt.text = sKU.id.toString()
+                noteEt.setText(sKU.notes)
 
+                saveBtn.setOnClickListener {
+                    sKU.notes = noteEt.text.toString()
+                    viewModel.updateSKU(sKU)
+                }
             }
         }
 
