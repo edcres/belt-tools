@@ -4,17 +4,24 @@ import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
+import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SpecialtyOrder
+import com.example.belttools.data.model.room.DepartmentDao
+import com.example.belttools.data.model.room.PalletDao
+import com.example.belttools.data.model.room.SKUsDao
 import com.example.belttools.data.model.room.SpecialtyOrderDao
 
 @Database(
-    entities = [SpecialtyOrder::class],
+    entities = [SpecialtyOrder::class, Department::class, SKUsDao::class, PalletDao::class],
     version = 1,
     exportSchema = false
 )
 abstract class MainRoomDatabase : RoomDatabase() {
 
     abstract fun specialtyOrderDao(): SpecialtyOrderDao
+    abstract fun departmentDao(): DepartmentDao
+    abstract fun sKUsDao(): SKUsDao
+    abstract fun palletDao(): PalletDao
 
     companion object {
         @Volatile
