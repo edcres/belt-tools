@@ -14,6 +14,10 @@
     <string name="skus">SKUs</string>
     <string name="pallets">Pallets</string>
     <string name="notes">Notes</string>
+    <string name="note">note</string>
+
+    <string name="department_hint">department</string>
+    <string name="extensions_hint">extensions</string>
 
     <string name="get_sqr_ft_in">Get Sqr Ft/In</string>
     <string name="width">width</string>

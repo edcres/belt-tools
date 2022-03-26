@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.belttools.databinding.FragmentDepartmentExtensionBinding
 import com.example.belttools.databinding.FragmentStartBinding
+import com.example.belttools.ui.adapters.DeptExtensionsAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
 class DepartmentExtensionFragment : Fragment() {
 
     private var binding: FragmentDepartmentExtensionBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var deptExtensionsAdapter: DeptExtensionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +26,7 @@ class DepartmentExtensionFragment : Fragment() {
         val fragmentBinding = FragmentDepartmentExtensionBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
+        deptExtensionsAdapter = DeptExtensionsAdapter(sharedViewModel)
         return fragmentBinding.root
     }
 
@@ -30,6 +34,8 @@ class DepartmentExtensionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
+            extensionsRecycler.adapter = deptExtensionsAdapter
+            extensionsRecycler.layoutManager = LinearLayoutManager(requireContext())
         }
         setUpAppBar()
     }

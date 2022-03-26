@@ -40,6 +40,16 @@
                 android:background="@color/background"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/extensions_recycler"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    tools:listitem="@layout/dept_extension_item"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
