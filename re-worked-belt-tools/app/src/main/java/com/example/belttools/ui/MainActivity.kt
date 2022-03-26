@@ -2,17 +2,19 @@ package com.example.belttools.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import com.example.belttools.R
 
 /**
- * - make the navigation drawer
  * - Have in the navigation drawer
  *      - Department Extensions
- *      - Specialty orders
  *      - Skus to work on
  *      - Pallets to work on
  *      - Notes (spinner in which user can choose each department)
+ *      - Specialty orders
  *
  *  In the beginning, user chooses which store code they are from (H6872)
  *  - that fist number is automatically added to the order number
@@ -29,5 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        // I did this to fix a bug that makes the status bar grey.
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
 }
