@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.belttools.data.model.entities.Department
 import com.example.belttools.databinding.FragmentDepartmentExtensionBinding
-import com.example.belttools.databinding.FragmentStartBinding
 import com.example.belttools.ui.adapters.DeptExtensionsAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
@@ -35,12 +35,21 @@ class DepartmentExtensionFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             extensionsRecycler.adapter = deptExtensionsAdapter
-            extensionsRecycler.layoutManager = LinearLayoutManager(requireContext())
+            extensionsRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
+            addDepartmentBtn.setOnClickListener {
+                sharedViewModel.insertDepartment(Department())
+            }
         }
         setUpAppBar()
+        setObservers()
     }
 
     // SET UP //
+    private fun setObservers() {
+        sharedViewModel.departments.observe(viewLifecycleOwner) {
+            deptExtensionsAdapter.submitList(it)
+        }
+    }
     private fun setUpAppBar() {
         binding?.apply {
             topAppbar.title = "Extensions"
@@ -51,4 +60,5 @@ class DepartmentExtensionFragment : Fragment() {
             }
         }
     }
+    // SET UP //
 }

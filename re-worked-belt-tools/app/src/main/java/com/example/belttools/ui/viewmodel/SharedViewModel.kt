@@ -2,12 +2,17 @@ package com.example.belttools.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import com.example.belttools.R
 import com.example.belttools.data.Repository
 import com.example.belttools.data.model.MainRoomDatabase
+import com.example.belttools.data.model.entities.Department
 import com.example.belttools.util.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import kotlin.math.sqrt
 
 class SharedViewModel: ViewModel() {
@@ -15,6 +20,9 @@ class SharedViewModel: ViewModel() {
     lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
     private lateinit var repository: Repository
+
+    private val _departments = MutableLiveData<MutableList<Department>>()
+    val departments: LiveData<MutableList<Department>> get() = _departments
 
     // HELPERS //
     fun populateNavList(navList: List<String>) {
@@ -104,6 +112,20 @@ class SharedViewModel: ViewModel() {
         return convertedLinealSpace / (bakShWidth * cutOuts)
     }
     // HELPERS //
+
+    // DATABASE QUERIES //
+    fun collectEntities() {
+        // todo: call this
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.allDepartments.collect {
+                _departments.postValue(it.toMutableList())
+            }
+        }
+    }
+    fun insertDepartment(department: Department) {
+
+    }
+    // DATABASE QUERIES //
 
     // SET UP //
     fun setUpDatabase(application: Application) {

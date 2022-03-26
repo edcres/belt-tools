@@ -21,9 +21,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/extensions_hint"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/accept_btn"
-        app:layout_constraintStart_toEndOf="@+id/department_et"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/department_et" />
 
     <ImageButton
         android:id="@+id/accept_btn"
@@ -31,7 +30,6 @@
         android:layout_height="0dp"
         android:padding="12dp"
         android:background="@color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_accept_mark_24" />

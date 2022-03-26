@@ -5,13 +5,14 @@ import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
 import com.example.belttools.data.model.entities.Department
+import com.example.belttools.data.model.entities.SKU
 import com.example.belttools.data.model.entities.SpecialtyOrder
 import com.example.belttools.data.model.room.DepartmentDao
 import com.example.belttools.data.model.room.SKUsDao
 import com.example.belttools.data.model.room.SpecialtyOrderDao
 
 @Database(
-    entities = [SpecialtyOrder::class, Department::class, SKUsDao::class],
+    entities = [SpecialtyOrder::class, Department::class, SKU::class],
     version = 2,
     exportSchema = false
 )
