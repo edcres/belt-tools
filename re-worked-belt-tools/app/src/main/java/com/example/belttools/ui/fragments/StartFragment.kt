@@ -31,6 +31,7 @@ class StartFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
         }
+        sharedViewModel.setUpDatabase(requireNotNull(this.activity).application)
         setUpClickListeners()
         displayMagnetLocation()
         setUpAppBar()

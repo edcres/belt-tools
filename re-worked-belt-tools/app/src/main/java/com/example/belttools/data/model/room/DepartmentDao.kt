@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DepartmentDao {
-    @Query("SELECT * FROM department_table ORDER BY id ASC")
+    @Query("SELECT * FROM department_table ORDER BY name ASC")
     fun getSortedDepartments(): Flow<List<Department>>
 }

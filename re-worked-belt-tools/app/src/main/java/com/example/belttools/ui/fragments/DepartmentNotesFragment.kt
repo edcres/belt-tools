@@ -36,7 +36,6 @@ class DepartmentNotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-
             saveBtn.setOnClickListener {
                 val deptToEdit = sharedViewModel.departmentToEdit
                 if (deptToEdit != null) {
@@ -56,6 +55,7 @@ class DepartmentNotesFragment : Fragment() {
             }
         }
         setUpAppBar()
+        spinnerOnClick()
         setObservers()
     }
 

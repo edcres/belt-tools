@@ -161,6 +161,11 @@ class SharedViewModel: ViewModel() {
                 _departments.postValue(it.toMutableList())
             }
         }
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.allSKUs.collect {
+                _skus.postValue(it.toMutableList())
+            }
+        }
     }
     fun insertDepartment(department: Department) {
         // todo:
@@ -232,31 +237,8 @@ class SharedViewModel: ViewModel() {
 
     // SET UP //
     fun setUpDatabase(application: Application) {
-        // todo: call this function
         roomDb = MainRoomDatabase.getInstance(application)
         repository = Repository(roomDb)
+        collectEntities()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
