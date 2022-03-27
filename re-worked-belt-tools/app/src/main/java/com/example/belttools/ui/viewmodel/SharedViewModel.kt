@@ -154,8 +154,7 @@ class SharedViewModel: ViewModel() {
     // HELPERS //
 
     // DATABASE QUERIES //
-    fun collectEntities() {
-        // todo: call this
+    private fun collectEntities() {
         CoroutineScope(Dispatchers.IO).launch {
             repository.allDepartments.collect {
                 _departments.postValue(it.toMutableList())
@@ -167,12 +166,11 @@ class SharedViewModel: ViewModel() {
             }
         }
     }
-    fun insertDepartment(department: Department) {
-        // todo:
+    fun insertDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+        repository.insertDepartment(department)
     }
-    fun insertSKU(sku: SKU) {
-        // todo: call this, user types their own primary id
-        // todo:
+    fun insertSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+        repository.insertSKU(sku)
     }
     fun updateDepartment(department: Department) {
         // todo:
@@ -180,14 +178,14 @@ class SharedViewModel: ViewModel() {
     fun updateExtensions(department: Department) {
         // todo:
     }
-    fun updateSKU(sku: SKU) {
-        // todo:
+    fun updateSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+        repository.updateSKU(sku)
     }
-    fun removeSKU(sku: SKU) {
-        // todo:
+    fun removeSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+        repository.deleteSKU(sku)
     }
-    fun removeDepartment(department: Department) {
-        // todo:
+    fun removeDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+        repository.deleteDepartment(department)
     }
     fun deletePalletOrFloorSku(sku: SKU) {
         if (itemsListToDisplay == PALLET_SKUS_LIST) {
