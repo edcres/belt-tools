@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 class Repository(private val db: MainRoomDatabase) {
 
     val allDepartments: Flow<List<Department>> = db.departmentDao().getSortedDepartments()
-    
+    // todo: do it for skus
 }

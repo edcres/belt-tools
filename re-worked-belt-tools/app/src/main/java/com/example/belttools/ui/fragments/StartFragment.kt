@@ -63,8 +63,14 @@ class StartFragment : Fragment() {
                         .navigate(R.id.action_startFragment_to_specialtyOrdersFragment)
                     sharedViewModel.navDestinationsList[3] -> navController
                             .navigate(R.id.action_startFragment_to_departmentNotesFragment)
-                    sharedViewModel.navDestinationsList[4] -> navController
-                            .navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
+                    sharedViewModel.navDestinationsList[4] -> {
+                        sharedViewModel.itemsListToDisplay = FLOOR_SKUS_LIST
+                        navController.navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
+                    }
+                    sharedViewModel.navDestinationsList[4] -> {
+                        sharedViewModel.itemsListToDisplay = PALLET_SKUS_LIST
+                        navController.navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
+                    }
                 }
                 menuItem.isChecked = true
                 drawerLayout.close()

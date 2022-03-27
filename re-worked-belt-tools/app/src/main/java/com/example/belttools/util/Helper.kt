@@ -3,6 +3,7 @@ package com.example.belttools.util
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.belttools.data.model.entities.SKU
 import kotlin.math.abs
 import kotlin.math.floor
 
@@ -10,6 +11,8 @@ const val GLOBAL_TAG = "GLOBAL_TAG"
 const val MAGNET_LOCATION_TAG = "Magnet Location"
 const val MAGNET_LOCATION = "Magnet Location"
 const val PLUS_JOIN = " + "
+const val FLOOR_SKUS_LIST = "Floor SKUs"
+const val PALLET_SKUS_LIST = "Pallet SKUs"
 
 fun displayToast(context: Context, msg: String) {
     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -90,4 +93,12 @@ fun decimalToFraction(num: Double): String {
         b = 1/(b-a)
     } while (abs(num-h1/k1) > num*tolerance)
     return "${h1.toInt()}/${k1.toInt()}"
+}
+
+fun doesSKUContainId(list: List<SKU>, id: Long): Boolean {
+    // todo: do this a more efficient way, instead of cycling through the entire list
+    list.forEach {
+        if (it.id == id) return true
+    }
+    return false
 }

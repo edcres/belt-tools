@@ -40,22 +40,29 @@ class ItemsToWorkOnFragment : Fragment() {
                 showAddItemWidget()
             }
             saveItemBtn.setOnClickListener {
-                sharedViewModel.insertSKU(SKU(
-                    id = newItemEt.text.toString().toLong(),
-                    pallet = sharedViewModel.skuIsInPallet,
-                    floor = sharedViewModel.skuIsInFloor
-                ))
+                if(!sharedViewModel.showNewSKU(newItemEt.text.toString().toLong())) {
+                    sharedViewModel.updateSKUType(newItemEt.text.toString().toLong())
+                }
+
+                // todo: observe change in SKUs and if 'itemsListToDisplay' == pallet of floor,
+                //  displays skus accordingly.
+
+
                 hideAddItemWidget()
             }
         }
         setUpAppBar()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        sharedViewModel.itemsListToDisplay = ""
+    }
+
     // SET UP //
     private fun setUpAppBar() {
         binding?.apply {
-            // todo: either "Skus To Work On" or "Pallets To Work On"
-            topAppbar.title = "Work On"
+            topAppbar.title = sharedViewModel.itemsListToDisplay
             topAppbar.setNavigationOnClickListener {
                 val navController =
                     Navigation.findNavController(requireParentFragment().requireView())

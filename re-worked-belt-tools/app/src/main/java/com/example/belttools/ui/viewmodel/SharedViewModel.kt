@@ -24,11 +24,37 @@ class SharedViewModel: ViewModel() {
 
     private val _departments = MutableLiveData<MutableList<Department>>()
     val departments: LiveData<MutableList<Department>> get() = _departments
+    private val _skus = MutableLiveData<MutableList<SKU>>()
+    val skus: LiveData<MutableList<SKU>> get() = _skus
 
-    var skuIsInFloor: Boolean? = null
-    var skuIsInPallet: Boolean? = null
+    var itemsListToDisplay = ""
 
     // HELPERS //
+    fun showNewSKU(skuNum: Long): Boolean {
+       if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
+           return false
+        } else {
+           var pallet = false
+           var floor = false
+           if (itemsListToDisplay == PALLET_SKUS_LIST) pallet = true
+           else floor = true
+           insertSKU(
+               SKU(
+                   id = skuNum,
+                   pallet = pallet,
+                   floor = floor
+               )
+           )
+           return true
+       }
+    }
+    fun updateSKUType(skuId: Long) {
+        if (itemsListToDisplay == PALLET_SKUS_LIST){
+            // todo: update sku pallet to true
+        } else {
+            // todo: update sku floor to true
+        }
+    }
     fun populateNavList(navList: List<String>) {
         navDestinationsList = navList
     }
