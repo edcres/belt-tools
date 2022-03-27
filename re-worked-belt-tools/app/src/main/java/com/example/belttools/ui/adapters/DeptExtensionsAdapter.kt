@@ -36,7 +36,7 @@ class DeptExtensionsAdapter(
                 saveBtn.setOnClickListener {
                     department.name = departmentEt.text.toString()
                     department.extensions = extensionEt.text.toString()
-                    viewModel.updateExtensions(department)
+                    viewModel.updateDepartment(department)
                 }
                 deleteBtn.setOnClickListener {
                     viewModel.deleteExtensions(department)

@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlin.math.sqrt
 
-class SharedViewModel: ViewModel() {
+class SharedViewModel : ViewModel() {
 
     lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
@@ -40,34 +40,38 @@ class SharedViewModel: ViewModel() {
         _menuEditIsOn.value = newValue
         return newValue
     }
+
     fun showNewSKU(skuNum: Long): Boolean {
-       if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
-           return false
+        if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
+            return false
         } else {
-           var pallet = false
-           var floor = false
-           if (itemsListToDisplay == PALLET_SKUS_LIST) pallet = true
-           else floor = true
-           insertSKU(
-               SKU(
-                   id = skuNum,
-                   isOfPallet = pallet,
-                   isOfFloor = floor
-               )
-           )
-           return true
-       }
+            var pallet = false
+            var floor = false
+            if (itemsListToDisplay == PALLET_SKUS_LIST) pallet = true
+            else floor = true
+            insertSKU(
+                SKU(
+                    id = skuNum,
+                    isOfPallet = pallet,
+                    isOfFloor = floor
+                )
+            )
+            return true
+        }
     }
+
     fun updateSKUType(skuId: Long) {
-        if (itemsListToDisplay == PALLET_SKUS_LIST){
+        if (itemsListToDisplay == PALLET_SKUS_LIST) {
             // todo: update sku pallet to true
         } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
             // todo: update sku floor to true
         }
     }
+
     fun populateNavList(navList: List<String>) {
         navDestinationsList = navList
     }
+
     fun saveMagnetLocation(context: Context, location: String) {
         val magnetLocationSharedPref = context
             .getSharedPreferences(MAGNET_LOCATION_TAG, Context.MODE_PRIVATE) ?: return
@@ -77,11 +81,13 @@ class SharedViewModel: ViewModel() {
             displayToast(context, "Saved")
         }
     }
+
     fun getMagnetLocation(context: Context): String? {
         val magnetLocationSharedPref = context
             .getSharedPreferences(MAGNET_LOCATION_TAG, Context.MODE_PRIVATE)
         return magnetLocationSharedPref.getString(MAGNET_LOCATION, null)
     }
+
     fun getSqrPerRoom(width: Double, length: Double, btnTxt: String, btnDefault: String): String? {
         val result = width * length
         return if (btnTxt != btnDefault) {
@@ -166,27 +172,31 @@ class SharedViewModel: ViewModel() {
             }
         }
     }
+
     fun insertDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
         repository.insertDepartment(department)
     }
+
     fun insertSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.insertSKU(sku)
     }
-    fun updateDepartment(department: Department) {
-        // todo:
+
+    fun updateDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+        repository.updateDepartment(department)
     }
-    fun updateExtensions(department: Department) {
-        // todo:
-    }
+
     fun updateSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.updateSKU(sku)
     }
+
     fun removeSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.deleteSKU(sku)
     }
+
     fun removeDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
         repository.deleteDepartment(department)
     }
+
     fun deletePalletOrFloorSku(sku: SKU) {
         if (itemsListToDisplay == PALLET_SKUS_LIST) {
             // delete pallet
@@ -206,25 +216,26 @@ class SharedViewModel: ViewModel() {
             }
         }
     }
+
     fun deleteExtensions(department: Department) {
-        // todo: send this logic to the viewModel
         if (department.notes.isEmpty()) {
-            // todo: delete
+            removeDepartment(department)
         } else {
-            // todo: update, don't delete
+            updateDepartment(department)
         }
     }
+
     fun deleteNotes(department: Department) {
-        // todo: send this logic to the viewModel
         if (department.extensions.isEmpty()) {
-            // todo: delete
+            removeDepartment(department)
         } else {
-            // todo: update, don't delete
+            updateDepartment(department)
         }
     }
+
     fun getFilteredItemsList(): MutableLiveData<List<SKU>> {
         val filteredSKUs = MutableLiveData<List<SKU>>()
-        if (itemsListToDisplay == PALLET_SKUS_LIST){
+        if (itemsListToDisplay == PALLET_SKUS_LIST) {
             // todo: get sku where pallet = true
         } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
             // todo: get sku where floor = true

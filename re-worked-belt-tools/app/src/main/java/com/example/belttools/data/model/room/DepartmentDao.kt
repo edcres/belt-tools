@@ -1,9 +1,6 @@
 package com.example.belttools.data.model.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.belttools.data.model.entities.Department
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +12,9 @@ interface DepartmentDao {
 
     @Delete
     suspend fun delete(department: Department)
+
+    @Update
+    suspend fun update(department: Department)
 
     @Insert
     suspend fun insert(department: Department)

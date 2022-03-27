@@ -22,6 +22,11 @@ class Repository(private val db: MainRoomDatabase) {
     }
 
     @WorkerThread
+    suspend fun updateDepartment(department: Department) {
+        db.departmentDao().update(department)
+    }
+
+    @WorkerThread
     suspend fun updateSKU(sku: SKU) {
         db.sKUsDao().update(sku)
     }
