@@ -17,8 +17,8 @@ class Repository(private val db: MainRoomDatabase) {
     }
 
     @WorkerThread
-    suspend fun deleteSKU(sku: SKU) {
-        db.sKUsDao().delete(sku)
+    suspend fun insertDepartment(department: Department) {
+        db.departmentDao().insert(department)
     }
 
     @WorkerThread
@@ -27,17 +27,29 @@ class Repository(private val db: MainRoomDatabase) {
     }
 
     @WorkerThread
-    suspend fun updateSKU(sku: SKU) {
-        db.sKUsDao().update(sku)
-    }
-
-    @WorkerThread
-    suspend fun insertDepartment(department: Department) {
-        db.departmentDao().insert(department)
+    suspend fun deleteSKU(sku: SKU) {
+        db.sKUsDao().delete(sku)
     }
 
     @WorkerThread
     suspend fun insertSKU(sku: SKU) {
         db.sKUsDao().insert(sku)
+    }
+
+    @WorkerThread
+    suspend fun updateSKU(sku: SKU) {
+        db.sKUsDao().update(sku)
+    }
+
+    @WorkerThread
+    suspend fun getSKUsOfPallet(): List<SKU> {
+        // todo: get sku where pallet = true
+        return db.sKUsDao().getPalletSKUs()
+    }
+
+    @WorkerThread
+    suspend fun getSKUsOfFloor(): List<SKU> {
+        // todo: get sku where floor = true
+        return db.sKUsDao().getFloorSKUs()
     }
 }

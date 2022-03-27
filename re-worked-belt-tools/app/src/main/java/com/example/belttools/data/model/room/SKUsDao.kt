@@ -1,7 +1,6 @@
 package com.example.belttools.data.model.room
 
 import androidx.room.*
-import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SKU
 import kotlinx.coroutines.flow.Flow
 
@@ -19,4 +18,18 @@ interface SKUsDao {
 
     @Insert
     suspend fun insert(sku: SKU)
+
+    @Query(
+        "SELECT * FROM sku_table " +
+                "WHERE is_of_pallet = :pallet " +
+                "ORDER BY id ASC"
+    )
+    fun getPalletSKUs(pallet: Boolean = true): List<SKU>
+
+    @Query(
+        "SELECT * FROM sku_table " +
+                "WHERE is_of_floor = :floor " +
+                "ORDER BY id ASC"
+    )
+    fun getFloorSKUs(floor: Boolean = true): List<SKU>
 }

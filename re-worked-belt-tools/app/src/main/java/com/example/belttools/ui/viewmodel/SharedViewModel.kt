@@ -235,10 +235,12 @@ class SharedViewModel : ViewModel() {
 
     fun getFilteredItemsList(): MutableLiveData<List<SKU>> {
         val filteredSKUs = MutableLiveData<List<SKU>>()
-        if (itemsListToDisplay == PALLET_SKUS_LIST) {
-            // todo: get sku where pallet = true
-        } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
-            // todo: get sku where floor = true
+        CoroutineScope(Dispatchers.IO).launch {
+            if (itemsListToDisplay == PALLET_SKUS_LIST) {
+                filteredSKUs.postValue(repository.getSKUsOfPallet())
+            } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
+                filteredSKUs.postValue(repository.getSKUsOfFloor())
+            }
         }
         return filteredSKUs
     }
