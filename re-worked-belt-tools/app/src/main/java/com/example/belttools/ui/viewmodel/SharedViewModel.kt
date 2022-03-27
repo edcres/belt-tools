@@ -169,6 +169,9 @@ class SharedViewModel: ViewModel() {
         // todo: call this, user types their own primary id
         // todo:
     }
+    fun updateDepartment(department: Department) {
+        // todo:
+    }
     fun updateExtensions(department: Department) {
         // todo:
     }

@@ -3,6 +3,7 @@ package com.example.belttools.util
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SKU
 import kotlin.math.abs
 import kotlin.math.floor
@@ -101,4 +102,13 @@ fun doesSKUContainId(list: List<SKU>, id: Long): Boolean {
         if (it.id == id) return true
     }
     return false
+}
+
+fun getDepartmentNames(departments: List<Department>): List<String> {
+    // todo: do this a more efficient way, instead of cycling through the entire list
+    val departmentNames = mutableListOf<String>()
+    departments.forEach {
+        departmentNames.add(it.name)
+    }
+    return departmentNames
 }
