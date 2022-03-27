@@ -40,18 +40,16 @@ class ItemsToWorkOnFragment : Fragment() {
                 showAddItemWidget()
             }
             saveItemBtn.setOnClickListener {
-                if(!sharedViewModel.showNewSKU(newItemEt.text.toString().toLong())) {
-                    sharedViewModel.updateSKUType(newItemEt.text.toString().toLong())
+                val newItemSKU = newItemEt.text.toString().toLong()
+                if(!sharedViewModel.showNewSKU(newItemSKU)) {
+                    // SKU is either added or updated.
+                    sharedViewModel.updateSKUType(newItemSKU)
                 }
-
-                // todo: observe change in SKUs and if 'itemsListToDisplay' == pallet of floor,
-                //  displays skus accordingly.
-
-
                 hideAddItemWidget()
             }
         }
         setUpAppBar()
+        setObservers()
     }
 
     override fun onDestroy() {
@@ -60,6 +58,13 @@ class ItemsToWorkOnFragment : Fragment() {
     }
 
     // SET UP //
+    private fun setObservers() {
+        sharedViewModel.skus.observe(viewLifecycleOwner) {
+            sharedViewModel.getFilteredItemsList().observe(viewLifecycleOwner) { filteredSKUs ->
+                itemsToWorkAdapter.submitList(filteredSKUs)
+            }
+        }
+    }
     private fun setUpAppBar() {
         binding?.apply {
             topAppbar.title = sharedViewModel.itemsListToDisplay

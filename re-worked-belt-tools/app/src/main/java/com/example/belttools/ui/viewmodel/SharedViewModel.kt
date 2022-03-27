@@ -51,7 +51,7 @@ class SharedViewModel: ViewModel() {
     fun updateSKUType(skuId: Long) {
         if (itemsListToDisplay == PALLET_SKUS_LIST){
             // todo: update sku pallet to true
-        } else {
+        } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
             // todo: update sku floor to true
         }
     }
@@ -164,6 +164,15 @@ class SharedViewModel: ViewModel() {
     }
     fun updateSKU(sku: SKU) {
         // todo:
+    }
+    fun getFilteredItemsList(): MutableLiveData<List<SKU>> {
+        val filteredSKUs = MutableLiveData<List<SKU>>()
+        if (itemsListToDisplay == PALLET_SKUS_LIST){
+            // todo: get sku where pallet = true
+        } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
+            // todo: get sku where floor = true
+        }
+        return filteredSKUs
     }
     // DATABASE QUERIES //
 
