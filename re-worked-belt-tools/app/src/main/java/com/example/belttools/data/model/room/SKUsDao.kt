@@ -16,6 +16,20 @@ interface SKUsDao {
     @Update
     suspend fun update(sku: SKU)
 
+    @Query(
+        "UPDATE sku_table " +
+                "SET is_of_pallet = :pallet " +
+                "WHERE id = :skuId"
+    )
+    suspend fun updateSKUPallet(skuId: Long, pallet: Boolean = true)
+
+    @Query(
+        "UPDATE sku_table " +
+                "SET is_of_floor = :floor " +
+                "WHERE id = :skuId"
+    )
+    suspend fun updateSKUFloor(skuId: Long, floor: Boolean = true)
+
     @Insert
     suspend fun insert(sku: SKU)
 
@@ -24,12 +38,12 @@ interface SKUsDao {
                 "WHERE is_of_pallet = :pallet " +
                 "ORDER BY id ASC"
     )
-    fun getPalletSKUs(pallet: Boolean = true): List<SKU>
+    suspend fun getPalletSKUs(pallet: Boolean = true): List<SKU>
 
     @Query(
         "SELECT * FROM sku_table " +
                 "WHERE is_of_floor = :floor " +
                 "ORDER BY id ASC"
     )
-    fun getFloorSKUs(floor: Boolean = true): List<SKU>
+    suspend fun getFloorSKUs(floor: Boolean = true): List<SKU>
 }

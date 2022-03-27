@@ -19,7 +19,7 @@ import com.example.belttools.R
  *
  *  Have the animation in the beginning
  *
- * add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ *  add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  *
  * test the StartFragment features
  */

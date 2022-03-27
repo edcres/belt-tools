@@ -60,11 +60,11 @@ class SharedViewModel : ViewModel() {
         }
     }
 
-    fun updateSKUType(skuId: Long) {
+    fun updateSKUType(skuId: Long) = CoroutineScope(Dispatchers.IO).launch {
         if (itemsListToDisplay == PALLET_SKUS_LIST) {
-            // todo: update sku pallet to true
+            repository.updateSKUPallet(skuId)
         } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
-            // todo: update sku floor to true
+            repository.updateSKUFloor(skuId)
         }
     }
 

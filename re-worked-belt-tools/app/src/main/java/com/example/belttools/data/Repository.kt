@@ -42,6 +42,16 @@ class Repository(private val db: MainRoomDatabase) {
     }
 
     @WorkerThread
+    suspend fun updateSKUPallet(skuId: Long) {
+        db.sKUsDao().updateSKUPallet(skuId)
+    }
+
+    @WorkerThread
+    suspend fun updateSKUFloor(skuId: Long) {
+        db.sKUsDao().updateSKUFloor(skuId)
+    }
+
+    @WorkerThread
     suspend fun getSKUsOfPallet(): List<SKU> {
         // todo: get sku where pallet = true
         return db.sKUsDao().getPalletSKUs()
