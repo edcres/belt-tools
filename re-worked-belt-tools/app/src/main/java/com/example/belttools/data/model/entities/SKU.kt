@@ -11,8 +11,8 @@ data class SKU (
     val id: Long = 0,
     @ColumnInfo(name = "notes")
     var notes: String = "",
-    @ColumnInfo(name = "pallet")
-    var pallet: Boolean? = false,
-    @ColumnInfo(name = "floor")
-    var floor: Boolean? = false
+    @ColumnInfo(name = "is_of_pallet")
+    var isOfPallet: Boolean = false,
+    @ColumnInfo(name = "is_of_floor")
+    var isOfFloor: Boolean = false
 )

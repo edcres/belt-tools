@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.belttools.R
-import com.example.belttools.data.model.entities.SKU
 import com.example.belttools.databinding.FragmentItemsToWorkOnBinding
 import com.example.belttools.ui.adapters.ItemsToWorkAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
@@ -27,7 +26,7 @@ class ItemsToWorkOnFragment : Fragment() {
         val fragmentBinding = FragmentItemsToWorkOnBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
-        itemsToWorkAdapter = ItemsToWorkAdapter(sharedViewModel)
+        itemsToWorkAdapter = ItemsToWorkAdapter(sharedViewModel, viewLifecycleOwner)
         return fragmentBinding.root
     }
 

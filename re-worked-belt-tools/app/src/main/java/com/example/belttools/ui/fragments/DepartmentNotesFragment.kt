@@ -32,6 +32,14 @@ class DepartmentNotesFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
         setUpAppBar()
+
+        // todo: when deleting a note
+        sharedViewModel.deleteNotes(sharedViewModel.departmentToEdit!!)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        sharedViewModel.departmentToEdit = null
     }
 
     // SET UP //

@@ -30,6 +30,7 @@ class SharedViewModel: ViewModel() {
     private var _menuEditIsOn = MutableLiveData(false)
     val menuEditIsOn: LiveData<Boolean> get() = _menuEditIsOn
 
+    var departmentToEdit: Department? = null
     var itemsListToDisplay = ""
 
     // HELPERS //
@@ -50,8 +51,8 @@ class SharedViewModel: ViewModel() {
            insertSKU(
                SKU(
                    id = skuNum,
-                   pallet = pallet,
-                   floor = floor
+                   isOfPallet = pallet,
+                   isOfFloor = floor
                )
            )
            return true
@@ -173,6 +174,47 @@ class SharedViewModel: ViewModel() {
     }
     fun updateSKU(sku: SKU) {
         // todo:
+    }
+    fun removeSKU(sku: SKU) {
+        // todo:
+    }
+    fun removeDepartment(department: Department) {
+        // todo:
+    }
+    fun deletePalletOrFloorSku(sku: SKU) {
+        if (itemsListToDisplay == PALLET_SKUS_LIST) {
+            // delete pallet
+            if (sku.isOfFloor) {
+                sku.isOfPallet = false
+                updateSKU(sku)
+            } else {
+                removeSKU(sku)
+            }
+        } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
+            // delete floor
+            if (sku.isOfPallet) {
+                sku.isOfFloor = false
+                updateSKU(sku)
+            } else {
+                removeSKU(sku)
+            }
+        }
+    }
+    fun deleteExtensions(department: Department) {
+        // todo: send this logic to the viewModel
+        if (department.notes.isEmpty()) {
+            // todo: delete
+        } else {
+            // todo: update, don't delete
+        }
+    }
+    fun deleteNotes(department: Department) {
+        // todo: send this logic to the viewModel
+        if (department.extensions.isEmpty()) {
+            // todo: delete
+        } else {
+            // todo: update, don't delete
+        }
     }
     fun getFilteredItemsList(): MutableLiveData<List<SKU>> {
         val filteredSKUs = MutableLiveData<List<SKU>>()
