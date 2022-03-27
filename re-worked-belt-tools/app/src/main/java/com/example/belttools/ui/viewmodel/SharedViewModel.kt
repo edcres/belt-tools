@@ -27,9 +27,18 @@ class SharedViewModel: ViewModel() {
     private val _skus = MutableLiveData<MutableList<SKU>>()
     val skus: LiveData<MutableList<SKU>> get() = _skus
 
+    private var _menuEditIsOn = MutableLiveData(false)
+    val menuEditIsOn: LiveData<Boolean> get() = _menuEditIsOn
+
     var itemsListToDisplay = ""
 
     // HELPERS //
+    fun toggleEditBtn(): Boolean {
+        //todo: toggle this off when an item is clicked to be edited
+        val newValue = !_menuEditIsOn.value!!
+        _menuEditIsOn.value = newValue
+        return newValue
+    }
     fun showNewSKU(skuNum: Long): Boolean {
        if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
            return false

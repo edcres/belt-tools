@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.example.belttools.R
 import com.example.belttools.databinding.FragmentDepartmentNotesBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
@@ -42,6 +43,15 @@ class DepartmentNotesFragment : Fragment() {
                 val navController =
                     Navigation.findNavController(requireParentFragment().requireView())
                 navController.navigateUp()
+            }
+            topAppbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.edit_toolbar_btn -> {
+                        sharedViewModel.toggleEditBtn()
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }

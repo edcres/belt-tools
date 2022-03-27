@@ -34,7 +34,6 @@ class ItemsToWorkAdapter(
                 }
             }
         }
-
         companion object {
             fun from(
                 viewModel: SharedViewModel,

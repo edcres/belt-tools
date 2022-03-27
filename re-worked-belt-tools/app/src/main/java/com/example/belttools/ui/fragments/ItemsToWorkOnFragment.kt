@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.belttools.R
 import com.example.belttools.data.model.entities.SKU
 import com.example.belttools.databinding.FragmentItemsToWorkOnBinding
 import com.example.belttools.ui.adapters.ItemsToWorkAdapter
@@ -72,6 +73,15 @@ class ItemsToWorkOnFragment : Fragment() {
                 val navController =
                     Navigation.findNavController(requireParentFragment().requireView())
                 navController.navigateUp()
+            }
+            topAppbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.edit_toolbar_btn -> {
+                        sharedViewModel.toggleEditBtn()
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }

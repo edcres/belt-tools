@@ -7,6 +7,7 @@
     <string name="nav_header_title">Tools</string>
     <string name="nav_header_txt">Use them</string>
 
+    <string name="toolbar_edit">Edit</string>
     <string name="clear_texts">Clear Texts</string>
     <string name="functions">Functions</string>
     <string name="extensions">Extensions</string>

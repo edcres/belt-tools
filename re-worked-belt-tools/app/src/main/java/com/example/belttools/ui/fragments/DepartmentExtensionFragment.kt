@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.belttools.R
 import com.example.belttools.data.model.entities.Department
 import com.example.belttools.databinding.FragmentDepartmentExtensionBinding
 import com.example.belttools.ui.adapters.DeptExtensionsAdapter
@@ -57,6 +58,15 @@ class DepartmentExtensionFragment : Fragment() {
                 val navController =
                     Navigation.findNavController(requireParentFragment().requireView())
                 navController.navigateUp()
+            }
+            topAppbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.edit_toolbar_btn -> {
+                        sharedViewModel.toggleEditBtn()
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }
