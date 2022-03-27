@@ -51,6 +51,48 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/add_item_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/new_item_et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="7"
+                    android:gravity="center"
+                    android:hint="@string/sku_number"
+                    android:inputType="number"
+                    android:textSize="24sp" />
+
+                <ImageButton
+                    android:id="@+id/save_item_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="18dp"
+                    android:background="@color/transparent"
+                    app:srcCompat="@drawable/ic_accept_mark_24"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_item_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="24dp"
+                android:layout_gravity="bottom|center"
+                app:srcCompat="@drawable/ic_add_24"
+                tools:layout_editor_absoluteX="216dp"
+                tools:layout_editor_absoluteY="580dp" />
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 <!--        <com.google.android.material.navigation.NavigationView-->

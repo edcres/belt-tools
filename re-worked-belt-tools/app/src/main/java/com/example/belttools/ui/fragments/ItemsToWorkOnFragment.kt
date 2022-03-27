@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.belttools.data.model.entities.SKU
 import com.example.belttools.databinding.FragmentItemsToWorkOnBinding
 import com.example.belttools.ui.adapters.ItemsToWorkAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
@@ -35,6 +36,17 @@ class ItemsToWorkOnFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             itemsRecycler.adapter = itemsToWorkAdapter
             itemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+            addItemBtn.setOnClickListener {
+                showAddItemWidget()
+            }
+            saveItemBtn.setOnClickListener {
+                sharedViewModel.insertSKU(SKU(
+                    id = newItemEt.text.toString().toLong(),
+                    pallet = sharedViewModel.skuIsInPallet,
+                    floor = sharedViewModel.skuIsInFloor
+                ))
+                hideAddItemWidget()
+            }
         }
         setUpAppBar()
     }
@@ -49,6 +61,20 @@ class ItemsToWorkOnFragment : Fragment() {
                     Navigation.findNavController(requireParentFragment().requireView())
                 navController.navigateUp()
             }
+        }
+    }
+
+    // HELPERS //
+    private fun showAddItemWidget() {
+        binding?.apply {
+            itemsRecycler.visibility = View.INVISIBLE
+            addItemWidget.visibility = View.VISIBLE
+        }
+    }
+    private fun hideAddItemWidget() {
+        binding?.apply {
+            itemsRecycler.visibility = View.VISIBLE
+            addItemWidget.visibility = View.GONE
         }
     }
 }

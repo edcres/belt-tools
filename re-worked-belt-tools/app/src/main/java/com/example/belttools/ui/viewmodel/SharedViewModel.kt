@@ -25,6 +25,9 @@ class SharedViewModel: ViewModel() {
     private val _departments = MutableLiveData<MutableList<Department>>()
     val departments: LiveData<MutableList<Department>> get() = _departments
 
+    var skuIsInFloor: Boolean? = null
+    var skuIsInPallet: Boolean? = null
+
     // HELPERS //
     fun populateNavList(navList: List<String>) {
         navDestinationsList = navList

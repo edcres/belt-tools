@@ -12,7 +12,7 @@ data class SKU (
     @ColumnInfo(name = "notes")
     var notes: String = "",
     @ColumnInfo(name = "pallet")
-    var pallet: Boolean = false,
+    var pallet: Boolean? = false,
     @ColumnInfo(name = "floor")
-    var floor: Boolean = false
+    var floor: Boolean? = false
 )

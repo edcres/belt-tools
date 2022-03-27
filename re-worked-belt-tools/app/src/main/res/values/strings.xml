@@ -12,6 +12,7 @@
     <string name="extensions">Extensions</string>
     <string name="orders">Orders</string>
     <string name="skus">SKUs</string>
+    <string name="sku_number">SKU number</string>
     <string name="pallets">Pallets</string>
     <string name="notes">Notes</string>
     <string name="note">note</string>
