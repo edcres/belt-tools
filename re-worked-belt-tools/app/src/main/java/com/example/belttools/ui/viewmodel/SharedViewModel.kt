@@ -185,6 +185,10 @@ class SharedViewModel : ViewModel() {
         repository.insertDepartment(department)
     }
 
+    fun insertSpecOrder(specialtyOrder: SpecialtyOrder) = CoroutineScope(Dispatchers.IO).launch {
+        repository.insertSpecOrder(specialtyOrder)
+    }
+
     private fun insertSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.insertSKU(sku)
     }
@@ -193,12 +197,20 @@ class SharedViewModel : ViewModel() {
         repository.updateDepartment(department)
     }
 
+    fun updateSpecOrder(specialtyOrder: SpecialtyOrder) = CoroutineScope(Dispatchers.IO).launch {
+        repository.updateSpecOrder(specialtyOrder)
+    }
+
     fun updateSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.updateSKU(sku)
     }
 
     private fun removeSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.deleteSKU(sku)
+    }
+
+    fun removeSpecOrder(specialtyOrder: SpecialtyOrder) = CoroutineScope(Dispatchers.IO).launch {
+        repository.deleteSpecOrder(specialtyOrder)
     }
 
     private fun removeDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {

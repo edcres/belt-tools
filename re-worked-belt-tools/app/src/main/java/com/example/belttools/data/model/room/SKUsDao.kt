@@ -10,11 +10,14 @@ interface SKUsDao {
     @Query("SELECT * FROM sku_table ORDER BY id ASC")
     fun getSortedSKUs(): Flow<List<SKU>>
 
-    @Delete
-    suspend fun delete(sku: SKU)
+    @Insert
+    suspend fun insert(sku: SKU)
 
     @Update
     suspend fun update(sku: SKU)
+
+    @Delete
+    suspend fun delete(sku: SKU)
 
     @Query(
         "UPDATE sku_table " +
@@ -29,9 +32,6 @@ interface SKUsDao {
                 "WHERE id = :skuId"
     )
     suspend fun updateSKUFloor(skuId: Long, floor: Boolean = true)
-
-    @Insert
-    suspend fun insert(sku: SKU)
 
     @Query(
         "SELECT * FROM sku_table " +

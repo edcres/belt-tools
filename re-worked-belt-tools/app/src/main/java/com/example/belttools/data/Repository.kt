@@ -14,11 +14,6 @@ class Repository(private val db: MainRoomDatabase) {
     val allSecOrders: Flow<List<SpecialtyOrder>> = db.specialtyOrderDao().getSortedOrders()
 
     @WorkerThread
-    suspend fun deleteDepartment(department: Department) {
-        db.departmentDao().delete(department)
-    }
-
-    @WorkerThread
     suspend fun insertDepartment(department: Department) {
         db.departmentDao().insert(department)
     }
@@ -29,8 +24,23 @@ class Repository(private val db: MainRoomDatabase) {
     }
 
     @WorkerThread
-    suspend fun deleteSKU(sku: SKU) {
-        db.sKUsDao().delete(sku)
+    suspend fun deleteDepartment(department: Department) {
+        db.departmentDao().delete(department)
+    }
+
+    @WorkerThread
+    suspend fun insertSpecOrder(specialtyOrder: SpecialtyOrder) {
+        db.specialtyOrderDao().insert(specialtyOrder)
+    }
+
+    @WorkerThread
+    suspend fun updateSpecOrder(specialtyOrder: SpecialtyOrder) {
+        db.specialtyOrderDao().update(specialtyOrder)
+    }
+
+    @WorkerThread
+    suspend fun deleteSpecOrder(specialtyOrder: SpecialtyOrder) {
+        db.specialtyOrderDao().delete(specialtyOrder)
     }
 
     @WorkerThread
@@ -41,6 +51,11 @@ class Repository(private val db: MainRoomDatabase) {
     @WorkerThread
     suspend fun updateSKU(sku: SKU) {
         db.sKUsDao().update(sku)
+    }
+
+    @WorkerThread
+    suspend fun deleteSKU(sku: SKU) {
+        db.sKUsDao().delete(sku)
     }
 
     @WorkerThread
