@@ -10,13 +10,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.belttools.R
 import com.example.belttools.data.model.entities.Department
-import com.example.belttools.databinding.FragmentDepartmentExtensionBinding
+import com.example.belttools.databinding.FragmentDepartmentExtensionsBinding
 import com.example.belttools.ui.adapters.DeptExtensionsAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
-class DepartmentExtensionFragment : Fragment() {
+class DepartmentExtensionsFragment : Fragment() {
 
-    private var binding: FragmentDepartmentExtensionBinding? = null
+    private var binding: FragmentDepartmentExtensionsBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var deptExtensionsAdapter: DeptExtensionsAdapter
 
@@ -24,7 +24,7 @@ class DepartmentExtensionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentBinding = FragmentDepartmentExtensionBinding
+        val fragmentBinding = FragmentDepartmentExtensionsBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
         deptExtensionsAdapter = DeptExtensionsAdapter(sharedViewModel, viewLifecycleOwner)

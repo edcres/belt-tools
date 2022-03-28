@@ -25,9 +25,9 @@
     </fragment>
     <fragment
         android:id="@+id/departmentExtensionFragment"
-        android:name="com.example.belttools.ui.fragments.DepartmentExtensionFragment"
+        android:name="com.example.belttools.ui.fragments.DepartmentExtensionsFragment"
         android:label="fragment_department_extension"
-        tools:layout="@layout/fragment_department_extension" />
+        tools:layout="@layout/fragment_department_extensions" />
     <fragment
         android:id="@+id/specialtyOrdersFragment"
         android:name="com.example.belttools.ui.fragments.SpecialtyOrdersFragment"
