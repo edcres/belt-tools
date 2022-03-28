@@ -65,7 +65,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
                             android:backgroundTint="@color/action_btn_color"
-                            android:text="Delete"
+                            android:text="@string/delete"
                             android:textAllCaps="false"
                             android:textColor="@color/black" />
 
@@ -76,7 +76,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="8dp"
                             android:backgroundTint="@color/action_btn_color"
-                            android:text="Look Up"
+                            android:text="@string/look_up"
                             android:textAllCaps="false"
                             android:textColor="@color/black" />
 
@@ -88,7 +88,7 @@
                             android:layout_gravity="center|end"
                             android:layout_marginStart="8dp"
                             android:ems="10"
-                            android:hint="order-number"
+                            android:hint="@string/order_number"
                             android:inputType="textPersonName"
                             android:paddingStart="8dp"
                             tools:ignore="RtlSymmetry" />
@@ -100,7 +100,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:hint="info"
+                        android:hint="@string/info"
                         android:inputType="textPersonName"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:ems="10"
-                        android:hint="note"
+                        android:hint="@string/note"
                         android:inputType="textPersonName"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/order_info_et" />
@@ -123,30 +123,33 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:backgroundTint="@color/action_btn_color"
-                        android:text="Save Order"
+                        android:text="@string/save_order"
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/order_info_et" />
 
-                    <ScrollView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="24dp"
-                        android:background="@color/fading_background"
-                        android:padding="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/order_note_et">
+<!--                    <ScrollView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="24dp"-->
+<!--                        android:background="@color/fading_background"-->
+<!--                        android:padding="8dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/order_note_et">-->
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/orders_recycler"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_margin="24dp"
+                            android:background="@color/fading_background"
+                            android:padding="8dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/order_note_et" />
 
-                    </ScrollView>
+<!--                    </ScrollView>-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
