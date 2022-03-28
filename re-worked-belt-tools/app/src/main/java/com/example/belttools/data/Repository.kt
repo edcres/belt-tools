@@ -4,12 +4,14 @@ import androidx.annotation.WorkerThread
 import com.example.belttools.data.model.MainRoomDatabase
 import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SKU
+import com.example.belttools.data.model.entities.SpecialtyOrder
 import kotlinx.coroutines.flow.Flow
 
 class Repository(private val db: MainRoomDatabase) {
 
     val allDepartments: Flow<List<Department>> = db.departmentDao().getSortedDepartments()
     val allSKUs: Flow<List<SKU>> = db.sKUsDao().getSortedSKUs()
+    val allSecOrders: Flow<List<SpecialtyOrder>> = db.specialtyOrderDao().getSortedOrders()
 
     @WorkerThread
     suspend fun deleteDepartment(department: Department) {
@@ -53,13 +55,11 @@ class Repository(private val db: MainRoomDatabase) {
 
     @WorkerThread
     suspend fun getSKUsOfPallet(): List<SKU> {
-        // todo: get sku where pallet = true
         return db.sKUsDao().getPalletSKUs()
     }
 
     @WorkerThread
     suspend fun getSKUsOfFloor(): List<SKU> {
-        // todo: get sku where floor = true
         return db.sKUsDao().getFloorSKUs()
     }
 }

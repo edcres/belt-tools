@@ -8,10 +8,6 @@ import com.example.belttools.R
 
 /**
  * - Have in the navigation drawer
- *      - Department Extensions
- *      - Skus to work on
- *      - Pallets to work on
- *      - Notes (spinner in which user can choose each department)
  *      - Specialty orders
  *
  *  In the beginning, user chooses which store code they are from (H6872)

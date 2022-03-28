@@ -9,6 +9,7 @@ import com.example.belttools.data.Repository
 import com.example.belttools.data.model.MainRoomDatabase
 import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SKU
+import com.example.belttools.data.model.entities.SpecialtyOrder
 import com.example.belttools.util.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,8 @@ class SharedViewModel : ViewModel() {
     val departments: LiveData<MutableList<Department>> get() = _departments
     private val _skus = MutableLiveData<MutableList<SKU>>()
     val skus: LiveData<MutableList<SKU>> get() = _skus
+    private val _specOrders = MutableLiveData<MutableList<SpecialtyOrder>>()
+    val specOrders: LiveData<MutableList<SpecialtyOrder>> get() = _specOrders
 
     private var _menuEditIsOn = MutableLiveData(false)
     val menuEditIsOn: LiveData<Boolean> get() = _menuEditIsOn
@@ -171,13 +174,18 @@ class SharedViewModel : ViewModel() {
                 _skus.postValue(it.toMutableList())
             }
         }
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.allSecOrders.collect {
+                _specOrders.postValue(it.toMutableList())
+            }
+        }
     }
 
     fun insertDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
         repository.insertDepartment(department)
     }
 
-    fun insertSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+    private fun insertSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.insertSKU(sku)
     }
 
@@ -189,11 +197,11 @@ class SharedViewModel : ViewModel() {
         repository.updateSKU(sku)
     }
 
-    fun removeSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+    private fun removeSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
         repository.deleteSKU(sku)
     }
 
-    fun removeDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+    private fun removeDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
         repository.deleteDepartment(department)
     }
 
