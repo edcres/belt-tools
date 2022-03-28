@@ -10,9 +10,9 @@ data class SpecialtyOrder (
     @ColumnInfo(name = "id")
     var id: Long = 0,
     @ColumnInfo(name = "order_num")
-    var orderNum: Long = 0,
+    var orderNum: String = "",
     @ColumnInfo(name = "info")
-    var info: Long = 0,
+    var info: String = "",
     @ColumnInfo(name = "note")
-    var note: Long = 0
+    var note: String = ""
 )

@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.belttools.R
 import com.example.belttools.databinding.FragmentSpecialtyOrdersBinding
+import com.example.belttools.ui.adapters.SpecOrdersAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
 class SpecialtyOrdersFragment : Fragment() {
 
     private var binding: FragmentSpecialtyOrdersBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var specOrdersAdapter: SpecOrdersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +26,7 @@ class SpecialtyOrdersFragment : Fragment() {
         val fragmentBinding = FragmentSpecialtyOrdersBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
+        specOrdersAdapter = SpecOrdersAdapter(sharedViewModel)
         return fragmentBinding.root
     }
 
@@ -30,6 +34,8 @@ class SpecialtyOrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
+            ordersRecycler.adapter = specOrdersAdapter
+            ordersRecycler.layoutManager = LinearLayoutManager(requireContext())
         }
         setUpAppBar()
     }
