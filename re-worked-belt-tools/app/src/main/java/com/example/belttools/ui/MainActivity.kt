@@ -8,6 +8,9 @@ import com.example.belttools.R
 
 /** todo:
  *
+ *  Major bug:
+ *  - departments are not deleting (prob bc the other property has to be false and it never is)
+ *
  *  Have the animation in the beginning
  *
  *  Maybe change the edit mode icon color

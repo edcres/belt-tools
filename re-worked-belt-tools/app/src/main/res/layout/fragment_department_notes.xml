@@ -37,7 +37,7 @@
                 <Spinner
                     android:id="@+id/choose_dept_spinner"
                     android:layout_width="300dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="8dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -41,6 +41,7 @@ class DepartmentNotesFragment : Fragment() {
                 if (deptToEdit != null) {
                     deptToEdit.notes = deptNotesTxt.text.toString()
                     sharedViewModel.updateDepartment(deptToEdit)
+                    displayToast(requireContext(), "Saved")
                 } else {
                     displayToast(requireContext(), "Choose a department")
                 }
