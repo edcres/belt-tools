@@ -17,9 +17,11 @@ import com.example.belttools.R
  *
  *  add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  *
- * test the StartFragment features
+ *  test the StartFragment features
  *
- * // make sure 2 order dont have the same order_num, maybe make this the primary key
+ *  Make sure 2 order dont have the same order_num, maybe make this the primary key
+ *
+ *  Ask user if they are sure when making major decisions (like removing specialty orders)
  */
 
 class MainActivity : AppCompatActivity() {

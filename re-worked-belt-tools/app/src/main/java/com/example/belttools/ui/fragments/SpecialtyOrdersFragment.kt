@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.belttools.data.model.entities.SpecialtyOrder
 import com.example.belttools.databinding.FragmentSpecialtyOrdersBinding
 import com.example.belttools.ui.adapters.SpecOrdersAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
@@ -48,7 +49,7 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
         // For the recycler item click listener.
         val specOrder = sharedViewModel.specOrders.value!![position]
         binding?.apply {
-            orderNumTxt.setText(specOrder.orderNum)
+            orderNumEt.setText(specOrder.orderNum)
             orderInfoEt.setText(specOrder.info)
             orderNoteEt.setText(specOrder.note)
         }
@@ -57,20 +58,53 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
     // CLICK HANDLERS //
     private fun deleteOrder() {
         val specOrder = findOrder(
-            binding!!.orderNumTxt.text.toString(),
+            binding!!.orderNumEt.text.toString(),
             sharedViewModel.specOrders.value!!.toList()
         )
         if (specOrder != null) {
             sharedViewModel.removeSpecOrder(specOrder)
+            clearViews()
         } else {
             displayToast(requireContext(), "Order not found.")
         }
     }
     private fun lookUpOrder() {
-        // todo:
+        binding?.apply {
+            val specOrder = findOrder(
+                orderNumEt.text.toString(),
+                sharedViewModel.specOrders.value!!.toList()
+            )
+            if (specOrder != null) {
+                orderNumEt.setText(specOrder.orderNum)
+                orderInfoEt.setText(specOrder.info)
+                orderNoteEt.setText(specOrder.note)
+            } else {
+                displayToast(requireContext(), "Order not found.")
+            }
+        }
     }
     private fun saveOrder() {
-        // todo:
+        val specOrder = findOrder(
+            binding!!.orderNumEt.text.toString(),
+            sharedViewModel.specOrders.value!!.toList()
+        )
+        if (specOrder != null) {
+            // Update order
+            sharedViewModel.updateSpecOrder(specOrder)
+        } else {
+            // Insert new order
+            binding?.apply {
+                sharedViewModel.insertSpecOrder(
+                    SpecialtyOrder(
+                        orderNum = orderNumEt.text.toString(),
+                        info = orderInfoEt.text.toString(),
+                        note = orderNoteEt.text.toString()
+                    )
+                )
+            }
+        }
+        displayToast(requireContext(), "Order Saved")
+        clearViews()
     }
     // CLICK HANDLERS //
 
@@ -83,6 +117,15 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
                     Navigation.findNavController(requireParentFragment().requireView())
                 navController.navigateUp()
             }
+        }
+    }
+
+    // HELPERS //
+    private fun clearViews() {
+        binding?.apply {
+            orderNumEt.text.clear()
+            orderInfoEt.text.clear()
+            orderNoteEt.text.clear()
         }
     }
 }

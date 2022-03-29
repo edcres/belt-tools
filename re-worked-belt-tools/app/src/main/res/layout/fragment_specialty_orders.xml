@@ -81,7 +81,7 @@
                             android:textColor="@color/black" />
 
                         <EditText
-                            android:id="@+id/order_num_txt"
+                            android:id="@+id/order_num_et"
                             style="@style/Widget.AppCompat.EditText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
