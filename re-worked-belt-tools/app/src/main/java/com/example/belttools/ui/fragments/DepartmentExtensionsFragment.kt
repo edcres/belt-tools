@@ -27,7 +27,7 @@ class DepartmentExtensionsFragment : Fragment() {
         val fragmentBinding = FragmentDepartmentExtensionsBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
-        deptExtensionsAdapter = DeptExtensionsAdapter(sharedViewModel, viewLifecycleOwner)
+        deptExtensionsAdapter = DeptExtensionsAdapter(requireContext(), sharedViewModel, viewLifecycleOwner)
         return fragmentBinding.root
     }
 

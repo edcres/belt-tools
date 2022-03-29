@@ -1,5 +1,6 @@
 package com.example.belttools.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +11,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.belttools.data.model.entities.Department
 import com.example.belttools.databinding.DeptExtensionItemBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
+import com.example.belttools.util.displayToast
 
 class DeptExtensionsAdapter(
+    private val context: Context,
     private val viewModel: SharedViewModel,
     private val fragLifecycleOwner: LifecycleOwner
 ): ListAdapter<Department, DeptExtensionsAdapter.DeptExtensionsViewHolder>(ExtensionsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        DeptExtensionsViewHolder.from(viewModel, fragLifecycleOwner, parent)
+        DeptExtensionsViewHolder.from(context, viewModel, fragLifecycleOwner, parent)
 
     override fun onBindViewHolder(holder: DeptExtensionsViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     class DeptExtensionsViewHolder private constructor(
+        private val context: Context,
         private val viewModel: SharedViewModel,
         private val fragLifecycleOwner: LifecycleOwner,
         private val binding: DeptExtensionItemBinding
@@ -37,6 +41,7 @@ class DeptExtensionsAdapter(
                     department.name = departmentEt.text.toString()
                     department.extensions = extensionEt.text.toString()
                     viewModel.updateDepartment(department)
+                    displayToast(context, "Saved")
                 }
                 deleteBtn.setOnClickListener {
                     viewModel.deleteExtensions(department)
@@ -55,6 +60,7 @@ class DeptExtensionsAdapter(
         }
         companion object {
             fun from(
+                context: Context,
                 viewModel: SharedViewModel,
                 fragLifecycleOwner: LifecycleOwner,
                 parent: ViewGroup
@@ -62,7 +68,7 @@ class DeptExtensionsAdapter(
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = DeptExtensionItemBinding
                     .inflate(layoutInflater, parent, false)
-                return DeptExtensionsViewHolder(viewModel, fragLifecycleOwner, binding)
+                return DeptExtensionsViewHolder(context, viewModel, fragLifecycleOwner, binding)
             }
         }
     }
