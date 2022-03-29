@@ -22,6 +22,7 @@ class SharedViewModel : ViewModel() {
     lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
     private lateinit var repository: Repository
+    var storeNumber: String? = null     // todo: call this when useful
 
     private val _departments = MutableLiveData<MutableList<Department>>()
     val departments: LiveData<MutableList<Department>> get() = _departments
@@ -43,10 +44,12 @@ class SharedViewModel : ViewModel() {
         return newValue
     }
     fun toggleEditBtnOff() {
-        //todo: toggle this off when an item is clicked to be edited
         _menuEditIsOn.postValue(false)
     }
-
+    fun getStoreNumberValue(context: Context): String? {
+        storeNumber = getDataFromSP(STORE_NUMBER_TAG, STORE_NUMBER, context)
+        return storeNumber
+    }
     fun showNewSKU(skuNum: Long): Boolean {
         if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
             return false
@@ -78,21 +81,21 @@ class SharedViewModel : ViewModel() {
         navDestinationsList = navList
     }
 
-    fun saveMagnetLocation(context: Context, location: String) {
-        val magnetLocationSharedPref = context
-            .getSharedPreferences(MAGNET_LOCATION_TAG, Context.MODE_PRIVATE) ?: return
-        with(magnetLocationSharedPref.edit()) {
-            putString(MAGNET_LOCATION, location)
+    fun sendDataToSP(tag: String, key: String, context: Context, value: String) {
+        val stringSharedPref = context
+            .getSharedPreferences(tag, Context.MODE_PRIVATE) ?: return
+        with(stringSharedPref.edit()) {
+            putString(key, value)
             apply()
             displayToast(context, "Saved")
         }
     }
-
-    fun getMagnetLocation(context: Context): String? {
-        val magnetLocationSharedPref = context
-            .getSharedPreferences(MAGNET_LOCATION_TAG, Context.MODE_PRIVATE)
-        return magnetLocationSharedPref.getString(MAGNET_LOCATION, null)
+    fun getDataFromSP(tag: String, key: String, context: Context): String? {
+        val stringSharedPref = context
+            .getSharedPreferences(tag, Context.MODE_PRIVATE)
+        return stringSharedPref.getString(key, null)
     }
+
 
     fun getSqrPerRoom(width: Double, length: Double, btnTxt: String, btnDefault: String): String? {
         val result = width * length

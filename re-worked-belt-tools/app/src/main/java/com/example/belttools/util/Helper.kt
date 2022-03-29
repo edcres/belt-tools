@@ -12,6 +12,8 @@ import kotlin.math.floor
 const val GLOBAL_TAG = "GLOBAL_TAG"
 const val MAGNET_LOCATION_TAG = "Magnet Location"
 const val MAGNET_LOCATION = "Magnet Location"
+const val STORE_NUMBER_TAG = "Store Number"
+const val STORE_NUMBER = "Store Number"
 const val PLUS_JOIN = " + "
 const val FLOOR_SKUS_LIST = "Floor SKUs"
 const val PALLET_SKUS_LIST = "Pallet SKUs"

@@ -22,6 +22,7 @@
     <string name="order_number">order number</string>
     <string name="info">info</string>
     <string name="save_order">Save Order</string>
+    <string name="store_number_hint">example: H6872</string>
 
     <string name="department_hint">department</string>
     <string name="extensions_hint">extensions</string>

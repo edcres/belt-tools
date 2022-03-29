@@ -1,15 +1,18 @@
 package com.example.belttools.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.belttools.R
 import com.example.belttools.databinding.FragmentStartBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 import com.example.belttools.util.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class StartFragment : Fragment() {
 
@@ -36,6 +39,9 @@ class StartFragment : Fragment() {
         displayMagnetLocation()
         setUpAppBar()
         populateNavList()
+        if (sharedViewModel.getStoreNumberValue(requireContext()) == null) {
+            makeStoreNumInputDialog()
+        }
     }
 
     // SET UP //
@@ -285,13 +291,38 @@ class StartFragment : Fragment() {
             }
             //10 Magnet location
             magnetLocationSaveBtn.setOnClickListener {
-                sharedViewModel.saveMagnetLocation(
+                sharedViewModel.sendDataToSP(
+                    MAGNET_LOCATION_TAG,
+                    MAGNET_LOCATION,
                     requireContext(),
                     newMagnetLocationEt.text.toString()
                 )
                 lastMagnetLocationTxt.text = newMagnetLocationEt.text.toString()
             }
         }
+    }
+
+    private fun makeStoreNumInputDialog() {
+        // todo: call this
+        val inputDialog = MaterialAlertDialogBuilder(requireContext())
+        val customAlertDialogView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.store_number_box, null, false)
+        val inputNumberDialog: EditText = customAlertDialogView.findViewById(R.id.store_number_et)
+        inputDialog.setView(customAlertDialogView)
+            .setTitle("Store number")
+            .setPositiveButton("Accept") { dialog, _ ->
+                sharedViewModel.storeNumber = inputNumberDialog.text.toString()
+                sharedViewModel.sendDataToSP(
+                    STORE_NUMBER_TAG,
+                    STORE_NUMBER,
+                    requireContext(),
+                    sharedViewModel.storeNumber!!
+                )
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                Log.i(fragmentTAG, "No store number input")
+            }
+            .show()
     }
     // SET UP //
 
@@ -322,7 +353,11 @@ class StartFragment : Fragment() {
         }
     }
     private fun displayMagnetLocation() {
-        val magnetLocation = sharedViewModel.getMagnetLocation(requireContext())
+        val magnetLocation = sharedViewModel.getDataFromSP(
+                MAGNET_LOCATION_TAG,
+                MAGNET_LOCATION,
+                requireContext()
+            )
         if (!magnetLocation.isNullOrEmpty()) binding!!.lastMagnetLocationTxt.text = magnetLocation
     }
     private fun populateNavList() {

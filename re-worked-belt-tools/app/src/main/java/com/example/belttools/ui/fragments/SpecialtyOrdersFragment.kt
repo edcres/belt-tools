@@ -46,6 +46,7 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
         sharedViewModel.specOrders.observe(viewLifecycleOwner) {
             specOrdersAdapter.submitList(it)
         }
+        populateStoreNumber()
     }
 
     override fun onItemClick(position: Int) {
@@ -130,5 +131,12 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
             orderInfoEt.text.clear()
             orderNoteEt.text.clear()
         }
+        populateStoreNumber()
     }
+    private fun populateStoreNumber() {
+        if (sharedViewModel.storeNumber != null) {
+            binding!!.orderNoteEt.setText(sharedViewModel.storeNumber)
+        }
+    }
+    // HELPERS //
 }

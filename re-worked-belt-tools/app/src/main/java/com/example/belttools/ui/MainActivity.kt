@@ -7,14 +7,28 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
 /** todo:
+ *
  *  In the beginning, user chooses which store code they are from (H6872)
  *  - that fist number is automatically added to the order number
  *
  *  Have the animation in the beginning
  *
- *  add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ *  Don't have an edit mode btn on specialty orders fragment.
  *
- *  test the StartFragment features
+ *  Maybe change the edit mode icon color
+ *
+ *
+ *  User can change store number
+ *
+ *  Add an info icon explaining how to use each feature ***** (has pop up window the user can close)
+ *
+ *  test:
+ *      - StartFragment features
+ *      - Specialty order fragment
+ *      - Extensions fragment
+ *      - Dept notes fragment
+ *      - Skus to work on
+ *      - Pallets to work on
  *
  *  Make sure 2 order don't have the same order_num, maybe make this the primary key
  *
