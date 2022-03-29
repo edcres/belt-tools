@@ -43,6 +43,9 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
             saveOrderBtn.setOnClickListener { saveOrder() }
         }
         setUpAppBar()
+        sharedViewModel.specOrders.observe(viewLifecycleOwner) {
+            specOrdersAdapter.submitList(it)
+        }
     }
 
     override fun onItemClick(position: Int) {
