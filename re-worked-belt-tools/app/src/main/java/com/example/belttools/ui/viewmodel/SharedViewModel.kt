@@ -22,7 +22,7 @@ class SharedViewModel : ViewModel() {
     lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
     private lateinit var repository: Repository
-    var storeNumber: String? = null     // todo: call this when useful
+    var storeNumber: String? = null
 
     private val _departments = MutableLiveData<MutableList<Department>>()
     val departments: LiveData<MutableList<Department>> get() = _departments
