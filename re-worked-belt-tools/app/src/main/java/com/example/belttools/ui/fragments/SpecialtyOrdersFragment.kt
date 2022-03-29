@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.belttools.R
 import com.example.belttools.databinding.FragmentSpecialtyOrdersBinding
 import com.example.belttools.ui.adapters.SpecOrdersAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
 
-class SpecialtyOrdersFragment : Fragment() {
+class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListener {
 
     private var binding: FragmentSpecialtyOrdersBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -26,7 +25,7 @@ class SpecialtyOrdersFragment : Fragment() {
         val fragmentBinding = FragmentSpecialtyOrdersBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
-        specOrdersAdapter = SpecOrdersAdapter(sharedViewModel)
+        specOrdersAdapter = SpecOrdersAdapter(sharedViewModel, this)
         return fragmentBinding.root
     }
 
@@ -38,6 +37,16 @@ class SpecialtyOrdersFragment : Fragment() {
             ordersRecycler.layoutManager = LinearLayoutManager(requireContext())
         }
         setUpAppBar()
+    }
+
+    override fun onItemClick(position: Int) {
+        // For the recycler item click listener.
+        val specOrder = sharedViewModel.specOrders.value!![position]
+        binding?.apply {
+            orderNumTxt.setText(specOrder.orderNum)
+            orderInfoEt.setText(specOrder.info)
+            orderNoteEt.setText(specOrder.note)
+        }
     }
 
     // SET UP //
