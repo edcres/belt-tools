@@ -135,7 +135,7 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
     }
     private fun populateStoreNumber() {
         if (sharedViewModel.storeNumber != null) {
-            binding!!.orderNoteEt.setText(sharedViewModel.storeNumber)
+            binding!!.orderNumEt.setText("${ sharedViewModel.storeNumber}-")
         }
     }
     // HELPERS //

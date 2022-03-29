@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:hint="@string/info"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textMultiLine"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -113,7 +113,7 @@
                         android:layout_margin="8dp"
                         android:ems="10"
                         android:hint="@string/note"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textMultiLine"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/order_info_et" />
 
@@ -143,8 +143,11 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="24dp"
-                            android:background="@color/fading_background"
-                            android:padding="8dp"
+                            android:background="@color/orders_recycler_background"
+                            android:paddingTop="8dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            tools:listitem="@layout/specialty_order_item"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/order_note_et" />
