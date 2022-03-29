@@ -8,9 +8,6 @@ import com.example.belttools.R
 
 /** todo:
  *
- *  In the beginning, user chooses which store code they are from (H6872)
- *  - that fist number is automatically added to the order number
- *
  *  Have the animation in the beginning
  *
  *  Don't have an edit mode btn on specialty orders fragment.
@@ -18,7 +15,7 @@ import com.example.belttools.R
  *  Maybe change the edit mode icon color
  *
  *
- *  User can change store number
+ *
  *
  *  Add an info icon explaining how to use each feature ***** (has pop up window the user can close)
  *

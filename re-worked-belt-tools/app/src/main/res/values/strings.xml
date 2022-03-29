@@ -23,6 +23,8 @@
     <string name="info">info</string>
     <string name="save_order">Save Order</string>
     <string name="store_number_hint">example: H6872</string>
+    <string name="appbar_more_options">More Options</string>
+    <string name="appbar_change_store_num">Change Store Number</string>
 
     <string name="department_hint">department</string>
     <string name="extensions_hint">extensions</string>

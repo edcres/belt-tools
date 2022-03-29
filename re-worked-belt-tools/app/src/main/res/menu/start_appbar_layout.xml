@@ -6,5 +6,16 @@
         android:id="@+id/clear_texts_btn"
         android:icon="@drawable/ic_clear_texts_24"
         android:title="@string/clear_texts"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/shopping_list_more_options"
+        android:title="@string/appbar_more_options"
+        app:showAsAction="ifRoom">
+
+        <item
+            android:id="@+id/list_option_change_store_num"
+            android:title="@string/appbar_change_store_num" />
+
+    </item>
 </menu>

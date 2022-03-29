@@ -54,6 +54,10 @@ class StartFragment : Fragment() {
                         resetAllClicked()
                         true
                     }
+                    R.id.list_option_change_store_num -> {
+                        makeStoreNumInputDialog()
+                        true
+                    }
                     else -> false
                 }
             }
@@ -303,7 +307,6 @@ class StartFragment : Fragment() {
     }
 
     private fun makeStoreNumInputDialog() {
-        // todo: call this
         val inputDialog = MaterialAlertDialogBuilder(requireContext())
         val customAlertDialogView = LayoutInflater.from(requireContext())
             .inflate(R.layout.store_number_box, null, false)
