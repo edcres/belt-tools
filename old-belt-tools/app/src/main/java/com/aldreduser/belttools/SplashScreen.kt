@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main_layout.*
 
+// I'm pretty sure this activity is not used at all, could be deleted.
 class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
