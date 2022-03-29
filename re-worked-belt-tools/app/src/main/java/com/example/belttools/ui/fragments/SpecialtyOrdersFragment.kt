@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.belttools.databinding.FragmentSpecialtyOrdersBinding
 import com.example.belttools.ui.adapters.SpecOrdersAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
+import com.example.belttools.util.displayToast
+import com.example.belttools.util.findOrder
 
 class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListener {
 
@@ -35,6 +37,9 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
             lifecycleOwner = viewLifecycleOwner
             ordersRecycler.adapter = specOrdersAdapter
             ordersRecycler.layoutManager = LinearLayoutManager(requireContext())
+            deleteOrderBtn.setOnClickListener { deleteOrder() }
+            lookUpOrderBtn.setOnClickListener { lookUpOrder() }
+            saveOrderBtn.setOnClickListener { saveOrder() }
         }
         setUpAppBar()
     }
@@ -48,6 +53,26 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
             orderNoteEt.setText(specOrder.note)
         }
     }
+
+    // CLICK HANDLERS //
+    private fun deleteOrder() {
+        val specOrder = findOrder(
+            binding!!.orderNumTxt.text.toString(),
+            sharedViewModel.specOrders.value!!.toList()
+        )
+        if (specOrder != null) {
+            sharedViewModel.removeSpecOrder(specOrder)
+        } else {
+            displayToast(requireContext(), "Order not found.")
+        }
+    }
+    private fun lookUpOrder() {
+        // todo:
+    }
+    private fun saveOrder() {
+        // todo:
+    }
+    // CLICK HANDLERS //
 
     // SET UP //
     private fun setUpAppBar() {

@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SKU
+import com.example.belttools.data.model.entities.SpecialtyOrder
 import kotlin.math.abs
 import kotlin.math.floor
 
@@ -111,4 +112,14 @@ fun getDepartmentNames(departments: List<Department>): List<String> {
         departmentNames.add(it.name)
     }
     return departmentNames
+}
+
+fun findOrder(orderNum: String, orders: List<SpecialtyOrder>): SpecialtyOrder? {
+    // todo: do this a more efficient way, instead of cycling through the entire list
+    orders.forEach {
+        if (it.orderNum == orderNum) {
+            return it
+        }
+    }
+    return null
 }
