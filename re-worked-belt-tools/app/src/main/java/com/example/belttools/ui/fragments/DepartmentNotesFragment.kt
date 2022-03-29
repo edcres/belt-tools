@@ -46,6 +46,7 @@ class DepartmentNotesFragment : Fragment() {
                 }
             }
             deleteBtn.setOnClickListener {
+                sharedViewModel.toggleEditBtnOff()
                 val deptToEdit = sharedViewModel.departmentToEdit
                 if (deptToEdit != null) {
                     sharedViewModel.deleteNotes(deptToEdit)

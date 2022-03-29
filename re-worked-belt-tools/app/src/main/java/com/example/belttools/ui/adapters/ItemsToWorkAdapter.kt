@@ -38,6 +38,7 @@ class ItemsToWorkAdapter(
                 }
                 deleteBtn.setOnClickListener {
                     viewModel.deletePalletOrFloorSku(sKU)
+                    viewModel.toggleEditBtnOff()
                 }
                 viewModel.menuEditIsOn.observe(fragLifecycleOwner) { isOn ->
                     if (isOn) {

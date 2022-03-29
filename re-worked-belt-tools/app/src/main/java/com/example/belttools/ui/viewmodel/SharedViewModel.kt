@@ -38,10 +38,13 @@ class SharedViewModel : ViewModel() {
 
     // HELPERS //
     fun toggleEditBtn(): Boolean {
-        //todo: toggle this off when an item is clicked to be edited
         val newValue = !_menuEditIsOn.value!!
         _menuEditIsOn.value = newValue
         return newValue
+    }
+    fun toggleEditBtnOff() {
+        //todo: toggle this off when an item is clicked to be edited
+        _menuEditIsOn.postValue(false)
     }
 
     fun showNewSKU(skuNum: Long): Boolean {

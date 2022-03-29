@@ -40,6 +40,7 @@ class DeptExtensionsAdapter(
                 }
                 deleteBtn.setOnClickListener {
                     viewModel.deleteExtensions(department)
+                    viewModel.toggleEditBtnOff()
                 }
                 viewModel.menuEditIsOn.observe(fragLifecycleOwner) { isOn ->
                     if (isOn) {

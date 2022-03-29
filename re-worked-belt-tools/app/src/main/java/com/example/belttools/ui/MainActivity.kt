@@ -6,10 +6,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.belttools.R
 
-/**
- * - Have in the navigation drawer
- *      - Specialty orders
- *
+/** todo:
  *  In the beginning, user chooses which store code they are from (H6872)
  *  - that fist number is automatically added to the order number
  *
@@ -19,7 +16,7 @@ import com.example.belttools.R
  *
  *  test the StartFragment features
  *
- *  Make sure 2 order dont have the same order_num, maybe make this the primary key
+ *  Make sure 2 order don't have the same order_num, maybe make this the primary key
  *
  *  Ask user if they are sure when making major decisions (like removing specialty orders)
  */
