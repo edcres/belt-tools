@@ -78,7 +78,7 @@ class StartFragment : Fragment() {
                         sharedViewModel.itemsListToDisplay = FLOOR_SKUS_LIST
                         navController.navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
                     }
-                    sharedViewModel.navDestinationsList[4] -> {
+                    sharedViewModel.navDestinationsList[5] -> {
                         sharedViewModel.itemsListToDisplay = PALLET_SKUS_LIST
                         navController.navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
                     }

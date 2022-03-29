@@ -14,6 +14,7 @@ import com.example.belttools.R
  *  Have the animation in the beginning
  *
  *  Maybe change the edit mode icon color
+ *  Change the color of the check marks
  *
  *
  *

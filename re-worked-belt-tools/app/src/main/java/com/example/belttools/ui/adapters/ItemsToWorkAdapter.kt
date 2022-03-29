@@ -14,12 +14,13 @@ import com.example.belttools.ui.viewmodel.SharedViewModel
 import com.example.belttools.util.displayToast
 
 class ItemsToWorkAdapter(
+    private val context: Context,
     private val viewModel: SharedViewModel,
     private val fragLifecycleOwner: LifecycleOwner
 ): ListAdapter<SKU, ItemsToWorkAdapter.ItemsToWorkViewHolder>(ItemsToWorkDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ItemsToWorkViewHolder.from(viewModel, fragLifecycleOwner ,parent)
+        ItemsToWorkViewHolder.from(context, viewModel, fragLifecycleOwner ,parent)
 
     override fun onBindViewHolder(holder: ItemsToWorkViewHolder, position: Int) =
         holder.bind(getItem(position))
@@ -57,13 +58,14 @@ class ItemsToWorkAdapter(
         }
         companion object {
             fun from(
+                context: Context,
                 viewModel: SharedViewModel,
                 fragLifecycleOwner: LifecycleOwner,
                 parent: ViewGroup
             ): ItemsToWorkViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemsToWorkItemBinding.inflate(layoutInflater, parent, false)
-                return ItemsToWorkViewHolder(viewModel, fragLifecycleOwner, binding)
+                return ItemsToWorkViewHolder(context, viewModel, fragLifecycleOwner, binding)
             }
         }
     }

@@ -26,7 +26,7 @@ class ItemsToWorkOnFragment : Fragment() {
         val fragmentBinding = FragmentItemsToWorkOnBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
-        itemsToWorkAdapter = ItemsToWorkAdapter(sharedViewModel, viewLifecycleOwner)
+        itemsToWorkAdapter = ItemsToWorkAdapter(requireContext(), sharedViewModel, viewLifecycleOwner)
         return fragmentBinding.root
     }
 
