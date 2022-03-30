@@ -84,7 +84,7 @@ class DepartmentNotesFragment : Fragment() {
                     val departmentsList = sharedViewModel.departments.value!!
                     val departmentChosen = departmentsList[position]
                     sharedViewModel.departmentToEdit = departmentChosen
-                    deptNotesTxt.setText(departmentChosen.notes)
+                    if (departmentChosen.notes != null) deptNotesTxt.setText(departmentChosen.notes)
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     Log.i(fragmentTAG, "Nothing selected.")

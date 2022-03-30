@@ -11,6 +11,10 @@ import com.example.belttools.R
  *  Major bug:
  *  - departments are not deleting (prob bc the other property has to be false and it never is)
  *
+ *  - for the list of departments, only show the ones who's note is not null.
+ *
+ *  - make feature to add new departments in notes fragment
+ *
  *  Have the animation in the beginning
  *
  *  Maybe change the edit mode icon color
@@ -31,6 +35,8 @@ import com.example.belttools.R
  *  Make sure 2 orders don't have the same order_num, maybe make this the primary key
  *
  *  Ask user if they are sure when making major decisions (like removing specialty orders)
+ *
+ *  Make queries in Helper more efficient (check todos)
  */
 
 class MainActivity : AppCompatActivity() {

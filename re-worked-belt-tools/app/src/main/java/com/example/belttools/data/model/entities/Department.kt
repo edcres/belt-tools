@@ -12,7 +12,7 @@ data class Department (
     @ColumnInfo(name = "name")
     var name: String = "",
     @ColumnInfo(name = "notes")
-    var notes: String = "",
+    var notes: String? = "",
     @ColumnInfo(name = "extensions")
-    var extensions: String = ""
+    var extensions: String? = ""
 )

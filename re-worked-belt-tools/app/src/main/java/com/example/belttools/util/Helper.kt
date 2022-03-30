@@ -108,10 +108,11 @@ fun doesSKUContainId(list: List<SKU>, id: Long): Boolean {
 }
 
 fun getDepartmentNames(departments: List<Department>): List<String> {
+    // This is used for the departments list in notes
     // todo: do this a more efficient way, instead of cycling through the entire list
     val departmentNames = mutableListOf<String>()
     departments.forEach {
-        departmentNames.add(it.name)
+        if (it.notes != null) departmentNames.add(it.name)
     }
     return departmentNames
 }
@@ -124,4 +125,13 @@ fun findOrder(orderNum: String, orders: List<SpecialtyOrder>): SpecialtyOrder? {
         }
     }
     return null
+}
+
+fun filterExtensionNotNull(departments: List<Department>): List<Department> {
+    // todo: do this a more efficient way, instead of cycling through the entire list
+    val newDepartments = mutableListOf<Department>()
+    departments.forEach {
+        if (it.extensions != null) newDepartments.add(it)
+    }
+    return newDepartments.toList()
 }

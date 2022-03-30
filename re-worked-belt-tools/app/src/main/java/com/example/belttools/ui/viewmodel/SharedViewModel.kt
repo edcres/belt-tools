@@ -2,6 +2,7 @@ package com.example.belttools.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,7 @@ import kotlin.math.sqrt
 
 class SharedViewModel : ViewModel() {
 
+    private val vmTAG = "VM_TAG"
     lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
     private lateinit var repository: Repository
@@ -43,13 +45,16 @@ class SharedViewModel : ViewModel() {
         _menuEditIsOn.value = newValue
         return newValue
     }
+
     fun toggleEditBtnOff() {
         _menuEditIsOn.postValue(false)
     }
+
     fun getStoreNumberValue(context: Context): String? {
         storeNumber = getDataFromSP(STORE_NUMBER_TAG, STORE_NUMBER, context)
         return storeNumber
     }
+
     fun showNewSKU(skuNum: Long): Boolean {
         if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
             return false
@@ -90,6 +95,7 @@ class SharedViewModel : ViewModel() {
             displayToast(context, "Saved")
         }
     }
+
     fun getDataFromSP(tag: String, key: String, context: Context): String? {
         val stringSharedPref = context
             .getSharedPreferences(tag, Context.MODE_PRIVATE)
@@ -244,17 +250,19 @@ class SharedViewModel : ViewModel() {
     }
 
     fun deleteExtensions(department: Department) {
-        if (department.notes.isEmpty()) {
+        if (department.notes.isNullOrEmpty()) {
             removeDepartment(department)
         } else {
+            department.extensions = null
             updateDepartment(department)
         }
     }
 
     fun deleteNotes(department: Department) {
-        if (department.extensions.isEmpty()) {
+        if (department.extensions.isNullOrEmpty()) {
             removeDepartment(department)
         } else {
+            department.notes = null
             updateDepartment(department)
         }
     }

@@ -13,6 +13,7 @@ import com.example.belttools.data.model.entities.Department
 import com.example.belttools.databinding.FragmentDepartmentExtensionsBinding
 import com.example.belttools.ui.adapters.DeptExtensionsAdapter
 import com.example.belttools.ui.viewmodel.SharedViewModel
+import com.example.belttools.util.filterExtensionNotNull
 
 class DepartmentExtensionsFragment : Fragment() {
 
@@ -48,7 +49,7 @@ class DepartmentExtensionsFragment : Fragment() {
     // SET UP //
     private fun setObservers() {
         sharedViewModel.departments.observe(viewLifecycleOwner) {
-            deptExtensionsAdapter.submitList(it)
+            deptExtensionsAdapter.submitList(filterExtensionNotNull(it))
         }
     }
     private fun setUpAppBar() {

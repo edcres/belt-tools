@@ -13,7 +13,7 @@ import com.example.belttools.data.model.room.SpecialtyOrderDao
 
 @Database(
     entities = [SpecialtyOrder::class, Department::class, SKU::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class MainRoomDatabase : RoomDatabase() {
