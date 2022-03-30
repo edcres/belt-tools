@@ -6,6 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.belttools.R
@@ -60,6 +61,11 @@ class StartFragment : Fragment() {
                     }
                     else -> false
                 }
+            }
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                val moreOptionsDrawable = R.drawable.ic_more_options_24
+                startTopAppbar.overflowIcon =
+                    ContextCompat.getDrawable(requireContext(), moreOptionsDrawable)
             }
             startTopAppbar.setNavigationOnClickListener {
                 drawerLayout.open()

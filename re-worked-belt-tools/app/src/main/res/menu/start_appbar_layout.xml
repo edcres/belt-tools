@@ -10,6 +10,7 @@
 
     <item
         android:id="@+id/shopping_list_more_options"
+        android:icon="@drawable/ic_more_options_24"
         android:title="@string/appbar_more_options"
         app:showAsAction="ifRoom">
 

@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_more_img.xml" value="0.12" />
+        <entry key="app/src/main/res/drawable/ic_accept_mark_24.xml" value="0.12" />
         <entry key="app/src/main/res/drawable/ic_add_24.xml" value="0.14" />
+        <entry key="app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.12" />
         <entry key="app/src/main/res/drawable/ic_calculate_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_clear_texts_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_drawer_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_edit_24.xml" value="0.12" />
         <entry key="app/src/main/res/drawable/ic_forklift_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_more_options_24.xml" value="0.12" />
         <entry key="app/src/main/res/drawable/ic_navigate_up_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_note_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_order_24.xml" value="0.1" />
@@ -29,7 +34,7 @@
         <entry key="app/src/main/res/menu/default_appbar_layout.xml" value="0.165" />
         <entry key="app/src/main/res/menu/navigation_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/menu/specialty_orders_appbar.xml" value="0.275" />
-        <entry key="app/src/main/res/menu/start_appbar_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/start_appbar_layout.xml" value="0.25" />
       </map>
     </option>
   </component>

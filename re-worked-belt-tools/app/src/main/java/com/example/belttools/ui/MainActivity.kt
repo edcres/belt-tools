@@ -8,11 +8,6 @@ import com.example.belttools.R
 
 /** todo:
  *
- *  - make feature to add new departments in notes fragment
- *
- * Maybe change the edit mode icon color
- *  Change the color of the check marks
- *
  *  Have the animation in the beginning
  *
  *
