@@ -107,7 +107,7 @@ fun doesSKUContainId(list: List<SKU>, id: Long): Boolean {
     return false
 }
 
-fun getDepartmentNames(departments: List<Department>): List<String> {
+fun getDepartmentNames(departments: List<Department>): MutableList<String> {
     // This is used for the departments list in notes
     // todo: do this a more efficient way, instead of cycling through the entire list
     val departmentNames = mutableListOf<String>()

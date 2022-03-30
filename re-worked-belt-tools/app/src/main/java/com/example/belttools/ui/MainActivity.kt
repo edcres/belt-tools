@@ -8,17 +8,13 @@ import com.example.belttools.R
 
 /** todo:
  *
- *  Major bug:
- *  - departments are not deleting (prob bc the other property has to be false and it never is)
- *
- *  - for the list of departments, only show the ones who's note is not null.
- *
  *  - make feature to add new departments in notes fragment
+ *
+ * Maybe change the edit mode icon color
+ *  Change the color of the check marks
  *
  *  Have the animation in the beginning
  *
- *  Maybe change the edit mode icon color
- *  Change the color of the check marks
  *
  *
  *
@@ -37,6 +33,8 @@ import com.example.belttools.R
  *  Ask user if they are sure when making major decisions (like removing specialty orders)
  *
  *  Make queries in Helper more efficient (check todos)
+ *
+ *  User can click accept on the keyboard to save
  */
 
 class MainActivity : AppCompatActivity() {

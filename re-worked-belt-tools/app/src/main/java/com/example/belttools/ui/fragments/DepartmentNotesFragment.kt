@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.belttools.R
+import com.example.belttools.data.model.entities.Department
 import com.example.belttools.databinding.FragmentDepartmentNotesBinding
 import com.example.belttools.ui.viewmodel.SharedViewModel
 import com.example.belttools.util.displayToast
@@ -55,6 +56,10 @@ class DepartmentNotesFragment : Fragment() {
                     displayToast(requireContext(), "Choose a department")
                 }
             }
+            saveTitleBtn.setOnClickListener {
+                sharedViewModel.insertDepartment(Department(name = newDeptEt.text.toString()))
+                toggleViewsVisibility()
+            }
         }
         setUpAppBar()
         spinnerOnClick()
@@ -69,10 +74,12 @@ class DepartmentNotesFragment : Fragment() {
     // CLICK LISTENERS //
     private fun spinnerOnClick() {
         binding?.apply {
+            val spinnerList = getDepartmentNames(sharedViewModel.departments.value!!.toList())
+            spinnerList.add("New Department")
             chooseDeptSpinner.adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                getDepartmentNames(sharedViewModel.departments.value!!.toList())
+                spinnerList
             )
             chooseDeptSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -82,10 +89,16 @@ class DepartmentNotesFragment : Fragment() {
                     id: Long
                 ) {
                     val departmentsList = sharedViewModel.departments.value!!
-                    val departmentChosen = departmentsList[position]
-                    sharedViewModel.departmentToEdit = departmentChosen
-                    if (departmentChosen.notes != null) deptNotesTxt.setText(departmentChosen.notes)
+                    if (position == spinnerList.size - 1) {
+                        toggleViewsVisibility()
+                    } else {
+                        val departmentChosen = departmentsList[position]
+                        sharedViewModel.departmentToEdit = departmentChosen
+                        if (departmentChosen.notes != null) deptNotesTxt
+                            .setText(departmentChosen.notes)
+                    }
                 }
+
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     Log.i(fragmentTAG, "Nothing selected.")
                 }
@@ -107,6 +120,7 @@ class DepartmentNotesFragment : Fragment() {
             }
         }
     }
+
     private fun setUpAppBar() {
         binding?.apply {
             topAppbar.title = "Notes"
@@ -123,6 +137,18 @@ class DepartmentNotesFragment : Fragment() {
                     }
                     else -> false
                 }
+            }
+        }
+    }
+
+    private fun toggleViewsVisibility() {
+        binding?.apply {
+            if (mainContainer.visibility == View.VISIBLE) {
+                mainContainer.visibility = View.INVISIBLE
+                newDepartmentContainer.visibility = View.VISIBLE
+            } else {
+                newDepartmentContainer.visibility = View.GONE
+                mainContainer.visibility = View.VISIBLE
             }
         }
     }
