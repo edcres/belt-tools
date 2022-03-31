@@ -1,17 +1,14 @@
 package com.example.belttools.ui
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import com.example.belttools.R
 
 /** todo:
- *
- *  Have the animation in the beginning
- *
- *
- *
  *
  * test:
  *      - StartFragment features
@@ -30,6 +27,8 @@ import com.example.belttools.R
  *  Make queries in Helper more efficient (check todos)
  *
  *  User can click accept on the keyboard to save
+ *
+ *  Have the animation in the beginning
  */
 
 class MainActivity : AppCompatActivity() {
@@ -39,5 +38,8 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         // I did this to fix a bug that makes the status bar grey.
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+        }
     }
 }
