@@ -45,6 +45,11 @@ class StartFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
     // SET UP //
     private fun setUpAppBar() {
         binding?.apply {

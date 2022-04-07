@@ -54,6 +54,7 @@ class ItemsToWorkOnFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        binding = null
         sharedViewModel.itemsListToDisplay = ""
     }
 

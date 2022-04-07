@@ -46,6 +46,11 @@ class DepartmentExtensionsFragment : Fragment() {
         setObservers()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
     // SET UP //
     private fun setObservers() {
         sharedViewModel.departments.observe(viewLifecycleOwner) {

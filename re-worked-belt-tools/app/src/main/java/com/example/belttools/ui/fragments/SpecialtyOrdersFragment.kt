@@ -59,6 +59,11 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
     // CLICK HANDLERS //
     private fun deleteOrder() {
         val specOrder = findOrder(
