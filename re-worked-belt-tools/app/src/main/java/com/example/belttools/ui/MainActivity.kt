@@ -8,27 +8,15 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.example.belttools.R
 
-/** todo:
+/** App explanation:
  *
- * test:
- *      - StartFragment features
- *      - Specialty order fragment
- *      - Extensions fragment
- *      - Dept notes fragment
- *      - Skus to work on
- *      - Pallets to work on
- *
- *  Add an info icon explaining how to use each feature ***** (has pop up window the user can close)
- *
- *  Make sure 2 orders don't have the same order_num, maybe make this the primary key
- *
- *  Ask user if they are sure when making major decisions (like removing specialty orders)
- *
- *  Make queries in Helper more efficient (check todos)
- *
- *  User can click accept on the keyboard to save
- *
- *  Have the animation in the beginning
+ * The main screen has many useful features to a job in hardware retail (mostly specific to flooring)
+ * The navigation drawer has:
+ *      - Extension numbers for other departments
+ *      - A feature to write down orders and keep track of them
+ *      - A list of notes the user can create
+ *      - A list of sku numbers with notes on each
+ *      - A list of pallets numbers with notes on each
  */
 
 class MainActivity : AppCompatActivity() {
