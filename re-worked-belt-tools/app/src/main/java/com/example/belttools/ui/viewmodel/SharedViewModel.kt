@@ -267,7 +267,7 @@ class SharedViewModel : ViewModel() {
         }
     }
 
-    fun getFilteredItemsList(): MutableLiveData<List<SKU>> {
+    fun getFilteredItemsList(): LiveData<List<SKU>> {
         val filteredSKUs = MutableLiveData<List<SKU>>()
         CoroutineScope(Dispatchers.IO).launch {
             if (itemsListToDisplay == PALLET_SKUS_LIST) {
