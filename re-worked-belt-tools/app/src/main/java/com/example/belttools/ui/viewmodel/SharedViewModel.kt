@@ -13,8 +13,6 @@ import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SKU
 import com.example.belttools.data.model.entities.SpecialtyOrder
 import com.example.belttools.util.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlin.math.sqrt
