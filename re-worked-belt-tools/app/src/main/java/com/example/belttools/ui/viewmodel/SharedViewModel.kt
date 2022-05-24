@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.belttools.data.Repository
 import com.example.belttools.data.model.MainRoomDatabase
 import com.example.belttools.data.model.entities.Department
@@ -74,7 +75,7 @@ class SharedViewModel : ViewModel() {
         }
     }
 
-    fun updateSKUType(skuId: Long) = CoroutineScope(Dispatchers.IO).launch {
+    fun updateSKUType(skuId: Long) = viewModelScope.launch {
         if (itemsListToDisplay == PALLET_SKUS_LIST) {
             repository.updateSKUPallet(skuId)
         } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
@@ -176,56 +177,56 @@ class SharedViewModel : ViewModel() {
 
     // DATABASE QUERIES //
     private fun collectEntities() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             repository.allDepartments.collect {
                 _departments.postValue(it.toMutableList())
             }
         }
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             repository.allSKUs.collect {
                 _skus.postValue(it.toMutableList())
             }
         }
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             repository.allSecOrders.collect {
                 _specOrders.postValue(it.toMutableList())
             }
         }
     }
 
-    fun insertDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+    fun insertDepartment(department: Department) = viewModelScope.launch {
         repository.insertDepartment(department)
     }
 
-    fun insertSpecOrder(specialtyOrder: SpecialtyOrder) = CoroutineScope(Dispatchers.IO).launch {
+    fun insertSpecOrder(specialtyOrder: SpecialtyOrder) = viewModelScope.launch {
         repository.insertSpecOrder(specialtyOrder)
     }
 
-    private fun insertSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+    private fun insertSKU(sku: SKU) = viewModelScope.launch {
         repository.insertSKU(sku)
     }
 
-    fun updateDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+    fun updateDepartment(department: Department) = viewModelScope.launch {
         repository.updateDepartment(department)
     }
 
-    fun updateSpecOrder(specialtyOrder: SpecialtyOrder) = CoroutineScope(Dispatchers.IO).launch {
+    fun updateSpecOrder(specialtyOrder: SpecialtyOrder) = viewModelScope.launch {
         repository.updateSpecOrder(specialtyOrder)
     }
 
-    fun updateSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+    fun updateSKU(sku: SKU) = viewModelScope.launch {
         repository.updateSKU(sku)
     }
 
-    private fun removeSKU(sku: SKU) = CoroutineScope(Dispatchers.IO).launch {
+    private fun removeSKU(sku: SKU) = viewModelScope.launch {
         repository.deleteSKU(sku)
     }
 
-    fun removeSpecOrder(specialtyOrder: SpecialtyOrder) = CoroutineScope(Dispatchers.IO).launch {
+    fun removeSpecOrder(specialtyOrder: SpecialtyOrder) = viewModelScope.launch {
         repository.deleteSpecOrder(specialtyOrder)
     }
 
-    private fun removeDepartment(department: Department) = CoroutineScope(Dispatchers.IO).launch {
+    private fun removeDepartment(department: Department) = viewModelScope.launch {
         repository.deleteDepartment(department)
     }
 
@@ -269,7 +270,7 @@ class SharedViewModel : ViewModel() {
 
     fun getFilteredItemsList(): LiveData<List<SKU>> {
         val filteredSKUs = MutableLiveData<List<SKU>>()
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             if (itemsListToDisplay == PALLET_SKUS_LIST) {
                 filteredSKUs.postValue(repository.getSKUsOfPallet())
             } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
