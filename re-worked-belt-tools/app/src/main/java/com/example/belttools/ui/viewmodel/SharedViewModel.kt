@@ -25,12 +25,12 @@ class SharedViewModel : ViewModel() {
     private lateinit var repository: Repository
     var storeNumber: String? = null
 
-    private val _departments = MutableLiveData<MutableList<Department>>()
-    val departments: LiveData<MutableList<Department>> get() = _departments
-    private val _skus = MutableLiveData<MutableList<SKU>>()
-    val skus: LiveData<MutableList<SKU>> get() = _skus
-    private val _specOrders = MutableLiveData<MutableList<SpecialtyOrder>>()
-    val specOrders: LiveData<MutableList<SpecialtyOrder>> get() = _specOrders
+    private val _departments = MutableLiveData<List<Department>>()
+    val departments: LiveData<List<Department>> get() = _departments
+    private val _skus = MutableLiveData<List<SKU>>()
+    val skus: LiveData<List<SKU>> get() = _skus
+    private val _specOrders = MutableLiveData<List<SpecialtyOrder>>()
+    val specOrders: LiveData<List<SpecialtyOrder>> get() = _specOrders
 
     private var _menuEditIsOn = MutableLiveData(false)
     val menuEditIsOn: LiveData<Boolean> get() = _menuEditIsOn
@@ -177,17 +177,17 @@ class SharedViewModel : ViewModel() {
     private fun collectEntities() {
         viewModelScope.launch {
             repository.allDepartments.collect {
-                _departments.postValue(it.toMutableList())
+                _departments.postValue(it)
             }
         }
         viewModelScope.launch {
             repository.allSKUs.collect {
-                _skus.postValue(it.toMutableList())
+                _skus.postValue(it)
             }
         }
         viewModelScope.launch {
             repository.allSecOrders.collect {
-                _specOrders.postValue(it.toMutableList())
+                _specOrders.postValue(it)
             }
         }
     }
