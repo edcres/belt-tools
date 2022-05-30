@@ -68,7 +68,7 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
     private fun deleteOrder() {
         val specOrder = findOrder(
             binding!!.orderNumEt.text.toString(),
-            sharedViewModel.specOrders.value!!.toList()
+            sharedViewModel.specOrders.value!!
         )
         if (specOrder != null) {
             sharedViewModel.removeSpecOrder(specOrder)
@@ -81,7 +81,7 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
         binding?.apply {
             val specOrder = findOrder(
                 orderNumEt.text.toString(),
-                sharedViewModel.specOrders.value!!.toList()
+                sharedViewModel.specOrders.value!!
             )
             if (specOrder != null) {
                 orderNumEt.setText(specOrder.orderNum)
@@ -95,7 +95,7 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
     private fun saveOrder() {
         val specOrder = findOrder(
             binding!!.orderNumEt.text.toString(),
-            sharedViewModel.specOrders.value!!.toList()
+            sharedViewModel.specOrders.value!!
         )
         if (specOrder != null) {
             // Update order

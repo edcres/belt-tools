@@ -76,7 +76,7 @@ class DepartmentNotesFragment : Fragment() {
     // CLICK LISTENERS //
     private fun spinnerOnClick() {
         binding?.apply {
-            val spinnerList = getDepartmentNames(sharedViewModel.departments.value!!.toList())
+            val spinnerList = getDepartmentNames(sharedViewModel.departments.value!!)
             spinnerList.add("New Department")
             chooseDeptSpinner.adapter = ArrayAdapter(
                 requireContext(),

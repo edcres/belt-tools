@@ -55,7 +55,7 @@ class SharedViewModel : ViewModel() {
     }
 
     fun showNewSKU(skuNum: Long): Boolean {
-        if (doesSKUContainId(_skus.value!!.toList(), skuNum)) {
+        if (doesSKUContainId(_skus.value!!, skuNum)) {
             return false
         } else {
             var pallet = false
