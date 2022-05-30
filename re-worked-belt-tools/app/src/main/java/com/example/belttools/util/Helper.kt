@@ -9,7 +9,7 @@ import com.example.belttools.data.model.entities.SpecialtyOrder
 import kotlin.math.abs
 import kotlin.math.floor
 
-const val GLOBAL_TAG = "GLOBAL_TAG"
+const val GLOBAL_TAG = "GLOBAL__TAG"
 const val MAGNET_LOCATION_TAG = "Magnet Location"
 const val MAGNET_LOCATION = "Magnet Location"
 const val STORE_NUMBER_TAG = "Store Number"

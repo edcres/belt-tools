@@ -2,7 +2,6 @@ package com.example.belttools.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,9 +16,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlin.math.sqrt
 
+private const val TAG = "VM__TAG"
+
 class SharedViewModel : ViewModel() {
 
-    private val vmTAG = "VM_TAG"
     lateinit var navDestinationsList: List<String>
     private lateinit var roomDb: MainRoomDatabase
     private lateinit var repository: Repository

@@ -17,9 +17,10 @@ import com.example.belttools.ui.viewmodel.SharedViewModel
 import com.example.belttools.util.displayToast
 import com.example.belttools.util.getDepartmentNames
 
+private const val TAG = "DeptNotesFrag_TAG"
+
 class DepartmentNotesFragment : Fragment() {
 
-    private val fragmentTAG = "DeptNotesFrag_TAG"
     private var binding: FragmentDepartmentNotesBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -101,7 +102,7 @@ class DepartmentNotesFragment : Fragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    Log.i(fragmentTAG, "Nothing selected.")
+                    Log.i(TAG, "Nothing selected.")
                 }
             }
         }
