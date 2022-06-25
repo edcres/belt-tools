@@ -15,9 +15,10 @@ import com.example.belttools.ui.viewmodel.SharedViewModel
 import com.example.belttools.util.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+private const val TAG = "StartFrag_TAG"
+
 class StartFragment : Fragment() {
 
-    private val fragmentTAG = "StartFrag_TAG"
     private var binding: FragmentStartBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
@@ -334,7 +335,7 @@ class StartFragment : Fragment() {
                 )
             }
             .setNegativeButton("Cancel") { dialog, _ ->
-                Log.i(fragmentTAG, "No store number input")
+                Log.i(TAG, "No store number input")
             }
             .show()
     }
@@ -342,7 +343,6 @@ class StartFragment : Fragment() {
 
     // HELPERS //
     private fun resetAllClicked() {
-        // todo: popup a dialog box (material) and ask: "Are you sure?"
         binding?.apply {
             sqrtWidthEt.text.clear(); sqrtLengthEt.text.clear(); sqrPerRoomBtn.text =
             getString(R.string.sqr_per_room_btn)

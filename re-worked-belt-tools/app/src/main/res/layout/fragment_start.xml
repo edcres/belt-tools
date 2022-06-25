@@ -46,9 +46,7 @@
                     android:id="@+id/scrollView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_margin="8dp"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +60,9 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/sqr_foot_In_txt"
@@ -126,10 +123,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/num_boxes_txt"
@@ -188,10 +185,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/sqr_foot_to_sqr_in_txt"
@@ -246,10 +243,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/cut_blind_width_txt"
@@ -314,10 +311,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/decimal_to_fraction_txt"
@@ -369,10 +366,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/lineal_ft_to_sqr_yd_txt"
@@ -424,10 +421,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/sqr_ft_price_title_txt"
@@ -492,10 +489,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/vertical_louver_txt"
@@ -508,10 +505,9 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-
                             <EditText
                                 android:id="@+id/v_blind_width_et"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:hint="@string/blind_width"
@@ -550,10 +546,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/lineal_bk_sh_txt"
@@ -643,10 +639,10 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="16dp"
                             android:background="@color/fading_background"
                             android:orientation="vertical"
-                            android:padding="5dp">
+                            android:padding="16dp">
 
                             <TextView
                                 android:id="@+id/locate_magnet_txt"
@@ -704,7 +700,6 @@
                     </LinearLayout>
                 </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <com.google.android.material.navigation.NavigationView
