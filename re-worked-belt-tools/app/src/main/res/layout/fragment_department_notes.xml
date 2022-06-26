@@ -35,14 +35,24 @@
                 android:background="@color/background"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <Spinner
-                    android:id="@+id/choose_dept_spinner"
-                    android:layout_width="300dp"
-                    android:layout_marginTop="8dp"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/choose_dept_card"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/card_view"
+                    app:layout_constraintEnd_toStartOf="@+id/save_btn"
+                    app:layout_constraintStart_toStartOf="@+id/dept_notes_card"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Spinner
+                        android:id="@+id/choose_dept_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:popupBackground="@color/card_view" />
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <ImageButton
                     android:id="@+id/save_btn"
@@ -50,9 +60,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:padding="12dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/choose_dept_spinner"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/choose_dept_spinner"
+                    app:layout_constraintBottom_toBottomOf="@+id/choose_dept_card"
+                    app:layout_constraintEnd_toEndOf="@+id/dept_notes_card"
+                    app:layout_constraintTop_toTopOf="@+id/choose_dept_card"
                     app:srcCompat="@drawable/ic_accept_mark_24" />
 
                 <ImageButton
@@ -62,22 +72,32 @@
                     android:background="@color/transparent"
                     android:padding="12dp"
                     android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/choose_dept_spinner"
+                    app:layout_constraintBottom_toBottomOf="@+id/choose_dept_card"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/choose_dept_spinner"
+                    app:layout_constraintTop_toTopOf="@+id/choose_dept_card"
                     app:srcCompat="@drawable/ic_delete_24" />
 
-                <EditText
-                    android:id="@+id/dept_notes_txt"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dept_notes_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/card_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/choose_dept_spinner" />
+                    app:layout_constraintTop_toBottomOf="@+id/choose_dept_card">
 
+                    <EditText
+                        android:id="@+id/dept_notes_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine" />
+
+                </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
