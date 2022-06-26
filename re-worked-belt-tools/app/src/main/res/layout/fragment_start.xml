@@ -210,6 +210,7 @@
                                 android:gravity="center"
                                 android:hint="@string/sqr_ft"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintEnd_toStartOf="@+id/sqr_foot_to_sqr_in_btn"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/sqr_foot_to_sqr_in_txt" />
@@ -234,6 +235,7 @@
                                 android:gravity="center"
                                 android:hint="@string/sqr_in"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginStart="8dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/sqr_foot_to_sqr_in_btn"
                                 app:layout_constraintTop_toBottomOf="@+id/sqr_foot_to_sqr_in_txt" />
@@ -289,6 +291,7 @@
                                 android:text="@string/equals_symbol"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"
+                                android:layout_marginStart="8dp"
                                 app:layout_constraintBottom_toBottomOf="@+id/blind_width_et"
                                 app:layout_constraintStart_toEndOf="@+id/blind_width_et"
                                 app:layout_constraintTop_toBottomOf="@+id/cut_blind_width_txt" />
@@ -334,6 +337,7 @@
                                 android:gravity="center"
                                 android:hint="@string/decimal"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintEnd_toStartOf="@+id/decimal_to_fraction_btn"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/decimal_to_fraction_txt" />
@@ -357,6 +361,7 @@
                                 android:gravity="center"
                                 android:hint="@string/fraction"
                                 android:inputType="date"
+                                android:layout_marginStart="8dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/decimal_to_fraction_btn"
                                 app:layout_constraintTop_toBottomOf="@+id/decimal_to_fraction_txt" />
@@ -389,6 +394,7 @@
                                 android:gravity="center"
                                 android:hint="@string/lineal_feet"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintEnd_toStartOf="@+id/lineal_ft_to_sqr_yard_btn"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/lineal_ft_to_sqr_yd_txt" />
@@ -411,12 +417,12 @@
                                 android:gravity="center"
                                 android:hint="@string/sqr_yard"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginStart="8dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/lineal_ft_to_sqr_yard_btn"
                                 app:layout_constraintTop_toBottomOf="@+id/lineal_ft_to_sqr_yd_txt" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -512,6 +518,7 @@
                                 android:gravity="center"
                                 android:hint="@string/blind_width"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintBottom_toBottomOf="@+id/num_of_louvers_equals_btn"
                                 app:layout_constraintEnd_toStartOf="@+id/num_of_louvers_equals_btn"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -605,6 +612,7 @@
                                 android:gravity="center"
                                 android:hint="@string/cut_outs"
                                 android:inputType="number|numberDecimal"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintEnd_toStartOf="@+id/bak_sh_equals_btn"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/bak_sh_width_et" />
