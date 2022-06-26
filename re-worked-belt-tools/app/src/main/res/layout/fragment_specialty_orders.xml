@@ -47,125 +47,123 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:id="@+id/linearLayout"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/order_info_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:background="@color/fading_background"
-                        android:orientation="horizontal"
+                        android:backgroundTint="@color/card_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <Button
-                            android:id="@+id/delete_order_btn"
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="@color/action_btn_color"
-                            android:text="@string/delete"
-                            android:textAllCaps="false"
-                            android:textColor="@color/black" />
+                            android:orientation="horizontal"
+                            android:padding="8dp">
 
-                        <Button
-                            android:id="@+id/look_up_order_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="8dp"
-                            android:backgroundTint="@color/action_btn_color"
-                            android:text="@string/look_up"
-                            android:textAllCaps="false"
-                            android:textColor="@color/black" />
+                            <Button
+                                android:id="@+id/delete_order_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="8dp"
+                                android:backgroundTint="@color/action_btn_color"
+                                android:text="@string/delete"
+                                android:textAllCaps="false"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        <EditText
-                            android:id="@+id/order_num_et"
-                            style="@style/Widget.AppCompat.EditText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|end"
-                            android:layout_marginStart="8dp"
-                            android:ems="10"
-                            android:hint="@string/order_number"
-                            android:inputType="textPersonName"
-                            android:paddingStart="8dp"
-                            tools:ignore="RtlSymmetry" />
+                            <Button
+                                android:id="@+id/look_up_order_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:backgroundTint="@color/action_btn_color"
+                                android:text="@string/look_up"
+                                android:textAllCaps="false"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@id/delete_order_btn"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    </LinearLayout>
+                            <EditText
+                                android:id="@+id/order_num_et"
+                                style="@style/Widget.AppCompat.EditText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|end"
+                                android:layout_marginStart="8dp"
+                                android:hint="@string/order_number"
+                                android:inputType="textPersonName"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="8dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/look_up_order_btn"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
-                        android:id="@+id/order_info_et"
+                            <EditText
+                                android:id="@+id/order_info_et"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:hint="@string/info"
+                                android:inputType="textPersonName|textMultiLine"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="8dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/order_num_et" />
+
+                            <EditText
+                                android:id="@+id/order_note_et"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:ems="10"
+                                android:hint="@string/note"
+                                android:inputType="textPersonName|textMultiLine"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="8dp"
+                                app:layout_constraintEnd_toStartOf="@+id/save_order_btn"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/order_info_et" />
+
+                            <Button
+                                android:id="@+id/save_order_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:backgroundTint="@color/action_btn_color"
+                                android:text="@string/save_order"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/order_note_et" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/orders_recycler"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:hint="@string/info"
-                        android:inputType="textPersonName|textMultiLine"
+                        android:layout_height="450dp"
+                        android:layout_margin="24dp"
+                        android:background="@color/orders_recycler_background"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-                    <EditText
-                        android:id="@+id/order_note_et"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:ems="10"
-                        android:hint="@string/note"
-                        android:inputType="textPersonName|textMultiLine"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/order_info_et" />
-
-                    <Button
-                        android:id="@+id/save_order_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:backgroundTint="@color/action_btn_color"
-                        android:text="@string/save_order"
-                        android:textColor="@color/black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/order_info_et" />
-
-<!--                    <ScrollView-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_margin="24dp"-->
-<!--                        android:background="@color/fading_background"-->
-<!--                        android:padding="8dp"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/order_note_et">-->
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/orders_recycler"
-                            android:layout_width="0dp"
-                            android:layout_height="450dp"
-                            android:layout_margin="24dp"
-                            android:background="@color/orders_recycler_background"
-                            android:paddingTop="16dp"
-                            android:paddingStart="16dp"
-                            android:paddingEnd="16dp"
-                            android:paddingBottom="8dp"
-                            tools:listitem="@layout/specialty_order_item"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/order_note_et" />
-
-<!--                    </ScrollView>-->
+                        app:layout_constraintTop_toBottomOf="@+id/order_info_container"
+                        tools:listitem="@layout/specialty_order_item" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <!--        <com.google.android.material.navigation.NavigationView-->
-        <!--            android:id="@+id/navigation_view"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:layout_gravity="start"-->
-        <!--            android:backgroundTint="@color/drawer_background"-->
-        <!--            app:headerLayout="@layout/header_navigation_drawer"-->
-        <!--            app:menu="@menu/navigation_drawer" />-->
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
