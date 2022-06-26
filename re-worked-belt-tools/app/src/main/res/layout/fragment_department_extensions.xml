@@ -44,7 +44,6 @@
                     android:id="@+id/extensions_recycler"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="2dp"
                     tools:listitem="@layout/dept_extension_item"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

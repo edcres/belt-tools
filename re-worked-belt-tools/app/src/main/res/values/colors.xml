@@ -19,5 +19,5 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="orders_recycler_background">#EBA383</color>
     <color name="orders_list_item">#FFB291</color>
-
+    <color name="card_view">#FBC4AD</color>
 </resources>
