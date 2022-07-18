@@ -284,8 +284,11 @@ class SharedViewModel : ViewModel() {
 
     // SET UP //
     fun setUpDatabase(application: Application) {
-        roomDb = MainRoomDatabase.getInstance(application)
-        repository = Repository(roomDb)
-        collectEntities()
+        if (applicationNotStarted) {
+            roomDb = MainRoomDatabase.getInstance(application)
+            repository = Repository(roomDb)
+            collectEntities()
+            applicationNotStarted = false
+        }
     }
 }
