@@ -2,6 +2,7 @@ package com.example.belttools.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class SharedViewModel : ViewModel() {
     private lateinit var repository: Repository
     var storeNumber: String? = null
 
+    var applicationNotStarted = true
     private val _departments = MutableLiveData<List<Department>>()
     val departments: LiveData<List<Department>> get() = _departments
     private val _skus = MutableLiveData<List<SKU>>()
@@ -178,6 +180,7 @@ class SharedViewModel : ViewModel() {
         viewModelScope.launch {
             repository.allDepartments.collect {
                 _departments.postValue(it)
+                Log.d(TAG, "collectEntities: called")
             }
         }
         viewModelScope.launch {
