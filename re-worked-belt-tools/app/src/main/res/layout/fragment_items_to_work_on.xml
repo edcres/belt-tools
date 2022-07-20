@@ -29,8 +29,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_scrollFlags="scroll|enterAlways|snap"
-                    app:navigationIcon="@drawable/ic_navigate_up_24"
                     app:menu="@menu/default_appbar_layout"
+                    app:navigationIcon="@drawable/ic_navigate_up_24"
                     app:titleTextColor="@color/black" />
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,10 +45,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"
-                    tools:listitem="@layout/items_to_work_item"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/items_to_work_item" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -56,9 +56,9 @@
                 android:id="@+id/add_item_widget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:visibility="gone">
 
                 <EditText
                     android:id="@+id/new_item_et"
@@ -75,9 +75,9 @@
                     android:id="@+id/save_item_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="18dp"
                     android:background="@color/transparent"
-                    app:srcCompat="@drawable/ic_accept_mark_24"/>
+                    android:padding="18dp"
+                    app:srcCompat="@drawable/ic_accept_mark_24" />
 
             </LinearLayout>
 
@@ -85,23 +85,14 @@
                 android:id="@+id/add_item_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_margin="24dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="24dp"
-                android:layout_gravity="bottom|center"
                 app:srcCompat="@drawable/ic_add_24"
                 tools:layout_editor_absoluteX="216dp"
                 tools:layout_editor_absoluteY="580dp" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-<!--        <com.google.android.material.navigation.NavigationView-->
-<!--            android:id="@+id/navigation_view"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="start"-->
-<!--            android:backgroundTint="@color/drawer_background"-->
-<!--            app:headerLayout="@layout/header_navigation_drawer"-->
-<!--            app:menu="@menu/navigation_drawer" />-->
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

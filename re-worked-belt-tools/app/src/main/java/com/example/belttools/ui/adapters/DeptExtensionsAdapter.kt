@@ -17,7 +17,7 @@ class DeptExtensionsAdapter(
     private val context: Context,
     private val viewModel: SharedViewModel,
     private val fragLifecycleOwner: LifecycleOwner
-): ListAdapter<Department, DeptExtensionsAdapter.DeptExtensionsViewHolder>(ExtensionsDiffCallback()) {
+) : ListAdapter<Department, DeptExtensionsAdapter.DeptExtensionsViewHolder>(ExtensionsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DeptExtensionsViewHolder.from(context, viewModel, fragLifecycleOwner, parent)
@@ -31,7 +31,7 @@ class DeptExtensionsAdapter(
         private val viewModel: SharedViewModel,
         private val fragLifecycleOwner: LifecycleOwner,
         private val binding: DeptExtensionItemBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(department: Department) {
             binding.apply {
@@ -58,6 +58,7 @@ class DeptExtensionsAdapter(
                 }
             }
         }
+
         companion object {
             fun from(
                 context: Context,
@@ -78,6 +79,7 @@ class ExtensionsDiffCallback : DiffUtil.ItemCallback<Department>() {
     override fun areItemsTheSame(oldItem: Department, newItem: Department): Boolean {
         return oldItem.id == newItem.id
     }
+
     override fun areContentsTheSame(oldItem: Department, newItem: Department): Boolean {
         return oldItem == newItem
     }

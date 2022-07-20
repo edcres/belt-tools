@@ -17,10 +17,10 @@ class ItemsToWorkAdapter(
     private val context: Context,
     private val viewModel: SharedViewModel,
     private val fragLifecycleOwner: LifecycleOwner
-): ListAdapter<SKU, ItemsToWorkAdapter.ItemsToWorkViewHolder>(ItemsToWorkDiffCallback()) {
+) : ListAdapter<SKU, ItemsToWorkAdapter.ItemsToWorkViewHolder>(ItemsToWorkDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ItemsToWorkViewHolder.from(context, viewModel, fragLifecycleOwner ,parent)
+        ItemsToWorkViewHolder.from(context, viewModel, fragLifecycleOwner, parent)
 
     override fun onBindViewHolder(holder: ItemsToWorkViewHolder, position: Int) =
         holder.bind(getItem(position))
@@ -30,7 +30,7 @@ class ItemsToWorkAdapter(
         private val viewModel: SharedViewModel,
         private val fragLifecycleOwner: LifecycleOwner,
         private val binding: ItemsToWorkItemBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(sKU: SKU) {
             binding.apply {
@@ -56,6 +56,7 @@ class ItemsToWorkAdapter(
                 }
             }
         }
+
         companion object {
             fun from(
                 context: Context,
@@ -75,6 +76,7 @@ class ItemsToWorkDiffCallback : DiffUtil.ItemCallback<SKU>() {
     override fun areItemsTheSame(oldItem: SKU, newItem: SKU): Boolean {
         return oldItem.id == newItem.id
     }
+
     override fun areContentsTheSame(oldItem: SKU, newItem: SKU): Boolean {
         return oldItem == newItem
     }

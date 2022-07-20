@@ -1,137 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/top_appbar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:menu="@menu/default_appbar_layout"
+                app:navigationIcon="@drawable/ic_navigate_up_24"
+                app:titleTextColor="@color/black" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:background="@color/background"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar_layout"
-                android:layout_width="match_parent"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/choose_dept_card"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:liftOnScroll="true">
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/card_view"
+                app:layout_constraintEnd_toStartOf="@+id/save_btn"
+                app:layout_constraintStart_toStartOf="@+id/dept_notes_card"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/top_appbar"
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                <Spinner
+                    android:id="@+id/choose_dept_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_scrollFlags="scroll|enterAlways|snap"
-                    app:menu="@menu/default_appbar_layout"
-                    app:navigationIcon="@drawable/ic_navigate_up_24"
-                    app:titleTextColor="@color/black" />
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/background"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/choose_dept_card"
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/card_view"
-                    app:layout_constraintEnd_toStartOf="@+id/save_btn"
-                    app:layout_constraintStart_toStartOf="@+id/dept_notes_card"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:popupBackground="@color/card_view" />
 
-                    <Spinner
-                        android:id="@+id/choose_dept_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:popupBackground="@color/card_view" />
+            </com.google.android.material.card.MaterialCardView>
 
-                </com.google.android.material.card.MaterialCardView>
-
-                <ImageButton
-                    android:id="@+id/save_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:padding="12dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/choose_dept_card"
-                    app:layout_constraintEnd_toEndOf="@+id/dept_notes_card"
-                    app:layout_constraintTop_toTopOf="@+id/choose_dept_card"
-                    app:srcCompat="@drawable/ic_accept_mark_24" />
-
-                <ImageButton
-                    android:id="@+id/delete_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:padding="12dp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/choose_dept_card"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/choose_dept_card"
-                    app:srcCompat="@drawable/ic_delete_24" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/dept_notes_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:backgroundTint="@color/card_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/choose_dept_card">
-
-                    <EditText
-                        android:id="@+id/dept_notes_txt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:gravity="start|top"
-                        android:inputType="textMultiLine" />
-
-                </com.google.android.material.card.MaterialCardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/new_department_container"
+            <ImageButton
+                android:id="@+id/save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/choose_dept_card"
+                app:layout_constraintEnd_toEndOf="@+id/dept_notes_card"
+                app:layout_constraintTop_toTopOf="@+id/choose_dept_card"
+                app:srcCompat="@drawable/ic_accept_mark_24" />
+
+            <ImageButton
+                android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:padding="12dp"
                 android:visibility="gone"
-                android:layout_marginBottom="200dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/choose_dept_card"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/choose_dept_card"
+                app:srcCompat="@drawable/ic_delete_24" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dept_notes_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/card_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_dept_card">
 
                 <EditText
-                    android:id="@+id/new_dept_et"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/dept_notes_txt"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="@string/department_hint"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_margin="8dp"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
 
-                <ImageButton
-                    android:id="@+id/save_title_btn"
-                    android:background="@color/transparent"
-                    android:padding="12dp"
-                    app:srcCompat="@drawable/ic_accept_mark_24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <LinearLayout
+            android:id="@+id/new_department_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="200dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/new_dept_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/department_hint"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/save_title_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                app:srcCompat="@drawable/ic_accept_mark_24" />
+
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

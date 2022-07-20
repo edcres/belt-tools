@@ -24,11 +24,11 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentSpecialtyOrdersBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
-        specOrdersAdapter = SpecOrdersAdapter(sharedViewModel, this)
+        specOrdersAdapter = SpecOrdersAdapter(this)
         return fragmentBinding.root
     }
 
@@ -73,10 +73,9 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
         if (specOrder != null) {
             sharedViewModel.removeSpecOrder(specOrder)
             clearViews()
-        } else {
-            displayToast(requireContext(), "Order not found.")
-        }
+        } else displayToast(requireContext(), "Order not found.")
     }
+
     private fun lookUpOrder() {
         binding?.apply {
             val specOrder = findOrder(
@@ -87,11 +86,10 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
                 orderNumEt.setText(specOrder.orderNum)
                 orderInfoEt.setText(specOrder.info)
                 orderNoteEt.setText(specOrder.note)
-            } else {
-                displayToast(requireContext(), "Order not found.")
-            }
+            } else displayToast(requireContext(), "Order not found.")
         }
     }
+
     private fun saveOrder() {
         val specOrder = findOrder(
             binding!!.orderNumEt.text.toString(),
@@ -138,9 +136,11 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
         }
         populateStoreNumber()
     }
+
     private fun populateStoreNumber() {
         if (sharedViewModel.storeNumber != null) {
-            binding!!.orderNumEt.setText("${ sharedViewModel.storeNumber}-")
+            val storeNumberDisplay = "${sharedViewModel.storeNumber}-"
+            binding!!.orderNumEt.setText(storeNumberDisplay)
         }
     }
     // HELPERS //

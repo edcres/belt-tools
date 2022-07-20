@@ -14,67 +14,44 @@ class Repository(private val db: MainRoomDatabase) {
     val allSecOrders: Flow<List<SpecialtyOrder>> = db.specialtyOrderDao().getSortedOrders()
 
     @WorkerThread
-    suspend fun insertDepartment(department: Department) {
-        db.departmentDao().insert(department)
-    }
+    suspend fun insertDepartment(department: Department) = db.departmentDao().insert(department)
 
     @WorkerThread
-    suspend fun updateDepartment(department: Department) {
-        db.departmentDao().update(department)
-    }
+    suspend fun updateDepartment(department: Department) = db.departmentDao().update(department)
 
     @WorkerThread
-    suspend fun deleteDepartment(department: Department) {
-        db.departmentDao().delete(department)
-    }
+    suspend fun deleteDepartment(department: Department) = db.departmentDao().delete(department)
 
     @WorkerThread
-    suspend fun insertSpecOrder(specialtyOrder: SpecialtyOrder) {
+    suspend fun insertSpecOrder(specialtyOrder: SpecialtyOrder) =
         db.specialtyOrderDao().insert(specialtyOrder)
-    }
 
     @WorkerThread
-    suspend fun updateSpecOrder(specialtyOrder: SpecialtyOrder) {
+    suspend fun updateSpecOrder(specialtyOrder: SpecialtyOrder) =
         db.specialtyOrderDao().update(specialtyOrder)
-    }
 
     @WorkerThread
-    suspend fun deleteSpecOrder(specialtyOrder: SpecialtyOrder) {
+    suspend fun deleteSpecOrder(specialtyOrder: SpecialtyOrder) =
         db.specialtyOrderDao().delete(specialtyOrder)
-    }
 
     @WorkerThread
-    suspend fun insertSKU(sku: SKU) {
-        db.sKUsDao().insert(sku)
-    }
+    suspend fun insertSKU(sku: SKU) = db.sKUsDao().insert(sku)
 
     @WorkerThread
-    suspend fun updateSKU(sku: SKU) {
-        db.sKUsDao().update(sku)
-    }
+    suspend fun updateSKU(sku: SKU) = db.sKUsDao().update(sku)
 
     @WorkerThread
-    suspend fun deleteSKU(sku: SKU) {
-        db.sKUsDao().delete(sku)
-    }
+    suspend fun deleteSKU(sku: SKU) = db.sKUsDao().delete(sku)
 
     @WorkerThread
-    suspend fun updateSKUPallet(skuId: Long) {
-        db.sKUsDao().updateSKUPallet(skuId)
-    }
+    suspend fun updateSKUPallet(skuId: Long) = db.sKUsDao().updateSKUPallet(skuId)
 
     @WorkerThread
-    suspend fun updateSKUFloor(skuId: Long) {
-        db.sKUsDao().updateSKUFloor(skuId)
-    }
+    suspend fun updateSKUFloor(skuId: Long) = db.sKUsDao().updateSKUFloor(skuId)
 
     @WorkerThread
-    suspend fun getSKUsOfPallet(): List<SKU> {
-        return db.sKUsDao().getPalletSKUs()
-    }
+    suspend fun getSKUsOfPallet(): List<SKU> = db.sKUsDao().getPalletSKUs()
 
     @WorkerThread
-    suspend fun getSKUsOfFloor(): List<SKU> {
-        return db.sKUsDao().getFloorSKUs()
-    }
+    suspend fun getSKUsOfFloor(): List<SKU> = db.sKUsDao().getFloorSKUs()
 }

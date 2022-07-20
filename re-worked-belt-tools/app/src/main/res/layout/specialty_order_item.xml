@@ -5,16 +5,16 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orders_list_item"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/orders_list_item">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/order_recycler_item_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:paddingTop="8dp"
+            android:paddingEnd="16dp"
             android:paddingBottom="8dp">
 
             <TextView
@@ -42,6 +42,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/order_number_txt"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

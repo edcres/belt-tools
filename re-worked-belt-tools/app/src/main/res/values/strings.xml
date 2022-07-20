@@ -3,7 +3,6 @@
 
     <string name="sqr_per_room_btn">Sqr Per Room</string>
     <string name="tile_box_results_btn">Boxes</string>
-
     <string name="nav_header_title">Tools</string>
     <string name="nav_header_txt">Use them</string>
 
@@ -63,5 +62,4 @@
     <string name="locate_magnet">Locate Magnet</string>
     <string name="new_location">new location</string>
     <string name="save">Save</string>
-
 </resources>

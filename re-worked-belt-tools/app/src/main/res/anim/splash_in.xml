@@ -9,7 +9,7 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:toXScale="1"
-        android:toYScale="1"/>
+        android:toYScale="1" />
     <alpha
         android:duration="300"
         android:fromAlpha="0"

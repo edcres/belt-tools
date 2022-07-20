@@ -27,7 +27,7 @@ class DepartmentNotesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentDepartmentNotesBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding

@@ -1,7 +1,6 @@
 package com.example.belttools.data.model.room
 
 import androidx.room.*
-import com.example.belttools.data.model.entities.Department
 import com.example.belttools.data.model.entities.SpecialtyOrder
 import kotlinx.coroutines.flow.Flow
 

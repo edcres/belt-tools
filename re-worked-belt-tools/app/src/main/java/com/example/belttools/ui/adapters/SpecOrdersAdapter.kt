@@ -8,21 +8,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.belttools.data.model.entities.SpecialtyOrder
 import com.example.belttools.databinding.SpecialtyOrderItemBinding
-import com.example.belttools.ui.viewmodel.SharedViewModel
 
 class SpecOrdersAdapter(
-    private val viewModel: SharedViewModel,
     private val onItemClickListener: OnItemClickListener
-): ListAdapter<SpecialtyOrder, SpecOrdersAdapter.SpecOrdersViewHolder>(SpecOrderDiffCallback()) {
+) : ListAdapter<SpecialtyOrder, SpecOrdersAdapter.SpecOrdersViewHolder>(SpecOrderDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        SpecOrdersViewHolder.from(viewModel, onItemClickListener, parent)
+        SpecOrdersViewHolder.from(onItemClickListener, parent)
 
     override fun onBindViewHolder(holderWorkouts: SpecOrdersViewHolder, position: Int) =
         holderWorkouts.bind(getItem(position))
 
     class SpecOrdersViewHolder private constructor(
-        private val viewModel: SharedViewModel,
         private val onItemClickListener: OnItemClickListener,
         private val binding: SpecialtyOrderItemBinding
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
@@ -48,14 +45,13 @@ class SpecOrdersAdapter(
 
         companion object {
             fun from(
-                viewModel: SharedViewModel,
                 onItemClickListener: OnItemClickListener,
                 parent: ViewGroup
             ): SpecOrdersViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = SpecialtyOrderItemBinding
                     .inflate(layoutInflater, parent, false)
-                return SpecOrdersViewHolder(viewModel, onItemClickListener, binding)
+                return SpecOrdersViewHolder(onItemClickListener, binding)
             }
         }
     }
@@ -66,10 +62,10 @@ class SpecOrdersAdapter(
 }
 
 class SpecOrderDiffCallback : DiffUtil.ItemCallback<SpecialtyOrder>() {
-
     override fun areItemsTheSame(oldItem: SpecialtyOrder, newItem: SpecialtyOrder): Boolean {
         return oldItem.id == newItem.id
     }
+
     override fun areContentsTheSame(oldItem: SpecialtyOrder, newItem: SpecialtyOrder): Boolean {
         return oldItem == newItem
     }

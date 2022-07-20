@@ -7,9 +7,9 @@
 
         <item
             android:id="@+id/functions_screen"
+            android:checked="true"
             android:icon="@drawable/ic_calculate_24"
-            android:title="@string/functions"
-            android:checked="true" />
+            android:title="@string/functions" />
         <item
             android:id="@+id/departments_ext_screen"
             android:icon="@drawable/ic_phone_24"
@@ -40,5 +40,4 @@
             android:title="@string/pallets" />
 
     </group>
-
 </menu>

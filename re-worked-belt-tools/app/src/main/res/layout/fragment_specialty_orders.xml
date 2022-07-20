@@ -154,10 +154,10 @@
                         android:layout_margin="16dp"
                         android:background="@color/orders_recycler_background"
                         android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/order_info_container"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         tools:listitem="@layout/specialty_order_item" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

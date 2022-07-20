@@ -76,11 +76,8 @@ class SharedViewModel : ViewModel() {
     }
 
     fun updateSKUType(skuId: Long) = viewModelScope.launch {
-        if (itemsListToDisplay == PALLET_SKUS_LIST) {
-            repository.updateSKUPallet(skuId)
-        } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
-            repository.updateSKUFloor(skuId)
-        }
+        if (itemsListToDisplay == PALLET_SKUS_LIST) repository.updateSKUPallet(skuId)
+        else if (itemsListToDisplay == FLOOR_SKUS_LIST) repository.updateSKUFloor(skuId)
     }
 
     fun populateNavList(navList: List<String>) {
@@ -114,9 +111,7 @@ class SharedViewModel : ViewModel() {
                     offExtraZeros("%.2f", result)
                 )
             )
-        } else {
-            offExtraZeros("%.2f", result)
-        }
+        } else offExtraZeros("%.2f", result)
     }
 
     fun getNumberOfBoxes(
@@ -131,15 +126,10 @@ class SharedViewModel : ViewModel() {
                     offExtraZeros("%.4f", result)
                 )
             )
-        } else {
-            offExtraZeros("%.4f", result)
-        }
+        } else offExtraZeros("%.4f", result)
     }
 
-    fun getSqrFtOrSqrIn(
-        sqrFt: String,
-        sqrIn: String
-    ): String {
+    fun getSqrFtOrSqrIn(sqrFt: String, sqrIn: String): String {
         return when {
             sqrFt.isNotEmpty() -> {
                 val inches = sqrt(sqrFt.toDouble()) * 12
@@ -177,22 +167,9 @@ class SharedViewModel : ViewModel() {
 
     // DATABASE QUERIES //
     private fun collectEntities() {
-        viewModelScope.launch {
-            repository.allDepartments.collect {
-                _departments.postValue(it)
-                Log.d(TAG, "collectEntities: called")
-            }
-        }
-        viewModelScope.launch {
-            repository.allSKUs.collect {
-                _skus.postValue(it)
-            }
-        }
-        viewModelScope.launch {
-            repository.allSecOrders.collect {
-                _specOrders.postValue(it)
-            }
-        }
+        viewModelScope.launch { repository.allDepartments.collect { _departments.postValue(it) } }
+        viewModelScope.launch { repository.allSKUs.collect { _skus.postValue(it) } }
+        viewModelScope.launch { repository.allSecOrders.collect { _specOrders.postValue(it) } }
     }
 
     fun insertDepartment(department: Department) = viewModelScope.launch {
@@ -237,17 +214,13 @@ class SharedViewModel : ViewModel() {
             if (sku.isOfFloor) {
                 sku.isOfPallet = false
                 updateSKU(sku)
-            } else {
-                removeSKU(sku)
-            }
+            } else removeSKU(sku)
         } else if (itemsListToDisplay == FLOOR_SKUS_LIST) {
             // delete floor
             if (sku.isOfPallet) {
                 sku.isOfFloor = false
                 updateSKU(sku)
-            } else {
-                removeSKU(sku)
-            }
+            } else removeSKU(sku)
         }
     }
 

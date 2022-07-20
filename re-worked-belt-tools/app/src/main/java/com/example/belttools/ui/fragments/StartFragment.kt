@@ -25,7 +25,7 @@ class StartFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -85,7 +85,7 @@ class StartFragment : Fragment() {
                     sharedViewModel.navDestinationsList[2] -> navController
                         .navigate(R.id.action_startFragment_to_specialtyOrdersFragment)
                     sharedViewModel.navDestinationsList[3] -> navController
-                            .navigate(R.id.action_startFragment_to_departmentNotesFragment)
+                        .navigate(R.id.action_startFragment_to_departmentNotesFragment)
                     sharedViewModel.navDestinationsList[4] -> {
                         sharedViewModel.itemsListToDisplay = FLOOR_SKUS_LIST
                         navController.navigate(R.id.action_startFragment_to_itemsToWorkOnFragment)
@@ -101,6 +101,7 @@ class StartFragment : Fragment() {
             }
         }
     }
+
     private fun setUpClickListeners() {
         binding?.apply {
             //1 Get the square feet
@@ -120,7 +121,10 @@ class StartFragment : Fragment() {
             sqrPerRoomBtn.setOnLongClickListener {
                 if (sqrPerRoomBtn.text.toString() != getString(R.string.sqr_per_room_btn)) {
                     homeSqrFt.setText(
-                        offExtraZeros("%.2f", sumListOfString(sqrPerRoomBtn.text.split(PLUS_JOIN)))
+                        offExtraZeros(
+                            "%.2f",
+                            sumListOfString(sqrPerRoomBtn.text.split(PLUS_JOIN))
+                        )
                     )
                 }
                 return@setOnLongClickListener true
@@ -281,7 +285,8 @@ class StartFragment : Fragment() {
             //9 Lineal Backsplash
             bakShEqualsBtn.setOnClickListener {
                 if (bkShLinealSpaceEt.text.isNotEmpty() && cutOutsEt.text
-                        .isNotEmpty() && bakShResultsTxt.text.toString() != "0") {
+                        .isNotEmpty() && bakShResultsTxt.text.toString() != "0"
+                ) {
                     bakShWidthEt.text.clear(); bkShLinealSpaceEt.text.clear()
                     cutOutsEt.text.clear(); bakShResultsTxt.text = "0"
                 } else {
@@ -325,7 +330,7 @@ class StartFragment : Fragment() {
         val inputNumberDialog: EditText = customAlertDialogView.findViewById(R.id.store_number_et)
         inputDialog.setView(customAlertDialogView)
             .setTitle("Store number")
-            .setPositiveButton("Accept") { dialog, _ ->
+            .setPositiveButton("Accept") { _, _ ->
                 sharedViewModel.storeNumber = inputNumberDialog.text.toString()
                 sharedViewModel.sendDataToSP(
                     STORE_NUMBER_TAG,
@@ -334,7 +339,7 @@ class StartFragment : Fragment() {
                     sharedViewModel.storeNumber!!
                 )
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton("Cancel") { _, _ ->
                 Log.i(TAG, "No store number input")
             }
             .show()
@@ -354,26 +359,29 @@ class StartFragment : Fragment() {
             linealFtEt.text.clear(); sqrYardEt.text.clear()
             boxPriceEt.text.clear(); boxSqrFtEt.text.clear(); sqrFtPriceTxt.text = "0"
             vBlindWidthEt.text.clear(); numOfLouversTxt.text = "0"
-            newMagnetLocationEt.text.clear(); bkShLinealSpaceEt.text.clear(); cutOutsEt.text.clear();
+            newMagnetLocationEt.text.clear(); bkShLinealSpaceEt.text.clear(); cutOutsEt.text.clear()
             bakShResultsTxt.text = "0"
         }
     }
+
     private fun pressedEnter(itemToClick: Button, keycode: Int, theEvent: KeyEvent): Boolean {
-        return if (keycode == KeyEvent.KEYCODE_ENTER && theEvent.action == KeyEvent.ACTION_UP){
+        return if (keycode == KeyEvent.KEYCODE_ENTER && theEvent.action == KeyEvent.ACTION_UP) {
             itemToClick.performClick()
             true
         } else {
             false
         }
     }
+
     private fun displayMagnetLocation() {
         val magnetLocation = sharedViewModel.getDataFromSP(
-                MAGNET_LOCATION_TAG,
-                MAGNET_LOCATION,
-                requireContext()
-            )
+            MAGNET_LOCATION_TAG,
+            MAGNET_LOCATION,
+            requireContext()
+        )
         if (!magnetLocation.isNullOrEmpty()) binding!!.lastMagnetLocationTxt.text = magnetLocation
     }
+
     private fun populateNavList() {
         val destinationsList = listOf(
             getString(R.string.functions),

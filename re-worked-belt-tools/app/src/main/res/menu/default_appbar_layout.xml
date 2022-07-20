@@ -6,6 +6,6 @@
         android:id="@+id/edit_toolbar_btn"
         android:icon="@drawable/ic_edit_24"
         android:title="@string/toolbar_edit"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
 </menu>

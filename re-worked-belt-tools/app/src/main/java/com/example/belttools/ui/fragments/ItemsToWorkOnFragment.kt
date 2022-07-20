@@ -22,7 +22,7 @@ class ItemsToWorkOnFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentItemsToWorkOnBinding
             .inflate(inflater, container, false)
         binding = fragmentBinding
