@@ -1,14 +1,14 @@
 # belt-tools
 
-There are 2 apps in this repository, an old version and a new version
-The purpose of this is to show some of my improvement at the time of making the new app
-The newer version is simple, and meant to keep the theme of the original
+There are 2 apps in this repository, an old version and a new version.
+The purpose of this is to show some of my improvement at the time of making the new app.
+The newer version is simple, and meant to keep the theme of the original.
 
-This was the first real app I made
-I used it to help me in my hardware job
+This was the first real app I made.
+I used it to help me in my hardware job.
 
-The newer version is built in MVVM architecture and a local database
-The old version uses shared preferences to store data and almost all the code is in the activities
+The newer version is built in MVVM architecture and a local database.
+The old version uses shared preferences to store data and almost all the code is in the activities.
 
 ---
 
