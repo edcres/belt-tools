@@ -95,12 +95,14 @@ class SpecialtyOrdersFragment : Fragment(), SpecOrdersAdapter.OnItemClickListene
             binding!!.orderNumEt.text.toString(),
             sharedViewModel.specOrders.value!!
         )
-        if (specOrder != null) {
-            // Update order
-            sharedViewModel.updateSpecOrder(specOrder)
-        } else {
-            // Insert new order
-            binding?.apply {
+        binding?.apply {
+            if (specOrder != null) {
+                // Update order
+                specOrder.info = orderInfoEt.text.toString()
+                specOrder.note = orderNoteEt.text.toString()
+                sharedViewModel.updateSpecOrder(specOrder)
+            } else {
+                // Insert new order
                 sharedViewModel.insertSpecOrder(
                     SpecialtyOrder(
                         orderNum = orderNumEt.text.toString(),

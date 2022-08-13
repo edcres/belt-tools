@@ -98,6 +98,7 @@ fun getDepartmentNames(departments: List<Department>): MutableList<String> {
 }
 
 fun findOrder(orderNum: String, orders: List<SpecialtyOrder>): SpecialtyOrder? {
+    // Find order from viewModel 'specOrders' list using order number
     orders.forEach { if (it.orderNum == orderNum) return it }
     return null
 }
