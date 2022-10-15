@@ -3,6 +3,7 @@ package com.example.belttools.ui
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -22,6 +23,9 @@ import com.example.belttools.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("main__TAG", "onCreate: called\nbundle = $savedInstanceState")
+
         setContentView(R.layout.activity_main)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         // This is to fix a bug that makes the status bar grey.
@@ -29,5 +33,10 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("main__TAG", "onDestroy: called")
     }
 }
