@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.belttools.R
 
 /** App explanation:
@@ -21,6 +24,7 @@ import com.example.belttools.R
  */
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,5 +34,11 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
         }
+        Log.d("mainAct__TAG", "onCreate: called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("mainAct__TAG", "onDestroy: called")
     }
 }

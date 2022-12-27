@@ -15,12 +15,17 @@ import com.example.belttools.ui.viewmodel.SharedViewModel
 import com.example.belttools.util.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-private const val TAG = "StartFrag_TAG"
+private const val TAG = "StartFrag__TAG"
 
 class StartFragment : Fragment() {
 
     private var binding: FragmentStartBinding? = null
     private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate: called")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,7 @@ class StartFragment : Fragment() {
     ): View {
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
+        Log.d(TAG, "onCreateView: called")
         return fragmentBinding.root
     }
 
@@ -49,6 +55,7 @@ class StartFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+        Log.d(TAG, "onDestroy: called")
     }
 
     // SET UP //
