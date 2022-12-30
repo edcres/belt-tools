@@ -42,14 +42,17 @@ class StartFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
         }
+        Log.d(TAG, "onViewCreated1: called")
         sharedViewModel.setUpDatabase(requireActivity().application)
         setUpClickListeners()
         displayMagnetLocation()
+        Log.d(TAG, "onViewCreated2: called")
         setUpAppBar()
         populateNavList()
         if (sharedViewModel.getStoreNumberValue(requireContext()) == null) {
             makeStoreNumInputDialog()
         }
+        Log.d(TAG, "onViewCreated3: called")
     }
 
     override fun onDestroy() {

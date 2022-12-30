@@ -257,11 +257,13 @@ class SharedViewModel : ViewModel() {
 
     // SET UP //
     fun setUpDatabase(application: Application) {
+        Log.d(TAG, "setUpDatabase1: called")
         if (applicationNotStarted) {
             roomDb = MainRoomDatabase.getInstance(application)
             repository = Repository(roomDb)
             collectEntities()
             applicationNotStarted = false
         }
+        Log.d(TAG, "setUpDatabase2: called")
     }
 }
